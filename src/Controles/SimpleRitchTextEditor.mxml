@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:RichTextEditor xmlns:mx="http://www.adobe.com/2006/mxml" creationComplete="init()">
+	<mx:Script>
+		<![CDATA[
+
+			private function init():void
+			{
+				this.textArea.editable = false;
+				// removendo controles que não desejamos...
+                fontFamilyCombo.parent.removeChild(fontFamilyCombo);
+                fontSizeCombo.parent.removeChild(fontSizeCombo);
+                toolBar2.parent.removeChild(toolBar2);
+                colorPicker.parent.removeChild(colorPicker);
+                alignButtons.parent.removeChild(alignButtons);
+                bulletButton.parent.removeChild(bulletButton);
+ 				linkTextInput.parent.removeChild(linkTextInput);
+ 				
+                // remove vertical separator...
+                _RichTextEditor_VRule1.parent.removeChild(_RichTextEditor_VRule1);
+                _RichTextEditor_VRule2.parent.removeChild(_RichTextEditor_VRule2);
+			}
+			
+			
+		]]>
+	</mx:Script>
+</mx:RichTextEditor>
