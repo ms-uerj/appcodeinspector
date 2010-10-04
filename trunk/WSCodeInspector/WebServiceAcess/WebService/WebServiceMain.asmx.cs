@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Services;
+using Database.Facade;
 
 namespace WebServiceAcess.WebService
 {
@@ -17,10 +18,22 @@ namespace WebServiceAcess.WebService
     public class WebServiceMain : System.Web.Services.WebService
     {
 
+        /// <summary>
+        /// Verificar se o usuário já está cadastrado no banco.  
+        /// </summary>
+        /// <param name="login"></param>
+        /// <param name="senha"></param>
+        /// <returns>Um boleano</returns>
         [WebMethod]
-        public string HelloWorld()
+        public bool AutenticarUsuario(string login, string senha)
         {
-            return "Hello World";
+            return new UsuarioFacade().AutenticarUsuario(login, senha);
         }
+
+        public bool CriarUsuario(string nome, string login, string email, string senha)
+        {
+            return new UsuarioFacade().CriarUsuario(nome, login, email, senha);
+        }
+
     }
 }
