@@ -41,12 +41,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CodeInspector.designer.cs">
+    <Compile Include="CodeInspectorLinq.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CodeInspector.dbml</DependentUpon>
+      <DependentUpon>CodeInspectorLinq.dbml</DependentUpon>
     </Compile>
+    <Compile Include="DAO\QuestoesDAO.cs" />
     <Compile Include="DAO\UsuarioDAO.cs" />
+    <Compile Include="Facade\QuestaoFacade.cs" />
     <Compile Include="Facade\UsuarioFacade.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -58,9 +60,9 @@
   <ItemGroup />
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="CodeInspector.dbml">
+    <None Include="CodeInspectorLinq.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>CodeInspector.designer.cs</LastGenOutput>
+      <LastGenOutput>CodeInspectorLinq.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
     <None Include="Properties\Settings.settings">
@@ -73,12 +75,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="CodeInspectorDataContext.dbml.layout">
-      <DependentUpon>CodeInspector.dbml</DependentUpon>
+      <DependentUpon>CodeInspectorLinq.dbml</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="CodeInspector.dbml.layout">
-      <DependentUpon>CodeInspector.dbml</DependentUpon>
+    <None Include="CodeInspectorLinq.dbml.layout">
+      <DependentUpon>CodeInspectorLinq.dbml</DependentUpon>
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
