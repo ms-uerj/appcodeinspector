@@ -30,9 +30,29 @@ namespace WebServiceAcess.WebService
             return new UsuarioFacade().AutenticarUsuario(login, senha);
         }
 
+        /// <summary>
+        /// Método para criação de usuários
+        /// </summary>
+        /// <param name="nome"></param>
+        /// <param name="login"></param>
+        /// <param name="email"></param>
+        /// <param name="senha"></param>
+        /// <returns>Falso ou verdadeiro dependendo do sucesso</returns>
+        [WebMethod]
         public bool CriarUsuario(string nome, string login, string email, string senha)
         {
             return new UsuarioFacade().CriarUsuario(nome, login, email, senha);
+        }
+
+        /// <summary>
+        /// Recupera as quesões baseada em um nível de dificuldade
+        /// </summary>
+        /// <param name="nivelDificuldade">Nível das questões a ser procurados</param>
+        /// <returns>Uma string com todas as questoes do mesmo nível</returns>
+        [WebMethod]
+        public string GetQuestoes(int nivelDificuldade)
+        {
+            return new QuestaoFacade().GetQuestoes(nivelDificuldade);
         }
 
     }
