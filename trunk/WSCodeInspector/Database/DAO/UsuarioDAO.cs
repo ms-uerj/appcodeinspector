@@ -11,18 +11,7 @@ namespace Database.DAO
 
         private CodeInspectorDataContext db= new CodeInspectorDataContext();
 
-        public List<Usuario> GetUsuario(int idUsuario)
-        {
-            var usuario = from u in db.Usuarios
-                          where u.IdUsuario == idUsuario
-                          select u;
-
-            List<Usuario> userList = usuario.ToList();
-
-            return userList;
-        }
-
-        public bool AtenticarUsuario(string login, string senha)
+        internal bool AtenticarUsuario(string login, string senha)
         {
             var usuario = (from u in db.Usuarios
                           where u.Login == login && u.Senha == senha  
@@ -31,7 +20,7 @@ namespace Database.DAO
             return Convert.ToBoolean(usuario);
         }
 
-        public bool CriarUsuario(string nome, string login, string email, string senha)
+        internal bool CriarUsuario(string nome, string login, string email, string senha)
         {
             if (AtenticarUsuario(login, senha) == false)
 
