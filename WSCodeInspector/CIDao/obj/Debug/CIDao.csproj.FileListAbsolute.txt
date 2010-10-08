@@ -1,0 +1,6 @@
+C:\Users\Enuma\Desktop\Projetos\appcodeinspector\WSCodeInspector\CIDao\bin\Debug\CIDao.dll.config
+C:\Users\Enuma\Desktop\Projetos\appcodeinspector\WSCodeInspector\CIDao\bin\Debug\CIDao.dll
+C:\Users\Enuma\Desktop\Projetos\appcodeinspector\WSCodeInspector\CIDao\bin\Debug\CIDao.pdb
+C:\Users\Enuma\Desktop\Projetos\appcodeinspector\WSCodeInspector\CIDao\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Enuma\Desktop\Projetos\appcodeinspector\WSCodeInspector\CIDao\obj\Debug\CIDao.dll
+C:\Users\Enuma\Desktop\Projetos\appcodeinspector\WSCodeInspector\CIDao\obj\Debug\CIDao.pdb
