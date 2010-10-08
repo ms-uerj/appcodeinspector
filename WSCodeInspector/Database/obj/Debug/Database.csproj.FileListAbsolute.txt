@@ -1,6 +1,0 @@
-C:\Users\Enuma\Desktop\Projetos\appcodeinspector\WSCodeInspector\Database\bin\Debug\Database.dll
-C:\Users\Enuma\Desktop\Projetos\appcodeinspector\WSCodeInspector\Database\bin\Debug\Database.pdb
-C:\Users\Enuma\Desktop\Projetos\appcodeinspector\WSCodeInspector\Database\obj\Debug\ResolveAssemblyReference.cache
-C:\Users\Enuma\Desktop\Projetos\appcodeinspector\WSCodeInspector\Database\obj\Debug\Database.dll
-C:\Users\Enuma\Desktop\Projetos\appcodeinspector\WSCodeInspector\Database\obj\Debug\Database.pdb
-C:\Users\Enuma\Desktop\Projetos\appcodeinspector\WSCodeInspector\Database\bin\Debug\Database.dll.config
