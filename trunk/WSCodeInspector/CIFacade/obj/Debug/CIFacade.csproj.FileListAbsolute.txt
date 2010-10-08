@@ -1,0 +1,7 @@
+C:\Users\Enuma\Desktop\Projetos\appcodeinspector\WSCodeInspector\CIFacade\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Enuma\Desktop\Projetos\appcodeinspector\WSCodeInspector\CIFacade\bin\Debug\CIFacade.dll
+C:\Users\Enuma\Desktop\Projetos\appcodeinspector\WSCodeInspector\CIFacade\bin\Debug\CIFacade.pdb
+C:\Users\Enuma\Desktop\Projetos\appcodeinspector\WSCodeInspector\CIFacade\bin\Debug\CIDao.dll
+C:\Users\Enuma\Desktop\Projetos\appcodeinspector\WSCodeInspector\CIFacade\bin\Debug\CIDao.pdb
+C:\Users\Enuma\Desktop\Projetos\appcodeinspector\WSCodeInspector\CIFacade\obj\Debug\CIFacade.dll
+C:\Users\Enuma\Desktop\Projetos\appcodeinspector\WSCodeInspector\CIFacade\obj\Debug\CIFacade.pdb
