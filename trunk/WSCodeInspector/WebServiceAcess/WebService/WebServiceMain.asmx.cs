@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Services;
-using Database.Facade;
+using CIFacade.Facade;
 
 namespace WebServiceAcess.WebService
 {
@@ -54,6 +54,16 @@ namespace WebServiceAcess.WebService
         {
             return new QuestaoFacade().GetQuestoes(nivelDificuldade);
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        //[WebMethod]
+        //public string GetUsersRank()
+        //{
+            
+        //}
 
     }
 }
