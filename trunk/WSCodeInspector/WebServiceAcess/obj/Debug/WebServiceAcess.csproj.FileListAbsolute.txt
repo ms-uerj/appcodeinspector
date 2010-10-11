@@ -1,7 +1,0 @@
-C:\Users\Enuma\Desktop\Projetos\appcodeinspector\WSCodeInspector\WebServiceAcess\bin\WebServiceAcess.dll
-C:\Users\Enuma\Desktop\Projetos\appcodeinspector\WSCodeInspector\WebServiceAcess\bin\WebServiceAcess.pdb
-C:\Users\Enuma\Desktop\Projetos\appcodeinspector\WSCodeInspector\WebServiceAcess\obj\Debug\ResolveAssemblyReference.cache
-C:\Users\Enuma\Desktop\Projetos\appcodeinspector\WSCodeInspector\WebServiceAcess\obj\Debug\WebServiceAcess.dll
-C:\Users\Enuma\Desktop\Projetos\appcodeinspector\WSCodeInspector\WebServiceAcess\obj\Debug\WebServiceAcess.pdb
-C:\Users\Enuma\Desktop\Projetos\appcodeinspector\WSCodeInspector\WebServiceAcess\bin\Database.dll
-C:\Users\Enuma\Desktop\Projetos\appcodeinspector\WSCodeInspector\WebServiceAcess\bin\Database.pdb
