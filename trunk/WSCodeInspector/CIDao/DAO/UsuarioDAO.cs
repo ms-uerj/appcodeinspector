@@ -19,22 +19,17 @@ namespace CIDao.DAO
             return Convert.ToBoolean(usuario);
         }
 
-        public bool CriarUsuario(string nome, string login, string email, string senha)
+        public bool CriarUsuario(Usuario novoUsuario, string email, string senha)
         {
-            if (AtenticarUsuario(login, senha) == false)
+            if (AtenticarUsuario(email, senha) == false)
 
                 try
                 {
-                    Usuario novoUser = new Usuario();
 
-                    novoUser.Nome = nome;
-                    novoUser.Login = login;
-                    novoUser.Email = email;
-                    novoUser.Senha = senha;
-
-                    db.Usuarios.InsertOnSubmit(novoUser);
+                    db.Usuarios.InsertOnSubmit(novoUsuario);
                     db.SubmitChanges();
                     return true;
+
                 }
                 catch
                 {
@@ -43,6 +38,11 @@ namespace CIDao.DAO
 
             else return false;
 
+        }
+
+        public List<Usuario> GetUsersRank()
+        {
+ 
         }
 
     }
