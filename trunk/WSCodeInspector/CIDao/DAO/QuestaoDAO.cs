@@ -9,16 +9,18 @@ namespace CIDao.DAO
     {
 
         private CodeInspectorDataContext db = new CodeInspectorDataContext();
-        public List<Questao> GetQuestoes(int NivelDificuldade)
+        public List<Questao> GetQuestoes(int nivelDificuldade)
         {
             var questoesLinq = from q in db.Questaos
-                           where q.NivelDificuldade == NivelDificuldade
+                           where q.NivelDificuldade == nivelDificuldade
                            select q;
 
             List<Questao> questoes = questoesLinq.ToList();
 
             return questoes;
         }
+
+        public 
 
     }
 }
