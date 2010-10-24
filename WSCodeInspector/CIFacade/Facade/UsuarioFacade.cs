@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using CIDao.DAO;
 using CIDao;
+using System.Data;
 
 namespace CIFacade.Facade
 {
@@ -25,6 +26,11 @@ namespace CIFacade.Facade
             novoUsario.Senha = senha;
 
             return new UsuarioDAO().CriarUsuario(novoUsario ,email, senha);
+        }
+
+        public DataTable GetUsersRank(int nivelDificuldade)
+        {
+            return new UsuarioDAO().GetUsersRank(nivelDificuldade);
         }
     }
 }
