@@ -20,7 +20,5 @@ namespace CIDao.DAO
             return questoes;
         }
 
-        public 
-
     }
 }
