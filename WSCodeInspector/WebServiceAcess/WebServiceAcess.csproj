@@ -67,9 +67,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CIFacade\CIFacade.csproj">
-      <Project>{68EEE075-7966-4E54-B4C7-B51A3F764491}</Project>
-      <Name>CIFacade</Name>
+    <ProjectReference Include="..\Database\Database.csproj">
+      <Project>{C0078E84-EBE8-4101-B3D4-71E449B009AA}</Project>
+      <Name>Database</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

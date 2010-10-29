@@ -2,25 +2,26 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using CIDao.DAO;
+using Database.DAO;
 
-namespace CIFacade.Facade
+namespace Database.Facade
 {
     public class QuestaoFacade
     {
+
         public string GetQuestoes(int NivelDificuldade)
         {
             var fullQuestoesXML = new StringBuilder();
 
-            QuestaoDAO questoes = new QuestaoDAO();
-            
+            QuestoesDAO questoes = new QuestoesDAO();
 
-            //foreach (QuestaoDAO questao in questoes.GetQuestoes(NivelDificuldade))
-            //{
-            //    fullQuestoesXML.Append(questao.ToString());
-            //}
+            foreach (Questao questao in questoes.GetQuestoes(NivelDificuldade))
+            {
+                fullQuestoesXML.Append(questao.ToString());
+            }
 
             return fullQuestoesXML.ToString();
         }
+
     }
 }

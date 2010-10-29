@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{A9708C0A-CB12-4365-846E-D8975182B166}</ProjectGuid>
+    <ProjectGuid>{C0078E84-EBE8-4101-B3D4-71E449B009AA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CIDao</RootNamespace>
-    <AssemblyName>CIDao</AssemblyName>
+    <RootNamespace>Database</RootNamespace>
+    <AssemblyName>Database</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -42,12 +42,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CodeInspectorLinq.designer.cs">
-      <DependentUpon>CodeInspectorLinq.dbml</DependentUpon>
-      <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CodeInspectorLinq.dbml</DependentUpon>
     </Compile>
-    <Compile Include="DAO\QuestaoDAO.cs" />
+    <Compile Include="DAO\QuestoesDAO.cs" />
     <Compile Include="DAO\UsuarioDAO.cs" />
+    <Compile Include="Facade\QuestaoFacade.cs" />
+    <Compile Include="Facade\UsuarioFacade.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -55,6 +57,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="app.config" />
     <None Include="CodeInspectorLinq.dbml">
@@ -68,6 +71,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="CodeInspectorDataContext.dbml.layout">
       <DependentUpon>CodeInspectorLinq.dbml</DependentUpon>
     </None>
@@ -76,9 +82,6 @@
     <None Include="CodeInspectorLinq.dbml.layout">
       <DependentUpon>CodeInspectorLinq.dbml</DependentUpon>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

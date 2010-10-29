@@ -9,7 +9,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CIDao
+namespace Database
 {
 	using System.Data.Linq;
 	using System.Data.Linq.Mapping;
@@ -45,7 +45,7 @@ namespace CIDao
     #endregion
 		
 		public CodeInspectorDataContext() : 
-				base(global::CIDao.Properties.Settings.Default.CodeInspectorConnectionString, mappingSource)
+				base(global::Database.Properties.Settings.Default.CodeInspectorConnectionString, mappingSource)
 		{
 			OnCreated();
 		}

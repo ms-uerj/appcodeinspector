@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Services;
-using CIFacade.Facade;
-using System.Data;
+using Database.Facade;
 
 namespace WebServiceAcess.WebService
 {
@@ -24,7 +23,7 @@ namespace WebServiceAcess.WebService
         /// </summary>
         /// <param name="login"></param>
         /// <param name="senha"></param>
-        /// <returns>True caso o usuario seja cadastrado</returns>
+        /// <returns>Um boleano</returns>
         [WebMethod]
         public bool AutenticarUsuario(string login, string senha)
         {
@@ -34,6 +33,10 @@ namespace WebServiceAcess.WebService
         /// <summary>
         /// Método para criação de usuários
         /// </summary>
+        /// <param name="nome"></param>
+        /// <param name="login"></param>
+        /// <param name="email"></param>
+        /// <param name="senha"></param>
         /// <returns>Falso ou verdadeiro dependendo do sucesso</returns>
         [WebMethod]
         public bool CriarUsuario(string nome, string login, string email, string senha)
@@ -50,13 +53,6 @@ namespace WebServiceAcess.WebService
         public string GetQuestoes(int nivelDificuldade)
         {
             return new QuestaoFacade().GetQuestoes(nivelDificuldade);
-        }
-
-
-        [WebMethod]
-        public DataTable GetUsersRank(int nivelDificuldade)
-        {
-            return new UsuarioFacade().GetUsersRank(nivelDificuldade);
         }
 
     }
