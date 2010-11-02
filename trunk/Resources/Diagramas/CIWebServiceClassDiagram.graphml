@@ -14,91 +14,36 @@
   <graph edgedefault="directed" id="G">
     <node id="n0" yfiles.foldertype="group">
       <data key="d1"/>
-      <data key="d2"/>
       <data key="d3">
         <y:ProxyAutoBoundsNode>
           <y:Realizers active="0">
             <y:GroupNode>
-              <y:Geometry height="357.12646484375" width="571.0" x="-1121.7499999999995" y="30.37353515625"/>
-              <y:Fill color="#F2F0D8" transparent="false"/>
-              <y:BorderStyle color="#000000" type="line" width="1.0"/>
-              <y:NodeLabel alignment="right" autoSizePolicy="node_width" backgroundColor="#B7B69E" borderDistance="0.0" fontFamily="Dialog" fontSize="15" fontStyle="plain" hasLineColor="false" height="22.37646484375" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="571.0" x="0.0" y="0.0">CIDAO  Project  (Camada de Banco de Dados) </y:NodeLabel>
-              <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="4.0" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="4.0" x="283.5" y="176.563232421875"/>
-              <y:Shape type="rectangle"/>
-              <y:DropShadow color="#D2D2D2" offsetX="4" offsetY="4"/>
+              <y:Geometry height="204.7604648437499" width="529.0" x="-1104.7499999999995" y="-414.05800000000005"/>
+              <y:Fill color="#F5F5F5" transparent="false"/>
+              <y:BorderStyle color="#000000" type="dashed" width="1.0"/>
+              <y:NodeLabel alignment="right" autoSizePolicy="node_width" backgroundColor="#EBEBEB" borderDistance="0.0" fontFamily="Dialog" fontSize="15" fontStyle="plain" hasLineColor="false" height="22.37646484375" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="529.0" x="0.0" y="0.0">WebserviceAcess Project  </y:NodeLabel>
+              <y:Shape type="roundrectangle"/>
               <y:State closed="false" innerGraphDisplayEnabled="false"/>
               <y:Insets bottom="15" bottomF="15.0" left="15" leftF="15.0" right="15" rightF="15.0" top="15" topF="15.0"/>
-              <y:BorderInsets bottom="7" bottomF="6.75" left="2" leftF="2.0" right="6" rightF="6.0" top="0" topF="0.0"/>
+              <y:BorderInsets bottom="0" bottomF="0.0" left="93" leftF="92.5" right="0" rightF="0.0" top="49" topF="49.0075351562499"/>
             </y:GroupNode>
             <y:GroupNode>
-              <y:Geometry height="50.0" width="50.0" x="-715.5" y="19.12353515625"/>
-              <y:Fill color="#F2F0D8" transparent="false"/>
-              <y:BorderStyle color="#000000" type="line" width="1.0"/>
-              <y:NodeLabel alignment="right" autoSizePolicy="node_width" backgroundColor="#B7B69E" borderDistance="0.0" fontFamily="Dialog" fontSize="15" fontStyle="plain" hasLineColor="false" height="22.37646484375" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="50.0" x="0.0" y="0.0">3</y:NodeLabel>
-              <y:Shape type="rectangle"/>
-              <y:DropShadow color="#D2D2D2" offsetX="4" offsetY="4"/>
-              <y:State closed="true" innerGraphDisplayEnabled="false"/>
+              <y:Geometry height="50.0" width="50.0" x="-576.0" y="-394.30800000000005"/>
+              <y:Fill color="#F5F5F5" transparent="false"/>
+              <y:BorderStyle color="#000000" type="dashed" width="1.0"/>
+              <y:NodeLabel alignment="right" autoSizePolicy="node_width" backgroundColor="#EBEBEB" borderDistance="0.0" fontFamily="Dialog" fontSize="15" fontStyle="plain" hasLineColor="false" height="22.37646484375" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="50.0" x="0.0" y="0.0">1</y:NodeLabel>
+              <y:Shape type="roundrectangle"/>
+              <y:State closed="false" innerGraphDisplayEnabled="false"/>
               <y:Insets bottom="15" bottomF="15.0" left="15" leftF="15.0" right="15" rightF="15.0" top="15" topF="15.0"/>
               <y:BorderInsets bottom="0" bottomF="0.0" left="0" leftF="0.0" right="0" rightF="0.0" top="0" topF="0.0"/>
             </y:GroupNode>
           </y:Realizers>
         </y:ProxyAutoBoundsNode>
       </data>
-      <graph edgedefault="directed" id="n0:">
-        <node id="n0::n0" yfiles.foldertype="folder">
-          <data key="d1"/>
-          <data key="d2"/>
-          <data key="d3">
-            <y:ProxyAutoBoundsNode>
-              <y:Realizers active="1">
-                <y:GroupNode>
-                  <y:Geometry height="50.0" width="50.0" x="-671.0293333333335" y="74.5"/>
-                  <y:Fill color="#F2F0D8" transparent="false"/>
-                  <y:BorderStyle color="#000000" type="line" width="1.0"/>
-                  <y:NodeLabel alignment="right" autoSizePolicy="node_width" backgroundColor="#B7B69E" borderDistance="0.0" fontFamily="Dialog" fontSize="15" fontStyle="plain" hasLineColor="false" height="22.37646484375" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="50.0" x="0.0" y="0.0">3</y:NodeLabel>
-                  <y:Shape type="rectangle"/>
-                  <y:DropShadow color="#D2D2D2" offsetX="4" offsetY="4"/>
-                  <y:State closed="false" innerGraphDisplayEnabled="false"/>
-                  <y:Insets bottom="5" bottomF="5.0" left="5" leftF="5.0" right="5" rightF="5.0" top="5" topF="5.0"/>
-                  <y:BorderInsets bottom="0" bottomF="0.0" left="0" leftF="0.0" right="0" rightF="0.0" top="0" topF="0.0"/>
-                </y:GroupNode>
-                <y:GroupNode>
-                  <y:Geometry height="178.0" width="529.0" x="-1104.7499999999995" y="67.75"/>
-                  <y:Fill color="#F2F0D8" transparent="false"/>
-                  <y:BorderStyle color="#000000" type="line" width="1.0"/>
-                  <y:NodeLabel alignment="right" autoSizePolicy="node_width" backgroundColor="#B7B69E" borderDistance="0.0" fontFamily="Dialog" fontSize="15" fontStyle="plain" hasLineColor="false" height="22.37646484375" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="529.0" x="0.0" y="0.0"> CIDao.DAO (Namespace)</y:NodeLabel>
-                  <y:Shape type="rectangle"/>
-                  <y:DropShadow color="#D2D2D2" offsetX="4" offsetY="4"/>
-                  <y:State closed="true" innerGraphDisplayEnabled="false"/>
-                  <y:Insets bottom="5" bottomF="5.0" left="5" leftF="5.0" right="5" rightF="5.0" top="5" topF="5.0"/>
-                  <y:BorderInsets bottom="0" bottomF="0.0" left="0" leftF="0.0" right="0" rightF="0.0" top="0" topF="0.0"/>
-                </y:GroupNode>
-              </y:Realizers>
-            </y:ProxyAutoBoundsNode>
-          </data>
-          <graph edgedefault="directed" id="n0::n0:"/>
-        </node>
-        <node id="n0::n1">
-          <data key="d1"/>
-          <data key="d2"><![CDATA[UMLClass]]></data>
-          <data key="d3">
-            <y:UMLClassNode>
-              <y:Geometry height="78.0" width="192.0" x="-936.2499999999995" y="287.75"/>
-              <y:Fill color="#FFFFFF" transparent="false"/>
-              <y:BorderStyle color="#000000" type="line" width="1.0"/>
-              <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="129.67724609375" x="31.161376953125" y="3.0">CodeInspector.dbml</y:NodeLabel>
-              <y:UML clipContent="true" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
-                <y:AttributeLabel/>
-                <y:MethodLabel/>
-              </y:UML>
-            </y:UMLClassNode>
-          </data>
-        </node>
-      </graph>
+      <graph edgedefault="directed" id="n0:"/>
     </node>
     <node id="n1" yfiles.foldertype="group">
       <data key="d1"/>
-      <data key="d2"/>
       <data key="d3">
         <y:ProxyAutoBoundsNode>
           <y:Realizers active="0">
@@ -129,34 +74,85 @@
     </node>
     <node id="n2" yfiles.foldertype="group">
       <data key="d1"/>
-      <data key="d2"/>
       <data key="d3">
         <y:ProxyAutoBoundsNode>
           <y:Realizers active="0">
             <y:GroupNode>
-              <y:Geometry height="204.7604648437499" width="529.0" x="-1104.7499999999995" y="-414.05800000000005"/>
-              <y:Fill color="#F5F5F5" transparent="false"/>
-              <y:BorderStyle color="#000000" type="dashed" width="1.0"/>
-              <y:NodeLabel alignment="right" autoSizePolicy="node_width" backgroundColor="#EBEBEB" borderDistance="0.0" fontFamily="Dialog" fontSize="15" fontStyle="plain" hasLineColor="false" height="22.37646484375" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="529.0" x="0.0" y="0.0">WebserviceAcess Project  </y:NodeLabel>
-              <y:Shape type="roundrectangle"/>
+              <y:Geometry height="357.12646484375" width="571.0" x="-1121.7499999999995" y="30.37353515625"/>
+              <y:Fill color="#F2F0D8" transparent="false"/>
+              <y:BorderStyle color="#000000" type="line" width="1.0"/>
+              <y:NodeLabel alignment="right" autoSizePolicy="node_width" backgroundColor="#B7B69E" borderDistance="0.0" fontFamily="Dialog" fontSize="15" fontStyle="plain" hasLineColor="false" height="22.37646484375" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="571.0" x="0.0" y="0.0">CIDAO  Project  (Camada de Banco de Dados) </y:NodeLabel>
+              <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="4.0" modelName="internal" modelPosition="c" textColor="#000000" visible="true" width="4.0" x="283.5" y="176.563232421875"/>
+              <y:Shape type="rectangle"/>
+              <y:DropShadow color="#D2D2D2" offsetX="4" offsetY="4"/>
               <y:State closed="false" innerGraphDisplayEnabled="false"/>
               <y:Insets bottom="15" bottomF="15.0" left="15" leftF="15.0" right="15" rightF="15.0" top="15" topF="15.0"/>
-              <y:BorderInsets bottom="0" bottomF="0.0" left="93" leftF="92.5" right="0" rightF="0.0" top="49" topF="49.0075351562499"/>
+              <y:BorderInsets bottom="7" bottomF="6.75" left="2" leftF="2.0" right="6" rightF="6.0" top="0" topF="0.0"/>
             </y:GroupNode>
             <y:GroupNode>
-              <y:Geometry height="50.0" width="50.0" x="-576.0" y="-394.30800000000005"/>
-              <y:Fill color="#F5F5F5" transparent="false"/>
-              <y:BorderStyle color="#000000" type="dashed" width="1.0"/>
-              <y:NodeLabel alignment="right" autoSizePolicy="node_width" backgroundColor="#EBEBEB" borderDistance="0.0" fontFamily="Dialog" fontSize="15" fontStyle="plain" hasLineColor="false" height="22.37646484375" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="50.0" x="0.0" y="0.0">1</y:NodeLabel>
-              <y:Shape type="roundrectangle"/>
-              <y:State closed="false" innerGraphDisplayEnabled="false"/>
+              <y:Geometry height="50.0" width="50.0" x="-715.5" y="19.12353515625"/>
+              <y:Fill color="#F2F0D8" transparent="false"/>
+              <y:BorderStyle color="#000000" type="line" width="1.0"/>
+              <y:NodeLabel alignment="right" autoSizePolicy="node_width" backgroundColor="#B7B69E" borderDistance="0.0" fontFamily="Dialog" fontSize="15" fontStyle="plain" hasLineColor="false" height="22.37646484375" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="50.0" x="0.0" y="0.0">3</y:NodeLabel>
+              <y:Shape type="rectangle"/>
+              <y:DropShadow color="#D2D2D2" offsetX="4" offsetY="4"/>
+              <y:State closed="true" innerGraphDisplayEnabled="false"/>
               <y:Insets bottom="15" bottomF="15.0" left="15" leftF="15.0" right="15" rightF="15.0" top="15" topF="15.0"/>
               <y:BorderInsets bottom="0" bottomF="0.0" left="0" leftF="0.0" right="0" rightF="0.0" top="0" topF="0.0"/>
             </y:GroupNode>
           </y:Realizers>
         </y:ProxyAutoBoundsNode>
       </data>
-      <graph edgedefault="directed" id="n2:"/>
+      <graph edgedefault="directed" id="n2:">
+        <node id="n2::n0" yfiles.foldertype="folder">
+          <data key="d1"/>
+          <data key="d3">
+            <y:ProxyAutoBoundsNode>
+              <y:Realizers active="1">
+                <y:GroupNode>
+                  <y:Geometry height="50.0" width="50.0" x="-671.0293333333335" y="74.5"/>
+                  <y:Fill color="#F2F0D8" transparent="false"/>
+                  <y:BorderStyle color="#000000" type="line" width="1.0"/>
+                  <y:NodeLabel alignment="right" autoSizePolicy="node_width" backgroundColor="#B7B69E" borderDistance="0.0" fontFamily="Dialog" fontSize="15" fontStyle="plain" hasLineColor="false" height="22.37646484375" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="50.0" x="0.0" y="0.0">3</y:NodeLabel>
+                  <y:Shape type="rectangle"/>
+                  <y:DropShadow color="#D2D2D2" offsetX="4" offsetY="4"/>
+                  <y:State closed="false" innerGraphDisplayEnabled="false"/>
+                  <y:Insets bottom="5" bottomF="5.0" left="5" leftF="5.0" right="5" rightF="5.0" top="5" topF="5.0"/>
+                  <y:BorderInsets bottom="0" bottomF="0.0" left="0" leftF="0.0" right="0" rightF="0.0" top="0" topF="0.0"/>
+                </y:GroupNode>
+                <y:GroupNode>
+                  <y:Geometry height="178.0" width="529.0" x="-1104.7499999999995" y="67.75"/>
+                  <y:Fill color="#F2F0D8" transparent="false"/>
+                  <y:BorderStyle color="#000000" type="line" width="1.0"/>
+                  <y:NodeLabel alignment="right" autoSizePolicy="node_width" backgroundColor="#B7B69E" borderDistance="0.0" fontFamily="Dialog" fontSize="15" fontStyle="plain" hasLineColor="false" height="22.37646484375" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="529.0" x="0.0" y="0.0"> CIDao.DAO (Namespace)</y:NodeLabel>
+                  <y:Shape type="rectangle"/>
+                  <y:DropShadow color="#D2D2D2" offsetX="4" offsetY="4"/>
+                  <y:State closed="true" innerGraphDisplayEnabled="false"/>
+                  <y:Insets bottom="5" bottomF="5.0" left="5" leftF="5.0" right="5" rightF="5.0" top="5" topF="5.0"/>
+                  <y:BorderInsets bottom="0" bottomF="0.0" left="0" leftF="0.0" right="0" rightF="0.0" top="0" topF="0.0"/>
+                </y:GroupNode>
+              </y:Realizers>
+            </y:ProxyAutoBoundsNode>
+          </data>
+          <graph edgedefault="directed" id="n2::n0:"/>
+        </node>
+        <node id="n2::n1">
+          <data key="d1"/>
+          <data key="d2"><![CDATA[UMLClass]]></data>
+          <data key="d3">
+            <y:UMLClassNode>
+              <y:Geometry height="78.0" width="192.0" x="-936.2499999999995" y="287.75"/>
+              <y:Fill color="#FFFFFF" transparent="false"/>
+              <y:BorderStyle color="#000000" type="line" width="1.0"/>
+              <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="13" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="19.92626953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="129.67724609375" x="31.161376953125" y="3.0">CodeInspector.dbml</y:NodeLabel>
+              <y:UML clipContent="true" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
+                <y:AttributeLabel/>
+                <y:MethodLabel/>
+              </y:UML>
+            </y:UMLClassNode>
+          </data>
+        </node>
+      </graph>
     </node>
     <node id="n3">
       <data key="d1"/>
@@ -172,7 +168,8 @@
           <y:UML clipContent="true" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
             <y:AttributeLabel> - db : CodeInspectorDataContext</y:AttributeLabel>
             <y:MethodLabel>+ AutenticarUsuario() : bool
-+ CriarUsuario():bool</y:MethodLabel>
++ CriarUsuario():bool
++ GetUsersRank () : datatable</y:MethodLabel>
           </y:UML>
         </y:UMLClassNode>
       </data>
@@ -207,7 +204,8 @@
           <y:UML clipContent="true" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
             <y:AttributeLabel> </y:AttributeLabel>
             <y:MethodLabel>+ AutenticarUsuario() : bool
-+ CriarUsuario():bool</y:MethodLabel>
++ CriarUsuario():bool
++ GetUsersRank () : datatable</y:MethodLabel>
           </y:UML>
         </y:UMLClassNode>
       </data>
@@ -299,7 +297,7 @@
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e4" source="n4" target="n0::n1">
+    <edge id="e4" source="n4" target="n2::n1">
       <data key="d7">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -310,7 +308,7 @@
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e5" source="n3" target="n0::n1">
+    <edge id="e5" source="n3" target="n2::n1">
       <data key="d7">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
