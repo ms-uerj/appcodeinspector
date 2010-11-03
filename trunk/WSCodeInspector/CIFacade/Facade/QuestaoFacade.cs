@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using CIDao.DAO;
+using CIDao;
+using System.Data;
 
 namespace CIFacade.Facade
 {
     public class QuestaoFacade
     {
-        public string GetQuestoes(int NivelDificuldade)
+        public DataTable GetQuestoes(int nivelDificuldade)
         {
-            var fullQuestoesXML = new StringBuilder();
+            //var fullQuestoesXML = new StringBuilder();
 
             QuestaoDAO questoes = new QuestaoDAO();
             
@@ -20,7 +22,20 @@ namespace CIFacade.Facade
             //    fullQuestoesXML.Append(questao.ToString());
             //}
 
-            return fullQuestoesXML.ToString();
+            return questoes.GetQuestoes(nivelDificuldade);
+        }
+
+        public void AdicionarQuestao(int nivelDificuladade, string xmlQuestao, int? tempo)
+        {
+
+            Questao novaQuestao = new Questao();
+
+            novaQuestao.NivelDificuldade = nivelDificuladade;
+            novaQuestao.XmlQuestao = xmlQuestao;
+            novaQuestao.Tempo = tempo;
+
+            new QuestaoDAO().AdicionarQuestao(novaQuestao);
+
         }
     }
 }

@@ -7,10 +7,10 @@ using System.Data.SqlClient;
 
 namespace CIDao.DAO
 {
-    public class UsuarioDAO
+    public class UsuarioDAO : DAOTools
     {
 
-        private CodeInspectorDataContext db= new CodeInspectorDataContext();
+        private CodeInspectorDataContext db = new CodeInspectorDataContext();
 
         public bool AtenticarUsuario(string login, string senha)
         {
@@ -54,7 +54,7 @@ namespace CIDao.DAO
             try
             {
 
-
+                
                 var usersRank = from user in db.Usuarios
                                 from hist in db.HistoricoUsuarios
                                 from quest in db.Questaos
@@ -87,30 +87,30 @@ namespace CIDao.DAO
         /// <param name="ctx">DataContext do Banco</param>
         /// <param name="query">Variável dinamica</param>
         /// <returns>Um Datatable</returns>
-        public DataTable ToDataTable(System.Data.Linq.DataContext ctx, object query)
-        {
-            if (query == null)
-            {
-                throw new ArgumentNullException("query");
-            }
+        //public DataTable ToDataTable(System.Data.Linq.DataContext ctx, object query)
+        //{
+        //    if (query == null)
+        //    {
+        //        throw new ArgumentNullException("query");
+        //    }
 
-            IDbCommand cmd = ctx.GetCommand(query as IQueryable);
-            SqlDataAdapter adapter = new SqlDataAdapter();
-            adapter.SelectCommand = (SqlCommand)cmd;
-            DataTable dt = new DataTable("sd");
+        //    IDbCommand cmd = ctx.GetCommand(query as IQueryable);
+        //    SqlDataAdapter adapter = new SqlDataAdapter();
+        //    adapter.SelectCommand = (SqlCommand)cmd;
+        //    DataTable dt = new DataTable("sd");
 
-            try
-            {
-                cmd.Connection.Open();
-                adapter.FillSchema(dt, SchemaType.Source);
-                adapter.Fill(dt);
-            }
-            finally
-            {
-                cmd.Connection.Close();
-            }
-            return dt;
-        }
+        //    try
+        //    {
+        //        cmd.Connection.Open();
+        //        adapter.FillSchema(dt, SchemaType.Source);
+        //        adapter.Fill(dt);
+        //    }
+        //    finally
+        //    {
+        //        cmd.Connection.Close();
+        //    }
+        //    return dt;
+        //}
 
     }
 

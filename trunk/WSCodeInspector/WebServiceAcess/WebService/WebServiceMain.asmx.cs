@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Services;
 using CIFacade.Facade;
 using System.Data;
+usi
 
 namespace WebServiceAcess.WebService
 {
@@ -41,18 +42,29 @@ namespace WebServiceAcess.WebService
             return new UsuarioFacade().CriarUsuario(nome, login, email, senha);
         }
 
+        [WebMethod]
+         public void AdicionarQuestao(int nivelDificuladade, string xmlQuestao, int? tempo)
+        {
+            new QuestaoFacade().AdicionarQuestao(nivelDificuladade,xmlQuestao,tempo);
+        }
+
         /// <summary>
-        /// Recupera as quesões baseada em um nível de dificuldade
+        /// Recupera as questões baseada em um nível de dificuldade
         /// </summary>
         /// <param name="nivelDificuldade">Nível das questões a ser procurados</param>
         /// <returns>Uma string com todas as questoes do mesmo nível</returns>
         [WebMethod]
-        public string GetQuestoes(int nivelDificuldade)
+        public DataTable GetQuestoes(int nivelDificuldade)
         {
             return new QuestaoFacade().GetQuestoes(nivelDificuldade);
         }
 
-
+        /// <summary>
+        /// Recupera um objeto do tipo datatable de usuarios com nome, email , quantidade de acertos e erros, o objeto
+        /// está ordenado pela quantidade de acertos
+        /// </summary>
+        /// <param name="nivelDificuldade">Nivel de dificuladade do usuario atual</param>
+        /// <returns>Datatable ordenado pela quantidade de acertos</returns>
         [WebMethod]
         public DataTable GetUsersRank(int nivelDificuldade)
         {
