@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="955" minHeight="600" currentState="Login" minWidth.Perguntas="800">
+	<fx:Script source="Login_as.as"/>
+	<fx:Script source="Dificuldade_as.as"/>
+	<fx:Script source="Tutorial_as.as"/>
+	<fx:Script source="AppCodeInspector_as.as"/>
+
+	<s:states>
+		<s:State name="Login"/>
+		<s:State name="Dificuldade"/>
+		<s:State name="Tutorial"/>
+		<s:State name="Perguntas"/>
+		<s:State name="ResultadoFinal"/>
+	</s:states>
+
+	<s:Panel title="Login" horizontalCenter="0" verticalCenter="0" includeIn="Login">
+		<mx:Form width="232" height="116" label="Login" horizontalCenter="0" top="0">
+			<mx:FormItem label="Usuário" required="true">
+				<s:TextInput id="txtUsuario" text="Vinicius"/>
+			</mx:FormItem>
+			<mx:FormItem label="Senha" required="true">
+				<s:TextInput id="txtSenha" displayAsPassword="true" text="123"/>
+			</mx:FormItem>
+			<mx:FormItem width="193" horizontalAlign="right">
+				<s:Button label="Logar" id="btnLogar" click="btnLogar_clickHandler(event)"/>
+			</mx:FormItem>
+		</mx:Form>
+	</s:Panel>
+	<s:Panel includeIn="Dificuldade" width="400" height="248" title="Selecione a Dificuldade" horizontalCenter="0" verticalCenter="0">
+		<s:Button label="Fácil" width="150" horizontalCenter="-1" verticalCenter="-40" id="btnFacil" fontSize="20" click="btnFacil_clickHandler(event)"/>
+		<s:Button label="Intermediário" horizontalCenter="-4" verticalCenter="0" id="btnIntermediario" width="150" fontSize="20"/>
+		<s:Button label="Difícil" width="150" horizontalCenter="0" verticalCenter="40" id="btnDificil" fontSize="20"/>
+	</s:Panel>
+	<s:Panel includeIn="Tutorial" width="800" height="417" horizontalCenter="0" verticalCenter="0" title="Como jogar?">
+		<s:Button label="Continuar" right="10" bottom="10" id="btnContinuarTutorial" fontSize="18" fontWeight="bold" fontFamily="Arial" click="btnContinuarTutorial_clickHandler(event)"/>
+		<s:RichText width="100%" height="80%" horizontalCenter="0" verticalCenter="0" id="txtTutorial"/>
+	</s:Panel>
+	<s:Button includeIn="Perguntas" label="Próxima Pergunta" horizontalCenter="190" verticalCenter="310" fontSize="29" height="35" id="btnProximaPergunta" click="btnProximaPergunta_clickHandler(event)"/>
+	<s:Panel includeIn="ResultadoFinal" horizontalCenter="0" verticalCenter="0" width="670" height="400" title="Resultado Final">
+		<s:List horizontalCenter="0" id="listResultado" textAlign="center" dataProvider="{listRespostasSelecionadas}" fontSize="30" top="0" width="100%" height="100%"></s:List>
+	</s:Panel>
+	<mx:Image includeIn="Login" right="0" top="0" source="Arquivos/CodeInspector.swf"/>
+	<mx:Image right="0" top="0" source="Arquivos/CodeInspector.swf" includeIn="Dificuldade"/>
+	<mx:Image right="0" top="0" source="Arquivos/CodeInspector.swf" includeIn="Tutorial"/>
+	<mx:Image right="0" top="0" source="Arquivos/CodeInspector.swf" includeIn="Perguntas"/>
+	<mx:Image right="0" top="0" source="Arquivos/CodeInspector.swf" includeIn="ResultadoFinal"/>
+	
+	
+	
+</s:Application>
