@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<index>
+	<title>Source of AppCodeInspector</title>
+	<nodes>
+		<node label="src" icon="classpathIcon" expanded="true">
+			<node label="Controles" icon="packageIcon" expanded="true">
+				<node label="SimpleRitchTextEditor.mxml" icon="mxmlIcon" url="source/Controles/SimpleRitchTextEditor.mxml.html"/>
+			</node>
+			<node selected="true" label="AppCodeInspector.mxml" icon="mxmlAppIcon" url="source/AppCodeInspector.mxml.html"/>
+		</node>
+	</nodes>
+</index>

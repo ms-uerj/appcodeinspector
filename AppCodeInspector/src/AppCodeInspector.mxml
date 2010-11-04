@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" backgroundGradientAlphas="[1.0, 1.0]" backgroundGradientColors="[#FFFFFF, #FFFFFF]" xmlns:ns1="Controles.*" viewSourceURL="srcview/index.html">
+<mx:Script>
+	<![CDATA[
+		import mx.utils.ColorUtil;
+		import mx.controls.ColorPicker;
+		import mx.controls.textClasses.TextRange;
+
+		
+		public function onMouseUp():void
+		{
+			var selection:TextRange = txtRitchText.selection;
+			var selLength:int = selection.endIndex - selection.beginIndex;
+			if((selLength)) 
+			{
+				var str:String = txtRitchText.selection.text;
+				txtDebug.htmlText = "<b>Texto Selecionado:</b>\n" + str;
+				if(selection.color != StyleManager.getColorName("red"))
+				{
+					selection.color = "red";
+					txtDebug.htmlText += "\nSinalizou a seleção como <font color='#FF0000'><b>INCORRETO</b></font>"; 
+				} 
+				else
+				{
+					selection.color = "0b333c";
+					txtDebug.htmlText += "\nSinalizou a seleção como <b>CORRETO</b>";
+				}
+			}
+		}
+	]]>
+</mx:Script>
+	<mx:TextArea right="10" top="10" id="txtDebug" height="153" left="10">
+		<mx:text> </mx:text>
+	</mx:TextArea>
+
+	<ns1:SimpleRitchTextEditor id="txtRitchText" mouseUp="onMouseUp()" width="384.4" horizontalCenter="0" verticalCenter="0">
+		<ns1:htmlText>
+<![CDATA[
+<pre>
+	public class Usuario()
+	{
+		private String _Nome;
+		public Nome()
+		{
+			get
+			{
+				return _Nome;
+			}
+		}
+	}
+</pre>
+]]>
+		</ns1:htmlText>
+	</ns1:SimpleRitchTextEditor>
+	
+</mx:Application>
