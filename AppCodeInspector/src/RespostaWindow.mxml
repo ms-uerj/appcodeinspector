@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		   xmlns:s="library://ns.adobe.com/flex/spark" 
+		   xmlns:mx="library://ns.adobe.com/flex/mx" width="400" height="226" backgroundAlpha=".0">
+
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<fx:Script source="RespostaWindow_as.as"/>
+	<s:Panel width="100%" height="100%" left="0" top="0">
+		<s:ComboBox id="cbResposta" horizontalCenter="0" verticalCenter="-20" width="377" fontSize="18" selectedIndex="{selectedIndex}" color="#000000">
+			<s:ArrayCollection>
+				<fx:String>Selecione</fx:String>
+				<fx:String>Defeitos de Omissão</fx:String>
+				<fx:String>Defeitos de Fato Incorreto</fx:String>
+				<fx:String>Defeitos de Inconsitência</fx:String>
+				<fx:String>Defeitos de Ambiguidade</fx:String>
+				<fx:String>Defeitos de Informação Estranha</fx:String>
+			</s:ArrayCollection>
+			</s:ComboBox>
+		<s:Label text="Selecione o Motivo do Erro:" fontSize="24" horizontalCenter="-1" top="0" color="#FFFFFF" fontWeight="bold"/>
+		<s:Button x="248" y="133" label="Confirmar" fontSize="26" id="btnConfirmarMotivoErro" width="140" height="40" click="btnConfirmarMotivoErro_clickHandler(event)"/>
+		<s:Button x="10" y="133" label="Cancelar" fontSize="26" id="btnCancelarMotivoErro" height="40" width="140" click="btnCancelarMotivoErro_clickHandler(event)"/>
+	</s:Panel>
+</mx:Canvas>

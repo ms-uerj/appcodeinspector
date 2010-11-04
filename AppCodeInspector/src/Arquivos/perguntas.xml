@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<data>
+	<pergunta erro='1'>
+		<span class='questao_facil'>
+		Pertunta Nº 1<br/><br/>
+		-RF2: O sistema deve solicitar a informação necessária para inserir um item
+		<br/>bibliográfico: título, autor, data, lugar, assunto, resumo, número, editor,
+		<br/>periódico, congresso.
+		<br/><br/>
+		
+		-RF3: O sistema deve dar uma mensagem de alerta quando o usuário tentar
+		<br/>inserir um item incompleto. Essa mensagem deve questionar o usuário se ele
+		<br/>deseja cancelar a operação, completar a informação ou concluir a inserção
+		<br/>como está.
+		<br/><br/>
+		<span class='erro'><a href="event:erro">Qual informação é necessária para possibilitar uma inserção incompleta?</a></span>
+		</span>
+	</pergunta>
+	<pergunta erro='1'>
+		<span class='questao_facil'>
+		Pergunta Nº 2<br/><br/>
+			–RNF1: O sistema deve fornecer os resultados tão rápido quanto possível.
+			<br/>
+			<span class='erro'><a href="event:erro">Tão rápido quanto possível?</a></span>
+		</span>
+	</pergunta>
+	<pergunta erro='2'>
+		<span class='questao_facil'>
+			Pergunta Nº 3<br/><br/>
+			–RF30: O sistema não deve aceitar devolução de livros se o usuário não estiver com a carteirinha da biblioteca no momento.
+			<br/>
+			<span class='erro'><a href="event:erro">Para devolução de livros não é necessário apresentar a carteirinha pois todas as informações já estão registradas no sistema</a></span>
+		</span>
+	</pergunta>
+	<pergunta erro='3'>
+		<span class='questao_facil'>
+			Pergunta Nº 4<br/><br/>
+			RF5: O sistema não deve permitir períodos de empréstimo maiores que 15 dias.
+			<br/>RF9: Professores podem retirar livros por um período de 3 semanas.
+			<br/>
+			<span class='erro'><a href="event:erro">Qual período deve ser considerado?</a></span>
+		</span>
+	</pergunta>
+	<pergunta erro='4'>
+		<span class='questao_facil'>
+			Pergunta Nº 5<br/><br/>
+			–RF20: Se o número de dias que o usuário está em atraso é menor que uma semana, ele deve pagar uma taxa de R$ 1,00; se o número é maior que uma semana, a taxa é de R$ 0,50 por dia.
+			<br/><span class='erro'><a href="event:erro">Qual a taxa a ser paga se o período for de uma semana?
+			<br/>No primeiro caso, a taxa deve ser calculada por dia?</a></span>
+			<br/>RF 15 : O sistema deve enviar relatórios de produtividade dos programadores, analistas ou desenvolvedores do projeto mensalmente ou quando requisitado.
+			<br/>RF 16: Realizar rotina de importação de dados periódica de preço de fluido
+			<br/>RF 17: Identificar e associar as intervenções que são complementares às outras
+			<br/>RF18: O sistema deve emitir uma mensagem de atenção visual ou auditiva no evento de falha do sistema de refrigeração.			
+		</span>
+	</pergunta>
+		<pergunta erro='5'>
+		<span class='questao_facil'>
+			Pergunta Nº 6<br/><br/>
+			RF15: Quando um novo livro é adicionado ao acervo, ele permanece em uma prateleira especial por um período de um mês.
+			<br/>
+			<span class='erro'><a href="event:erro">Essa informação não é necessária ao sistema!</a></span>
+		</span>
+	</pergunta>
+</data>
