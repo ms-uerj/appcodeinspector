@@ -5,7 +5,6 @@ using System.Web;
 using System.Web.Services;
 using CIFacade.Facade;
 using System.Data;
-usi
 
 namespace WebServiceAcess.WebService
 {
