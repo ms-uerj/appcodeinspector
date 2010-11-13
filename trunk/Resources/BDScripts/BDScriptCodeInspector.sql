@@ -1,25 +1,17 @@
 --Sctipt de Criação das tabelas do banco de dados do AppCodeInspector
 
 
---Drop da tabela HistoricoUsuario caso já exista.  
+--Drop da tabela Usuario caso já exista.  
 
 	USE [CodeInspector]
 	GO
 
-	IF  EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[dbo].[FK_HistoricoUsuario_HistoricoUsuario]') AND parent_object_id = OBJECT_ID(N'[dbo].[HistoricoUsuario]'))
-	ALTER TABLE [dbo].[HistoricoUsuario] DROP CONSTRAINT [FK_HistoricoUsuario_HistoricoUsuario]
+	IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Usuario]') AND type in (N'U'))
+	DROP TABLE [dbo].[Usuario]
 	GO
 
 	USE [CodeInspector]
 	GO
-
-	IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[HistoricoUsuario]') AND type in (N'U'))
-	DROP TABLE [dbo].[HistoricoUsuario]
-	GO
-
-	USE [CodeInspector]
-	GO
-
 
 	SET ANSI_NULLS ON
 	GO
@@ -27,27 +19,26 @@
 	SET QUOTED_IDENTIFIER ON
 	GO
 
---Criação da tabela HistoricoUsuario. 
+	SET ANSI_PADDING ON
+	GO
 
-	CREATE TABLE [dbo].[HistoricoUsuario](
-		[IdHistorico] [int] NOT NULL,
-		[IdUsuario] [int] NOT NULL,
-		[IdQuestao] [int] NOT NULL,
-		[QtdAcertos] [int] NULL,
-		[QtdErros] [int] NULL,
-	 CONSTRAINT [PK_HistoricoUsuario] PRIMARY KEY CLUSTERED 
+--Criação da tabela Usuario. 
+
+	CREATE TABLE [dbo].[Usuario](
+		[U_ID] [int] IDENTITY(1,1) NOT NULL,
+		[U_NOME] [varchar](50) NULL,
+		[U_EMAIL] [varchar](50) NULL,
+		[U_SENHA] [varchar](15) NULL,
+		[U_LOGIN] [varchar](50) NULL,
+	 CONSTRAINT [PK_Usuario] PRIMARY KEY CLUSTERED 
 	(
-		[IdHistorico] ASC
+		[U_ID] ASC
 	)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 	) ON [PRIMARY]
 
 	GO
 
-	ALTER TABLE [dbo].[HistoricoUsuario]  WITH CHECK ADD  CONSTRAINT [FK_HistoricoUsuario_HistoricoUsuario] FOREIGN KEY([IdHistorico])
-	REFERENCES [dbo].[HistoricoUsuario] ([IdHistorico])
-	GO
-
-	ALTER TABLE [dbo].[HistoricoUsuario] CHECK CONSTRAINT [FK_HistoricoUsuario_HistoricoUsuario]
+	SET ANSI_PADDING OFF
 	GO
 
 --Drop da tabela Questão caso já exista. 
@@ -64,68 +55,131 @@
 
 --Criação da tabela Questao. 
 
+	SET ANSI_NULLS ON
+	GO
+
+	SET QUOTED_IDENTIFIER ON
+	GO
+
 	CREATE TABLE [dbo].[Questao](
-		[IdQuestao] [int] NOT NULL,
-		[NivelDificuldade] [int] NOT NULL,
-		[XmlQuestao] [text] NULL,
-		[Tempo] [int] NULL
+		[Q_ID] [int] IDENTITY(1,1) NOT NULL,
+		[Q_NIVEL_DIFICULDADE] [int] NULL,
+		[Q_XML] [ntext] NULL,
+		[Q_TEMPO] [int] NULL,
+	 CONSTRAINT [PK_Questao] PRIMARY KEY CLUSTERED 
+	(
+		[Q_ID] ASC
+	)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 	) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 
 	GO
 	
 	
---Drop da tabela StatusUsuario caso já exista.
+--Drop da tabela Partida e sua chavez estrangeiras caso já existam.
 	
 	USE [CodeInspector]
 	GO
 
-	IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[StatusUsuario]') AND type in (N'U'))
-	DROP TABLE [dbo].[StatusUsuario]
+	IF  EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[dbo].[FK_Partida_Usuario]') AND parent_object_id = OBJECT_ID(N'[dbo].[Partida]'))
+	ALTER TABLE [dbo].[Partida] DROP CONSTRAINT [FK_Partida_Usuario]
 	GO
 
 	USE [CodeInspector]
 	GO
 
---Criação da tabela StatusUsuario.
-
-	CREATE TABLE [dbo].[StatusUsuario](
-		[IdStatus] [int] NOT NULL,
-		[IdUsuario] [int] NOT NULL,
-		[Pontuacao] [int] NOT NULL,
-		[DataInsercao] [datetime] NOT NULL,
-		[NivilDificuldade] [int] NOT NULL
-	) ON [PRIMARY]
-
-	GO
-	
-	
---Drop da tabela Usuario caso já exista.
-
-	USE [CodeInspector]
-	GO
-
-	IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Usuario]') AND type in (N'U'))
-	DROP TABLE [dbo].[Usuario]
+	IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Partida]') AND type in (N'U'))
+	DROP TABLE [dbo].[Partida]
 	GO
 
 	USE [CodeInspector]
 	GO
 
---Criação da tabela Usuario.
+	SET ANSI_NULLS ON
+	GO
 
-	CREATE TABLE [dbo].[Usuario](
-		[IdUsuario] [int] IDENTITY(1,1) NOT NULL,
-		[Nome] [nvarchar](30) NULL,
-		[Email] [nvarchar](25) NOT NULL,
-		[Senha] [nvarchar](10) NOT NULL,
-		[Login] [nvarchar](15) NULL,
-	 CONSTRAINT [PK_Usuario] PRIMARY KEY CLUSTERED 
+	SET QUOTED_IDENTIFIER ON
+	GO
+
+--Criação da tabela Partida.
+
+	CREATE TABLE [dbo].[Partida](
+		[P_ID] [int] IDENTITY(1,1) NOT NULL,
+		[U_ID] [int] NULL,
+		[P_DATA] [datetime] NULL,
+		[P_NIVEL_DIFICULDADE] [int] NULL,
+	 CONSTRAINT [PK_Partida] PRIMARY KEY CLUSTERED 
 	(
-		[IdUsuario] ASC
+		[P_ID] ASC
 	)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 	) ON [PRIMARY]
 
 	GO
+
+	ALTER TABLE [dbo].[Partida]  WITH CHECK ADD  CONSTRAINT [FK_Partida_Usuario] FOREIGN KEY([U_ID])
+	REFERENCES [dbo].[Usuario] ([U_ID])
+	GO
+
+	ALTER TABLE [dbo].[Partida] CHECK CONSTRAINT [FK_Partida_Usuario]
+	GO
+
+	
+	
+--Drop da tabela Historico_Questao e suas chavez estrangeiras caso já existam.
+
+	USE [CodeInspector]
+	GO
+
+	IF  EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[dbo].[FK_Historico_Questao_Historico_Questao]') AND parent_object_id = OBJECT_ID(N'[dbo].[Historico_Questao]'))
+	ALTER TABLE [dbo].[Historico_Questao] DROP CONSTRAINT [FK_Historico_Questao_Historico_Questao]
+	GO
+
+	IF  EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[dbo].[FK_Historico_Questao_Questao]') AND parent_object_id = OBJECT_ID(N'[dbo].[Historico_Questao]'))
+	ALTER TABLE [dbo].[Historico_Questao] DROP CONSTRAINT [FK_Historico_Questao_Questao]
+	GO
+
+	USE [CodeInspector]
+	GO
+
+	IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Historico_Questao]') AND type in (N'U'))
+	DROP TABLE [dbo].[Historico_Questao]
+	GO
+
+	SET ANSI_NULLS ON
+	GO
+
+	SET QUOTED_IDENTIFIER ON
+	GO
+
+--Criação da tabela Historico_Questao.
+
+	CREATE TABLE [dbo].[Historico_Questao](
+		[H_ID] [int] IDENTITY(1,1) NOT NULL,
+		[P_ID] [int] NULL,
+		[Q_ID] [int] NULL,
+		[H_QTD_ACERTO] [int] NULL,
+		[H_QTD_ERRO] [int] NULL,
+	 CONSTRAINT [PK_Historico_Questao] PRIMARY KEY CLUSTERED 
+	(
+		[H_ID] ASC
+	)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+	) ON [PRIMARY]
+
+	GO
+
+	ALTER TABLE [dbo].[Historico_Questao]  WITH CHECK ADD  CONSTRAINT [FK_Historico_Questao_Historico_Questao] FOREIGN KEY([H_ID])
+	REFERENCES [dbo].[Historico_Questao] ([H_ID])
+	GO
+
+	ALTER TABLE [dbo].[Historico_Questao] CHECK CONSTRAINT [FK_Historico_Questao_Historico_Questao]
+	GO
+
+	ALTER TABLE [dbo].[Historico_Questao]  WITH CHECK ADD  CONSTRAINT [FK_Historico_Questao_Questao] FOREIGN KEY([Q_ID])
+	REFERENCES [dbo].[Questao] ([Q_ID])
+	GO
+
+	ALTER TABLE [dbo].[Historico_Questao] CHECK CONSTRAINT [FK_Historico_Questao_Questao]
+	GO
+
 
 
 
