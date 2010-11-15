@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="CodeInspector" Class="CILinqDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=ENUMA-PC;Initial Catalog=CodeInspector;Integrated Security=True" SettingsObjectName="CIDao.Properties.Settings" SettingsPropertyName="CodeInspectorConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Historico_Questao" Member="Historico_Questaos">
+    <Type Name="Historico_Questao">
+      <Column Name="H_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="P_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Q_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="H_QTD_ACERTO" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="H_QTD_ERRO" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Partida_Historico_Questao" Member="Partida" ThisKey="P_ID" OtherKey="P_ID" Type="Partida" IsForeignKey="true" />
+      <Association Name="Questao_Historico_Questao" Member="Questao" ThisKey="Q_ID" OtherKey="Q_ID" Type="Questao" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Usuario" Member="Usuarios">
+    <Type Name="Usuario">
+      <Column Name="U_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="U_NOME" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="U_EMAIL" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="U_SENHA" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
+      <Column Name="U_LOGIN" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Usuario_Partida" Member="Partidas" ThisKey="U_ID" OtherKey="U_ID" Type="Partida" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Partida" Member="Partidas">
+    <Type Name="Partida">
+      <Column Name="P_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="U_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="P_DATA" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="P_NIVEL_DIFICULDADE" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Partida_Historico_Questao" Member="Historico_Questaos" ThisKey="P_ID" OtherKey="P_ID" Type="Historico_Questao" />
+      <Association Name="Usuario_Partida" Member="Usuario" ThisKey="U_ID" OtherKey="U_ID" Type="Usuario" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Questao" Member="Questaos">
+    <Type Name="Questao">
+      <Column Name="Q_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Q_NIVEL_DIFICULDADE" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Q_XML" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Q_TEMPO" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Questao_Historico_Questao" Member="Historico_Questaos" ThisKey="Q_ID" OtherKey="Q_ID" Type="Historico_Questao" />
+    </Type>
+  </Table>
+</Database>
