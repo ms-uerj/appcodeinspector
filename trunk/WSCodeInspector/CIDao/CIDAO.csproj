@@ -41,10 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CodeInspectorLinq.designer.cs">
-      <DependentUpon>CodeInspectorLinq.dbml</DependentUpon>
-      <DesignTime>True</DesignTime>
+    <Compile Include="CILinq.designer.cs">
       <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CILinq.dbml</DependentUpon>
     </Compile>
     <Compile Include="DAO\DAOTools.cs" />
     <Compile Include="DAO\QuestaoDAO.cs" />
@@ -58,9 +58,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="CodeInspectorLinq.dbml">
+    <None Include="CILinq.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>CodeInspectorLinq.designer.cs</LastGenOutput>
+      <LastGenOutput>CILinq.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
     <None Include="Properties\Settings.settings">
@@ -69,17 +69,12 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="CodeInspectorDataContext.dbml.layout">
-      <DependentUpon>CodeInspectorLinq.dbml</DependentUpon>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="CodeInspectorLinq.dbml.layout">
-      <DependentUpon>CodeInspectorLinq.dbml</DependentUpon>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="CILinq.dbml.layout">
+      <DependentUpon>CILinq.dbml</DependentUpon>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

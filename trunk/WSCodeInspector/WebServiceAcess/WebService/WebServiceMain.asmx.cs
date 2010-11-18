@@ -32,6 +32,22 @@ namespace WebServiceAcess.WebService
         }
 
         /// <summary>
+        /// Altera informações do usuário
+        /// </summary>
+        /// <param name="loginAtual">Login atual do usuário</param>
+        /// <param name="senhaAtual">Senha atual do usuário</param>
+        /// <param name="novoNome">Novo nome desejado</param>
+        /// <param name="novoLogin">Novo login desejado</param>
+        /// <param name="novaSenha">Nova senha desejada</param>
+        /// <param name="novoEmail">Novo email desejado</param>
+        /// <returns>Um boleano de confirmação de sucesso</returns>
+        [WebMethod]
+        public bool AlterarUsuario(string loginAtual, string senhaAtual, string novoNome, string novoLogin, string novaSenha, string novoEmail)
+        {
+            return new UsuarioFacade().AlterarUsuario(loginAtual, senhaAtual, novoNome, novoLogin, novaSenha, novoEmail);
+        }
+
+        /// <summary>
         /// Método para criação de usuários
         /// </summary>
         /// <returns>Falso ou verdadeiro dependendo do sucesso</returns>
