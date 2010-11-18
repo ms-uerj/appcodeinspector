@@ -9,12 +9,12 @@ namespace CIDao.DAO
     public class QuestaoDAO : DAOTools
     {
 
-        private CodeInspectorDataContext db = new CodeInspectorDataContext();
+        private CILinqDataContext db = new CILinqDataContext();
 
         public DataTable GetQuestoes(int nivelDificuldade)
         {
             var questoes = from q in db.Questaos
-                               where q.NivelDificuldade == nivelDificuldade
+                               where q.Q_NIVEL_DIFICULDADE == nivelDificuldade
                                select q;
 
             //List<Questao> questoes = questoesLinq.ToList();

@@ -30,9 +30,9 @@ namespace CIFacade.Facade
 
             Questao novaQuestao = new Questao();
 
-            novaQuestao.NivelDificuldade = nivelDificuladade;
-            novaQuestao.XmlQuestao = xmlQuestao;
-            novaQuestao.Tempo = tempo;
+            novaQuestao.Q_NIVEL_DIFICULDADE= nivelDificuladade;
+            novaQuestao.Q_XML = xmlQuestao;
+            novaQuestao.Q_TEMPO = tempo;
 
             new QuestaoDAO().AdicionarQuestao(novaQuestao);
 

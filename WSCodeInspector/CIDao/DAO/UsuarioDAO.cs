@@ -10,15 +10,15 @@ namespace CIDao.DAO
     public class UsuarioDAO : DAOTools
     {
 
-        private CodeInspectorDataContext db = new CodeInspectorDataContext();
+        private CILinqDataContext db = new CILinqDataContext();
 
         public bool AtenticarUsuario(string login, string senha)
         {
             try
             {
-                var usuario = (from u in db.Usuarios
-                               where u.Login == login && u.Senha == senha
-                               select u).Count();
+                var usuario = (from user in db.Usuarios
+                               where user.U_LOGIN == login && user.U_SENHA == senha
+                               select user).Count();
 
                 return Convert.ToBoolean(usuario);
             }
@@ -26,6 +26,47 @@ namespace CIDao.DAO
             {
                 throw ;
             }
+        }
+
+        public bool AlterarUsuario(string loginAtual, string senhaAtual,Usuario usuarioModificado)
+        {
+            
+            try
+            {
+                //var usuario = (from user in db.Usuarios
+                //               where user.U_LOGIN == loginAtual && user.U_SENHA == senhaAtual
+                //               select user);
+
+                Usuario usuarioAntigo = db.Usuarios.Single(p => p.U_LOGIN == loginAtual && p.U_SENHA == senhaAtual);
+
+                if(usuarioModificado.U_NOME != null)
+                {
+                    usuarioAntigo.U_NOME = usuarioModificado.U_NOME;
+                }
+                if (usuarioModificado.U_LOGIN != null)
+                {
+                    usuarioAntigo.U_LOGIN = usuarioModificado.U_LOGIN;
+                } 
+                if (usuarioModificado.U_EMAIL != null)
+                {
+                    usuarioAntigo.U_EMAIL = usuarioModificado.U_EMAIL;
+                } 
+                if (usuarioModificado.U_SENHA != null)
+                {
+                    usuarioAntigo.U_SENHA = usuarioModificado.U_EMAIL;
+                }
+                
+
+                db.SubmitChanges();
+                return true;
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+          
         }
 
         public bool CriarUsuario(Usuario novoUsuario, string email, string senha)
@@ -51,15 +92,17 @@ namespace CIDao.DAO
 
         public DataTable GetUsersRank(int nivelDificuldade)
         {
+            //TODO -Selecionar corretamente o rank dos usuarios-
             try
             {
 
                 
                 var usersRank = from user in db.Usuarios
-                                from hist in db.HistoricoUsuarios
+                                from hist in db.Historico_Questaos
+                                from partida in db.Partidas
                                 from quest in db.Questaos
-                                where user.IdUsuario == hist.IdHistorico 
-                                   && user.IdUsuario == quest.IdQuestao
+                                where user.U_ID == partida.U_ID
+                                   && u == quest.IdQuestao
                                    && quest.NivelDificuldade == nivelDificuldade
 
                                select new
@@ -80,37 +123,6 @@ namespace CIDao.DAO
             }
         }
 
-
-        /// <summary>
-        /// Converter a variável dinamica em um DataTable
-        /// </summary>
-        /// <param name="ctx">DataContext do Banco</param>
-        /// <param name="query">Variável dinamica</param>
-        /// <returns>Um Datatable</returns>
-        //public DataTable ToDataTable(System.Data.Linq.DataContext ctx, object query)
-        //{
-        //    if (query == null)
-        //    {
-        //        throw new ArgumentNullException("query");
-        //    }
-
-        //    IDbCommand cmd = ctx.GetCommand(query as IQueryable);
-        //    SqlDataAdapter adapter = new SqlDataAdapter();
-        //    adapter.SelectCommand = (SqlCommand)cmd;
-        //    DataTable dt = new DataTable("sd");
-
-        //    try
-        //    {
-        //        cmd.Connection.Open();
-        //        adapter.FillSchema(dt, SchemaType.Source);
-        //        adapter.Fill(dt);
-        //    }
-        //    finally
-        //    {
-        //        cmd.Connection.Close();
-        //    }
-        //    return dt;
-        //}
 
     }
 
