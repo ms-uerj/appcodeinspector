@@ -75,7 +75,7 @@
 	GO
 	
 	
---Drop da tabela Partida e sua chavez estrangeiras caso já existam.
+--Drop da tabela Partida e sua chave estrangeiras caso já existam.
 	
 	USE [CodeInspector]
 	GO
@@ -129,8 +129,8 @@
 	USE [CodeInspector]
 	GO
 
-	IF  EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[dbo].[FK_Historico_Questao_Historico_Questao]') AND parent_object_id = OBJECT_ID(N'[dbo].[Historico_Questao]'))
-	ALTER TABLE [dbo].[Historico_Questao] DROP CONSTRAINT [FK_Historico_Questao_Historico_Questao]
+	IF  EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[dbo].[FK_Historico_Questao_Partida]') AND parent_object_id = OBJECT_ID(N'[dbo].[Historico_Questao]'))
+	ALTER TABLE [dbo].[Historico_Questao] DROP CONSTRAINT [FK_Historico_Questao_Partida]
 	GO
 
 	IF  EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[dbo].[FK_Historico_Questao_Questao]') AND parent_object_id = OBJECT_ID(N'[dbo].[Historico_Questao]'))
@@ -144,6 +144,9 @@
 	DROP TABLE [dbo].[Historico_Questao]
 	GO
 
+	USE [CodeInspector]
+	GO
+
 	SET ANSI_NULLS ON
 	GO
 
@@ -153,11 +156,11 @@
 --Criação da tabela Historico_Questao.
 
 	CREATE TABLE [dbo].[Historico_Questao](
-		[H_ID] [int] IDENTITY(1,1) NOT NULL,
-		[P_ID] [int] NULL,
-		[Q_ID] [int] NULL,
-		[H_QTD_ACERTO] [int] NULL,
-		[H_QTD_ERRO] [int] NULL,
+	[H_ID] [int] IDENTITY(1,1) NOT NULL,
+	[P_ID] [int] NULL,
+	[Q_ID] [int] NULL,
+	[H_QTD_ACERTO] [int] NULL,
+	[H_QTD_ERRO] [int] NULL,
 	 CONSTRAINT [PK_Historico_Questao] PRIMARY KEY CLUSTERED 
 	(
 		[H_ID] ASC
@@ -166,11 +169,11 @@
 
 	GO
 
-	ALTER TABLE [dbo].[Historico_Questao]  WITH CHECK ADD  CONSTRAINT [FK_Historico_Questao_Historico_Questao] FOREIGN KEY([H_ID])
-	REFERENCES [dbo].[Historico_Questao] ([H_ID])
+	ALTER TABLE [dbo].[Historico_Questao]  WITH CHECK ADD  CONSTRAINT [FK_Historico_Questao_Partida] FOREIGN KEY([P_ID])
+	REFERENCES [dbo].[Partida] ([P_ID])
 	GO
 
-	ALTER TABLE [dbo].[Historico_Questao] CHECK CONSTRAINT [FK_Historico_Questao_Historico_Questao]
+	ALTER TABLE [dbo].[Historico_Questao] CHECK CONSTRAINT [FK_Historico_Questao_Partida]
 	GO
 
 	ALTER TABLE [dbo].[Historico_Questao]  WITH CHECK ADD  CONSTRAINT [FK_Historico_Questao_Questao] FOREIGN KEY([Q_ID])
@@ -179,7 +182,6 @@
 
 	ALTER TABLE [dbo].[Historico_Questao] CHECK CONSTRAINT [FK_Historico_Questao_Questao]
 	GO
-
 
 
 
