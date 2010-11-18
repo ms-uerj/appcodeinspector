@@ -102,15 +102,15 @@ namespace CIDao.DAO
                                 from partida in db.Partidas
                                 from quest in db.Questaos
                                 where user.U_ID == partida.U_ID
-                                   && u == quest.IdQuestao
-                                   && quest.NivelDificuldade == nivelDificuldade
+                                   && partida.P_ID == hist.P_ID
+                                   && partida.P_NIVEL_DIFICULDADE == nivelDificuldade
 
                                select new
                                 {
-                                    user.Nome,
-                                    user.Email,
-                                    hist.QtdAcertos,
-                                    hist.QtdErros,
+                                    user.U_NOME,
+                                    user.U_EMAIL,
+                                    hist.H_QTD_ACERTO,
+                                    hist.H_QTD_ERRO,
                                     
                                 };
 
@@ -122,7 +122,6 @@ namespace CIDao.DAO
                 throw;
             }
         }
-
 
     }
 
