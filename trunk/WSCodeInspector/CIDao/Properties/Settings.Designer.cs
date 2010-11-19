@@ -32,5 +32,16 @@ namespace CIDao.Properties {
                 return ((string)(this["CodeInspectorConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=VINICIUS-PC\\SQLEXPRESS;Initial Catalog=CodeInspector;Integrated Secur" +
+            "ity=True")]
+        public string CodeInspectorConnectionString1 {
+            get {
+                return ((string)(this["CodeInspectorConnectionString1"]));
+            }
+        }
     }
 }

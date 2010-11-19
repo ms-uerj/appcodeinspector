@@ -69,9 +69,10 @@ namespace WebServiceAcess.WebService
         /// <param name="nivelDificuldade">Nível das questões a ser procurados</param>
         /// <returns>Uma string com todas as questoes do mesmo nível</returns>
         [WebMethod]
-        public DataTable GetQuestoes(int nivelDificuldade)
+        public List<string> GetQuestoes(int nivelDificuldade)
         {
-            return new QuestaoFacade().GetQuestoes(nivelDificuldade);
+            var retorno = new QuestaoFacade().GetQuestoes(nivelDificuldade);
+            return  retorno;
         }
 
         /// <summary>

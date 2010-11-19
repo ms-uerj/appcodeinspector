@@ -11,15 +11,15 @@ namespace CIDao.DAO
 
         private CILinqDataContext db = new CILinqDataContext();
 
-        public DataTable GetQuestoes(int nivelDificuldade)
+        public List<string> GetQuestoes(int nivelDificuldade)
         {
             var questoes = from q in db.Questaos
                                where q.Q_NIVEL_DIFICULDADE == nivelDificuldade
-                               select q;
+                               select q.Q_XML;
 
             //List<Questao> questoes = questoesLinq.ToList();
 
-            return ToDataTable(db,questoes);
+            return questoes.ToList();
         }
 
         public void AdicionarQuestao(Questao novaQuestao)
