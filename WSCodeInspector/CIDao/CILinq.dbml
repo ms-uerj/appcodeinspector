@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="CodeInspector" Class="CILinqDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=ENUMA-PC;Initial Catalog=CodeInspector;Integrated Security=True" SettingsObjectName="CIDao.Properties.Settings" SettingsPropertyName="CodeInspectorConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=VINICIUS-PC\SQLEXPRESS;Initial Catalog=CodeInspector;Integrated Security=True" SettingsObjectName="CIDao.Properties.Settings" SettingsPropertyName="CodeInspectorConnectionString1" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Historico_Questao" Member="Historico_Questaos">
     <Type Name="Historico_Questao">
       <Column Name="H_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />

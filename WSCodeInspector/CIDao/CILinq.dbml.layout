@@ -26,7 +26,7 @@
         <elementListCompartment Id="96fa4237-8c85-4c94-b559-11903adf667c" absoluteBounds="9.015, 1.085, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(5.25 : 1.41429768880208); (6 : 1.41429768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.25 : 1.41429768880208); (6 : 1.41429768880208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/CILinqDataContext/Partida/Partida_Historico_Questao" />
       <nodes>
         <classShapeMoniker Id="54a733e2-3a9a-4664-af79-3805bd2784d2" />
@@ -40,7 +40,7 @@
         <classShapeMoniker Id="54a733e2-3a9a-4664-af79-3805bd2784d2" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(9 : 1.41429768880208); (8 : 1.41429768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(9 : 1.41429768880208); (8 : 1.41429768880208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/CILinqDataContext/Questao/Questao_Historico_Questao" />
       <nodes>
         <classShapeMoniker Id="99e2ba5f-f63a-4620-b581-d1ab9156f3f0" />

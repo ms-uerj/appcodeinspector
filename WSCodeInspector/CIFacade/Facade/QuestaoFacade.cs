@@ -10,19 +10,24 @@ namespace CIFacade.Facade
 {
     public class QuestaoFacade
     {
-        public DataTable GetQuestoes(int nivelDificuldade)
+        public List<string>  GetQuestoes(int nivelDificuldade)
         {
-            //var fullQuestoesXML = new StringBuilder();
+            var fullQuestoesXML = new StringBuilder();
 
             QuestaoDAO questoes = new QuestaoDAO();
-            
 
-            //foreach (QuestaoDAO questao in questoes.GetQuestoes(NivelDificuldade))
+            //fullQuestoesXML.Append("<?xml version=\'1.0\' encoding=\'utf-8\' ?>");
+            //fullQuestoesXML.Append("<data>");
+            //foreach (Questao questao in questoes.GetQuestoes(nivelDificuldade))
             //{
-            //    fullQuestoesXML.Append(questao.ToString());
+            //    fullQuestoesXML.Append("<pergunta erro=\'1\'><![CDATA[");
+            //    fullQuestoesXML.Append(questao.Q_XML.ToString());
+            //    fullQuestoesXML.Append("]]></pergunta>");
             //}
 
-            return questoes.GetQuestoes(nivelDificuldade);
+            //fullQuestoesXML.Append("</data>");
+
+            return questoes.GetQuestoes(nivelDificuldade); //fullQuestoesXML.ToString().Replace("\r", "").Replace("\n", "").Replace("\t", "");
         }
 
         public void AdicionarQuestao(int nivelDificuladade, string xmlQuestao, int? tempo)

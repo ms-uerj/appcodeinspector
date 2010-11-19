@@ -38,7 +38,7 @@ namespace CIFacade.Facade
 
             return new UsuarioDAO().AlterarUsuario(loginAtual, senhaAtual,usuarioModificado);
         }
-
+        
         public bool AutenticarUsuario(string login, string senha)
         {
             return new UsuarioDAO().AtenticarUsuario(login, senha);
