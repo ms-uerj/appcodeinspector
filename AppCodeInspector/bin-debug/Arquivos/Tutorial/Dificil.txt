@@ -1,0 +1,10 @@
+•Regras para a dificuldade Difícil:
+	1. O jogo consiste em perguntas, com um erro cada.
+	2. O usuário tem que indicar qual o tipo do erro que esta destacado.
+	3. Quando o usuário avançar para uma próxima pergunta, não poderá voltar para responder as perguntas anteriores.
+
+•Modo de jogar:
+	1. Clicar no erro destacado.
+	2. Vai aparecer uma Combo Box com 5 tipos de erros.
+	3. Selecionar um do tipo de erro da Combo Box
+	4. Clicar no botão para ir para próxima pergunta.

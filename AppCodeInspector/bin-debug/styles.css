@@ -1,0 +1,64 @@
+﻿A:link {
+	text-decoration: underline;
+	
+}
+A:hover{
+	text-decoration: none;	
+}
+
+hW {
+	font-family: "Courier New", Courier, monospace;
+	font-size: 20px;
+	text-align: center;
+	font-weight: bold;
+	color: #CCCCCC;
+}
+.activeL{
+	font-family: "Comic Sans MS", cursive;
+	font-size: 12px;
+	text-align: center;
+	font-weight: normal;
+	color: #EEEEEE;
+}
+.passiveL{
+	font-family: "Comic Sans MS", cursive;
+	font-size: 12px;
+	text-align: center;
+	font-weight: normal;
+	color: #666666;
+}
+.para {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	text-align: justify;
+	font-weight: normal;
+	color: #CCCCCC; 
+}
+.page {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	color: #CCCCCC;
+	font-size: 12px;
+	text-align: right;
+	font-weight: normal;
+}
+.c1 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	color: #FFFF33;
+	font-size: 12px;
+	text-align: justify;
+	font-weight: normal;
+}
+.c2 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	color: #FF0066;
+	font-size: 12px;
+	text-align: justify;
+	font-weight: normal;
+}
+.c3 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	color: #33CCFF;
+	font-size: 12px;
+	text-align: justify;
+	font-weight: normal;
+}
