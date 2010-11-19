@@ -29,6 +29,8 @@ public var listRespostasSelecionadas:ArrayCollection = new ArrayCollection();
 public static var respostaCelecionada:int = 0;
 protected var container:UIComponent;
 private var repostaWindow:RespostaWindow = new RespostaWindow();
+public var xmlPerguntasWS:ArrayCollection;
+
 public function onLoad():void
 {
 	field = new TextArea();
@@ -52,7 +54,8 @@ public function onLoad():void
 	}
 
 	xml = new XMLLoader();
-	xml.Load("Arquivos/perguntas.xml");
+	xml.LoadWS(xmlPerguntasWS);
+	//xml.Load("Arquivos/perguntas.xml");
 	xml.addEventListener("XML_Loaded", xmlDone);
 	xml.addEventListener("XML_IOError", error);
 	xml.addEventListener("XML_SecurityError", error);
@@ -68,10 +71,11 @@ public function onLoad():void
 
 private function cssDone(e:Event):void {
 	cssBool = true;
+	xmlBool = true;
 	allDone();
 }
 
-private function xmlDone(e:Event):void {
+public function xmlDone():void {
 	xmlBool = true;
 	allDone();
 }

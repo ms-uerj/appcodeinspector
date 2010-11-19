@@ -1,7 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
 			   xmlns:s="library://ns.adobe.com/flex/spark" 
-			   xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="955" minHeight="600" currentState="Login" minWidth.Perguntas="800">
+			   xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="955" minHeight="600" currentState="Login" minWidth.Perguntas="800" xmlns:wscodeinspector="services.wscodeinspector.*">
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.rpc.events.ResultEvent;
+			import mx.utils.ObjectUtil;
+			[Bindable]
+			public var LoginUsuario:String="Anônimo";
+			
+			public var SenhaUsuario:String;
+			
+			protected function _btnLogar_clickHandler(event:MouseEvent):void
+			{
+				AutenticarUsuarioResult.token = wSCodeInspector.AutenticarUsuario(txtUsuario.text,txtSenha.text);
+			}
+			protected function AutenticarUsuarioResult_resultHandler(e:ResultEvent):void
+			{
+				if(e.result == false)
+					Alert.show("Usuário Inválido, por favor tente novamente.");
+				else
+				{	
+					Alert.show("Usuário Autenticado com Sucesso! Seja Bem Vindo!");
+					LoginUsuario = txtUsuario.text;
+					SenhaUsuario = txtSenha.text;
+					currentState = "Dificuldade";
+				}
+			}
+		]]>
+		
+	</fx:Script>
+	
 	<fx:Script source="Login_as.as"/>
 	<fx:Script source="Dificuldade_as.as"/>
 	<fx:Script source="Tutorial_as.as"/>
@@ -14,6 +44,13 @@
 		<s:State name="Perguntas"/>
 		<s:State name="ResultadoFinal"/>
 	</s:states>
+	<fx:Declarations>
+		<s:CallResponder id="AutenticarUsuarioResult" result="AutenticarUsuarioResult_resultHandler(event)"/>
+		<wscodeinspector:WSCodeInspector id="wSCodeInspector" fault="Alert.show(event.fault.faultString + '\n' + event.fault.faultDetail)" showBusyCursor="true"/>
+		<s:CallResponder id="GetQuestoesResult"  result="GetQuestoesResultFacil_resultHandler(event)"/>
+		<s:CallResponder id="GetQuestoesResult2"  result="GetQuestoesResultIntermediario_resultHandler(event)"/>
+		<s:CallResponder id="GetQuestoesResult3"  result="GetQuestoesResultDificil_resultHandler(event)"/>
+	</fx:Declarations>
 
 	<s:Panel title="Login" horizontalCenter="0" verticalCenter="0" includeIn="Login">
 		<mx:Form width="232" height="116" label="Login" horizontalCenter="0" top="0">
@@ -24,14 +61,14 @@
 				<s:TextInput id="txtSenha" displayAsPassword="true" text="123"/>
 			</mx:FormItem>
 			<mx:FormItem width="193" horizontalAlign="right">
-				<s:Button label="Logar" id="btnLogar" click="btnLogar_clickHandler(event)"/>
+				<s:Button label="Logar" id="_btnLogar" click="_btnLogar_clickHandler(event)"/>
 			</mx:FormItem>
 		</mx:Form>
 	</s:Panel>
 	<s:Panel includeIn="Dificuldade" width="400" height="248" title="Selecione a Dificuldade" horizontalCenter="0" verticalCenter="0">
-		<s:Button label="Fácil" width="150" horizontalCenter="-1" verticalCenter="-40" id="btnFacil" fontSize="20" click="btnFacil_clickHandler(event)"/>
-		<s:Button label="Intermediário" horizontalCenter="-4" verticalCenter="0" id="btnIntermediario" width="150" fontSize="20"/>
-		<s:Button label="Difícil" width="150" horizontalCenter="0" verticalCenter="40" id="btnDificil" fontSize="20"/>
+		<s:Button label="Fácil" width="150" horizontalCenter="-1" verticalCenter="-40" id="_btnFacil" fontSize="20" click="_btnFacil_clickHandler(event)"/>
+		<s:Button label="Intermediário" horizontalCenter="-4" verticalCenter="0" id="_btnIntermediario" width="150" fontSize="20" click="_btnIntermediario_clickHandler(event)"/>
+		<s:Button label="Difícil" width="150" horizontalCenter="0" verticalCenter="40" id="_btnDificil" fontSize="20" click="_btnDificil_clickHandler(event)"/>
 	</s:Panel>
 	<s:Panel includeIn="Tutorial" width="800" height="417" horizontalCenter="0" verticalCenter="0" title="Como jogar?">
 		<s:Button label="Continuar" right="10" bottom="10" id="btnContinuarTutorial" fontSize="18" fontWeight="bold" fontFamily="Arial" click="btnContinuarTutorial_clickHandler(event)"/>
@@ -46,6 +83,7 @@
 	<mx:Image right="0" top="0" source="Arquivos/CodeInspector.swf" includeIn="Tutorial"/>
 	<mx:Image right="0" top="0" source="Arquivos/CodeInspector.swf" includeIn="Perguntas"/>
 	<mx:Image right="0" top="0" source="Arquivos/CodeInspector.swf" includeIn="ResultadoFinal"/>
+	<s:Label right="400" top="104" text="Olá {LoginUsuario}, Seja Bem Vindo!"  id="lblMensagemUsuario"/>
 	
 	
 	
