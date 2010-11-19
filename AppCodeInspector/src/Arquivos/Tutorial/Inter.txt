@@ -1,4 +1,4 @@
-•Regras para a dificuldade Fácil:
+•Regras para a dificuldade Intermediário:
 	1. O jogo consiste em perguntas, com um erro cada.
 	2. O usuário tem que indicar qual o tipo do erro que esta destacado.
 	3. Quando o usuário avançar para uma próxima pergunta, não poderá voltar para responder as perguntas anteriores.
