@@ -28,6 +28,21 @@ namespace CIDao.DAO
             }
         }
 
+        public Usuario RecuperarUsuario(string email)
+        {
+            try
+            {
+
+                Usuario usuario = db.Usuarios.Single(p => p.U_EMAIL == email);
+
+                return usuario;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         public bool AlterarUsuario(string loginAtual, string senhaAtual,Usuario usuarioModificado)
         {
             
