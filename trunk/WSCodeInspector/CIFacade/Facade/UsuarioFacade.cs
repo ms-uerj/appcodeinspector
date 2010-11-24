@@ -65,5 +65,11 @@ namespace CIFacade.Facade
         {
             return new UsuarioDAO().GetUsersRank(nivelDificuldade);
         }
+
+        public Usuario RecuperarUsuario(string email)
+        {
+            return new UsuarioDAO().RecuperarUsuario(email);
+        }
+
     }
 }
