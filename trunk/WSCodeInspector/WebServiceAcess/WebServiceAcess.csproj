@@ -65,8 +65,13 @@
       <DependentUpon>WebServiceMain.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="WebService\WebServiceUtil.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CIDao\CIDAO.csproj">
+      <Project>{A9708C0A-CB12-4365-846E-D8975182B166}</Project>
+      <Name>CIDAO</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CIFacade\CIFacade.csproj">
       <Project>{68EEE075-7966-4E54-B4C7-B51A3F764491}</Project>
       <Name>CIFacade</Name>
