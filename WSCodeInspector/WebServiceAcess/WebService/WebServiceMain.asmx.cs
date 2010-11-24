@@ -31,6 +31,13 @@ namespace WebServiceAcess.WebService
             return new UsuarioFacade().AutenticarUsuario(login, senha);
         }
 
+
+        [WebMethod]
+        public void RecuperarSenha(string email)
+        {
+            new WebServiceUtil().EnviarSenhaToEmail(email);
+        }
+
         /// <summary>
         /// Altera informações do usuário
         /// </summary>
