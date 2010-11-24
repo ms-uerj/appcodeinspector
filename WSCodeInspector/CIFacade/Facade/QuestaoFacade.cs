@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Data;
 using CIDao.DAO;
 using CIDao;
-using System.Data;
+
 
 namespace CIFacade.Facade
 {
