@@ -119,7 +119,7 @@ namespace CIDao.DAO
                                 where user.U_ID == partida.U_ID
                                    && partida.P_ID == hist.P_ID
                                    && partida.P_NIVEL_DIFICULDADE == nivelDificuldade
-
+                                orderby partida.P_PONTUACAO_TOTAL
                                select new
                                 {
                                     user.U_NOME,
