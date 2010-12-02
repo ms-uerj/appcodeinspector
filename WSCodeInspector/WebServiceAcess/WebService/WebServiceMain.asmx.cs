@@ -31,7 +31,22 @@ namespace WebServiceAcess.WebService
             return new UsuarioFacade().AutenticarUsuario(login, senha);
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="nivelDificuldade"></param>
+        /// <param name="pontuacaoTotal"></param>
+        /// <param name="userEmail"></param>
+        [WebMethod]
+        public void EncerrarPartida(int nivelDificuldade,int pontuacaoTotal,string userEmail)
+        {
+            new PartidaFacade().EncerrarPartida(pontuacaoTotal, nivelDificuldade, userEmail);
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="email"></param>
         [WebMethod]
         public void RecuperarSenha(string email)
         {
