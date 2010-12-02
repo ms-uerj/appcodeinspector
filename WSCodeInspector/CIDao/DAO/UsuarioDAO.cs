@@ -80,9 +80,11 @@ namespace CIDao.DAO
             {
                 throw;
             }
-
           
         }
+
+
+
 
         public bool CriarUsuario(Usuario novoUsuario, string email, string senha)
         {
@@ -124,9 +126,8 @@ namespace CIDao.DAO
                                 {
                                     user.U_NOME,
                                     user.U_EMAIL,
-                                    hist.H_QTD_ACERTO,
-                                    hist.H_QTD_ERRO,
-                                    
+                                    partida.P_PONTUACAO_TOTAL,
+
                                 };
 
                 return ToDataTable(db, usersRank);
