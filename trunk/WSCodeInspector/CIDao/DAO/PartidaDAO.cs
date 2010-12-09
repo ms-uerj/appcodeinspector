@@ -12,12 +12,12 @@ namespace CIDao.DAO
     {
         private CILinqDataContext db = new CILinqDataContext();
 
-        public void EncerrarPartida(Partida partidaEncerrada, string userEmail)
+        public void EncerrarPartida(Partida partidaEncerrada, string userLogin)
         {
             try
             {
 
-                Usuario usuarioAtual = db.Usuarios.Single(p => p.U_EMAIL==userEmail);
+                Usuario usuarioAtual = db.Usuarios.Single(p => p.U_LOGIN == userLogin);
 
                 partidaEncerrada.U_ID = usuarioAtual.U_ID;
 

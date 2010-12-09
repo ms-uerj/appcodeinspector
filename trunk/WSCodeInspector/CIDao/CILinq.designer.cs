@@ -33,19 +33,19 @@ namespace CIDao
     partial void InsertHistorico_Questao(Historico_Questao instance);
     partial void UpdateHistorico_Questao(Historico_Questao instance);
     partial void DeleteHistorico_Questao(Historico_Questao instance);
-    partial void InsertQuestao(Questao instance);
-    partial void UpdateQuestao(Questao instance);
-    partial void DeleteQuestao(Questao instance);
     partial void InsertPartida(Partida instance);
     partial void UpdatePartida(Partida instance);
     partial void DeletePartida(Partida instance);
     partial void InsertUsuario(Usuario instance);
     partial void UpdateUsuario(Usuario instance);
     partial void DeleteUsuario(Usuario instance);
+    partial void InsertQuestao(Questao instance);
+    partial void UpdateQuestao(Questao instance);
+    partial void DeleteQuestao(Questao instance);
     #endregion
 		
 		public CILinqDataContext() : 
-				base(global::CIDao.Properties.Settings.Default.CodeInspectorConnectionString, mappingSource)
+				base(global::CIDao.Properties.Settings.Default.CodeInspectorConnectionString1, mappingSource)
 		{
 			OnCreated();
 		}
@@ -82,14 +82,6 @@ namespace CIDao
 			}
 		}
 		
-		public System.Data.Linq.Table<Questao> Questaos
-		{
-			get
-			{
-				return this.GetTable<Questao>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Partida> Partidas
 		{
 			get
@@ -103,6 +95,22 @@ namespace CIDao
 			get
 			{
 				return this.GetTable<Usuario>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Questao> Questaos
+		{
+			get
+			{
+				return this.GetTable<Questao>();
+			}
+		}
+		
+		public System.Data.Linq.Table<RankRetorno> RankRetornos
+		{
+			get
+			{
+				return this.GetTable<RankRetorno>();
 			}
 		}
 	}
@@ -123,9 +131,9 @@ namespace CIDao
 		
 		private System.Nullable<int> _H_QTD_ERRO;
 		
-		private EntityRef<Questao> _Questao;
-		
 		private EntityRef<Partida> _Partida;
+		
+		private EntityRef<Questao> _Questao;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -145,8 +153,8 @@ namespace CIDao
 		
 		public Historico_Questao()
 		{
-			this._Questao = default(EntityRef<Questao>);
 			this._Partida = default(EntityRef<Partida>);
+			this._Questao = default(EntityRef<Questao>);
 			OnCreated();
 		}
 		
@@ -258,40 +266,6 @@ namespace CIDao
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Questao_Historico_Questao", Storage="_Questao", ThisKey="Q_ID", OtherKey="Q_ID", IsForeignKey=true)]
-		public Questao Questao
-		{
-			get
-			{
-				return this._Questao.Entity;
-			}
-			set
-			{
-				Questao previousValue = this._Questao.Entity;
-				if (((previousValue != value) 
-							|| (this._Questao.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Questao.Entity = null;
-						previousValue.Historico_Questaos.Remove(this);
-					}
-					this._Questao.Entity = value;
-					if ((value != null))
-					{
-						value.Historico_Questaos.Add(this);
-						this._Q_ID = value.Q_ID;
-					}
-					else
-					{
-						this._Q_ID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Questao");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Partida_Historico_Questao", Storage="_Partida", ThisKey="P_ID", OtherKey="P_ID", IsForeignKey=true)]
 		public Partida Partida
 		{
@@ -326,153 +300,37 @@ namespace CIDao
 			}
 		}
 		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Questao")]
-	public partial class Questao : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Q_ID;
-		
-		private System.Nullable<int> _Q_NIVEL_DIFICULDADE;
-		
-		private string _Q_XML;
-		
-		private System.Nullable<int> _Q_TEMPO;
-		
-		private EntitySet<Historico_Questao> _Historico_Questaos;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnQ_IDChanging(int value);
-    partial void OnQ_IDChanged();
-    partial void OnQ_NIVEL_DIFICULDADEChanging(System.Nullable<int> value);
-    partial void OnQ_NIVEL_DIFICULDADEChanged();
-    partial void OnQ_XMLChanging(string value);
-    partial void OnQ_XMLChanged();
-    partial void OnQ_TEMPOChanging(System.Nullable<int> value);
-    partial void OnQ_TEMPOChanged();
-    #endregion
-		
-		public Questao()
-		{
-			this._Historico_Questaos = new EntitySet<Historico_Questao>(new Action<Historico_Questao>(this.attach_Historico_Questaos), new Action<Historico_Questao>(this.detach_Historico_Questaos));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Q_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Q_ID
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Questao_Historico_Questao", Storage="_Questao", ThisKey="Q_ID", OtherKey="Q_ID", IsForeignKey=true)]
+		public Questao Questao
 		{
 			get
 			{
-				return this._Q_ID;
+				return this._Questao.Entity;
 			}
 			set
 			{
-				if ((this._Q_ID != value))
+				Questao previousValue = this._Questao.Entity;
+				if (((previousValue != value) 
+							|| (this._Questao.HasLoadedOrAssignedValue == false)))
 				{
-					this.OnQ_IDChanging(value);
 					this.SendPropertyChanging();
-					this._Q_ID = value;
-					this.SendPropertyChanged("Q_ID");
-					this.OnQ_IDChanged();
+					if ((previousValue != null))
+					{
+						this._Questao.Entity = null;
+						previousValue.Historico_Questaos.Remove(this);
+					}
+					this._Questao.Entity = value;
+					if ((value != null))
+					{
+						value.Historico_Questaos.Add(this);
+						this._Q_ID = value.Q_ID;
+					}
+					else
+					{
+						this._Q_ID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Questao");
 				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Q_NIVEL_DIFICULDADE", DbType="Int")]
-		public System.Nullable<int> Q_NIVEL_DIFICULDADE
-		{
-			get
-			{
-				return this._Q_NIVEL_DIFICULDADE;
-			}
-			set
-			{
-				if ((this._Q_NIVEL_DIFICULDADE != value))
-				{
-					this.OnQ_NIVEL_DIFICULDADEChanging(value);
-					this.SendPropertyChanging();
-					this._Q_NIVEL_DIFICULDADE = value;
-					this.SendPropertyChanged("Q_NIVEL_DIFICULDADE");
-					this.OnQ_NIVEL_DIFICULDADEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Q_XML", DbType="NText", UpdateCheck=UpdateCheck.Never)]
-		public string Q_XML
-		{
-			get
-			{
-				return this._Q_XML;
-			}
-			set
-			{
-				if ((this._Q_XML != value))
-				{
-					this.OnQ_XMLChanging(value);
-					this.SendPropertyChanging();
-					this._Q_XML = value;
-					this.SendPropertyChanged("Q_XML");
-					this.OnQ_XMLChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Q_TEMPO", DbType="Int")]
-		public System.Nullable<int> Q_TEMPO
-		{
-			get
-			{
-				return this._Q_TEMPO;
-			}
-			set
-			{
-				if ((this._Q_TEMPO != value))
-				{
-					this.OnQ_TEMPOChanging(value);
-					this.SendPropertyChanging();
-					this._Q_TEMPO = value;
-					this.SendPropertyChanged("Q_TEMPO");
-					this.OnQ_TEMPOChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Questao_Historico_Questao", Storage="_Historico_Questaos", ThisKey="Q_ID", OtherKey="Q_ID")]
-		public EntitySet<Historico_Questao> Historico_Questaos
-		{
-			get
-			{
-				return this._Historico_Questaos;
-			}
-			set
-			{
-				this._Historico_Questaos.Assign(value);
 			}
 		}
 		
@@ -494,18 +352,6 @@ namespace CIDao
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-		
-		private void attach_Historico_Questaos(Historico_Questao entity)
-		{
-			this.SendPropertyChanging();
-			entity.Questao = this;
-		}
-		
-		private void detach_Historico_Questaos(Historico_Questao entity)
-		{
-			this.SendPropertyChanging();
-			entity.Questao = null;
 		}
 	}
 	
@@ -919,6 +765,303 @@ namespace CIDao
 		{
 			this.SendPropertyChanging();
 			entity.Usuario = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Questao")]
+	public partial class Questao : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Q_ID;
+		
+		private System.Nullable<int> _Q_NIVEL_DIFICULDADE;
+		
+		private string _Q_XML;
+		
+		private System.Nullable<int> _Q_TEMPO;
+		
+		private System.Nullable<int> @__InicioErro;
+		
+		private System.Nullable<int> @__FimErro;
+		
+		private System.Nullable<int> _MotivoErroId;
+		
+		private EntitySet<Historico_Questao> _Historico_Questaos;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnQ_IDChanging(int value);
+    partial void OnQ_IDChanged();
+    partial void OnQ_NIVEL_DIFICULDADEChanging(System.Nullable<int> value);
+    partial void OnQ_NIVEL_DIFICULDADEChanged();
+    partial void OnQ_XMLChanging(string value);
+    partial void OnQ_XMLChanged();
+    partial void OnQ_TEMPOChanging(System.Nullable<int> value);
+    partial void OnQ_TEMPOChanged();
+    partial void On_InicioErroChanging(System.Nullable<int> value);
+    partial void On_InicioErroChanged();
+    partial void On_FimErroChanging(System.Nullable<int> value);
+    partial void On_FimErroChanged();
+    partial void OnMotivoErroIdChanging(System.Nullable<int> value);
+    partial void OnMotivoErroIdChanged();
+    #endregion
+		
+		public Questao()
+		{
+			this._Historico_Questaos = new EntitySet<Historico_Questao>(new Action<Historico_Questao>(this.attach_Historico_Questaos), new Action<Historico_Questao>(this.detach_Historico_Questaos));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Q_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Q_ID
+		{
+			get
+			{
+				return this._Q_ID;
+			}
+			set
+			{
+				if ((this._Q_ID != value))
+				{
+					this.OnQ_IDChanging(value);
+					this.SendPropertyChanging();
+					this._Q_ID = value;
+					this.SendPropertyChanged("Q_ID");
+					this.OnQ_IDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Q_NIVEL_DIFICULDADE", DbType="Int")]
+		public System.Nullable<int> Q_NIVEL_DIFICULDADE
+		{
+			get
+			{
+				return this._Q_NIVEL_DIFICULDADE;
+			}
+			set
+			{
+				if ((this._Q_NIVEL_DIFICULDADE != value))
+				{
+					this.OnQ_NIVEL_DIFICULDADEChanging(value);
+					this.SendPropertyChanging();
+					this._Q_NIVEL_DIFICULDADE = value;
+					this.SendPropertyChanged("Q_NIVEL_DIFICULDADE");
+					this.OnQ_NIVEL_DIFICULDADEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Q_XML", DbType="NText", UpdateCheck=UpdateCheck.Never)]
+		public string Q_XML
+		{
+			get
+			{
+				return this._Q_XML;
+			}
+			set
+			{
+				if ((this._Q_XML != value))
+				{
+					this.OnQ_XMLChanging(value);
+					this.SendPropertyChanging();
+					this._Q_XML = value;
+					this.SendPropertyChanged("Q_XML");
+					this.OnQ_XMLChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Q_TEMPO", DbType="Int")]
+		public System.Nullable<int> Q_TEMPO
+		{
+			get
+			{
+				return this._Q_TEMPO;
+			}
+			set
+			{
+				if ((this._Q_TEMPO != value))
+				{
+					this.OnQ_TEMPOChanging(value);
+					this.SendPropertyChanging();
+					this._Q_TEMPO = value;
+					this.SendPropertyChanged("Q_TEMPO");
+					this.OnQ_TEMPOChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[_InicioErro]", Storage="__InicioErro", DbType="Int")]
+		public System.Nullable<int> _InicioErro
+		{
+			get
+			{
+				return this.@__InicioErro;
+			}
+			set
+			{
+				if ((this.@__InicioErro != value))
+				{
+					this.On_InicioErroChanging(value);
+					this.SendPropertyChanging();
+					this.@__InicioErro = value;
+					this.SendPropertyChanged("_InicioErro");
+					this.On_InicioErroChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[_FimErro]", Storage="__FimErro", DbType="Int")]
+		public System.Nullable<int> _FimErro
+		{
+			get
+			{
+				return this.@__FimErro;
+			}
+			set
+			{
+				if ((this.@__FimErro != value))
+				{
+					this.On_FimErroChanging(value);
+					this.SendPropertyChanging();
+					this.@__FimErro = value;
+					this.SendPropertyChanged("_FimErro");
+					this.On_FimErroChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MotivoErroId", DbType="Int")]
+		public System.Nullable<int> MotivoErroId
+		{
+			get
+			{
+				return this._MotivoErroId;
+			}
+			set
+			{
+				if ((this._MotivoErroId != value))
+				{
+					this.OnMotivoErroIdChanging(value);
+					this.SendPropertyChanging();
+					this._MotivoErroId = value;
+					this.SendPropertyChanged("MotivoErroId");
+					this.OnMotivoErroIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Questao_Historico_Questao", Storage="_Historico_Questaos", ThisKey="Q_ID", OtherKey="Q_ID")]
+		public EntitySet<Historico_Questao> Historico_Questaos
+		{
+			get
+			{
+				return this._Historico_Questaos;
+			}
+			set
+			{
+				this._Historico_Questaos.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Historico_Questaos(Historico_Questao entity)
+		{
+			this.SendPropertyChanging();
+			entity.Questao = this;
+		}
+		
+		private void detach_Historico_Questaos(Historico_Questao entity)
+		{
+			this.SendPropertyChanging();
+			entity.Questao = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="")]
+	public partial class RankRetorno
+	{
+		
+		private string _Usuario;
+		
+		private int _Pontuacao;
+		
+		private string _Email;
+		
+		public RankRetorno()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Usuario", CanBeNull=false)]
+		public string Usuario
+		{
+			get
+			{
+				return this._Usuario;
+			}
+			set
+			{
+				if ((this._Usuario != value))
+				{
+					this._Usuario = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Pontuacao")]
+		public int Pontuacao
+		{
+			get
+			{
+				return this._Pontuacao;
+			}
+			set
+			{
+				if ((this._Pontuacao != value))
+				{
+					this._Pontuacao = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", CanBeNull=false)]
+		public string Email
+		{
+			get
+			{
+				return this._Email;
+			}
+			set
+			{
+				if ((this._Email != value))
+				{
+					this._Email = value;
+				}
+			}
 		}
 	}
 }

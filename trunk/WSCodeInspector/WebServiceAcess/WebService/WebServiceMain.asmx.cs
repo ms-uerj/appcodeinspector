@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Services;
 using CIFacade.Facade;
 using System.Data;
+using System.Xml.Linq;
 
 namespace WebServiceAcess.WebService
 {
@@ -38,9 +39,41 @@ namespace WebServiceAcess.WebService
         /// <param name="pontuacaoTotal"></param>
         /// <param name="userEmail"></param>
         [WebMethod]
-        public void EncerrarPartida(int nivelDificuldade,int pontuacaoTotal,string userEmail)
+        public void EncerrarPartida(int nivelDificuldade,string respostasXML,string userEmail)
         {
-            new PartidaFacade().EncerrarPartida(pontuacaoTotal, nivelDificuldade, userEmail);
+            XDocument doc = XDocument.Parse(respostasXML);
+            List<RespostaModel> respostas = (from xnode in doc.Element("r").Elements("resposta")
+                                   select new RespostaModel
+                                   {
+                                       inicioErro = int.Parse(xnode.Attribute("inicioErro").Value),
+                                       fimErro = int.Parse(xnode.Attribute("fimErro").Value),
+                                       motivoErroId = int.Parse(xnode.Attribute("motivoErroId").Value),
+                                       perguntaNumero = int.Parse(xnode.Attribute("perguntaNumero").Value)
+                                   }).ToList();
+
+            var questoes = new QuestaoFacade().GetQuestoesList(nivelDificuldade);
+            int qtdPontos = 0;
+            foreach (var item in respostas)
+            {
+                var questao = questoes[item.perguntaNumero];
+                if (nivelDificuldade != 1)
+                {
+                    if ((item.inicioErro == questao._InicioErro) && (item.fimErro == questao._FimErro) && (item.motivoErroId == questao.MotivoErroId))
+                    {
+                        qtdPontos++;
+                    }
+                }
+                else
+                {
+                    if ((item.motivoErroId == questao.MotivoErroId))
+                    {
+                        qtdPontos++;
+                    } 
+                }
+            }
+
+            new PartidaFacade().EncerrarPartida(qtdPontos, nivelDificuldade, userEmail);
+            
         }
         
         /// <summary>
@@ -104,7 +137,7 @@ namespace WebServiceAcess.WebService
         /// <param name="nivelDificuldade">Nivel de dificuladade do usuario atual</param>
         /// <returns>Datatable ordenado pela quantidade de acertos</returns>
         [WebMethod]
-        public DataTable GetUsersRank(int nivelDificuldade)
+        public List<CIDao.RankRetorno> GetUsersRank(int nivelDificuldade)
         {
             return new UsuarioFacade().GetUsersRank(nivelDificuldade);
         }
