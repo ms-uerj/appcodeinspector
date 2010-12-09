@@ -11,8 +11,11 @@ public static const FACIL : int = 1;
 public static const INTERMEDIARIO : int= 2;
 public static const DIFICIL : int= 3;
 
+public static var nivielDificuldade:int;
+
 protected function _btnFacil_clickHandler(event:MouseEvent):void
 {
+	nivielDificuldade = 1;
 	GetQuestoesResult.token = wSCodeInspector.GetQuestoes(FACIL);
 }
 
@@ -26,6 +29,7 @@ protected function GetQuestoesResultFacil_resultHandler(e:ResultEvent):void
 
 protected function _btnIntermediario_clickHandler(event:MouseEvent):void
 {
+	nivielDificuldade = 2;
 	GetQuestoesResult2.token = wSCodeInspector.GetQuestoes(INTERMEDIARIO);
 }
 
@@ -40,6 +44,7 @@ protected function GetQuestoesResultIntermediario_resultHandler(e:ResultEvent):v
 
 protected function _btnDificil_clickHandler(event:MouseEvent):void
 {
+	nivielDificuldade = 3;
 	GetQuestoesResult3.token = wSCodeInspector.GetQuestoes(DIFICIL);
 }
 

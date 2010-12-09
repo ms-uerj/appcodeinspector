@@ -22,4 +22,5 @@
 		<s:Button x="248" y="133" label="Confirmar" fontSize="26" id="btnConfirmarMotivoErro" width="140" height="40" click="btnConfirmarMotivoErro_clickHandler(event)"/>
 		<s:Button x="10" y="133" label="Cancelar" fontSize="26" id="btnCancelarMotivoErro" height="40" width="140" click="btnCancelarMotivoErro_clickHandler(event)"/>
 	</s:Panel>
+
 </mx:Canvas>
