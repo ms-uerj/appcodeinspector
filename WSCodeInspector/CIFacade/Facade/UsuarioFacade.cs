@@ -61,7 +61,7 @@ namespace CIFacade.Facade
             return new UsuarioDAO().CriarUsuario(novoUsuario ,email, senha);
         }
 
-        public DataTable GetUsersRank(int nivelDificuldade)
+        public List<RankRetorno> GetUsersRank(int nivelDificuldade)
         {
             return new UsuarioDAO().GetUsersRank(nivelDificuldade);
         }

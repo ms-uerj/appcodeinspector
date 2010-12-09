@@ -1,17 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11.375, 8.5" name="CILinq">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11.5, 8.5" name="CILinq">
   <DataContextMoniker Name="/CILinqDataContext" />
   <nestedChildShapes>
     <classShape Id="905385e2-f38d-47df-9306-dfffeb96d4e4" absoluteBounds="6.25, 0.5, 2, 1.7708968098958331">
       <DataClassMoniker Name="/CILinqDataContext/Historico_Questao" />
       <nestedChildShapes>
         <elementListCompartment Id="909fefbb-ae1d-454f-acb7-cdb4ac3498bd" absoluteBounds="6.265, 0.96, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="303061b1-2c0a-4a8a-949d-bf62eae10af6" absoluteBounds="9.125, 0.5, 2, 1.5785953776041666">
-      <DataClassMoniker Name="/CILinqDataContext/Questao" />
-      <nestedChildShapes>
-        <elementListCompartment Id="dd652bda-610e-4aaa-8c8f-11b863c882dd" absoluteBounds="9.14, 0.96, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <classShape Id="ad89bf71-eb54-4cac-bd06-f0dc239325dd" absoluteBounds="3.5, 0.5, 2, 1.7708968098958331">
@@ -26,14 +20,7 @@
         <elementListCompartment Id="17477197-a5c6-4212-99fe-6a8358b5473b" absoluteBounds="0.765, 0.96, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(9.125 : 1.28929768880208); (8.25 : 1.28929768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/CILinqDataContext/Questao/Questao_Historico_Questao" />
-      <nodes>
-        <classShapeMoniker Id="303061b1-2c0a-4a8a-949d-bf62eae10af6" />
-        <classShapeMoniker Id="905385e2-f38d-47df-9306-dfffeb96d4e4" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 1.38544840494792); (6.25 : 1.38544840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.5 : 1.38544840494792); (6.25 : 1.38544840494792)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/CILinqDataContext/Partida/Partida_Historico_Questao" />
       <nodes>
         <classShapeMoniker Id="ad89bf71-eb54-4cac-bd06-f0dc239325dd" />
@@ -47,5 +34,24 @@
         <classShapeMoniker Id="ad89bf71-eb54-4cac-bd06-f0dc239325dd" />
       </nodes>
     </associationConnector>
+    <classShape Id="8258f40d-d251-4334-9ea2-db5f1a669958" absoluteBounds="9.25, 0.625, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/CILinqDataContext/Questao" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d921c385-e126-4317-81b3-b6ae05b9d5e3" absoluteBounds="9.265, 1.085, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(9.25 : 1.44794840494792); (8.25 : 1.44794840494792)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/CILinqDataContext/Questao/Questao_Historico_Questao" />
+      <nodes>
+        <classShapeMoniker Id="8258f40d-d251-4334-9ea2-db5f1a669958" />
+        <classShapeMoniker Id="905385e2-f38d-47df-9306-dfffeb96d4e4" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="acfd9184-1138-4cb7-88f2-9cd6fc02d190" absoluteBounds="1.5, 3.875, 2, 1.3862939453124996">
+      <DataClassMoniker Name="/CILinqDataContext/RankRetorno" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c1410f40-1a0d-4b1e-ab22-2ed1970d602b" absoluteBounds="1.515, 4.335, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>
