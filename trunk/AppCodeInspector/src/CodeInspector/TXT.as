@@ -33,7 +33,7 @@ package CodeInspector
 		private function Loaded(e:Event):void {
 			try {
 				Texto = loader.data;
-				trace(loader.data);
+				//trace(loader.data);
 				dispatchEvent(new Event("TXT_Loaded"));
 			} catch (e:Error) {
 				dispatchEvent(new Event("TXT_ParseError"));

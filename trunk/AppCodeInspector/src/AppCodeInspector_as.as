@@ -5,15 +5,21 @@ import flash.display.Stage;
 import flash.events.MouseEvent;
 import flash.events.TextEvent;
 import flash.profiler.showRedrawRegions;
+import flash.xml.XMLNode;
 
 import mx.collections.ArrayCollection;
 import mx.controls.Alert;
 import mx.controls.Label;
 import mx.controls.TextArea;
+import mx.controls.textClasses.TextRange;
 import mx.core.Application;
 import mx.core.UIComponent;
 import mx.managers.PopUpManager;
+import mx.rpc.events.ResultEvent;
+import mx.rpc.xml.SimpleXMLEncoder;
 import mx.states.AddChild;
+
+import services.wscodeinspector.WSCodeInspector;
 
 private var xml:XMLLoader;
 private var css:CSS;
@@ -21,7 +27,9 @@ private var field:TextArea;
 
 private var cssBool:Boolean = false;
 private var xmlBool:Boolean = false;
-private var perguntaNum:int = 0;
+public  static var perguntaNum:int = 0;
+
+
 [Bindable]
 public var listRespostasSelecionadas:ArrayCollection = new ArrayCollection();
 
@@ -31,10 +39,15 @@ protected var container:UIComponent;
 private var repostaWindow:RespostaWindow = new RespostaWindow();
 public var xmlPerguntasWS:ArrayCollection;
 
+public static var respostas:ArrayCollection = new ArrayCollection();
+
+public static var respostaIndexAtual:int = 0;
+
+public static var selection:TextRange;
+
 public function onLoad():void
 {
 	field = new TextArea();
-
 	
 	container = new UIComponent();
 	
@@ -48,11 +61,18 @@ public function onLoad():void
 		width = 800;
 		height = 500;
 		multiline = true;
-		selectable = true;
+		
 		wordWrap = true;
-		condenseWhite = true; 
+		condenseWhite = true;
+		if(nivielDificuldade == 1)
+			selectable = false;
+		else
+			selectable = true;
+			
 	}
-
+	
+	field.addEventListener(MouseEvent.MOUSE_UP,onMouseUp);
+	
 	xml = new XMLLoader();
 	xml.LoadWS(xmlPerguntasWS);
 	//xml.Load("Arquivos/perguntas.xml");
@@ -69,6 +89,21 @@ public function onLoad():void
 	css.addEventListener("CSS_ParseError", error);
 }
 
+
+private function onMouseUp(evt:MouseEvent):void
+{
+	selection = new TextRange(field,false,field.selectionBeginIndex,field.selectionEndIndex);
+	var selLength:int = selection.endIndex - selection.beginIndex;
+	
+	if((selLength)) 
+	{
+		PopUpManager.addPopUp(repostaWindow,this,true);
+		PopUpManager.centerPopUp(repostaWindow);
+	}
+}
+
+
+
 private function cssDone(e:Event):void {
 	cssBool = true;
 	xmlBool = true;
@@ -84,7 +119,7 @@ private function allDone():void
 {
 	if(cssBool && xmlBool)
 	{
-		field.styleSheet = css.sheet;
+		//field.styleSheet = css.sheet;
 		field.htmlText = xml.perguntas[perguntaNum];
 		field.addEventListener(TextEvent.LINK, textEvent);
 	}
@@ -92,45 +127,63 @@ private function allDone():void
 
 private function textEvent(e:TextEvent):void {
 	
-	if (e.text == "erro")
-	{
 		PopUpManager.addPopUp(repostaWindow,this,true);
-		repostaWindow.cbResposta.selectedIndex = respostaCelecionada;
+		if(respostas.length  != 0)
+			repostaWindow.cbResposta.selectedIndex = (Resposta)(respostas.getItemAt(parseInt(e.text)-1)).motivoErroId;
 		PopUpManager.centerPopUp(repostaWindow);
-	}
-//	if (e.text == "next"){
-//		++perguntaNum;
-//		field.htmlText = xml.perguntas[perguntaNum];
-//	}
-//	if (e.text == "prev"){
-//		--perguntaNum;
-//		field.htmlText = xml.perguntas[perguntaNum];
-//	}
 }
+
 protected function btnProximaPergunta_clickHandler(event:MouseEvent):void
 {
 	if(respostaCelecionada == 0)
 		Alert.show("Selecione o motivo do erro antes de prosseguir");
 	else
 	{
-		
 		listRespostasSelecionadas.addItem("Pergunta Nº "+(perguntaNum+1) + " " + getRespostas(respostaCelecionada));
 		
 		if(xml.perguntas.length <= perguntaNum +1)
 		{
 			removeElement(container);
-			this.currentState = "ResultadoFinal";
+			
+			var respostasXML:String = respostaToXml(respostas);
+			
+			var ws:services.wscodeinspector.WSCodeInspector = new WSCodeInspector();
+			ws.addEventListener(ResultEvent.RESULT,EncerrarPartidaResult_resultHandler);
+			ws.EncerrarPartida(nivielDificuldade,respostasXML,LoginUsuario);
 		}
 		else
 		{
 			respostaCelecionada = 0;
 			++perguntaNum;
-			field.styleSheet = css.sheet;
+			//field.styleSheet = css.sheet;
 			field.htmlText = xml.perguntas[perguntaNum];
 		}
 	}
 }
-
+protected function EncerrarPartidaResult_resultHandler(e:ResultEvent):void
+{
+	this.currentState = "ResultadoFinal";
+}
+protected function respostaToXml(respostas:ArrayCollection):String
+{
+	var string:String = "<r>";
+	for each(var item:Resposta in respostas)
+	{
+		string+="<resposta fimErro=\""+ item.fimErro +
+			"\" inicioErro=\""+ item.inicioErro +
+			"\" motivoErroId=\""+ item.motivoErroId +
+			"\" perguntaNumero=\""+ item.perguntaNumero +"\"" +
+			"/>";
+	}
+	string +="</r>" 
+	/*var qName:QName = new QName("root");
+	var xmlDocument:XMLDocument = new XMLDocument();
+	var simpleXMLEncoder:SimpleXMLEncoder= new SimpleXMLEncoder(xmlDocument);
+	var xmlNode:XMLNode= simpleXMLEncoder.encodeValue(respostas, qName, xmlDocument);
+	var xml:XML = new XML(xmlDocument.toString());*/
+	
+	return string;
+}
 protected function getRespostas(respostaId:int):String
 {
 	switch(respostaId)

@@ -5,8 +5,11 @@
 	
 	<fx:Script>
 		<![CDATA[
+			import mx.events.FlexEvent;
 			import mx.rpc.events.ResultEvent;
 			import mx.utils.ObjectUtil;
+			
+			import spark.events.IndexChangeEvent;
 			[Bindable]
 			public var LoginUsuario:String="Anônimo";
 			
@@ -28,6 +31,34 @@
 					currentState = "Dificuldade";
 				}
 			}
+
+			
+			protected function dataGrid_creationCompleteHandler(event:FlexEvent):void
+			{
+				GetUsersRankResult.token = wSCodeInspector.GetUsersRank(nivielDificuldade);
+			}
+			
+
+			protected function button1_clickHandler(event:MouseEvent):void
+			{
+				nivielDificuldade =1;
+				this.currentState = "ResultadoFinal";
+			}
+
+
+			protected function button2_clickHandler(event:MouseEvent):void
+			{
+				nivielDificuldade =2;
+				this.currentState = "ResultadoFinal";
+			}
+
+
+			protected function button3_clickHandler(event:MouseEvent):void
+			{
+				nivielDificuldade =3;
+				this.currentState = "ResultadoFinal";
+			}
+
 		]]>
 		
 	</fx:Script>
@@ -50,6 +81,8 @@
 		<s:CallResponder id="GetQuestoesResult"  result="GetQuestoesResultFacil_resultHandler(event)"/>
 		<s:CallResponder id="GetQuestoesResult2"  result="GetQuestoesResultIntermediario_resultHandler(event)"/>
 		<s:CallResponder id="GetQuestoesResult3"  result="GetQuestoesResultDificil_resultHandler(event)"/>
+		<s:CallResponder id="EncerraPartida" result="EncerrarPartidaResult_resultHandler(event)"/>		
+		<s:CallResponder id="GetUsersRankResult"/>
 	</fx:Declarations>
 
 	<s:Panel title="Login" horizontalCenter="0" verticalCenter="0" includeIn="Login">
@@ -76,7 +109,13 @@
 	</s:Panel>
 	<s:Button includeIn="Perguntas" label="Próxima Pergunta" horizontalCenter="190" verticalCenter="310" fontSize="29" height="35" id="btnProximaPergunta" click="btnProximaPergunta_clickHandler(event)"/>
 	<s:Panel includeIn="ResultadoFinal" horizontalCenter="0" verticalCenter="0" width="670" height="400" title="Resultado Final">
-		<s:List horizontalCenter="0" id="listResultado" textAlign="center" dataProvider="{listRespostasSelecionadas}" fontSize="30" top="0" width="100%" height="100%"></s:List>
+		<mx:DataGrid x="10" y="10" width="648" height="347" id="dataGrid" dataProvider="{GetUsersRankResult.lastResult}" creationComplete="dataGrid_creationCompleteHandler(event)">
+			<mx:columns>
+				<mx:DataGridColumn headerText="Usuario" dataField="Usuario"/>
+				<mx:DataGridColumn headerText="Pontuacao" dataField="Pontuacao"/>
+				<mx:DataGridColumn headerText="Email" dataField="Email"/>
+			</mx:columns>
+		</mx:DataGrid>
 	</s:Panel>
 	<mx:Image includeIn="Login" right="0" top="0" source="Arquivos/CodeInspector.swf"/>
 	<mx:Image right="0" top="0" source="Arquivos/CodeInspector.swf" includeIn="Dificuldade"/>
@@ -84,6 +123,10 @@
 	<mx:Image right="0" top="0" source="Arquivos/CodeInspector.swf" includeIn="Perguntas"/>
 	<mx:Image right="0" top="0" source="Arquivos/CodeInspector.swf" includeIn="ResultadoFinal"/>
 	<s:Label right="400" top="104" text="Olá {LoginUsuario}, Seja Bem Vindo!"  id="lblMensagemUsuario"/>
+
+	<s:Button label="Ver Ranking Nivel Intermediario" width="234" includeIn="Login" click="button2_clickHandler(event)" horizontalCenter="0" verticalCenter="139"/>
+	<s:Button label="Ver Ranking Nivel Dificil" width="234" includeIn="Login" click="button3_clickHandler(event)" horizontalCenter="0" verticalCenter="171"/>
+	<s:Button label="Ver Ranking Nivel Facil" width="234" includeIn="Login" click="button1_clickHandler(event)" horizontalCenter="0" verticalCenter="107"/>
 	
 	
 	
