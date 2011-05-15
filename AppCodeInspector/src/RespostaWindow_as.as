@@ -9,7 +9,7 @@ public static var respostaIndice:int =0;
 
 protected function btnConfirmarMotivoErro_clickHandler(event:MouseEvent):void
 {
-	AppCodeInspector.respostaCelecionada = cbResposta.selectedIndex;
+	AppCodeInspector.respostaSelecionada = cbResposta.selectedIndex;
 	
 	selectedIndex = cbResposta.selectedIndex;
 	
