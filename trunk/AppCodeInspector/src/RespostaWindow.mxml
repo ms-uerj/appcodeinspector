@@ -2,25 +2,126 @@
 <mx:Canvas xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		   xmlns:s="library://ns.adobe.com/flex/spark" 
 		   xmlns:mx="library://ns.adobe.com/flex/mx" width="400" height="226" backgroundAlpha=".0">
-
+	
+	
+	
+	<fx:Script>
+		<![CDATA[
+			import flash.filters.DropShadowFilter;
+			import flash.text.TextField;
+			import flash.text.TextFieldAutoSize;
+			import flash.text.TextFormat;
+			import mx.controls.ComboBox;
+			import mx.core.UIComponent;
+			import mx.events.ListEvent;
+			
+			[Bindable] private var comboProvider:Array = 
+				[
+					{label:"Comissão", data:{tip:"Ocorre quando um existe algum segmento de código incorreto, ou seja, esse segmento foi implementado de uma maneira diferente do que foi especificado."}}, 
+					{label:"Inicialização", data:{tip:"Ocorre quando se tenta acessar uma variável que não foi inicializada."}}, 
+					{label:"Computação", data:{tip:"Similar ao defeito de comissão, a diferença se encontra quando um valor é definido erroneamente para uma variável."}}, 
+					{label:"Desempenho", data:{tip:"Algumas rotinas executam laços (loops) desnecessários."}}, 
+					{label:"Controle", data:{tip:"Ocorre quando é usado de forma incorreta um comando de desvio condicional. "}}, 
+					{label:"Excesso", data:{tip:"Existe trechos de códigos irrelevantes e desnecessários."}}, 
+					{label:"Dados", data:{tip:"Ocorre quando uma estrutura de dados é manipulada de forma incorreta; um exemplo é quando se tenta acessar um índice inexistente de um array."}}, 
+				];
+			
+			private var customTip:UIComponent;
+			
+			public function showListTip(event:ListEvent):void 
+			{
+				hideListTip(event);
+				if (event.target.dataProvider[event.rowIndex].data.tip != undefined) 
+				{
+					var tipText:String = event.target.dataProvider[event.rowIndex].data.tip;
+					if (tipText.length>0)
+					{
+						var tipColor:uint = 0xD20000;
+						var format:TextFormat = new TextFormat();
+						format.font = "Verdana";
+						format.color = 0xFFFFFF;
+						format.size = 9;
+						var tipGFX:Shape;
+						var tipTag:TextField;
+						if (customTip == null) 
+							{
+								customTip = new UIComponent();
+								tipGFX = new Shape();
+								tipGFX.graphics.beginFill(tipColor, .7);
+								tipGFX.graphics.drawRoundRect(0, 0, 120, 20, 5, 5);
+								tipGFX.graphics.moveTo(0, 7.3);
+								tipGFX.graphics.lineTo(-5, 10.8);
+								tipGFX.graphics.lineTo(0, 13.7);
+								tipGFX.graphics.lineTo(0, 7.3);
+								tipGFX.graphics.endFill();
+								customTip.addChild(tipGFX);
+								customTip.x = event.target.width+10;
+								customTip.filters = [new DropShadowFilter(4, 45, 0x000000, .6)];
+								tipTag = new TextField();
+								tipTag.name = "tipTag";
+								tipTag.selectable = false;
+								tipTag.width = 200;
+								tipTag.x = 2;
+								tipTag.y = 2;
+								tipTag.autoSize = TextFieldAutoSize.LEFT;
+								tipTag.wordWrap = true;
+								customTip.addChild(tipTag);
+								ComboBox(event.target).dropdown.addChild(customTip);
+							} 
+							else 
+							{
+								tipTag = TextField(customTip.getChildByName("tipTag"));
+							}
+								customTip.y = (event.rowIndex-ComboBox(event.target).dropdown.verticalScrollPosition)
+								*event.target.height;
+								tipTag.text = tipText;
+								tipTag.setTextFormat(format);
+								tipGFX.graphics.clear();
+								tipGFX.graphics.beginFill(tipColor, .7);
+								tipGFX.graphics.drawRoundRect(0, 0, tipTag.width+4, tipTag.height+4, 5, 5);
+								tipGFX.graphics.moveTo(0, 7.3);
+								tipGFX.graphics.lineTo(-5, 10.8);
+								tipGFX.graphics.lineTo(0, 13.7);
+								tipGFX.graphics.lineTo(0, 7.3);
+								tipGFX.graphics.endFill();
+							}
+					}
+			}
+			private function hideListTip(event:*):void 
+			{
+				if (customTip != null) 
+				{
+					if (ComboBox(event.target).dropdown.contains(customTip)) 
+					{
+						ComboBox(event.target).dropdown.removeChild(customTip);
+					}
+				customTip = null;
+				}
+			}
+			]]>
+	</fx:Script>
+	
+	
 	<fx:Declarations>
-		<!-- Place non-visual elements (e.g., services, value objects) here -->
+
 	</fx:Declarations>
 	<fx:Script source="RespostaWindow_as.as"/>
+	
 	<s:Panel width="100%" height="100%" left="0" top="0">
-		<s:ComboBox id="cbResposta" horizontalCenter="0" verticalCenter="-20" width="377" fontSize="18" selectedIndex="{selectedIndex}" color="#000000">
-			<s:ArrayCollection>
-				<fx:String>Selecione</fx:String>
-				<fx:String>Defeitos de Omissão</fx:String>
-				<fx:String>Defeitos de Fato Incorreto</fx:String>
-				<fx:String>Defeitos de Inconsitência</fx:String>
-				<fx:String>Defeitos de Ambiguidade</fx:String>
-				<fx:String>Defeitos de Informação Estranha</fx:String>
-			</s:ArrayCollection>
-			</s:ComboBox>
-		<s:Label text="Selecione o Motivo do Erro:" fontSize="24" horizontalCenter="-1" top="0" color="#FFFFFF" fontWeight="bold"/>
-		<s:Button x="248" y="133" label="Confirmar" fontSize="26" id="btnConfirmarMotivoErro" width="140" height="40" click="btnConfirmarMotivoErro_clickHandler(event)"/>
-		<s:Button x="10" y="133" label="Cancelar" fontSize="26" id="btnCancelarMotivoErro" height="40" width="140" click="btnCancelarMotivoErro_clickHandler(event)"/>
+		<s:Label text="Selecione o motivo do defeito:" fontSize="24" horizontalCenter="-1" top="0" color="#FFFFFF" fontWeight="bold"/>
+		<mx:ComboBox id="cbResposta"   			
+					horizontalCenter="0"
+					itemRollOver="showListTip(event)" 
+					itemRollOut="hideListTip(event)"
+					verticalCenter="-20" 
+					width="377" 
+					fontSize="18" 
+					selectedIndex="{selectedIndex}" 
+					color="#000000"
+					dataProvider="{comboProvider}"
+					>
+		</mx:ComboBox>
+		<s:Button label="Cancelar" fontSize="26" id="btnCancelarMotivoErro" height="40" width="140" click="btnCancelarMotivoErro_clickHandler(event)" x="248" y="143"/>
+		<s:Button label="Confirmar" fontSize="26" id="btnConfirmarMotivoErro" width="140" height="40" click="btnConfirmarMotivoErro_clickHandler(event)" x="100" y="143"/>
 	</s:Panel>
-
 </mx:Canvas>

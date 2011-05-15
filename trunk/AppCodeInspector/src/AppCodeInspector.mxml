@@ -59,6 +59,12 @@
 				this.currentState = "ResultadoFinal";
 			}
 
+
+			protected function btnVoltar_clickHandler(event:MouseEvent):void
+			{
+				this.currentState = "Dificuldade";
+			}
+
 		]]>
 		
 	</fx:Script>
@@ -127,6 +133,7 @@
 	<s:Button label="Ver Ranking Nivel Intermediario" width="234" includeIn="Login" click="button2_clickHandler(event)" horizontalCenter="0" verticalCenter="139"/>
 	<s:Button label="Ver Ranking Nivel Dificil" width="234" includeIn="Login" click="button3_clickHandler(event)" horizontalCenter="0" verticalCenter="171"/>
 	<s:Button label="Ver Ranking Nivel Facil" width="234" includeIn="Login" click="button1_clickHandler(event)" horizontalCenter="0" verticalCenter="107"/>
+	<s:Button includeIn="ResultadoFinal" x="755" y="575" label="Voltar" id="btnVoltar" width="105" click="btnVoltar_clickHandler(event)"/>
 	
 	
 	

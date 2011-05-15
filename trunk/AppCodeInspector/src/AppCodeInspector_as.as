@@ -34,7 +34,7 @@ public  static var perguntaNum:int = 0;
 public var listRespostasSelecionadas:ArrayCollection = new ArrayCollection();
 
 [Bindable]
-public static var respostaCelecionada:int = 0;
+public static var respostaSelecionada:int = 0;
 protected var container:UIComponent;
 private var repostaWindow:RespostaWindow = new RespostaWindow();
 public var xmlPerguntasWS:ArrayCollection;
@@ -135,11 +135,11 @@ private function textEvent(e:TextEvent):void {
 
 protected function btnProximaPergunta_clickHandler(event:MouseEvent):void
 {
-	if(respostaCelecionada == 0)
+	if(respostaSelecionada == 0)
 		Alert.show("Selecione o motivo do erro antes de prosseguir");
 	else
 	{
-		listRespostasSelecionadas.addItem("Pergunta Nº "+(perguntaNum+1) + " " + getRespostas(respostaCelecionada));
+		listRespostasSelecionadas.addItem("Pergunta Nº "+(perguntaNum+1) + " " + getRespostas(respostaSelecionada));
 		
 		if(xml.perguntas.length <= perguntaNum +1)
 		{
@@ -153,9 +153,9 @@ protected function btnProximaPergunta_clickHandler(event:MouseEvent):void
 		}
 		else
 		{
-			respostaCelecionada = 0;
+			respostaSelecionada = 0;
 			++perguntaNum;
-			//field.styleSheet = css.sheet;
+			field.styleSheet = css.sheet;
 			field.htmlText = xml.perguntas[perguntaNum];
 		}
 	}
