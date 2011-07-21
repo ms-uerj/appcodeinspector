@@ -13,6 +13,7 @@ public static const DIFICIL : int= 3;
 
 public static var nivielDificuldade:int;
 
+//Adiciciona a um token que dispara o evento (GetQuestoesResultFacil_resultHandler).
 protected function _btnFacil_clickHandler(event:MouseEvent):void
 {
 	nivielDificuldade = 1;
@@ -21,10 +22,15 @@ protected function _btnFacil_clickHandler(event:MouseEvent):void
 
 protected function GetQuestoesResultFacil_resultHandler(e:ResultEvent):void
 {
+	
 	xmlPerguntasWS = ArrayCollection(e.result);
+	//Pegando todas as respostas das questões no nível fácil
+	xmlRespostasWS = ArrayCollection(wSCodeInspector.GetQuestoesRespostas(FACIL));
+	
 	txtTutorialFacil = new TXT();
 	txtTutorialFacil.Load("Arquivos/Tutorial/Facil.txt");
 	txtTutorialFacil.addEventListener("TXT_Loaded",txtTutorial_TXTLoaded);
+	
 }
 
 protected function _btnIntermediario_clickHandler(event:MouseEvent):void
