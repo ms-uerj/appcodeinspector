@@ -35,9 +35,13 @@ public var listRespostasSelecionadas:ArrayCollection = new ArrayCollection();
 
 [Bindable]
 public static var respostaSelecionada:int = 0;
+
 protected var container:UIComponent;
 private var repostaWindow:RespostaWindow = new RespostaWindow();
+
+
 public var xmlPerguntasWS:ArrayCollection;
+public var xmlRespostasWS:ArrayCollection;
 
 public static var respostas:ArrayCollection = new ArrayCollection();
 
@@ -119,7 +123,7 @@ private function allDone():void
 {
 	if(cssBool && xmlBool)
 	{
-		//field.styleSheet = css.sheet;
+		field.styleSheet = css.sheet;
 		field.htmlText = xml.perguntas[perguntaNum];
 		field.addEventListener(TextEvent.LINK, textEvent);
 	}
@@ -135,14 +139,22 @@ private function textEvent(e:TextEvent):void {
 
 protected function btnProximaPergunta_clickHandler(event:MouseEvent):void
 {
+	
 	if(respostaSelecionada == 0)
 		Alert.show("Selecione o motivo do erro antes de prosseguir");
+	else if(xmlRespostasWS[perguntaNum]!=respostaSelecionada)
+	{
+		
+		 xml.perguntas[perguntaNum]
+		
+		Alert.show("")
+	}
 	else
 	{
 		listRespostasSelecionadas.addItem("Pergunta Nº "+(perguntaNum+1) + " " + getRespostas(respostaSelecionada));
 		
 		if(xml.perguntas.length <= perguntaNum +1)
-		{
+		{	
 			removeElement(container);
 			
 			var respostasXML:String = respostaToXml(respostas);
