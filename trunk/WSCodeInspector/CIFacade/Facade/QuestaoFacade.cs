@@ -18,6 +18,13 @@ namespace CIFacade.Facade
             return questoes.GetQuestoes(nivelDificuldade); //fullQuestoesXML.ToString().Replace("\r", "").Replace("\n", "").Replace("\t", "");
         }
 
+        public List<int?> GetQuestoesRespostas(int nivelDificuldade)
+        {
+            QuestaoDAO questoes = new QuestaoDAO();
+
+            return questoes.GetQuestoesRespostas(nivelDificuldade);
+        }
+
 
         public List<Questao> GetQuestoesList(int nivelDificuldade)
         {

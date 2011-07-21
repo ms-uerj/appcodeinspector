@@ -27,30 +27,30 @@
         <classShapeMoniker Id="905385e2-f38d-47df-9306-dfffeb96d4e4" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 1.38544840494792); (3.5 : 1.38544840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 1.38544840494792); (3.5 : 1.38544840494792)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/CILinqDataContext/Usuario/Usuario_Partida" />
       <nodes>
         <classShapeMoniker Id="fbb81506-11e3-4760-ac1b-d737af43e5ce" />
         <classShapeMoniker Id="ad89bf71-eb54-4cac-bd06-f0dc239325dd" />
       </nodes>
     </associationConnector>
-    <classShape Id="8258f40d-d251-4334-9ea2-db5f1a669958" absoluteBounds="9.25, 0.625, 2, 2.1554996744791666">
+    <classShape Id="8258f40d-d251-4334-9ea2-db5f1a669958" absoluteBounds="9.25, 0.5, 2, 2.1554996744791666">
       <DataClassMoniker Name="/CILinqDataContext/Questao" />
       <nestedChildShapes>
-        <elementListCompartment Id="d921c385-e126-4317-81b3-b6ae05b9d5e3" absoluteBounds="9.265, 1.085, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="d921c385-e126-4317-81b3-b6ae05b9d5e3" absoluteBounds="9.265, 0.96, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(9.25 : 1.44794840494792); (8.25 : 1.44794840494792)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(9.25 : 1.38544840494792); (8.25 : 1.38544840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/CILinqDataContext/Questao/Questao_Historico_Questao" />
       <nodes>
         <classShapeMoniker Id="8258f40d-d251-4334-9ea2-db5f1a669958" />
         <classShapeMoniker Id="905385e2-f38d-47df-9306-dfffeb96d4e4" />
       </nodes>
     </associationConnector>
-    <classShape Id="acfd9184-1138-4cb7-88f2-9cd6fc02d190" absoluteBounds="1.5, 3.875, 2, 1.3862939453124996">
+    <classShape Id="acfd9184-1138-4cb7-88f2-9cd6fc02d190" absoluteBounds="0.75, 2.375, 2, 1.3862939453124996">
       <DataClassMoniker Name="/CILinqDataContext/RankRetorno" />
       <nestedChildShapes>
-        <elementListCompartment Id="c1410f40-1a0d-4b1e-ab22-2ed1970d602b" absoluteBounds="1.515, 4.335, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="c1410f40-1a0d-4b1e-ab22-2ed1970d602b" absoluteBounds="0.76500000000000057, 2.835, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>
