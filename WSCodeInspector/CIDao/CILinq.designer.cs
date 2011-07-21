@@ -45,7 +45,7 @@ namespace CIDao
     #endregion
 		
 		public CILinqDataContext() : 
-				base(global::CIDao.Properties.Settings.Default.CodeInspectorConnectionString1, mappingSource)
+				base(global::CIDao.Properties.Settings.Default.CodeInspectorConnectionString, mappingSource)
 		{
 			OnCreated();
 		}

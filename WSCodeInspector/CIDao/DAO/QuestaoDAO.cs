@@ -22,6 +22,17 @@ namespace CIDao.DAO
             return questoes.ToList();
         }
 
+        public List<int?> GetQuestoesRespostas(int nivelDificuldade)
+        {
+            var questoes = from q in db.Questaos
+                           where q.Q_ID == nivelDificuldade
+                           select q.MotivoErroId;
+
+            //List<Questao> questoes = questoesLinq.ToList();
+
+            return questoes.ToList();
+        }
+
         public List<Questao> GetQuestoesList(int nivelDificuldade)
         {
             var questoes = from q in db.Questaos

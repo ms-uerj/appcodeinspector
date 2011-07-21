@@ -130,6 +130,13 @@ namespace WebServiceAcess.WebService
             return  retorno;
         }
 
+        [WebMethod]
+        public List<int?> GetQuestoesRespostas(int nivelDificuldade)
+        {
+            var retorno = new QuestaoFacade().GetQuestoesRespostas(nivelDificuldade);
+            return retorno;
+        }
+
         /// <summary>
         /// Recupera um objeto do tipo datatable de usuarios com nome, email , quantidade de acertos e erros, o objeto
         /// está ordenado pela quantidade de acertos
