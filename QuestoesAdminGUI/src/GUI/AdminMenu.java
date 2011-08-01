@@ -1,4 +1,4 @@
-package questoesadmingui;
+package GUI;
 
 public class AdminMenu extends javax.swing.JFrame {
 
