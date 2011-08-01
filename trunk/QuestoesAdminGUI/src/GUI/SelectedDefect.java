@@ -8,7 +8,7 @@
  *
  * Created on Jul 30, 2011, 7:08:51 PM
  */
-package questoesadmingui;
+package GUI;
 
 /**
  *

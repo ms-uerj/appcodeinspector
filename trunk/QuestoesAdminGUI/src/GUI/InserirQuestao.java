@@ -1,4 +1,4 @@
-package questoesadmingui;
+package GUI;
 
 public class InserirQuestao extends javax.swing.JFrame {
 
