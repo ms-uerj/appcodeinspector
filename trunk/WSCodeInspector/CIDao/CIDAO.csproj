@@ -44,6 +44,7 @@
     <Compile Include="DAO\DAOTools.cs" />
     <Compile Include="DAO\PartidaDAO.cs" />
     <Compile Include="DAO\QuestaoDAO.cs" />
+    <Compile Include="DAO\TrechoDefeitoDAO.cs" />
     <Compile Include="DAO\UsuarioDAO.cs" />
     <Compile Include="InspectorXDB.designer.cs">
       <AutoGen>True</AutoGen>
