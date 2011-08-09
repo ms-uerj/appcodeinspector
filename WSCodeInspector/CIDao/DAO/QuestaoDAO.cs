@@ -9,9 +9,9 @@ namespace CIDao.DAO
     public class QuestaoDAO : DAOTools
     {
 
-        private CILinqDataContext db = new CILinqDataContext();
+        private InspectorXDBDataContext db = new InspectorXDBDataContext();
 
-        public List<string> GetQuestoes(int nivelDificuldade)
+        public List<string> GetQuestoesXML(int nivelDificuldade)
         {
             var questoes = from q in db.Questaos
                                where q.Q_NIVEL_DIFICULDADE == nivelDificuldade
@@ -22,6 +22,7 @@ namespace CIDao.DAO
             return questoes.ToList();
         }
 
+        //Depricated
         public List<int?> GetQuestoesRespostas(int nivelDificuldade)
         {
             var questoes = from q in db.Questaos
@@ -50,6 +51,42 @@ namespace CIDao.DAO
 
                 db.Questaos.InsertOnSubmit(novaQuestao);
                 db.SubmitChanges();
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+        }
+
+        public bool AlterarQuestao(int questao_id, Questao questaoModificada)
+        {
+
+            try
+            {
+
+                Questao QuestaoAntiga = db.Questaos.Single(q => q.Q_ID == questao_id);
+
+                if (questaoModificada.Q_NIVEL_DIFICULDADE != null)
+                {
+                    QuestaoAntiga.Q_NIVEL_DIFICULDADE = questaoModificada.Q_NIVEL_DIFICULDADE;
+                }
+                if (questaoModificada.Q_XML != null)
+                {
+                    QuestaoAntiga.Q_XML = questaoModificada.Q_XML;
+                }
+                if (questaoModificada.Q_TEMPO != null)
+                {
+                    QuestaoAntiga.Q_TEMPO = questaoModificada.Q_TEMPO;
+                }
+                if (questaoModificada.MotivoErroId != null)
+                {
+                    QuestaoAntiga.MotivoErroId = questaoModificada.MotivoErroId;
+                }
+
+                db.SubmitChanges();
+                return true;
 
             }
             catch (Exception)

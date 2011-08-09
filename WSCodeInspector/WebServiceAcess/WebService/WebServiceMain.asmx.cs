@@ -126,7 +126,7 @@ namespace WebServiceAcess.WebService
         [WebMethod]
         public List<string> GetQuestoes(int nivelDificuldade)
         {
-            var retorno = new QuestaoFacade().GetQuestoes(nivelDificuldade);
+            var retorno = new QuestaoFacade().GetQuestoesXML(nivelDificuldade);
             return  retorno;
         }
 

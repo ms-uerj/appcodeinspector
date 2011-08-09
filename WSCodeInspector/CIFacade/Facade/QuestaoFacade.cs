@@ -11,11 +11,11 @@ namespace CIFacade.Facade
 {
     public class QuestaoFacade
     {
-        public List<string>  GetQuestoes(int nivelDificuldade)
+        public List<string>  GetQuestoesXML(int nivelDificuldade)
         {
             QuestaoDAO questoes = new QuestaoDAO();
 
-            return questoes.GetQuestoes(nivelDificuldade); //fullQuestoesXML.ToString().Replace("\r", "").Replace("\n", "").Replace("\t", "");
+            return questoes.GetQuestoesXML(nivelDificuldade); //fullQuestoesXML.ToString().Replace("\r", "").Replace("\n", "").Replace("\t", "");
         }
 
         public List<int?> GetQuestoesRespostas(int nivelDificuldade)
