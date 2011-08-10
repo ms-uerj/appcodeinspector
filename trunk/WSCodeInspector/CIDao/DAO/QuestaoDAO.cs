@@ -71,6 +71,25 @@ namespace CIDao.DAO
             }
         }
 
+        /// <summary>
+        /// Adiciona uma nova questão
+        /// </summary>
+        /// <param name="novaQuestao"></param>
+        /// <param name="tdList"></param>
+        public void AdicionarQuestao(Questao novaQuestao)
+        {
+            try
+            {
+                db.Questaos.InsertOnSubmit(novaQuestao);
+                db.SubmitChanges();
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         public bool AlterarQuestao(int questao_id, Questao questaoModificada)
         {
 
