@@ -61,10 +61,10 @@ namespace CIFacade.Facade
             return new UsuarioDAO().CriarUsuario(novoUsuario ,email, senha);
         }
 
-        public List<RankRetorno> GetUsersRank(int nivelDificuldade)
-        {
-            return new UsuarioDAO().GetUsersRank(nivelDificuldade);
-        }
+        //public List<RankRetorno> GetUsersRank(int nivelDificuldade)
+        //{
+        //    return new UsuarioDAO().GetUsersRank(nivelDificuldade);
+        //}
 
         public Usuario RecuperarUsuario(string email)
         {

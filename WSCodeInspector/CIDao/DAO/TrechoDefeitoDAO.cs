@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CIDao.DAO
 {
-    class TrechoDefeitoDAO : DAOTools
+    public class TrechoDefeitoDAO : DAOTools
     {
         private InspectorXDBDataContext db = new InspectorXDBDataContext();
 
