@@ -10,7 +10,7 @@ namespace CIDao.DAO
     public class UsuarioDAO : DAOTools
     {
 
-        private CILinqDataContext db = new CILinqDataContext();
+        private InspectorXDBDataContext db = new InspectorXDBDataContext();
 
         public bool AtenticarUsuario(string login, string senha)
         {
@@ -48,9 +48,6 @@ namespace CIDao.DAO
             
             try
             {
-                //var usuario = (from user in db.Usuarios
-                //               where user.U_LOGIN == loginAtual && user.U_SENHA == senhaAtual
-                //               select user);
 
                 Usuario usuarioAntigo = db.Usuarios.Single(p => p.U_LOGIN == loginAtual && p.U_SENHA == senhaAtual);
 
@@ -70,7 +67,6 @@ namespace CIDao.DAO
                 {
                     usuarioAntigo.U_SENHA = usuarioModificado.U_EMAIL;
                 }
-                
 
                 db.SubmitChanges();
                 return true;
@@ -82,9 +78,6 @@ namespace CIDao.DAO
             }
           
         }
-
-
-
 
         public bool CriarUsuario(Usuario novoUsuario, string email, string senha)
         {
@@ -107,45 +100,45 @@ namespace CIDao.DAO
 
         }
 
-        public List<RankRetorno> GetUsersRank(int nivelDificuldade)
-        {
-            //TODO -Selecionar corretamente o rank dos usuarios-
-            try
-            {
+        //public List<RankRetorno> GetUsersRank(int nivelDificuldade)
+        //{
+        //    //TODO -Selecionar corretamente o rank dos usuarios-
+        //    try
+        //    {
 
-                var user = from partida in db.Partidas
-                           where partida.P_NIVEL_DIFICULDADE == nivelDificuldade
-                           select partida;
+        //        var user = from partida in db.Partidas
+        //                   where partida.P_NIVEL_DIFICULDADE == nivelDificuldade
+        //                   select partida;
 
-                //var usersRank = from user in db.Usuarios
-                //                from hist in db.Historico_Questaos
-                //                from partida in db.Partidas
-                //                from quest in db.Questaos
-                //                where user.U_ID == partida.U_ID
-                //                   && partida.P_ID == hist.P_ID
-                //                   && partida.P_NIVEL_DIFICULDADE == nivelDificuldade
-                //                orderby partida.P_PONTUACAO_TOTAL
-                //               select new
-                //                {
-                //                    user.U_NOME,
-                //                    user.U_EMAIL,
-                //                    partida.P_PONTUACAO_TOTAL
-                //                };
+        //        //var usersRank = from user in db.Usuarios
+        //        //                from hist in db.Historico_Questaos
+        //        //                from partida in db.Partidas
+        //        //                from quest in db.Questaos
+        //        //                where user.U_ID == partida.U_ID
+        //        //                   && partida.P_ID == hist.P_ID
+        //        //                   && partida.P_NIVEL_DIFICULDADE == nivelDificuldade
+        //        //                orderby partida.P_PONTUACAO_TOTAL
+        //        //               select new
+        //        //                {
+        //        //                    user.U_NOME,
+        //        //                    user.U_EMAIL,
+        //        //                    partida.P_PONTUACAO_TOTAL
+        //        //                };
 
-                List<RankRetorno> ranksList = new List<RankRetorno>();
+        //        List<RankRetorno> ranksList = new List<RankRetorno>();
 
-                foreach (var item in user)
-                {
-                    ranksList.Add(new RankRetorno(){ Usuario = item.Usuario.U_NOME,Email = item.Usuario.U_EMAIL, Pontuacao = (int)item.P_PONTUACAO_TOTAL});
-                }
-                return ranksList;
+        //        foreach (var item in user)
+        //        {
+        //            ranksList.Add(new RankRetorno(){ Usuario = item.Usuario.U_NOME,Email = item.Usuario.U_EMAIL, Pontuacao = (int)item.P_PONTUACAO_TOTAL});
+        //        }
+        //        return ranksList;
 
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
+        //    }
+        //    catch (Exception)
+        //    {
+        //        throw;
+        //    }
+        //}
 
     }
 

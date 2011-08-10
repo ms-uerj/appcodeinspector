@@ -10,7 +10,7 @@ namespace CIDao.DAO
 {
     public class PartidaDAO
     {
-        private CILinqDataContext db = new CILinqDataContext();
+        private InspectorXDBDataContext db = new InspectorXDBDataContext();
 
         public void EncerrarPartida(Partida partidaEncerrada, string userLogin)
         {

@@ -43,11 +43,23 @@ namespace CIDao.DAO
             return questoes.ToList();
         }
 
-        public void AdicionarQuestao(Questao novaQuestao)
+        /// <summary>
+        /// Adiciona uma nova questão com defeitos já definidos
+        /// </summary>
+        /// <param name="novaQuestao"></param>
+        /// <param name="tdList"></param>
+        public void AdicionarQuestao(Questao novaQuestao,List<TrechoDefeito> tdList)
         {
-
             try
             {
+                
+                foreach (TrechoDefeito td in tdList)
+                {
+                    Questao_TrechoDefeito q_td = new Questao_TrechoDefeito();
+                    q_td.Questao = novaQuestao;
+                    q_td.TrechoDefeito = td;
+                    db.Questao_TrechoDefeitos.InsertOnSubmit(q_td);
+                }
 
                 db.Questaos.InsertOnSubmit(novaQuestao);
                 db.SubmitChanges();
@@ -57,7 +69,6 @@ namespace CIDao.DAO
             {
                 throw;
             }
-
         }
 
         public bool AlterarQuestao(int questao_id, Questao questaoModificada)
@@ -93,7 +104,6 @@ namespace CIDao.DAO
             {
                 throw;
             }
-
         }
 
     }
