@@ -7,7 +7,7 @@ using CIDao;
 
 namespace CIFacade.Facade
 {
-    class TrechoDefeitoFacade
+    public class TrechoDefeitoFacade
     {
         public List<TrechoDefeito> GetTrechosDefeitoList(int questao_id)
         {

@@ -15,7 +15,8 @@ namespace CIFacade.Facade
         {
             QuestaoDAO questoes = new QuestaoDAO();
 
-            return questoes.GetQuestoesXML(nivelDificuldade); //fullQuestoesXML.ToString().Replace("\r", "").Replace("\n", "").Replace("\t", "");
+            return questoes.GetQuestoesXML(nivelDificuldade);
+            //fullQuestoesXML.ToString().Replace("\r", "").Replace("\n", "").Replace("\t", "");
         }
 
         public List<int?> GetQuestoesRespostas(int nivelDificuldade)
@@ -30,7 +31,8 @@ namespace CIFacade.Facade
         {
             QuestaoDAO questoes = new QuestaoDAO();
 
-            return questoes.GetQuestoesList(nivelDificuldade); //fullQuestoesXML.ToString().Replace("\r", "").Replace("\n", "").Replace("\t", "");
+            return questoes.GetQuestoesList(nivelDificuldade);
+            //fullQuestoesXML.ToString().Replace("\r", "").Replace("\n", "").Replace("\t", "");
         }
 
         public void AdicionarQuestao(int nivelDificuladade, string xmlQuestao, int? tempo)
@@ -43,7 +45,12 @@ namespace CIFacade.Facade
             novaQuestao.Q_TEMPO = tempo;
 
             new QuestaoDAO().AdicionarQuestao(novaQuestao);
-
         }
+
+        public void AdicionarQuestao(Questao novaQuestao, List<TrechoDefeito> tdList)
+        {
+            new QuestaoDAO().AdicionarQuestao(novaQuestao, tdList);
+        }
+
     }
 }

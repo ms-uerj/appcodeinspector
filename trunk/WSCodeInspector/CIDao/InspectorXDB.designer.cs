@@ -616,7 +616,7 @@ namespace CIDao
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IT_ID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IT_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 		public int IT_ID
 		{
 			get
@@ -636,7 +636,7 @@ namespace CIDao
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IT_Nome", DbType="Text", UpdateCheck=UpdateCheck.Never)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IT_Nome", DbType="VarChar(MAX)")]
 		public string IT_Nome
 		{
 			get
@@ -656,7 +656,7 @@ namespace CIDao
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IT_Descricao", DbType="Text", UpdateCheck=UpdateCheck.Never)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IT_Descricao", DbType="VarChar(MAX)")]
 		public string IT_Descricao
 		{
 			get
@@ -1090,7 +1090,7 @@ namespace CIDao
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Q_XML", DbType="NText", UpdateCheck=UpdateCheck.Never)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Q_XML", DbType="NVarChar(MAX)")]
 		public string Q_XML
 		{
 			get
@@ -1465,7 +1465,7 @@ namespace CIDao
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_T_ID", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_T_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 		public int T_ID
 		{
 			get
@@ -1634,7 +1634,7 @@ namespace CIDao
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_D_Explicacao", DbType="Text", UpdateCheck=UpdateCheck.Never)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_D_Explicacao", DbType="VarChar(MAX)")]
 		public string D_Explicacao
 		{
 			get
@@ -1654,7 +1654,7 @@ namespace CIDao
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_D_Conteudo", DbType="Text", UpdateCheck=UpdateCheck.Never)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_D_Conteudo", DbType="VarChar(MAX)")]
 		public string D_Conteudo
 		{
 			get
