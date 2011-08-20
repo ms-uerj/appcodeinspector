@@ -6,6 +6,8 @@ using System.Web.Services;
 using CIFacade.Facade;
 using System.Data;
 using System.Xml.Linq;
+using CIDao;
+using CIDao.Domain;
 
 namespace WebServiceAcess.WebService
 {
@@ -39,17 +41,17 @@ namespace WebServiceAcess.WebService
         /// <param name="pontuacaoTotal"></param>
         /// <param name="userEmail"></param>
         [WebMethod]
-        public void EncerrarPartida(int nivelDificuldade,string respostasXML,string userEmail)
+        public void EncerrarPartida(int nivelDificuldade, string respostasXML, string userEmail)
         {
             XDocument doc = XDocument.Parse(respostasXML);
             List<RespostaModel> respostas = (from xnode in doc.Element("r").Elements("resposta")
-                                   select new RespostaModel
-                                   {
-                                       inicioErro = int.Parse(xnode.Attribute("inicioErro").Value),
-                                       fimErro = int.Parse(xnode.Attribute("fimErro").Value),
-                                       motivoErroId = int.Parse(xnode.Attribute("motivoErroId").Value),
-                                       perguntaNumero = int.Parse(xnode.Attribute("perguntaNumero").Value)
-                                   }).ToList();
+                                             select new RespostaModel
+                                             {
+                                                 inicioErro = int.Parse(xnode.Attribute("inicioErro").Value),
+                                                 fimErro = int.Parse(xnode.Attribute("fimErro").Value),
+                                                 motivoErroId = int.Parse(xnode.Attribute("motivoErroId").Value),
+                                                 perguntaNumero = int.Parse(xnode.Attribute("perguntaNumero").Value)
+                                             }).ToList();
 
             var questoes = new QuestaoFacade().GetQuestoesList(nivelDificuldade);
             int qtdPontos = 0;
@@ -58,24 +60,24 @@ namespace WebServiceAcess.WebService
                 var questao = questoes[item.perguntaNumero];
                 if (nivelDificuldade != 1)
                 {
-                    if ((item.inicioErro == questao._InicioErro) && (item.fimErro == questao._FimErro) && (item.motivoErroId == questao.MotivoErroId))
-                    {
-                        qtdPontos++;
-                    }
+                    //if ((item.inicioErro == questao._InicioErro) && (item.fimErro == questao._FimErro) && (item.motivoErroId == questao.MotivoErroId))
+                    //{
+                    //    qtdPontos++;
+                    //}
                 }
                 else
                 {
                     if ((item.motivoErroId == questao.MotivoErroId))
                     {
                         qtdPontos++;
-                    } 
+                    }
                 }
             }
 
             new PartidaFacade().EncerrarPartida(qtdPontos, nivelDificuldade, userEmail);
-            
+
         }
-        
+
         /// <summary>
         /// 
         /// </summary>
@@ -112,12 +114,6 @@ namespace WebServiceAcess.WebService
             return new UsuarioFacade().CriarUsuario(nome, login, email, senha);
         }
 
-        [WebMethod]
-         public void AdicionarQuestao(int nivelDificuladade, string xmlQuestao, int? tempo)
-        {
-            new QuestaoFacade().AdicionarQuestao(nivelDificuladade,xmlQuestao,tempo);
-        }
-
         /// <summary>
         /// Recupera as questões baseada em um nível de dificuldade
         /// </summary>
@@ -127,7 +123,7 @@ namespace WebServiceAcess.WebService
         public List<string> GetQuestoes(int nivelDificuldade)
         {
             var retorno = new QuestaoFacade().GetQuestoesXML(nivelDificuldade);
-            return  retorno;
+            return retorno;
         }
 
         [WebMethod]
@@ -138,15 +134,63 @@ namespace WebServiceAcess.WebService
         }
 
         /// <summary>
-        /// Recupera um objeto do tipo datatable de usuarios com nome, email , quantidade de acertos e erros, o objeto
+        /// Recupera um objeto do tipo datatable de usuarios com nome, email , quantidade de acertos e              erros, o objeto
         /// está ordenado pela quantidade de acertos
         /// </summary>
         /// <param name="nivelDificuldade">Nivel de dificuladade do usuario atual</param>
         /// <returns>Datatable ordenado pela quantidade de acertos</returns>
+        //[WebMethod]
+        //public List<CIDao.RankRetorno> GetUsersRank(int nivelDificuldade)
+        //{
+        //    return new UsuarioFacade().GetUsersRank(nivelDificuldade);
+        //}
+
         [WebMethod]
-        public List<CIDao.RankRetorno> GetUsersRank(int nivelDificuldade)
+        public bool InserirTaxonomia(string nome)
         {
-            return new UsuarioFacade().GetUsersRank(nivelDificuldade);
+            return new TaxonomiaFacade().AdicionarTaxonomia(nome);
+        }
+
+        [WebMethod]
+        public Taxonomia PegarTaxonomia(string nome)
+        {
+            return new TaxonomiaFacade().GetTaxonomia(nome);
+        }
+
+        [WebMethod]
+        public List<TaxonomiaEntity> PegarTaxonomias()
+        {
+            return new TaxonomiaFacade().GetTaxonomiasList();
+        }
+
+        [WebMethod]
+        public bool DeletarTaxonomias(int taxonomia)
+        {
+            return new TaxonomiaFacade().DeletarTaxonomia(taxonomia);
+        }
+
+        [WebMethod]
+        public List<ItemTaxonomiaEntity> PegarItemsTaxonomia(int taxonomia_id)
+        {
+            return new ItemTaxonomiaFacade().GetItemsTaxonomiaList(taxonomia_id);
+        }
+
+        [WebMethod]
+        public bool AdicionarItemTaxonomia(int taxonomia_id, string nome, string descricao)
+        {
+            return new ItemTaxonomiaFacade().AdicionarItemTaxonomia(taxonomia_id, nome, descricao);
+        }
+
+        [WebMethod]
+        public bool DeletarItemTaxonomia(int taxonomia_id)
+        {
+            return new ItemTaxonomiaFacade().DeletarItemTaxonomia(taxonomia_id);
+        }
+
+        [WebMethod]
+        public void AdicionarQuestao(Questao questao, List<TrechoDefeito> tdList)
+        {
+            new QuestaoFacade().AdicionarQuestao(questao, tdList);
         }
 
     }

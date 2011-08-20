@@ -23,9 +23,9 @@
   </Table>
   <Table Name="dbo.ItemTaxonomia" Member="ItemTaxonomias">
     <Type Name="ItemTaxonomia">
-      <Column Name="IT_ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="IT_Nome" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="IT_Descricao" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="IT_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="IT_Nome" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="IT_Descricao" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
       <Column Name="T_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="ItemTaxonomia_TrechoDefeito" Member="TrechoDefeitos" ThisKey="IT_ID" OtherKey="IT_ID" Type="TrechoDefeito" />
       <Association Name="Taxonomia_ItemTaxonomia" Member="Taxonomia" ThisKey="T_ID" OtherKey="T_ID" Type="Taxonomia" IsForeignKey="true" />
@@ -46,7 +46,7 @@
     <Type Name="Questao">
       <Column Name="Q_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Q_NIVEL_DIFICULDADE" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Q_XML" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Q_XML" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="Q_TEMPO" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="MotivoErroId" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="Questao_Historico_Questao" Member="Historico_Questaos" ThisKey="Q_ID" OtherKey="Q_ID" Type="Historico_Questao" />
@@ -65,7 +65,7 @@
   </Table>
   <Table Name="dbo.Taxonomia" Member="Taxonomias">
     <Type Name="Taxonomia">
-      <Column Name="T_ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="T_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="T_Nome" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Association Name="Taxonomia_ItemTaxonomia" Member="ItemTaxonomias" ThisKey="T_ID" OtherKey="T_ID" Type="ItemTaxonomia" />
     </Type>
@@ -74,8 +74,8 @@
     <Type Name="TrechoDefeito">
       <Column Name="D_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="IT_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="D_Explicacao" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="D_Conteudo" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="D_Explicacao" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="D_Conteudo" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
       <Association Name="TrechoDefeito_Questao_TrechoDefeito" Member="Questao_TrechoDefeitos" ThisKey="D_ID" OtherKey="TD_id" Type="Questao_TrechoDefeito" />
       <Association Name="ItemTaxonomia_TrechoDefeito" Member="ItemTaxonomia" ThisKey="IT_ID" OtherKey="IT_ID" Type="ItemTaxonomia" IsForeignKey="true" />
     </Type>
