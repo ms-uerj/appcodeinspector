@@ -142,9 +142,11 @@ private void btn_InserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     private javax.swing.JTextField txf_nome;
     // End of variables declaration//GEN-END:variables
 
-    private static boolean adicionarItemTaxonomia(int taxonomiaId, java.lang.String nome, java.lang.String descricao) {
+    private static boolean adicionarItemTaxonomia(int taxonomiaId, java.lang.String nome, java.lang.String descricao) 
+    {
         InspectorXWebserv.WebServiceMain service = new InspectorXWebserv.WebServiceMain();
         InspectorXWebserv.WebServiceMainSoap port = service.getWebServiceMainSoap12();
         return port.adicionarItemTaxonomia(taxonomiaId, nome, descricao);
     }
+    
 }

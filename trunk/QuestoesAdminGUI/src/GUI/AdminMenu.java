@@ -1,14 +1,11 @@
 package GUI;
 
-import InspectorXWebserv.ArrayOfItemTaxonomia;
 import InspectorXWebserv.ArrayOfItemTaxonomiaEntity;
 import InspectorXWebserv.ArrayOfTaxonomiaEntity;
 import InspectorXWebserv.ItemTaxonomiaEntity;
-import InspectorXWebserv.PegarTaxonomias;
 import InspectorXWebserv.Taxonomia;
 import InspectorXWebserv.TaxonomiaEntity;
 import java.util.List;
-import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 

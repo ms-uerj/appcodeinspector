@@ -2,7 +2,6 @@ package GUI;
 
 import InspectorXWebserv.ArrayOfTrechoDefeito;
 import InspectorXWebserv.Taxonomia;
-import InspectorXWebserv.TrechoDefeito;
 
 public class InserirQuestao extends javax.swing.JFrame {
 
@@ -61,12 +60,6 @@ public class InserirQuestao extends javax.swing.JFrame {
 
         pnlCorpoQuestao.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        hepCorpoQuestao.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                hepCorpoQuestaoMouseReleased(evt);
-            }
-        });
-
         txa_QuestaoCorpo.setColumns(20);
         txa_QuestaoCorpo.setRows(5);
         txa_QuestaoCorpo.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -83,7 +76,7 @@ public class InserirQuestao extends javax.swing.JFrame {
             .addGroup(pnlCorpoQuestaoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlCorpoQuestaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(hepCorpoQuestao, javax.swing.GroupLayout.DEFAULT_SIZE, 737, Short.MAX_VALUE)
+                    .addComponent(hepCorpoQuestao, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 737, Short.MAX_VALUE)
                     .addComponent(txateste, javax.swing.GroupLayout.DEFAULT_SIZE, 737, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -91,7 +84,7 @@ public class InserirQuestao extends javax.swing.JFrame {
             pnlCorpoQuestaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlCorpoQuestaoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(hepCorpoQuestao, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(hepCorpoQuestao, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(txateste, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -104,55 +97,53 @@ public class InserirQuestao extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(330, 330, 330)
+                        .addComponent(lblInserirTitulo))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtTituloQuestao)
+                            .addComponent(lblTituloquestao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(cbxDificuldade, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(pnlCorpoQuestao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(lblTituloquestao))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(txtTituloQuestao, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabel2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(cbxDificuldade, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabel1))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(pnlCorpoQuestao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel1)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap(638, Short.MAX_VALUE)
                         .addComponent(btnVoltar)
                         .addGap(9, 9, 9)
-                        .addComponent(btnInserir))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(330, 330, 330)
-                        .addComponent(lblInserirTitulo)))
+                        .addComponent(btnInserir)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addComponent(lblInserirTitulo)
-                .addGap(18, 18, 18)
-                .addComponent(lblTituloquestao)
-                .addGap(6, 6, 6)
-                .addComponent(txtTituloQuestao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel2)
-                .addGap(6, 6, 6)
-                .addComponent(cbxDificuldade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(11, 11, 11)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblInserirTitulo)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblTituloquestao)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtTituloQuestao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(6, 6, 6)
+                        .addComponent(cbxDificuldade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlCorpoQuestao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnVoltar)
                     .addComponent(btnInserir))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -166,10 +157,6 @@ public class InserirQuestao extends javax.swing.JFrame {
         txa_QuestaoCorpo.setText(hepCorpoQuestao.getText());
     }//GEN-LAST:event_btnInserirActionPerformed
 
-    private void hepCorpoQuestaoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hepCorpoQuestaoMouseReleased
- 
-    }//GEN-LAST:event_hepCorpoQuestaoMouseReleased
-
 private void txa_QuestaoCorpoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txa_QuestaoCorpoMouseReleased
    
     if(!txa_QuestaoCorpo.getText().trim().isEmpty())
@@ -180,20 +167,29 @@ private void txa_QuestaoCorpoMouseReleased(java.awt.event.MouseEvent evt) {//GEN
             strDefeito.append("<TAG>").append(txa_QuestaoCorpo.getSelectedText()).append("</TAG>");
             
             SelectedDefect selectdefectView = new SelectedDefect(this,Tax,txa_QuestaoCorpo.getSelectedText());
-            selectdefectView.setVisible(true);
-            
+                   
             StringBuilder strCorpo = new StringBuilder();
-            strCorpo.append(hepCorpoQuestao.getText());
-            strCorpo.insert( txa_QuestaoCorpo.getSelectionStart(),strDefeito.toString());
-            
+            if(!hepCorpoQuestao.getText().isEmpty())
+            {
+                strCorpo.append(hepCorpoQuestao.getText().trim());
+                strCorpo.delete(txa_QuestaoCorpo.getSelectionStart(), txa_QuestaoCorpo.getSelectionEnd());
+                strCorpo.insert(txa_QuestaoCorpo.getSelectionStart(),strDefeito.toString());
+            }
+            else
+            {
+                strCorpo.append(txa_QuestaoCorpo.getText().trim());
+                strCorpo.delete(txa_QuestaoCorpo.getSelectionStart(), txa_QuestaoCorpo.getSelectionEnd());
+                strCorpo.insert(txa_QuestaoCorpo.getSelectionStart(),strDefeito.toString());
+            }
             
             hepCorpoQuestao.setText(strCorpo.toString());
+            txa_QuestaoCorpo.setText(strCorpo.toString());
+            selectdefectView.setVisible(true);
         }
     }
 }//GEN-LAST:event_txa_QuestaoCorpoMouseReleased
 
 
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnInserir;
     private javax.swing.JButton btnVoltar;
@@ -209,12 +205,11 @@ private void txa_QuestaoCorpoMouseReleased(java.awt.event.MouseEvent evt) {//GEN
     private javax.swing.JTextField txtTituloQuestao;
     // End of variables declaration//GEN-END:variables
 
-    private static void adicionarQuestao(InspectorXWebserv.Questao questao, InspectorXWebserv.ArrayOfTrechoDefeito tdList) {
+    private static void adicionarQuestao(InspectorXWebserv.Questao questao, InspectorXWebserv.ArrayOfTrechoDefeito tdList) 
+    {
         InspectorXWebserv.WebServiceMain service = new InspectorXWebserv.WebServiceMain();
         InspectorXWebserv.WebServiceMainSoap port = service.getWebServiceMainSoap12();
         port.adicionarQuestao(questao, tdList);
     }
-
-    
 
 }
