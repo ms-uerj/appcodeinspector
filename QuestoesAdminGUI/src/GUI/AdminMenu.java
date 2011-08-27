@@ -257,8 +257,14 @@ public class AdminMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_InserirQuestaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_InserirQuestaoActionPerformed
-        InserirQuestao insQuest = new InserirQuestao((Taxonomia)cbx_Taxonomia.getSelectedItem());
-        insQuest.setVisible(true);
+ 
+        if((Taxonomia)cbx_Taxonomia.getSelectedItem()!=null)
+        {
+            InserirQuestao insQuest = new InserirQuestao((Taxonomia)cbx_Taxonomia.getSelectedItem());
+            insQuest.setVisible(true);
+        }
+        else
+            JOptionPane.showMessageDialog(this, "Por favor selecione uma taxonomia para os defeitos.");
     }//GEN-LAST:event_btn_InserirQuestaoActionPerformed
 
 private void btnInserirTaxonomiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInserirTaxonomiaActionPerformed
