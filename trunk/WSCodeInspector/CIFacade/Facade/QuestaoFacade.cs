@@ -5,13 +5,14 @@ using System.Text;
 using System.Data;
 using CIDao.DAO;
 using CIDao;
+using CIDao.Domain;
 
 
 namespace CIFacade.Facade
 {
     public class QuestaoFacade
     {
-        public List<string>  GetQuestoesXML(int nivelDificuldade)
+        public List<QuestaoEntity>  GetQuestoesXML(int nivelDificuldade)
         {
             QuestaoDAO questoes = new QuestaoDAO();
 
@@ -27,12 +28,20 @@ namespace CIFacade.Facade
         }
 
 
-        public List<Questao> GetQuestoesList(int nivelDificuldade)
+        public List<Questao> GetQuestoesList(int tax_id)
         {
             QuestaoDAO questoes = new QuestaoDAO();
 
-            return questoes.GetQuestoesList(nivelDificuldade);
-            //fullQuestoesXML.ToString().Replace("\r", "").Replace("\n", "").Replace("\t", "");
+            return questoes.GetQuestoesList(tax_id);
+            
+        }
+
+        public List<QuestaoEntity> GetQuestoesTaxList(int tax_id)
+        {
+            QuestaoDAO questoes = new QuestaoDAO();
+
+            return questoes.GetQuestoesTaxList(tax_id);
+
         }
 
         public void AdicionarQuestao(int nivelDificuladade, string xmlQuestao, int? tempo)
@@ -47,7 +56,7 @@ namespace CIFacade.Facade
             new QuestaoDAO().AdicionarQuestao(novaQuestao);
         }
 
-        public void AdicionarQuestao(Questao novaQuestao, List<TrechoDefeito> tdList)
+        public void AdicionarQuestao(QuestaoEntity novaQuestao, List<TrechoDefeitoEntity> tdList)
         {
             new QuestaoDAO().AdicionarQuestao(novaQuestao, tdList);
         }

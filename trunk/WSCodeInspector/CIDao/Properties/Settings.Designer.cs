@@ -43,5 +43,16 @@ namespace CIDao.Properties {
                 return ((string)(this["CodeInspectorConnectionString1"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=ENUMA-LAPTOP\\SQLEXPRESS;Initial Catalog=CodeInspector;Integrated Secu" +
+            "rity=True")]
+        public string CodeInspectorConnectionString2 {
+            get {
+                return ((string)(this["CodeInspectorConnectionString2"]));
+            }
+        }
     }
 }

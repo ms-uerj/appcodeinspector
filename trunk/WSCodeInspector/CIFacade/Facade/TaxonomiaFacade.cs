@@ -11,7 +11,7 @@ namespace CIFacade.Facade
     public class TaxonomiaFacade
     {
         
-        public Taxonomia GetTaxonomia(string nome)
+        public TaxonomiaEntity GetTaxonomia(string nome)
         {
             try
             {

@@ -10,12 +10,17 @@ namespace CIDao.DAO
     {
         private InspectorXDBDataContext db = new InspectorXDBDataContext();
 
-        public Taxonomia GetTaxonomia(string nome)
+        public TaxonomiaEntity GetTaxonomia(string nome)
         {
             try
             {
                 Taxonomia taxonomia = db.Taxonomias.Single(tax => tax.T_Nome == nome);
-                return taxonomia;
+
+                TaxonomiaEntity taxE = new TaxonomiaEntity();
+                taxE.ID = taxonomia.T_ID;
+                taxE.Nome = taxonomia.T_Nome;
+
+                return taxE;
             }
             catch(InvalidOperationException)
             {
