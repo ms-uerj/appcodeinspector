@@ -18,7 +18,7 @@ namespace CIFacade.Facade
             Partida partidaEncerrada = new Partida();
 
             partidaEncerrada.P_NIVEL_DIFICULDADE = nivelDificuldade;
-            partidaEncerrada.P_PONTUACAO_TOTAL =  pontuacaoTotal;
+            partidaEncerrada.P_PONTUCAO_TOTAL =  pontuacaoTotal;
             partidaEncerrada.P_DATA = DateTime.Now;
 
             #endregion

@@ -120,10 +120,15 @@ namespace WebServiceAcess.WebService
         /// <param name="nivelDificuldade">Nível das questões a ser procurados</param>
         /// <returns>Uma string com todas as questoes do mesmo nível</returns>
         [WebMethod]
-        public List<string> GetQuestoes(int nivelDificuldade)
+        public List<QuestaoEntity> GetQuestoes(int nivelDificuldade)
         {
-            var retorno = new QuestaoFacade().GetQuestoesXML(nivelDificuldade);
-            return retorno;
+            return new QuestaoFacade().GetQuestoesXML(nivelDificuldade);
+        }
+
+        [WebMethod]
+        public List<QuestaoEntity> GetQuestoesTaxList(int tax_id)
+        {
+            return new QuestaoFacade().GetQuestoesTaxList(tax_id);
         }
 
         [WebMethod]
@@ -152,7 +157,7 @@ namespace WebServiceAcess.WebService
         }
 
         [WebMethod]
-        public Taxonomia PegarTaxonomia(string nome)
+        public TaxonomiaEntity PegarTaxonomia(string nome)
         {
             return new TaxonomiaFacade().GetTaxonomia(nome);
         }
@@ -188,7 +193,7 @@ namespace WebServiceAcess.WebService
         }
 
         [WebMethod]
-        public void AdicionarQuestao(Questao questao, List<TrechoDefeito> tdList)
+        public void AdicionarQuestao(QuestaoEntity questao, List<TrechoDefeitoEntity> tdList)
         {
             new QuestaoFacade().AdicionarQuestao(questao, tdList);
         }

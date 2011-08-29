@@ -11,5 +11,12 @@ namespace CIDao.Domain
         public int T_ID { get; set; }
         public string Nome { get; set; }
         public string Descricao { get; set; }
+
+        override
+        public String ToString()
+        {
+            return Nome;
+        }
     }
+
 }

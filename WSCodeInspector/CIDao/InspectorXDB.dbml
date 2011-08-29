@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="CodeInspector" Class="InspectorXDBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=ENUMA-PC;Initial Catalog=CodeInspector;Integrated Security=True" SettingsObjectName="CIDao.Properties.Settings" SettingsPropertyName="CodeInspectorConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=ENUMA-LAPTOP\SQLEXPRESS;Initial Catalog=CodeInspector;Integrated Security=True" SettingsObjectName="CIDao.Properties.Settings" SettingsPropertyName="CodeInspectorConnectionString2" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Historico_Questao" Member="Historico_Questaos">
     <Type Name="Historico_Questao">
       <Column Name="H_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -24,8 +24,8 @@
   <Table Name="dbo.ItemTaxonomia" Member="ItemTaxonomias">
     <Type Name="ItemTaxonomia">
       <Column Name="IT_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="IT_Nome" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="IT_Descricao" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="IT_Nome" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="IT_Descricao" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="T_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="ItemTaxonomia_TrechoDefeito" Member="TrechoDefeitos" ThisKey="IT_ID" OtherKey="IT_ID" Type="TrechoDefeito" />
       <Association Name="Taxonomia_ItemTaxonomia" Member="Taxonomia" ThisKey="T_ID" OtherKey="T_ID" Type="Taxonomia" IsForeignKey="true" />
@@ -37,7 +37,7 @@
       <Column Name="U_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="P_DATA" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="P_NIVEL_DIFICULDADE" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="P_PONTUACAO_TOTAL" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="P_PONTUCAO_TOTAL" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="Partida_Historico_Questao" Member="Historico_Questaos" ThisKey="P_ID" OtherKey="P_ID" Type="Historico_Questao" />
       <Association Name="Usuario_Partida" Member="Usuario" ThisKey="U_ID" OtherKey="U_ID" Type="Usuario" IsForeignKey="true" />
     </Type>
@@ -46,9 +46,10 @@
     <Type Name="Questao">
       <Column Name="Q_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Q_NIVEL_DIFICULDADE" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Q_XML" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Q_XML" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
       <Column Name="Q_TEMPO" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="MotivoErroId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Q_Nome" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Association Name="Questao_Historico_Questao" Member="Historico_Questaos" ThisKey="Q_ID" OtherKey="Q_ID" Type="Historico_Questao" />
       <Association Name="Questao_Questao_TrechoDefeito" Member="Questao_TrechoDefeitos" ThisKey="Q_ID" OtherKey="Q_id" Type="Questao_TrechoDefeito" />
     </Type>
