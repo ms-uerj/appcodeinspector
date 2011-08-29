@@ -2,25 +2,24 @@ package GUI;
 
 import InspectorXWebserv.ArrayOfItemTaxonomiaEntity;
 import InspectorXWebserv.ItemTaxonomiaEntity;
-import InspectorXWebserv.Taxonomia;
-import InspectorXWebserv.TrechoDefeito;
+
+import InspectorXWebserv.TrechoDefeitoEntity;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
-
 
 public class SelectedDefect extends javax.swing.JFrame
 {
 
     InserirQuestao insQuestFrame;
-    Taxonomia Tax;
+
     String Defeito;
 
-    public SelectedDefect(InserirQuestao insQuestao,Taxonomia tax, String defeito) 
+    public SelectedDefect(InserirQuestao insQuestao,String defeito) 
     {
         initComponents();
         Defeito = defeito;
-        Tax = tax;
+        //Tax = tax;
         setComboxDefeitos();
     }
 
@@ -72,8 +71,8 @@ public class SelectedDefect extends javax.swing.JFrame
         txf_Taxonomia.setEditable(false);
         txf_Taxonomia.setText("{Taxonomia}");
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -103,9 +102,9 @@ public class SelectedDefect extends javax.swing.JFrame
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
-                .addGap(134, 134, 134)
+                .addGap(135, 135, 135)
                 .addComponent(lblSelecionarDefeito)
-                .addContainerGap(149, Short.MAX_VALUE))
+                .addContainerGap(148, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -140,15 +139,15 @@ private void btnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:e
     
     if((cbx_Defeito.getSelectedItem()!=null)&&!txaExplicacaoDefeito.getText().trim().isEmpty())
     {
-        TrechoDefeito trecho = new TrechoDefeito();
+        TrechoDefeitoEntity trecho = new TrechoDefeitoEntity();
         
-        trecho.setDConteudo(Defeito);
-        trecho.setDExplicacao(txaExplicacaoDefeito.getText());
+        trecho.setConteudo(Defeito);
+        trecho.setExplicacao(txaExplicacaoDefeito.getText());
         
         ItemTaxonomiaEntity itemTax = (ItemTaxonomiaEntity)cbx_Defeito.getSelectedItem();
         trecho.setITID(itemTax.getID());
         
-        insQuestFrame.trechoList.getTrechoDefeito().add(trecho);
+        insQuestFrame.trechoList.getTrechoDefeitoEntity().add(trecho);
         
         JOptionPane.showMessageDialog(this, "Defeito registrado com sucesso!");
         this.setVisible(false);
@@ -162,7 +161,7 @@ private void btnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:e
         DefaultComboBoxModel theModel = (DefaultComboBoxModel)cbx_Defeito.getModel();
         theModel.removeAllElements();
 
-        ArrayOfItemTaxonomiaEntity itemTaxArray = pegarItemsTaxonomia(Tax.getTID());
+        ArrayOfItemTaxonomiaEntity itemTaxArray = null;
 
         List<ItemTaxonomiaEntity> taxList = itemTaxArray.getItemTaxonomiaEntity();
 
