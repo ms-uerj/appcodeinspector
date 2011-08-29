@@ -85,15 +85,38 @@
       <s:element name="GetQuestoesResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="GetQuestoesResult" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="GetQuestoesResult" type="tns:ArrayOfQuestaoEntity" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:complexType name="ArrayOfString">
+      <s:complexType name="ArrayOfQuestaoEntity">
         <s:sequence>
-          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="unbounded" name="QuestaoEntity" nillable="true" type="tns:QuestaoEntity" />
         </s:sequence>
       </s:complexType>
+      <s:complexType name="QuestaoEntity">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Q_ID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Q_Nivel_Dificuldade" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Q_XML" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Q_TEMPO" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Q_nome" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetQuestoesTaxList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="tax_id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetQuestoesTaxListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetQuestoesTaxListResult" type="tns:ArrayOfQuestaoEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="GetQuestoesRespostas">
         <s:complexType>
           <s:sequence>
@@ -137,113 +160,14 @@
       <s:element name="PegarTaxonomiaResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="PegarTaxonomiaResult" type="tns:Taxonomia" />
+            <s:element minOccurs="0" maxOccurs="1" name="PegarTaxonomiaResult" type="tns:TaxonomiaEntity" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:complexType name="Taxonomia">
+      <s:complexType name="TaxonomiaEntity">
         <s:sequence>
-          <s:element minOccurs="1" maxOccurs="1" name="T_ID" type="s:int" />
-          <s:element minOccurs="0" maxOccurs="1" name="T_Nome" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="ItemTaxonomias" type="tns:ArrayOfItemTaxonomia" />
-        </s:sequence>
-      </s:complexType>
-      <s:complexType name="ArrayOfItemTaxonomia">
-        <s:sequence>
-          <s:element minOccurs="0" maxOccurs="unbounded" name="ItemTaxonomia" nillable="true" type="tns:ItemTaxonomia" />
-        </s:sequence>
-      </s:complexType>
-      <s:complexType name="ItemTaxonomia">
-        <s:sequence>
-          <s:element minOccurs="1" maxOccurs="1" name="IT_ID" type="s:int" />
-          <s:element minOccurs="0" maxOccurs="1" name="IT_Nome" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="IT_Descricao" type="s:string" />
-          <s:element minOccurs="1" maxOccurs="1" name="T_ID" type="s:int" />
-          <s:element minOccurs="0" maxOccurs="1" name="TrechoDefeitos" type="tns:ArrayOfTrechoDefeito" />
-          <s:element minOccurs="0" maxOccurs="1" name="Taxonomia" type="tns:Taxonomia" />
-        </s:sequence>
-      </s:complexType>
-      <s:complexType name="ArrayOfTrechoDefeito">
-        <s:sequence>
-          <s:element minOccurs="0" maxOccurs="unbounded" name="TrechoDefeito" nillable="true" type="tns:TrechoDefeito" />
-        </s:sequence>
-      </s:complexType>
-      <s:complexType name="TrechoDefeito">
-        <s:sequence>
-          <s:element minOccurs="1" maxOccurs="1" name="D_ID" type="s:int" />
-          <s:element minOccurs="1" maxOccurs="1" name="IT_ID" type="s:int" />
-          <s:element minOccurs="0" maxOccurs="1" name="D_Explicacao" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="D_Conteudo" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="Questao_TrechoDefeitos" type="tns:ArrayOfQuestao_TrechoDefeito" />
-          <s:element minOccurs="0" maxOccurs="1" name="ItemTaxonomia" type="tns:ItemTaxonomia" />
-        </s:sequence>
-      </s:complexType>
-      <s:complexType name="ArrayOfQuestao_TrechoDefeito">
-        <s:sequence>
-          <s:element minOccurs="0" maxOccurs="unbounded" name="Questao_TrechoDefeito" nillable="true" type="tns:Questao_TrechoDefeito" />
-        </s:sequence>
-      </s:complexType>
-      <s:complexType name="Questao_TrechoDefeito">
-        <s:sequence>
-          <s:element minOccurs="1" maxOccurs="1" name="Q_TD_id" type="s:int" />
-          <s:element minOccurs="1" maxOccurs="1" name="Q_id" type="s:int" />
-          <s:element minOccurs="1" maxOccurs="1" name="TD_id" type="s:int" />
-          <s:element minOccurs="1" maxOccurs="1" name="respondido" nillable="true" type="s:int" />
-          <s:element minOccurs="0" maxOccurs="1" name="Questao" type="tns:Questao" />
-          <s:element minOccurs="0" maxOccurs="1" name="TrechoDefeito" type="tns:TrechoDefeito" />
-        </s:sequence>
-      </s:complexType>
-      <s:complexType name="Questao">
-        <s:sequence>
-          <s:element minOccurs="1" maxOccurs="1" name="Q_ID" type="s:int" />
-          <s:element minOccurs="1" maxOccurs="1" name="Q_NIVEL_DIFICULDADE" nillable="true" type="s:int" />
-          <s:element minOccurs="0" maxOccurs="1" name="Q_XML" type="s:string" />
-          <s:element minOccurs="1" maxOccurs="1" name="Q_TEMPO" nillable="true" type="s:int" />
-          <s:element minOccurs="1" maxOccurs="1" name="MotivoErroId" nillable="true" type="s:int" />
-          <s:element minOccurs="0" maxOccurs="1" name="Historico_Questaos" type="tns:ArrayOfHistorico_Questao" />
-          <s:element minOccurs="0" maxOccurs="1" name="Questao_TrechoDefeitos" type="tns:ArrayOfQuestao_TrechoDefeito" />
-        </s:sequence>
-      </s:complexType>
-      <s:complexType name="ArrayOfHistorico_Questao">
-        <s:sequence>
-          <s:element minOccurs="0" maxOccurs="unbounded" name="Historico_Questao" nillable="true" type="tns:Historico_Questao" />
-        </s:sequence>
-      </s:complexType>
-      <s:complexType name="Historico_Questao">
-        <s:sequence>
-          <s:element minOccurs="1" maxOccurs="1" name="H_ID" type="s:int" />
-          <s:element minOccurs="1" maxOccurs="1" name="P_ID" nillable="true" type="s:int" />
-          <s:element minOccurs="1" maxOccurs="1" name="Q_ID" nillable="true" type="s:int" />
-          <s:element minOccurs="1" maxOccurs="1" name="H_QTD_ACERTO" nillable="true" type="s:int" />
-          <s:element minOccurs="1" maxOccurs="1" name="H_QTD_ERRO" nillable="true" type="s:int" />
-          <s:element minOccurs="0" maxOccurs="1" name="Partida" type="tns:Partida" />
-          <s:element minOccurs="0" maxOccurs="1" name="Questao" type="tns:Questao" />
-        </s:sequence>
-      </s:complexType>
-      <s:complexType name="Partida">
-        <s:sequence>
-          <s:element minOccurs="1" maxOccurs="1" name="P_ID" type="s:int" />
-          <s:element minOccurs="1" maxOccurs="1" name="U_ID" nillable="true" type="s:int" />
-          <s:element minOccurs="1" maxOccurs="1" name="P_DATA" nillable="true" type="s:dateTime" />
-          <s:element minOccurs="1" maxOccurs="1" name="P_NIVEL_DIFICULDADE" nillable="true" type="s:int" />
-          <s:element minOccurs="1" maxOccurs="1" name="P_PONTUACAO_TOTAL" nillable="true" type="s:int" />
-          <s:element minOccurs="0" maxOccurs="1" name="Historico_Questaos" type="tns:ArrayOfHistorico_Questao" />
-          <s:element minOccurs="0" maxOccurs="1" name="Usuario" type="tns:Usuario" />
-        </s:sequence>
-      </s:complexType>
-      <s:complexType name="Usuario">
-        <s:sequence>
-          <s:element minOccurs="1" maxOccurs="1" name="U_ID" type="s:int" />
-          <s:element minOccurs="0" maxOccurs="1" name="U_NOME" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="U_EMAIL" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="U_SENHA" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="U_LOGIN" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="Partidas" type="tns:ArrayOfPartida" />
-        </s:sequence>
-      </s:complexType>
-      <s:complexType name="ArrayOfPartida">
-        <s:sequence>
-          <s:element minOccurs="0" maxOccurs="unbounded" name="Partida" nillable="true" type="tns:Partida" />
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Nome" type="s:string" />
         </s:sequence>
       </s:complexType>
       <s:element name="PegarTaxonomias">
@@ -259,12 +183,6 @@
       <s:complexType name="ArrayOfTaxonomiaEntity">
         <s:sequence>
           <s:element minOccurs="0" maxOccurs="unbounded" name="TaxonomiaEntity" nillable="true" type="tns:TaxonomiaEntity" />
-        </s:sequence>
-      </s:complexType>
-      <s:complexType name="TaxonomiaEntity">
-        <s:sequence>
-          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
-          <s:element minOccurs="0" maxOccurs="1" name="Nome" type="s:string" />
         </s:sequence>
       </s:complexType>
       <s:element name="DeletarTaxonomias">
@@ -341,11 +259,24 @@
       <s:element name="AdicionarQuestao">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="questao" type="tns:Questao" />
-            <s:element minOccurs="0" maxOccurs="1" name="tdList" type="tns:ArrayOfTrechoDefeito" />
+            <s:element minOccurs="0" maxOccurs="1" name="questao" type="tns:QuestaoEntity" />
+            <s:element minOccurs="0" maxOccurs="1" name="tdList" type="tns:ArrayOfTrechoDefeitoEntity" />
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:complexType name="ArrayOfTrechoDefeitoEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="TrechoDefeitoEntity" nillable="true" type="tns:TrechoDefeitoEntity" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TrechoDefeitoEntity">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="D_ID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="IT_ID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Explicacao" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Conteudo" type="s:string" />
+        </s:sequence>
+      </s:complexType>
       <s:element name="AdicionarQuestaoResponse">
         <s:complexType />
       </s:element>
@@ -386,6 +317,12 @@
   </wsdl:message>
   <wsdl:message name="GetQuestoesSoapOut">
     <wsdl:part name="parameters" element="tns:GetQuestoesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetQuestoesTaxListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetQuestoesTaxList" />
+  </wsdl:message>
+  <wsdl:message name="GetQuestoesTaxListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetQuestoesTaxListResponse" />
   </wsdl:message>
   <wsdl:message name="GetQuestoesRespostasSoapIn">
     <wsdl:part name="parameters" element="tns:GetQuestoesRespostas" />
@@ -465,6 +402,10 @@
     <wsdl:operation name="GetQuestoes">
       <wsdl:input message="tns:GetQuestoesSoapIn" />
       <wsdl:output message="tns:GetQuestoesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetQuestoesTaxList">
+      <wsdl:input message="tns:GetQuestoesTaxListSoapIn" />
+      <wsdl:output message="tns:GetQuestoesTaxListSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="GetQuestoesRespostas">
       <wsdl:input message="tns:GetQuestoesRespostasSoapIn" />
@@ -552,6 +493,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetQuestoes">
       <soap:operation soapAction="http://tempuri.org/GetQuestoes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetQuestoesTaxList">
+      <soap:operation soapAction="http://tempuri.org/GetQuestoesTaxList" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -690,6 +640,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetQuestoes">
       <soap12:operation soapAction="http://tempuri.org/GetQuestoes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetQuestoesTaxList">
+      <soap12:operation soapAction="http://tempuri.org/GetQuestoesTaxList" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

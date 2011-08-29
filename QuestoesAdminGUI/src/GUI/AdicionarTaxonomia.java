@@ -1,18 +1,16 @@
 package GUI;
 
-import InspectorXWebserv.ArrayOfItemTaxonomia;
 import InspectorXWebserv.ArrayOfItemTaxonomiaEntity;
 import InspectorXWebserv.InserirTaxonomia;
-import InspectorXWebserv.ItemTaxonomia;
 import InspectorXWebserv.ItemTaxonomiaEntity;
-import InspectorXWebserv.Taxonomia;
+import InspectorXWebserv.TaxonomiaEntity;
 import java.util.List;
 import javax.swing.JOptionPane;
 
 public class AdicionarTaxonomia extends javax.swing.JFrame 
 {
-
-    Taxonomia Tax;
+    AdminMenu Parentframe;
+    TaxonomiaEntity Tax;
     List<ItemTaxonomiaEntity> itemsTaxList;
     
     public AdicionarTaxonomia() 
@@ -20,15 +18,24 @@ public class AdicionarTaxonomia extends javax.swing.JFrame
         initComponents();
     }
     
-    public AdicionarTaxonomia(Taxonomia tax) 
+    public AdicionarTaxonomia(AdminMenu parentframe) 
+    {
+        initComponents();
+        Parentframe=parentframe;
+        Parentframe.btnDeletarTaxonomia.setEnabled(false);
+        Parentframe.btnInserirTaxonomia.setEnabled(false);
+        Parentframe.btn_editarTaxonomia.setEnabled(false);
+    }
+    
+    public AdicionarTaxonomia(TaxonomiaEntity tax) 
     {
         initComponents();
         Tax=tax;
-        txf_taxonomiaNome.setText(tax.getTNome());
+        txf_taxonomiaNome.setText(tax.getNome());
         lbl_Nome.setEnabled(false);
         txf_taxonomiaNome.setEnabled(false);
         btn_CriarTaxonomia.setEnabled(false);
-         setItemsList();
+        setItemsList();
     }
 
 
@@ -49,7 +56,8 @@ public class AdicionarTaxonomia extends javax.swing.JFrame
         btn_finalizar = new javax.swing.JButton();
         btn_refresh = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setTitle("Taxonomia InspectorX");
 
         lblTaxonomiaTitle.setFont(new java.awt.Font("Tahoma", 1, 18));
         lblTaxonomiaTitle.setText("Taxonomia");
@@ -131,43 +139,43 @@ public class AdicionarTaxonomia extends javax.swing.JFrame
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lbl_Nome)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txf_taxonomiaNome, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btn_CriarTaxonomia))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(pnl_Taxonomia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(btn_refresh)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 201, Short.MAX_VALUE)
-                                .addComponent(btn_finalizar)))
-                        .addContainerGap())
+                        .addGap(130, 130, 130)
+                        .addComponent(lblTaxonomiaTitle))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(lblTaxonomiaTitle)
-                        .addGap(126, 126, 126))))
+                        .addContainerGap()
+                        .addComponent(lbl_Nome)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txf_taxonomiaNome, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn_CriarTaxonomia))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(pnl_Taxonomia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btn_refresh)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 201, Short.MAX_VALUE)
+                        .addComponent(btn_finalizar)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addContainerGap()
                 .addComponent(lblTaxonomiaTitle)
-                .addGap(37, 37, 37)
+                .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbl_Nome)
                     .addComponent(txf_taxonomiaNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_CriarTaxonomia))
-                .addGap(11, 11, 11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pnl_Taxonomia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pnl_Taxonomia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_finalizar)
@@ -197,7 +205,11 @@ private void btn_CriarTaxonomiaActionPerformed(java.awt.event.ActionEvent evt) {
 }//GEN-LAST:event_btn_CriarTaxonomiaActionPerformed
 
 private void btn_finalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_finalizarActionPerformed
-   this.setVisible(false);
+    Parentframe.setTaxonomia();
+    Parentframe.btnDeletarTaxonomia.setEnabled(true);
+    Parentframe.btnInserirTaxonomia.setEnabled(true);
+    Parentframe.btn_editarTaxonomia.setEnabled(true);
+    this.setVisible(false);
 }//GEN-LAST:event_btn_finalizarActionPerformed
 
 private void btn_refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_refreshActionPerformed
@@ -205,19 +217,25 @@ private void btn_refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     
 }//GEN-LAST:event_btn_refreshActionPerformed
 
-private void setItemsList()
+public void setItemsList()
 {
-    ArrayOfItemTaxonomiaEntity itemTaxEntity = pegarItemsTaxonomia(Tax.getTID());
-    
+    try{
+    ArrayOfItemTaxonomiaEntity itemTaxEntity = pegarItemsTaxonomia(Tax.getID()); 
     itemsTaxList = itemTaxEntity.getItemTaxonomiaEntity();
-    lst_DefitosList.setListData(itemsTaxList.toArray());
+    if(!itemsTaxList.isEmpty())
+        lst_DefitosList.setListData(itemsTaxList.toArray());
+    }
+    catch(Exception ex)
+    {
+        JOptionPane.showMessageDialog(this, ex.getMessage());
+    }
 }
 
 private void btnInserirItemTaxonomiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInserirItemTaxonomiaActionPerformed
    
    if(Tax !=null)
    {
-        AdicionarItemTaxonomia addItemTax = new AdicionarItemTaxonomia(Tax.getTID());
+        AdicionarItemTaxonomia addItemTax = new AdicionarItemTaxonomia(this,Tax.getID());
         addItemTax.setVisible(true);
    }
    else
@@ -259,7 +277,7 @@ private void btnDeletarItemTaxonomiaActionPerformed(java.awt.event.ActionEvent e
         return port.inserirTaxonomia(nome);
     }
 
-    private static Taxonomia pegarTaxonomia(java.lang.String nome) {
+    private static TaxonomiaEntity pegarTaxonomia(java.lang.String nome) {
         InspectorXWebserv.WebServiceMain service = new InspectorXWebserv.WebServiceMain();
         InspectorXWebserv.WebServiceMainSoap port = service.getWebServiceMainSoap12();
         return port.pegarTaxonomia(nome);

@@ -1,9 +1,10 @@
 package GUI;
 
 import InspectorXWebserv.ArrayOfItemTaxonomiaEntity;
+import InspectorXWebserv.ArrayOfQuestaoEntity;
 import InspectorXWebserv.ArrayOfTaxonomiaEntity;
 import InspectorXWebserv.ItemTaxonomiaEntity;
-import InspectorXWebserv.Taxonomia;
+import InspectorXWebserv.QuestaoEntity;
 import InspectorXWebserv.TaxonomiaEntity;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
@@ -13,6 +14,8 @@ public class AdminMenu extends javax.swing.JFrame {
 
     public AdminMenu() {
         initComponents();
+        setTaxonomia();
+        setItemTaxonomiaList();
     }
 
     @SuppressWarnings("unchecked")
@@ -37,11 +40,11 @@ public class AdminMenu extends javax.swing.JFrame {
         btn_DeletarQuestao = new javax.swing.JButton();
         btn_EditarQuestao = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tbl_Questoes = new javax.swing.JTable();
+        lstQuestoes = new javax.swing.JList();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        lblTitle.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblTitle.setFont(new java.awt.Font("Tahoma", 0, 18));
         lblTitle.setText("Administrador de questões e taxonomias do jogo InspectorX");
 
         pnlTaxonomia.setBorder(javax.swing.BorderFactory.createTitledBorder("Taxonomia"));
@@ -191,18 +194,7 @@ public class AdminMenu extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        tbl_Questoes.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(tbl_Questoes);
+        jScrollPane1.setViewportView(lstQuestoes);
 
         javax.swing.GroupLayout pnl_QuestoesLayout = new javax.swing.GroupLayout(pnl_Questoes);
         pnl_Questoes.setLayout(pnl_QuestoesLayout);
@@ -211,9 +203,9 @@ public class AdminMenu extends javax.swing.JFrame {
             .addGroup(pnl_QuestoesLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(258, Short.MAX_VALUE))
         );
         pnl_QuestoesLayout.setVerticalGroup(
             pnl_QuestoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -230,22 +222,21 @@ public class AdminMenu extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(pnlTaxonomia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(pnl_Questoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(206, 206, 206)
-                        .addComponent(lblTitle)))
+                .addGap(6, 6, 6)
+                .addComponent(pnlTaxonomia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(pnl_Questoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(296, Short.MAX_VALUE)
+                .addComponent(lblTitle)
+                .addGap(143, 143, 143))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblTitle)
+                .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(pnl_Questoes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -258,18 +249,18 @@ public class AdminMenu extends javax.swing.JFrame {
 
     private void btn_InserirQuestaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_InserirQuestaoActionPerformed
  
-        if((Taxonomia)cbx_Taxonomia.getSelectedItem()!=null)
+        if((TaxonomiaEntity)cbx_Taxonomia.getSelectedItem()!=null)
         {
-            InserirQuestao insQuest = new InserirQuestao((Taxonomia)cbx_Taxonomia.getSelectedItem());
+            InserirQuestao insQuest = new InserirQuestao((TaxonomiaEntity)cbx_Taxonomia.getSelectedItem());
             insQuest.setVisible(true);
         }
         else
-            JOptionPane.showMessageDialog(this, "Por favor selecione uma taxonomia para os defeitos.");
+            JOptionPane.showMessageDialog(this, "Por favor selecione uma taxonomia.");
     }//GEN-LAST:event_btn_InserirQuestaoActionPerformed
 
 private void btnInserirTaxonomiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInserirTaxonomiaActionPerformed
     
-    AdicionarTaxonomia addTax= new AdicionarTaxonomia();
+    AdicionarTaxonomia addTax= new AdicionarTaxonomia(this);
     addTax.setVisible(true);
     
 }//GEN-LAST:event_btnInserirTaxonomiaActionPerformed
@@ -284,8 +275,6 @@ private void btn_refreshTaxonomiaActionPerformed(java.awt.event.ActionEvent evt)
         ArrayOfTaxonomiaEntity taxArray = pegarTaxonomias();
 
         List<TaxonomiaEntity> taxList = taxArray.getTaxonomiaEntity();
-
-        int temp = taxList.size();
 
         for(TaxonomiaEntity txe : taxList)
         {
@@ -303,7 +292,7 @@ private void btn_editarTaxonomiaActionPerformed(java.awt.event.ActionEvent evt) 
     
     TaxonomiaEntity tax = (TaxonomiaEntity)cbx_Taxonomia.getSelectedItem();
     
-    AdicionarTaxonomia addTax = new AdicionarTaxonomia(pegarTaxonomia(tax.getNome()));
+    AdicionarTaxonomia addTax = new AdicionarTaxonomia(tax);
     addTax.setVisible(true);
     
 }//GEN-LAST:event_btn_editarTaxonomiaActionPerformed
@@ -328,21 +317,58 @@ private void btnDeletarTaxonomiaActionPerformed(java.awt.event.ActionEvent evt) 
 }//GEN-LAST:event_btnDeletarTaxonomiaActionPerformed
 
 private void cbx_TaxonomiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbx_TaxonomiaActionPerformed
-    setItemsList();
+    setItemTaxonomiaList();
+    setQuestaoList();
 }//GEN-LAST:event_cbx_TaxonomiaActionPerformed
 
-private void setItemsList()
-{
-    TaxonomiaEntity tax = (TaxonomiaEntity)cbx_Taxonomia.getSelectedItem();
-    if(tax!=null)
+    private void setItemTaxonomiaList()
     {
-        ArrayOfItemTaxonomiaEntity itemTaxEntity = pegarItemsTaxonomia(tax.getID());
-        List<ItemTaxonomiaEntity> itemTaxList = itemTaxEntity.getItemTaxonomiaEntity();
-        if(!itemTaxList.isEmpty())
-            lst_itemsTaxonomia.setListData(itemTaxList.toArray());
-        
+        TaxonomiaEntity tax = (TaxonomiaEntity)cbx_Taxonomia.getSelectedItem();
+        if(tax!=null)
+        {
+            ArrayOfItemTaxonomiaEntity itemTaxEntity = pegarItemsTaxonomia(tax.getID());
+            List<ItemTaxonomiaEntity> itemTaxList = itemTaxEntity.getItemTaxonomiaEntity();
+            if(!itemTaxList.isEmpty())
+                lst_itemsTaxonomia.setListData(itemTaxList.toArray());
+
+        }
     }
-}
+    
+    private void setQuestaoList()
+    {
+        TaxonomiaEntity tax = (TaxonomiaEntity)cbx_Taxonomia.getSelectedItem();
+        if(tax!=null)
+        {
+            ArrayOfQuestaoEntity questaoEntity = getQuestoesTaxList(tax.getID());
+            List<QuestaoEntity> questaoList = questaoEntity.getQuestaoEntity();
+            if(!questaoList.isEmpty())
+                lstQuestoes.setListData(questaoList.toArray());
+
+        }
+    }
+
+    public void setTaxonomia()
+    {
+            try
+        {
+            DefaultComboBoxModel theModel = (DefaultComboBoxModel)cbx_Taxonomia.getModel();
+            theModel.removeAllElements();
+
+            ArrayOfTaxonomiaEntity taxArray = pegarTaxonomias();
+
+            List<TaxonomiaEntity> taxList = taxArray.getTaxonomiaEntity();
+
+            for(TaxonomiaEntity txe : taxList)
+            {
+                cbx_Taxonomia.addItem(txe);
+            }
+
+        }
+        catch(Exception ex)
+        {
+            JOptionPane.showMessageDialog(this, ex);
+        }
+    }
 
 public static void main(String args[]) {
     java.awt.EventQueue.invokeLater(new Runnable() {
@@ -355,12 +381,12 @@ public static void main(String args[]) {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnDeletarTaxonomia;
-    private javax.swing.JButton btnInserirTaxonomia;
+    public javax.swing.JButton btnDeletarTaxonomia;
+    public javax.swing.JButton btnInserirTaxonomia;
     private javax.swing.JButton btn_DeletarQuestao;
     private javax.swing.JButton btn_EditarQuestao;
     private javax.swing.JButton btn_InserirQuestao;
-    private javax.swing.JButton btn_editarTaxonomia;
+    public javax.swing.JButton btn_editarTaxonomia;
     private javax.swing.JButton btn_refreshTaxonomia;
     private javax.swing.JComboBox cbx_Taxonomia;
     private javax.swing.JLabel jLabel1;
@@ -370,10 +396,10 @@ public static void main(String args[]) {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblTaxonomiaSelecionada;
     private javax.swing.JLabel lblTitle;
+    private javax.swing.JList lstQuestoes;
     private javax.swing.JList lst_itemsTaxonomia;
     private javax.swing.JPanel pnlTaxonomia;
     private javax.swing.JPanel pnl_Questoes;
-    private javax.swing.JTable tbl_Questoes;
     // End of variables declaration//GEN-END:variables
 
 
@@ -391,12 +417,6 @@ public static void main(String args[]) {
         return port.pegarTaxonomias();
     }
 
-    private static Taxonomia pegarTaxonomia(java.lang.String nome) {
-        InspectorXWebserv.WebServiceMain service = new InspectorXWebserv.WebServiceMain();
-        InspectorXWebserv.WebServiceMainSoap port = service.getWebServiceMainSoap12();
-        return port.pegarTaxonomia(nome);
-    }
-
     private static boolean deletarTaxonomias(int taxonomia) {
         InspectorXWebserv.WebServiceMain service = new InspectorXWebserv.WebServiceMain();
         InspectorXWebserv.WebServiceMainSoap port = service.getWebServiceMainSoap12();
@@ -407,6 +427,12 @@ public static void main(String args[]) {
         InspectorXWebserv.WebServiceMain service = new InspectorXWebserv.WebServiceMain();
         InspectorXWebserv.WebServiceMainSoap port = service.getWebServiceMainSoap12();
         return port.deletarItemTaxonomia(taxonomiaId);
+    }
+
+    private static ArrayOfQuestaoEntity getQuestoesTaxList(int taxId) {
+        InspectorXWebserv.WebServiceMain service = new InspectorXWebserv.WebServiceMain();
+        InspectorXWebserv.WebServiceMainSoap port = service.getWebServiceMainSoap12();
+        return port.getQuestoesTaxList(taxId);
     }
 
 

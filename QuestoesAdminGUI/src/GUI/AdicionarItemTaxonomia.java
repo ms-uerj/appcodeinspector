@@ -6,13 +6,15 @@ import javax.swing.JOptionPane;
 public class AdicionarItemTaxonomia extends javax.swing.JFrame {
 
     int Taxonomia_id;
+    AdicionarTaxonomia AddTax;
     
     public AdicionarItemTaxonomia() {
         initComponents();
     }
     
-    public AdicionarItemTaxonomia(int taxonomia_id) {
+    public AdicionarItemTaxonomia(AdicionarTaxonomia addTax,int taxonomia_id) {
         initComponents();
+        AddTax=addTax;
         Taxonomia_id=taxonomia_id;
     }
 
@@ -29,9 +31,10 @@ public class AdicionarItemTaxonomia extends javax.swing.JFrame {
         btn_Inserir = new javax.swing.JButton();
         btn_Fechar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setTitle("Defeito");
 
-        lblDefeitoTitle.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblDefeitoTitle.setFont(new java.awt.Font("Tahoma", 1, 18));
         lblDefeitoTitle.setText("Defeito");
 
         jLabel1.setText("Nome :");
@@ -105,6 +108,7 @@ public class AdicionarItemTaxonomia extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
 private void btn_FecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_FecharActionPerformed
+    AddTax.setItemsList();
     this.setVisible(false);
 }//GEN-LAST:event_btn_FecharActionPerformed
 
@@ -114,6 +118,7 @@ private void btn_InserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     {
         if(adicionarItemTaxonomia(Taxonomia_id,txf_nome.getText().trim(),txa_descricao.getText().trim()))
         {
+            AddTax.setItemsList();
             JOptionPane.showMessageDialog(this,"Item criado com sucesso!");
             this.setVisible(false);
         }

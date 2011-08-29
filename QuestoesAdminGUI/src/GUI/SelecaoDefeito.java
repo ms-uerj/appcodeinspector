@@ -1,26 +1,29 @@
 package GUI;
 
 import InspectorXWebserv.ArrayOfItemTaxonomiaEntity;
+import InspectorXWebserv.ArrayOfTrechoDefeitoEntity;
 import InspectorXWebserv.ItemTaxonomiaEntity;
-import InspectorXWebserv.Taxonomia;
-import InspectorXWebserv.TrechoDefeito;
+import InspectorXWebserv.TaxonomiaEntity;
+import InspectorXWebserv.TrechoDefeitoEntity;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
-public class SelecaoDefeito extends javax.swing.JFrame {
+public class SelecaoDefeito extends javax.swing.JFrame 
+{
 
     InserirQuestao insQuestFrame;
-    Taxonomia Tax;
+    TaxonomiaEntity Tax;
     String Defeito;
-
+    ArrayOfTrechoDefeitoEntity TrechoList;
     
-    public SelecaoDefeito(InserirQuestao insQuestao,Taxonomia tax, String defeito) 
+    public SelecaoDefeito(ArrayOfTrechoDefeitoEntity arrayTd,TaxonomiaEntity tax, String defeito) 
     {
         initComponents();
         Defeito = defeito;
         Tax = tax;
-        //setComboxDefeitos();
+        TrechoList=arrayTd;
+        setComboxDefeitos();
     }
 
 
@@ -82,34 +85,37 @@ public class SelecaoDefeito extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbl_Taxonomia)
-                            .addComponent(jLabel1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cbx_Defeito, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lblSelecionarDefeito)
-                                    .addComponent(txf_Taxonomia, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(118, 118, 118))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(162, 162, 162)
-                        .addComponent(btnCancelar)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnOk, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel2)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lbl_Taxonomia)
+                                    .addComponent(jLabel1))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cbx_Defeito, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(txf_Taxonomia, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                .addGap(118, 118, 118))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(162, 162, 162)
+                                .addComponent(btnCancelar)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnOk, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel2)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(lblSelecionarDefeito)
+                        .addGap(139, 139, 139))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addComponent(lblSelecionarDefeito)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbl_Taxonomia)
                     .addComponent(txf_Taxonomia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -134,15 +140,15 @@ public class SelecaoDefeito extends javax.swing.JFrame {
     private void btnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
         
         if((cbx_Defeito.getSelectedItem()!=null)&&!txaExplicacaoDefeito.getText().trim().isEmpty()) {
-            TrechoDefeito trecho = new TrechoDefeito();
+            TrechoDefeitoEntity trecho = new TrechoDefeitoEntity();
             
-            trecho.setDConteudo(Defeito);
-            trecho.setDExplicacao(txaExplicacaoDefeito.getText());
+            trecho.setConteudo(Defeito);
+            trecho.setExplicacao(txaExplicacaoDefeito.getText());
             
             ItemTaxonomiaEntity itemTax = (ItemTaxonomiaEntity)cbx_Defeito.getSelectedItem();
             trecho.setITID(itemTax.getID());
             
-            insQuestFrame.trechoList.getTrechoDefeito().add(trecho);
+            TrechoList.getTrechoDefeitoEntity().add(trecho);
             
             JOptionPane.showMessageDialog(this, "Defeito registrado com sucesso!");
             this.setVisible(false);
@@ -159,7 +165,7 @@ public class SelecaoDefeito extends javax.swing.JFrame {
         DefaultComboBoxModel theModel = (DefaultComboBoxModel)cbx_Defeito.getModel();
         theModel.removeAllElements();
 
-        ArrayOfItemTaxonomiaEntity itemTaxArray = pegarItemsTaxonomia(Tax.getTID());
+        ArrayOfItemTaxonomiaEntity itemTaxArray = pegarItemsTaxonomia(Tax.getID());
 
         List<ItemTaxonomiaEntity> taxList = itemTaxArray.getItemTaxonomiaEntity();
 

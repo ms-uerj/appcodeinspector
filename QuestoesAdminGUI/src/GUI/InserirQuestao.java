@@ -1,15 +1,18 @@
 package GUI;
 
-import InspectorXWebserv.ArrayOfTrechoDefeito;
-import InspectorXWebserv.Taxonomia;
+
+import InspectorXWebserv.ArrayOfTrechoDefeitoEntity;
+import InspectorXWebserv.QuestaoEntity;
+import InspectorXWebserv.TaxonomiaEntity;
 import javax.swing.JOptionPane;
 
 public class InserirQuestao extends javax.swing.JFrame {
 
-    Taxonomia Tax;
-    public ArrayOfTrechoDefeito trechoList;
+    TaxonomiaEntity Tax;
+    //public ArrayList<TrechoDefeitoEntity> trechoList = new ArrayList<TrechoDefeitoEntity>();
+    public ArrayOfTrechoDefeitoEntity trechoList = new ArrayOfTrechoDefeitoEntity();
     
-    public InserirQuestao(Taxonomia tax) 
+    public InserirQuestao(TaxonomiaEntity tax) 
     {
         Tax = tax;
         initComponents();
@@ -168,7 +171,18 @@ public class InserirQuestao extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void btnInserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInserirActionPerformed
-        hepCorpoQuestao.setText(texto2Html(txa_QuestaoCorpo.getText()));
+        
+        if(cbxDificuldade.getSelectedIndex()==3&&trechoList.getTrechoDefeitoEntity().size()<2)
+        {
+            JOptionPane.showMessageDialog(this, "No nível difícil é necessário definir mais de 1 defeito");
+        }
+        else
+        {
+            QuestaoEntity queste = new QuestaoEntity();
+            queste.setQXML(hepCorpoQuestao.getText());
+            queste.setQNivelDificuldade(cbxDificuldade.getSelectedIndex());
+            adicionarQuestao(queste, trechoList);
+        }
     }//GEN-LAST:event_btnInserirActionPerformed
 
 private void txa_QuestaoCorpoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txa_QuestaoCorpoMouseReleased
@@ -180,8 +194,7 @@ private void txa_QuestaoCorpoMouseReleased(java.awt.event.MouseEvent evt) {//GEN
             StringBuilder strDefeito = new StringBuilder();
             strDefeito.append("<TAG>").append(txa_QuestaoCorpo.getSelectedText()).append("</TAG>");
             
-            SelectedDefect selectdefectView = new SelectedDefect(this,Tax,txa_QuestaoCorpo.getSelectedText());
-            selectdefectView.setVisible(true);
+
             StringBuilder strCorpo = new StringBuilder();
 
             strCorpo.append(txa_QuestaoCorpo.getText().trim());
@@ -189,10 +202,10 @@ private void txa_QuestaoCorpoMouseReleased(java.awt.event.MouseEvent evt) {//GEN
             strCorpo.insert(txa_QuestaoCorpo.getSelectionStart(),strDefeito.toString());
 
             
-            hepCorpoQuestao.setText(strCorpo.toString());
+            hepCorpoQuestao.setText(texto2Html(strCorpo.toString()));
             txa_QuestaoCorpo.setText(strCorpo.toString());
             
-            SelecaoDefeito setDefeito = new SelecaoDefeito(this, Tax, strDefeito.toString());
+            SelecaoDefeito setDefeito = new SelecaoDefeito(trechoList, Tax, strDefeito.toString());
             setDefeito.setVisible(true);
             
         }
@@ -251,8 +264,7 @@ public static String texto2Html(String s)
     private javax.swing.JTextField txtTituloQuestao;
     // End of variables declaration//GEN-END:variables
 
-    private static void adicionarQuestao(InspectorXWebserv.Questao questao, InspectorXWebserv.ArrayOfTrechoDefeito tdList) 
-    {
+    private static void adicionarQuestao(InspectorXWebserv.QuestaoEntity questao, InspectorXWebserv.ArrayOfTrechoDefeitoEntity tdList) {
         InspectorXWebserv.WebServiceMain service = new InspectorXWebserv.WebServiceMain();
         InspectorXWebserv.WebServiceMainSoap port = service.getWebServiceMainSoap12();
         port.adicionarQuestao(questao, tdList);
