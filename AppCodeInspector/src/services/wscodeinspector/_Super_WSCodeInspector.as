@@ -7,11 +7,14 @@ package services.wscodeinspector
 import com.adobe.fiber.core.model_internal;
 import com.adobe.fiber.services.wrapper.WebServiceWrapper;
 import com.adobe.serializers.utility.TypeUtility;
+import mx.collections.ArrayCollection;
 import mx.rpc.AbstractOperation;
 import mx.rpc.AsyncToken;
 import mx.rpc.soap.mxml.Operation;
 import mx.rpc.soap.mxml.WebService;
-import valueObjects.RankRetorno;
+import valueObjects.ItemTaxonomiaEntity;
+import valueObjects.QuestaoEntity;
+import valueObjects.TaxonomiaEntity;
 
 [ExcludeClass]
 internal class _Super_WSCodeInspector extends com.adobe.fiber.services.wrapper.WebServiceWrapper
@@ -25,6 +28,24 @@ internal class _Super_WSCodeInspector extends com.adobe.fiber.services.wrapper.W
         var operations:Object = new Object();
         var operation:mx.rpc.soap.mxml.Operation;
 
+        operation = new mx.rpc.soap.mxml.Operation(null, "GetQuestoesTaxList");
+         operation.resultElementType = valueObjects.QuestaoEntity;
+        operations["GetQuestoesTaxList"] = operation;
+
+        operation = new mx.rpc.soap.mxml.Operation(null, "GetQuestoesRespostas");
+         operation.resultElementType = int;
+        operations["GetQuestoesRespostas"] = operation;
+
+        operation = new mx.rpc.soap.mxml.Operation(null, "EncerrarPartida");
+        operations["EncerrarPartida"] = operation;
+
+        operation = new mx.rpc.soap.mxml.Operation(null, "RecuperarSenha");
+        operations["RecuperarSenha"] = operation;
+
+        operation = new mx.rpc.soap.mxml.Operation(null, "AlterarUsuario");
+         operation.resultType = Boolean;
+        operations["AlterarUsuario"] = operation;
+
         operation = new mx.rpc.soap.mxml.Operation(null, "AutenticarUsuario");
          operation.resultType = Boolean;
         operations["AutenticarUsuario"] = operation;
@@ -33,30 +54,20 @@ internal class _Super_WSCodeInspector extends com.adobe.fiber.services.wrapper.W
          operation.resultType = Boolean;
         operations["CriarUsuario"] = operation;
 
+        operation = new mx.rpc.soap.mxml.Operation(null, "PegarItemsTaxonomia");
+         operation.resultElementType = valueObjects.ItemTaxonomiaEntity;
+        operations["PegarItemsTaxonomia"] = operation;
+
+        operation = new mx.rpc.soap.mxml.Operation(null, "GetQuestoes");
+         operation.resultElementType = valueObjects.QuestaoEntity;
+        operations["GetQuestoes"] = operation;
+
         operation = new mx.rpc.soap.mxml.Operation(null, "AdicionarQuestao");
         operations["AdicionarQuestao"] = operation;
 
-        operation = new mx.rpc.soap.mxml.Operation(null, "AlterarUsuario");
-         operation.resultType = Boolean;
-        operations["AlterarUsuario"] = operation;
-
-        operation = new mx.rpc.soap.mxml.Operation(null, "RecuperarSenha");
-        operations["RecuperarSenha"] = operation;
-
-        operation = new mx.rpc.soap.mxml.Operation(null, "EncerrarPartida");
-        operations["EncerrarPartida"] = operation;
-
-        operation = new mx.rpc.soap.mxml.Operation(null, "GetQuestoesRespostas");
-         operation.resultElementType = int;
-        operations["GetQuestoesRespostas"] = operation;
-
-        operation = new mx.rpc.soap.mxml.Operation(null, "GetUsersRank");
-         operation.resultElementType = valueObjects.RankRetorno;
-        operations["GetUsersRank"] = operation;
-
-        operation = new mx.rpc.soap.mxml.Operation(null, "GetQuestoes");
-         operation.resultElementType = String;
-        operations["GetQuestoes"] = operation;
+        operation = new mx.rpc.soap.mxml.Operation(null, "PegarTaxonomias");
+         operation.resultElementType = valueObjects.TaxonomiaEntity;
+        operations["PegarTaxonomias"] = operation;
 
         _serviceControl.operations = operations;
         try
@@ -77,6 +88,106 @@ internal class _Super_WSCodeInspector extends com.adobe.fiber.services.wrapper.W
         model_internal::initialize();
     }
 
+    /**
+      * This method is a generated wrapper used to call the 'GetQuestoesTaxList' operation. It returns an mx.rpc.AsyncToken whose 
+      * result property will be populated with the result of the operation when the server response is received. 
+      * To use this result from MXML code, define a CallResponder component and assign its token property to this method's return value. 
+      * You can then bind to CallResponder.lastResult or listen for the CallResponder.result or fault events.
+      *
+      * @see mx.rpc.AsyncToken
+      * @see mx.rpc.CallResponder 
+      *
+      * @return an mx.rpc.AsyncToken whose result property will be populated with the result of the operation when the server response is received.
+      */
+    public function GetQuestoesTaxList(tax_id:int) : mx.rpc.AsyncToken
+    {
+        model_internal::loadWSDLIfNecessary();
+        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("GetQuestoesTaxList");
+        var _internal_token:mx.rpc.AsyncToken = _internal_operation.send(tax_id) ;
+
+        return _internal_token;
+    }
+     
+    /**
+      * This method is a generated wrapper used to call the 'GetQuestoesRespostas' operation. It returns an mx.rpc.AsyncToken whose 
+      * result property will be populated with the result of the operation when the server response is received. 
+      * To use this result from MXML code, define a CallResponder component and assign its token property to this method's return value. 
+      * You can then bind to CallResponder.lastResult or listen for the CallResponder.result or fault events.
+      *
+      * @see mx.rpc.AsyncToken
+      * @see mx.rpc.CallResponder 
+      *
+      * @return an mx.rpc.AsyncToken whose result property will be populated with the result of the operation when the server response is received.
+      */
+    public function GetQuestoesRespostas(nivelDificuldade:int) : mx.rpc.AsyncToken
+    {
+        model_internal::loadWSDLIfNecessary();
+        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("GetQuestoesRespostas");
+        var _internal_token:mx.rpc.AsyncToken = _internal_operation.send(nivelDificuldade) ;
+
+        return _internal_token;
+    }
+     
+    /**
+      * This method is a generated wrapper used to call the 'EncerrarPartida' operation. It returns an mx.rpc.AsyncToken whose 
+      * result property will be populated with the result of the operation when the server response is received. 
+      * To use this result from MXML code, define a CallResponder component and assign its token property to this method's return value. 
+      * You can then bind to CallResponder.lastResult or listen for the CallResponder.result or fault events.
+      *
+      * @see mx.rpc.AsyncToken
+      * @see mx.rpc.CallResponder 
+      *
+      * @return an mx.rpc.AsyncToken whose result property will be populated with the result of the operation when the server response is received.
+      */
+    public function EncerrarPartida(nivelDificuldade:int, respostasXML:String, userEmail:String) : mx.rpc.AsyncToken
+    {
+        model_internal::loadWSDLIfNecessary();
+        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("EncerrarPartida");
+        var _internal_token:mx.rpc.AsyncToken = _internal_operation.send(nivelDificuldade,respostasXML,userEmail) ;
+
+        return _internal_token;
+    }
+     
+    /**
+      * This method is a generated wrapper used to call the 'RecuperarSenha' operation. It returns an mx.rpc.AsyncToken whose 
+      * result property will be populated with the result of the operation when the server response is received. 
+      * To use this result from MXML code, define a CallResponder component and assign its token property to this method's return value. 
+      * You can then bind to CallResponder.lastResult or listen for the CallResponder.result or fault events.
+      *
+      * @see mx.rpc.AsyncToken
+      * @see mx.rpc.CallResponder 
+      *
+      * @return an mx.rpc.AsyncToken whose result property will be populated with the result of the operation when the server response is received.
+      */
+    public function RecuperarSenha(email:String) : mx.rpc.AsyncToken
+    {
+        model_internal::loadWSDLIfNecessary();
+        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("RecuperarSenha");
+        var _internal_token:mx.rpc.AsyncToken = _internal_operation.send(email) ;
+
+        return _internal_token;
+    }
+     
+    /**
+      * This method is a generated wrapper used to call the 'AlterarUsuario' operation. It returns an mx.rpc.AsyncToken whose 
+      * result property will be populated with the result of the operation when the server response is received. 
+      * To use this result from MXML code, define a CallResponder component and assign its token property to this method's return value. 
+      * You can then bind to CallResponder.lastResult or listen for the CallResponder.result or fault events.
+      *
+      * @see mx.rpc.AsyncToken
+      * @see mx.rpc.CallResponder 
+      *
+      * @return an mx.rpc.AsyncToken whose result property will be populated with the result of the operation when the server response is received.
+      */
+    public function AlterarUsuario(loginAtual:String, senhaAtual:String, novoNome:String, novoLogin:String, novaSenha:String, novoEmail:String) : mx.rpc.AsyncToken
+    {
+        model_internal::loadWSDLIfNecessary();
+        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("AlterarUsuario");
+        var _internal_token:mx.rpc.AsyncToken = _internal_operation.send(loginAtual,senhaAtual,novoNome,novoLogin,novaSenha,novoEmail) ;
+
+        return _internal_token;
+    }
+     
     /**
       * This method is a generated wrapper used to call the 'AutenticarUsuario' operation. It returns an mx.rpc.AsyncToken whose 
       * result property will be populated with the result of the operation when the server response is received. 
@@ -118,7 +229,7 @@ internal class _Super_WSCodeInspector extends com.adobe.fiber.services.wrapper.W
     }
      
     /**
-      * This method is a generated wrapper used to call the 'AdicionarQuestao' operation. It returns an mx.rpc.AsyncToken whose 
+      * This method is a generated wrapper used to call the 'PegarItemsTaxonomia' operation. It returns an mx.rpc.AsyncToken whose 
       * result property will be populated with the result of the operation when the server response is received. 
       * To use this result from MXML code, define a CallResponder component and assign its token property to this method's return value. 
       * You can then bind to CallResponder.lastResult or listen for the CallResponder.result or fault events.
@@ -128,111 +239,11 @@ internal class _Super_WSCodeInspector extends com.adobe.fiber.services.wrapper.W
       *
       * @return an mx.rpc.AsyncToken whose result property will be populated with the result of the operation when the server response is received.
       */
-    public function AdicionarQuestao(nivelDificuladade:int, xmlQuestao:String, tempo:int) : mx.rpc.AsyncToken
+    public function PegarItemsTaxonomia(taxonomia_id:int) : mx.rpc.AsyncToken
     {
         model_internal::loadWSDLIfNecessary();
-        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("AdicionarQuestao");
-        var _internal_token:mx.rpc.AsyncToken = _internal_operation.send(nivelDificuladade,xmlQuestao,tempo) ;
-
-        return _internal_token;
-    }
-     
-    /**
-      * This method is a generated wrapper used to call the 'AlterarUsuario' operation. It returns an mx.rpc.AsyncToken whose 
-      * result property will be populated with the result of the operation when the server response is received. 
-      * To use this result from MXML code, define a CallResponder component and assign its token property to this method's return value. 
-      * You can then bind to CallResponder.lastResult or listen for the CallResponder.result or fault events.
-      *
-      * @see mx.rpc.AsyncToken
-      * @see mx.rpc.CallResponder 
-      *
-      * @return an mx.rpc.AsyncToken whose result property will be populated with the result of the operation when the server response is received.
-      */
-    public function AlterarUsuario(loginAtual:String, senhaAtual:String, novoNome:String, novoLogin:String, novaSenha:String, novoEmail:String) : mx.rpc.AsyncToken
-    {
-        model_internal::loadWSDLIfNecessary();
-        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("AlterarUsuario");
-        var _internal_token:mx.rpc.AsyncToken = _internal_operation.send(loginAtual,senhaAtual,novoNome,novoLogin,novaSenha,novoEmail) ;
-
-        return _internal_token;
-    }
-     
-    /**
-      * This method is a generated wrapper used to call the 'RecuperarSenha' operation. It returns an mx.rpc.AsyncToken whose 
-      * result property will be populated with the result of the operation when the server response is received. 
-      * To use this result from MXML code, define a CallResponder component and assign its token property to this method's return value. 
-      * You can then bind to CallResponder.lastResult or listen for the CallResponder.result or fault events.
-      *
-      * @see mx.rpc.AsyncToken
-      * @see mx.rpc.CallResponder 
-      *
-      * @return an mx.rpc.AsyncToken whose result property will be populated with the result of the operation when the server response is received.
-      */
-    public function RecuperarSenha(email:String) : mx.rpc.AsyncToken
-    {
-        model_internal::loadWSDLIfNecessary();
-        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("RecuperarSenha");
-        var _internal_token:mx.rpc.AsyncToken = _internal_operation.send(email) ;
-
-        return _internal_token;
-    }
-     
-    /**
-      * This method is a generated wrapper used to call the 'EncerrarPartida' operation. It returns an mx.rpc.AsyncToken whose 
-      * result property will be populated with the result of the operation when the server response is received. 
-      * To use this result from MXML code, define a CallResponder component and assign its token property to this method's return value. 
-      * You can then bind to CallResponder.lastResult or listen for the CallResponder.result or fault events.
-      *
-      * @see mx.rpc.AsyncToken
-      * @see mx.rpc.CallResponder 
-      *
-      * @return an mx.rpc.AsyncToken whose result property will be populated with the result of the operation when the server response is received.
-      */
-    public function EncerrarPartida(nivelDificuldade:int, respostasXML:String, userEmail:String) : mx.rpc.AsyncToken
-    {
-        model_internal::loadWSDLIfNecessary();
-        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("EncerrarPartida");
-        var _internal_token:mx.rpc.AsyncToken = _internal_operation.send(nivelDificuldade,respostasXML,userEmail) ;
-
-        return _internal_token;
-    }
-     
-    /**
-      * This method is a generated wrapper used to call the 'GetQuestoesRespostas' operation. It returns an mx.rpc.AsyncToken whose 
-      * result property will be populated with the result of the operation when the server response is received. 
-      * To use this result from MXML code, define a CallResponder component and assign its token property to this method's return value. 
-      * You can then bind to CallResponder.lastResult or listen for the CallResponder.result or fault events.
-      *
-      * @see mx.rpc.AsyncToken
-      * @see mx.rpc.CallResponder 
-      *
-      * @return an mx.rpc.AsyncToken whose result property will be populated with the result of the operation when the server response is received.
-      */
-    public function GetQuestoesRespostas(nivelDificuldade:int) : mx.rpc.AsyncToken
-    {
-        model_internal::loadWSDLIfNecessary();
-        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("GetQuestoesRespostas");
-        var _internal_token:mx.rpc.AsyncToken = _internal_operation.send(nivelDificuldade) ;
-
-        return _internal_token;
-    }
-     
-    /**
-      * This method is a generated wrapper used to call the 'GetUsersRank' operation. It returns an mx.rpc.AsyncToken whose 
-      * result property will be populated with the result of the operation when the server response is received. 
-      * To use this result from MXML code, define a CallResponder component and assign its token property to this method's return value. 
-      * You can then bind to CallResponder.lastResult or listen for the CallResponder.result or fault events.
-      *
-      * @see mx.rpc.AsyncToken
-      * @see mx.rpc.CallResponder 
-      *
-      * @return an mx.rpc.AsyncToken whose result property will be populated with the result of the operation when the server response is received.
-      */
-    public function GetUsersRank(nivelDificuldade:int) : mx.rpc.AsyncToken
-    {
-        model_internal::loadWSDLIfNecessary();
-        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("GetUsersRank");
-        var _internal_token:mx.rpc.AsyncToken = _internal_operation.send(nivelDificuldade) ;
+        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("PegarItemsTaxonomia");
+        var _internal_token:mx.rpc.AsyncToken = _internal_operation.send(taxonomia_id) ;
 
         return _internal_token;
     }
@@ -253,6 +264,46 @@ internal class _Super_WSCodeInspector extends com.adobe.fiber.services.wrapper.W
         model_internal::loadWSDLIfNecessary();
         var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("GetQuestoes");
         var _internal_token:mx.rpc.AsyncToken = _internal_operation.send(nivelDificuldade) ;
+
+        return _internal_token;
+    }
+     
+    /**
+      * This method is a generated wrapper used to call the 'AdicionarQuestao' operation. It returns an mx.rpc.AsyncToken whose 
+      * result property will be populated with the result of the operation when the server response is received. 
+      * To use this result from MXML code, define a CallResponder component and assign its token property to this method's return value. 
+      * You can then bind to CallResponder.lastResult or listen for the CallResponder.result or fault events.
+      *
+      * @see mx.rpc.AsyncToken
+      * @see mx.rpc.CallResponder 
+      *
+      * @return an mx.rpc.AsyncToken whose result property will be populated with the result of the operation when the server response is received.
+      */
+    public function AdicionarQuestao(questao:valueObjects.QuestaoEntity, tdList:ArrayCollection) : mx.rpc.AsyncToken
+    {
+        model_internal::loadWSDLIfNecessary();
+        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("AdicionarQuestao");
+        var _internal_token:mx.rpc.AsyncToken = _internal_operation.send(questao,tdList) ;
+
+        return _internal_token;
+    }
+     
+    /**
+      * This method is a generated wrapper used to call the 'PegarTaxonomias' operation. It returns an mx.rpc.AsyncToken whose 
+      * result property will be populated with the result of the operation when the server response is received. 
+      * To use this result from MXML code, define a CallResponder component and assign its token property to this method's return value. 
+      * You can then bind to CallResponder.lastResult or listen for the CallResponder.result or fault events.
+      *
+      * @see mx.rpc.AsyncToken
+      * @see mx.rpc.CallResponder 
+      *
+      * @return an mx.rpc.AsyncToken whose result property will be populated with the result of the operation when the server response is received.
+      */
+    public function PegarTaxonomias() : mx.rpc.AsyncToken
+    {
+        model_internal::loadWSDLIfNecessary();
+        var _internal_operation:mx.rpc.AbstractOperation = _serviceControl.getOperation("PegarTaxonomias");
+        var _internal_token:mx.rpc.AsyncToken = _internal_operation.send() ;
 
         return _internal_token;
     }

@@ -139,14 +139,11 @@ private function textEvent(e:TextEvent):void {
 
 protected function btnProximaPergunta_clickHandler(event:MouseEvent):void
 {
-	
 	if(respostaSelecionada == 0)
 		Alert.show("Selecione o motivo do erro antes de prosseguir");
 	else if(xmlRespostasWS[perguntaNum]!=respostaSelecionada)
 	{
-		
-		 xml.perguntas[perguntaNum]
-		
+		xml.perguntas[perguntaNum]
 		Alert.show("")
 	}
 	else
