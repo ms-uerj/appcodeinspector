@@ -135,6 +135,4 @@
 	<s:Button label="Ver Ranking Nivel Facil" width="234" includeIn="Login" click="button1_clickHandler(event)" horizontalCenter="0" verticalCenter="107"/>
 	<s:Button includeIn="ResultadoFinal" x="755" y="575" label="Voltar" id="btnVoltar" width="105" click="btnVoltar_clickHandler(event)"/>
 	
-	
-	
 </s:Application>
