@@ -15,6 +15,7 @@ public class AdminMenu extends javax.swing.JFrame {
     public AdminMenu() {
         initComponents();
         setTaxonomia();
+        
         setItemTaxonomiaList();
     }
 
