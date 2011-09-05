@@ -1,11 +1,16 @@
+import mx.collections.ArrayCollection;
 import mx.events.CloseEvent;
 import mx.managers.PopUpManager;
+import services.wscodeinspector.WSCodeInspector;
+import mx.controls.Alert;
 
 [Bindable]
 public var selectedIndex:int =0;
-
 public static var respostaIndice:int =0;
-
+[Bindable]
+public var questaoTaxonomiaId:int;
+public var defeitos:ArrayCollection;
+import services.wscodeinspector.WSCodeInspector;
 
 protected function btnConfirmarMotivoErro_clickHandler(event:MouseEvent):void
 {
@@ -15,7 +20,7 @@ protected function btnConfirmarMotivoErro_clickHandler(event:MouseEvent):void
 	
 	var _resposta:Resposta = new Resposta();
 	
-	if (AppCodeInspector.nivielDificuldade != 1)
+	if (AppCodeInspector.nivelDificuldade!= 1)
 	{
 		_resposta.inicioErro= AppCodeInspector.selection.beginIndex;
 		_resposta.fimErro = AppCodeInspector.selection.endIndex;
@@ -25,10 +30,7 @@ protected function btnConfirmarMotivoErro_clickHandler(event:MouseEvent):void
 	_resposta.perguntaNumero = AppCodeInspector.perguntaNum; 
 	
 	AppCodeInspector.respostas.addItem(_resposta);
-	
 	AppCodeInspector.respostaIndexAtual = AppCodeInspector.respostas.length;
-	
-	 
 	
 	Close();
 }

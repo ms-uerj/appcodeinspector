@@ -21,6 +21,8 @@ import mx.states.AddChild;
 
 import services.wscodeinspector.WSCodeInspector;
 
+import valueObjects.QuestaoEntity;
+
 private var xml:XMLLoader;
 private var css:CSS;
 private var field:TextArea;
@@ -37,11 +39,14 @@ public var listRespostasSelecionadas:ArrayCollection = new ArrayCollection();
 public static var respostaSelecionada:int = 0;
 
 protected var container:UIComponent;
-private var repostaWindow:RespostaWindow = new RespostaWindow();
-
+public var repostaWindow:RespostaWindow = new RespostaWindow();
 
 public var xmlPerguntasWS:ArrayCollection;
-public var xmlRespostasWS:ArrayCollection;
+public var questaoTrechosWS:ArrayCollection;
+public var taxonomias:ArrayCollection;
+
+public static var nivelDificuldade:int;
+public static var taxonomia_Id:int;
 
 public static var respostas:ArrayCollection = new ArrayCollection();
 
@@ -51,6 +56,8 @@ public static var selection:TextRange;
 
 public function onLoad():void
 {
+	repostaWindow.questaoTaxonomiaId=taxonomia_Id;
+	
 	field = new TextArea();
 	
 	container = new UIComponent();
@@ -61,18 +68,17 @@ public function onLoad():void
 	with (field) 
 	{
 		x = (stage.width/2) - 400;
-		y = (stage.height/2) - 250;
+		y = (stage.height/2) - 200;
 		width = 800;
-		height = 500;
+		height = 450;
 		multiline = true;
 		
 		wordWrap = true;
 		condenseWhite = true;
-		if(nivielDificuldade == 1)
+		if(nivelDificuldade == 1)
 			selectable = false;
 		else
 			selectable = true;
-			
 	}
 	
 	field.addEventListener(MouseEvent.MOUSE_UP,onMouseUp);
@@ -99,7 +105,7 @@ private function onMouseUp(evt:MouseEvent):void
 	selection = new TextRange(field,false,field.selectionBeginIndex,field.selectionEndIndex);
 	var selLength:int = selection.endIndex - selection.beginIndex;
 	
-	if((selLength)) 
+	if((selLength))
 	{
 		PopUpManager.addPopUp(repostaWindow,this,true);
 		PopUpManager.centerPopUp(repostaWindow);
@@ -124,14 +130,29 @@ private function allDone():void
 	if(cssBool && xmlBool)
 	{
 		field.styleSheet = css.sheet;
-		field.htmlText = xml.perguntas[perguntaNum];
+		var q:QuestaoEntity = xmlPerguntasWS[perguntaNum] as QuestaoEntity;
+		
+		field.htmlText = q.Q_XML;
+		
+		//field.htmlText = xml.perguntas[perguntaNum];
+		
+		var ws:services.wscodeinspector.WSCodeInspector = new WSCodeInspector();
+		
+		
+		GetTrechosQuestao.token = ws.GetTrechosDefeito(q.Q_ID);
 		field.addEventListener(TextEvent.LINK, textEvent);
 	}
+}
+
+protected function GetTrechosQuestao_resultHandler(e:ResultEvent):void
+{
+	questaoTrechosWS = ArrayCollection(e.result);
 }
 
 private function textEvent(e:TextEvent):void {
 	
 		PopUpManager.addPopUp(repostaWindow,this,true);
+		
 		if(respostas.length  != 0)
 			repostaWindow.cbResposta.selectedIndex = (Resposta)(respostas.getItemAt(parseInt(e.text)-1)).motivoErroId;
 		PopUpManager.centerPopUp(repostaWindow);
@@ -141,7 +162,7 @@ protected function btnProximaPergunta_clickHandler(event:MouseEvent):void
 {
 	if(respostaSelecionada == 0)
 		Alert.show("Selecione o motivo do erro antes de prosseguir");
-	else if(xmlRespostasWS[perguntaNum]!=respostaSelecionada)
+	else if(questaoTrechosWS[perguntaNum]!=respostaSelecionada)
 	{
 		xml.perguntas[perguntaNum]
 		Alert.show("")
@@ -158,7 +179,9 @@ protected function btnProximaPergunta_clickHandler(event:MouseEvent):void
 			
 			var ws:services.wscodeinspector.WSCodeInspector = new WSCodeInspector();
 			ws.addEventListener(ResultEvent.RESULT,EncerrarPartidaResult_resultHandler);
-			ws.EncerrarPartida(nivielDificuldade,respostasXML,LoginUsuario);
+			var id:int=0;
+			
+			ws.EncerrarPartida(id,id);
 		}
 		else
 		{
@@ -169,6 +192,7 @@ protected function btnProximaPergunta_clickHandler(event:MouseEvent):void
 		}
 	}
 }
+
 protected function EncerrarPartidaResult_resultHandler(e:ResultEvent):void
 {
 	this.currentState = "ResultadoFinal";
