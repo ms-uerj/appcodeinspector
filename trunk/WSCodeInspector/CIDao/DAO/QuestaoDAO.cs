@@ -12,26 +12,55 @@ namespace CIDao.DAO
 
         private InspectorXDBDataContext db = new InspectorXDBDataContext();
 
-        public List<QuestaoEntity> GetQuestoesXML(int nivelDificuldade)
+        public List<QuestaoEntity> GetQuestoes(int nivelDificuldade)
         {
             var questoes = from q in db.Questaos
                            where q.Q_NIVEL_DIFICULDADE == nivelDificuldade
                            select q;
 
-            List<QuestaoEntity> questoesEL = new List<QuestaoEntity>();
+            List<QuestaoEntity> questoesEn = new List<QuestaoEntity>();
             List<Questao> questaL = questoes.ToList();
 
-            foreach (Questao item in questaL)
+            foreach (Questao item in questoes)
             {
                 QuestaoEntity qe = new QuestaoEntity();
                 qe.Q_ID = item.Q_ID;
                 qe.Q_Nivel_Dificuldade = item.Q_NIVEL_DIFICULDADE;
                 qe.Q_XML = item.Q_XML;
                 qe.Q_nome = item.Q_Nome;
-                questoesEL.Add(qe);
+                questoesEn.Add(qe);
             }
 
-            return questoesEL;
+            return questoesEn;
+        }
+
+        public List<QuestaoEntity> GetQuestoes(int nivelDificuldade,int taxonomia_id)
+        {
+            var questoes = (from q in db.Questaos
+                           from it in db.ItemTaxonomias
+                           from td in db.TrechoDefeitos
+                           from qtd in db.Questao_TrechoDefeitos
+                           where q.Q_NIVEL_DIFICULDADE == nivelDificuldade
+                           && it.T_ID==taxonomia_id
+                           && it.IT_ID==td.IT_ID
+                           && td.D_ID==qtd.TD_id
+                           && q.Q_ID==qtd.Q_id
+                           select q).Distinct();
+
+            List<QuestaoEntity> questoesEn = new List<QuestaoEntity>();
+            List<Questao> questaL = questoes.ToList();
+
+            foreach (Questao item in questoes)
+            {
+                QuestaoEntity qe = new QuestaoEntity();
+                qe.Q_ID = item.Q_ID;
+                qe.Q_Nivel_Dificuldade = item.Q_NIVEL_DIFICULDADE;
+                qe.Q_XML = item.Q_XML;
+                qe.Q_nome = item.Q_Nome;
+                questoesEn.Add(qe);
+            }
+
+            return questoesEn;
         }
 
         //Depricated
@@ -149,6 +178,28 @@ namespace CIDao.DAO
             }
         }
 
+        public bool setQuestaoAcerto(int questao_id,  int partidada_id, int pontos)
+        {
+
+            try
+            {
+
+                Historico_Questao hq = new Historico_Questao();
+                hq.H_QTD_ACERTO = pontos;
+                hq.Q_ID = questao_id;
+                hq.P_ID = partidada_id;
+
+                db.Historico_Questaos.InsertOnSubmit(hq);
+
+                db.SubmitChanges();
+                return true;
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
 
         public bool AlterarQuestao(int questao_id, Questao questaoModificada)
         {

@@ -4,14 +4,20 @@ using System.Linq;
 using System.Text;
 using CIDao.DAO;
 using CIDao;
+using CIDao.Domain;
 
 namespace CIFacade.Facade
 {
     public class TrechoDefeitoFacade
     {
-        public List<TrechoDefeito> GetTrechosDefeitoList(int questao_id)
+        public List<TrechoDefeitoEntity> GetTrechosDefeitoList(int questao_id)
         {
             return new TrechoDefeitoDAO().GetTrechosDefeitoList(questao_id);
+        }
+
+        public ItemTaxonomiaEntity getTrechoDefeitoResposta(int td_id)
+        {
+            return new TrechoDefeitoDAO().getTrechoDefeitoResposta(td_id);
         }
 
         public bool AdicionarTrechoDefeito(int questao_id,int itemTaxonomia_id,string td_explicacao,string td_conteudo)

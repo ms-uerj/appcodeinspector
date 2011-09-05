@@ -12,12 +12,19 @@ namespace CIFacade.Facade
 {
     public class QuestaoFacade
     {
-        public List<QuestaoEntity>  GetQuestoesXML(int nivelDificuldade)
+        public List<QuestaoEntity>  GetQuestoes(int nivelDificuldade)
         {
             QuestaoDAO questoes = new QuestaoDAO();
 
-            return questoes.GetQuestoesXML(nivelDificuldade);
+            return questoes.GetQuestoes(nivelDificuldade);
             //fullQuestoesXML.ToString().Replace("\r", "").Replace("\n", "").Replace("\t", "");
+        }
+
+        public List<QuestaoEntity> GetQuestoes(int nivelDificuldade, int taxonomia_id)
+        {
+            QuestaoDAO questoes = new QuestaoDAO();
+
+            return questoes.GetQuestoes(nivelDificuldade,taxonomia_id);
         }
 
         public List<int?> GetQuestoesRespostas(int nivelDificuldade)

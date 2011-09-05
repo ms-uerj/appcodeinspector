@@ -41,7 +41,7 @@ namespace WebServiceAcess.WebService
         /// <param name="pontuacaoTotal"></param>
         /// <param name="userEmail"></param>
         [WebMethod]
-        public void EncerrarPartida(int nivelDificuldade, string respostasXML, string userEmail)
+        public void EncerrarPartida2(int nivelDificuldade, string respostasXML, string userEmail)
         {
             XDocument doc = XDocument.Parse(respostasXML);
             List<RespostaModel> respostas = (from xnode in doc.Element("r").Elements("resposta")
@@ -74,7 +74,7 @@ namespace WebServiceAcess.WebService
                 }
             }
 
-            new PartidaFacade().EncerrarPartida(qtdPontos, nivelDificuldade, userEmail);
+            //new PartidaFacade().iniciarPartida(qtdPontos, nivelDificuldade, userEmail);
 
         }
 
@@ -119,11 +119,11 @@ namespace WebServiceAcess.WebService
         /// </summary>
         /// <param name="nivelDificuldade">Nível das questões a ser procurados</param>
         /// <returns>Uma string com todas as questoes do mesmo nível</returns>
-        [WebMethod]
-        public List<QuestaoEntity> GetQuestoes(int nivelDificuldade)
-        {
-            return new QuestaoFacade().GetQuestoesXML(nivelDificuldade);
-        }
+        //[WebMethod]
+        //public List<QuestaoEntity> GetQuestoes(int nivelDificuldade)
+        //{
+        //    return new QuestaoFacade().GetQuestoes(nivelDificuldade);
+        //}
 
         [WebMethod]
         public List<QuestaoEntity> GetQuestoesTaxList(int tax_id)
@@ -198,5 +198,34 @@ namespace WebServiceAcess.WebService
             new QuestaoFacade().AdicionarQuestao(questao, tdList);
         }
 
+        [WebMethod]
+        public void IniciarPartida(PartidaEntity partidaIniciada, string userLogin)
+        {
+            new PartidaFacade().iniciarPartida(partidaIniciada, userLogin);
+        }
+
+        [WebMethod]
+        public void EncerrarPartida(int partidaEncerrada_id, int pontuacaoTotal)
+        {
+            new PartidaFacade().encerrarPartida(partidaEncerrada_id,pontuacaoTotal);
+        }
+
+        [WebMethod]
+        public List<TrechoDefeitoEntity> GetTrechosDefeito(int questao_id)
+        {
+            return new TrechoDefeitoFacade().GetTrechosDefeitoList(questao_id);
+        }
+
+        [WebMethod]
+        public List<QuestaoEntity> GetQuestoes(int nivelDificuldade, int taxonomia_id)
+        {
+            return new QuestaoFacade().GetQuestoes(nivelDificuldade, taxonomia_id);
+        }
+
+        [WebMethod]
+        public ItemTaxonomiaEntity GetTDResposta(int td_id)
+        {
+            return new TrechoDefeitoFacade().getTrechoDefeitoResposta(td_id);
+        }
     }
 }
