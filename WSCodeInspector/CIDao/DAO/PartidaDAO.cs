@@ -4,6 +4,7 @@ using System.Text;
 using System;
 
 using System.Data;
+using CIDao.Domain;
 
 
 namespace CIDao.DAO
@@ -12,16 +13,31 @@ namespace CIDao.DAO
     {
         private InspectorXDBDataContext db = new InspectorXDBDataContext();
 
-        public void EncerrarPartida(Partida partidaEncerrada, string userLogin)
+        public int iniciarPartida(Partida partidaIniciada, string userLogin)
+        {
+            try
+            {
+                Usuario usuarioAtual = db.Usuarios.Single(u => u.U_LOGIN == userLogin);
+                usuarioAtual.Partidas.Add(partidaIniciada);               
+                db.SubmitChanges();
+
+                return partidaIniciada.P_ID;
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public void encerrarPartida(int partidaEncerrada_id,int pontuacaoTotal)
         {
             try
             {
 
-                Usuario usuarioAtual = db.Usuarios.Single(p => p.U_LOGIN == userLogin);
+                Partida partidaAtual = db.Partidas.Single(p => p.P_ID == partidaEncerrada_id);
+                partidaAtual.P_PONTUACAO_TOTAL = pontuacaoTotal;
 
-                partidaEncerrada.U_ID = usuarioAtual.U_ID;
-
-                db.Partidas.InsertOnSubmit(partidaEncerrada);
                 db.SubmitChanges();
 
             }
@@ -30,5 +46,6 @@ namespace CIDao.DAO
                 throw;
             }
         }
+
     }
 }
