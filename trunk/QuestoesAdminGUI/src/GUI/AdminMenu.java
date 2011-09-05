@@ -325,6 +325,7 @@ private void cbx_TaxonomiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN
     private void setItemTaxonomiaList()
     {
         TaxonomiaEntity tax = (TaxonomiaEntity)cbx_Taxonomia.getSelectedItem();
+        lst_itemsTaxonomia.removeAll();
         if(tax!=null)
         {
             ArrayOfItemTaxonomiaEntity itemTaxEntity = pegarItemsTaxonomia(tax.getID());

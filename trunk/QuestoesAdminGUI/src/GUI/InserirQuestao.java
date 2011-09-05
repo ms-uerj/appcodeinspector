@@ -182,6 +182,8 @@ public class InserirQuestao extends javax.swing.JFrame {
             queste.setQXML(hepCorpoQuestao.getText());
             queste.setQNivelDificuldade(cbxDificuldade.getSelectedIndex());
             adicionarQuestao(queste, trechoList);
+            JOptionPane.showMessageDialog(this, "Questão adicionada com sucesso!");
+            this.setVisible(false);          
         }
     }//GEN-LAST:event_btnInserirActionPerformed
 
