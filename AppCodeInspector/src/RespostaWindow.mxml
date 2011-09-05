@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		   xmlns:s="library://ns.adobe.com/flex/spark" 
-		   xmlns:mx="library://ns.adobe.com/flex/mx" width="400" height="226" backgroundAlpha=".0">
+		   xmlns:mx="library://ns.adobe.com/flex/mx" width="400" height="226" backgroundAlpha=".0" xmlns:wscodeinspector="services.wscodeinspector.*">
 	
 	
 	
@@ -11,11 +11,20 @@
 			import flash.text.TextField;
 			import flash.text.TextFieldAutoSize;
 			import flash.text.TextFormat;
+			import flash.utils.getTimer;
+			
 			import mx.controls.ComboBox;
 			import mx.core.UIComponent;
+			import mx.events.FlexEvent;
 			import mx.events.ListEvent;
+			import mx.rpc.events.ResultEvent;
+			import mx.utils.ObjectUtil;
 			
-			[Bindable] private var comboProvider:Array = 
+			import spark.events.IndexChangeEvent;
+					
+			
+			[Bindable] 
+			private var comboProvider:Array = 
 				[
 					{label:"Comissão", data:{tip:"Ocorre quando um existe algum segmento de código incorreto, ou seja, esse segmento foi implementado de uma maneira diferente do que foi especificado."}}, 
 					{label:"Inicialização", data:{tip:"Ocorre quando se tenta acessar uma variável que não foi inicializada."}}, 
@@ -31,9 +40,10 @@
 			public function showListTip(event:ListEvent):void 
 			{
 				hideListTip(event);
-				if (event.target.dataProvider[event.rowIndex].data.tip != undefined) 
+				//if (event.target.dataProvider[event.rowIndex].data.tip != undefined) 
+				if (event.target.dataProvider[event.rowIndex]._internal_Descricao != undefined) 
 				{
-					var tipText:String = event.target.dataProvider[event.rowIndex].data.tip;
+					var tipText:String = event.target.dataProvider[event.rowIndex]._internal_Descricao;
 					if (tipText.length>0)
 					{
 						var tipColor:uint = 0xD20000;
@@ -98,16 +108,34 @@
 				customTip = null;
 				}
 			}
+
+			protected function pnl_MotivoDefeito_creationCompleteHandler(event:FlexEvent):void
+			{
+				GetItemTaxonomia.token = wSCodeInspector.PegarItemsTaxonomia(questaoTaxonomiaId);
+			}
+			protected function GetItemTaxonomia_resultHandler(e:ResultEvent):void
+			{
+				defeitos = ArrayCollection(e.result);
+				cbResposta.dataProvider=defeitos;
+			}
+
+
+			protected function pnl_MotivoDefeito_mouseOverHandler(event:MouseEvent):void
+			{
+				GetItemTaxonomia.token = wSCodeInspector.PegarItemsTaxonomia(questaoTaxonomiaId);
+			}
+
 			]]>
 	</fx:Script>
 	
 	
 	<fx:Declarations>
-
+		<s:CallResponder id="GetItemTaxonomia"  result="GetItemTaxonomia_resultHandler(event)"/>
+		<wscodeinspector:WSCodeInspector id="wSCodeInspector" fault="Alert.show(event.fault.faultString + '\n' + event.fault.faultDetail)" showBusyCursor="true"/>
 	</fx:Declarations>
 	<fx:Script source="RespostaWindow_as.as"/>
 	
-	<s:Panel width="100%" height="100%" left="0" top="0">
+	<s:Panel width="100%" height="100%" left="0" top="0" id="pnl_MotivoDefeito" creationComplete="pnl_MotivoDefeito_creationCompleteHandler(event)" mouseOver="pnl_MotivoDefeito_mouseOverHandler(event)">
 		<s:Label text="Selecione o motivo do defeito:" fontSize="24" horizontalCenter="-1" top="0" color="#FFFFFF" fontWeight="bold"/>
 		<mx:ComboBox id="cbResposta"   			
 					horizontalCenter="0"
@@ -117,8 +145,9 @@
 					width="377" 
 					fontSize="18" 
 					selectedIndex="{selectedIndex}" 
-					color="#000000"
-					dataProvider="{comboProvider}"
+					color="#000000" 
+					
+					labelField="_internal_Nome" 
 					>
 		</mx:ComboBox>
 		<s:Button label="Cancelar" fontSize="26" id="btnCancelarMotivoErro" height="40" width="140" click="btnCancelarMotivoErro_clickHandler(event)" x="248" y="143"/>
