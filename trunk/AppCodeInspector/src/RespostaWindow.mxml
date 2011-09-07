@@ -119,12 +119,6 @@
 				cbResposta.dataProvider=defeitos;
 			}
 
-
-			protected function pnl_MotivoDefeito_mouseOverHandler(event:MouseEvent):void
-			{
-				GetItemTaxonomia.token = wSCodeInspector.PegarItemsTaxonomia(questaoTaxonomiaId);
-			}
-
 			]]>
 	</fx:Script>
 	
@@ -135,7 +129,7 @@
 	</fx:Declarations>
 	<fx:Script source="RespostaWindow_as.as"/>
 	
-	<s:Panel width="100%" height="100%" left="0" top="0" id="pnl_MotivoDefeito" creationComplete="pnl_MotivoDefeito_creationCompleteHandler(event)" mouseOver="pnl_MotivoDefeito_mouseOverHandler(event)">
+	<s:Panel width="100%" height="100%" left="0" top="0" id="pnl_MotivoDefeito" creationComplete="pnl_MotivoDefeito_creationCompleteHandler(event)">
 		<s:Label text="Selecione o motivo do defeito:" fontSize="24" horizontalCenter="-1" top="0" color="#FFFFFF" fontWeight="bold"/>
 		<mx:ComboBox id="cbResposta"   			
 					horizontalCenter="0"
