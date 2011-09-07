@@ -47,11 +47,8 @@ public var taxonomias:ArrayCollection;
 
 public static var nivelDificuldade:int;
 public static var taxonomia_Id:int;
-
 public static var respostas:ArrayCollection = new ArrayCollection();
-
 public static var respostaIndexAtual:int = 0;
-
 public static var selection:TextRange;
 
 public function onLoad():void
@@ -85,7 +82,7 @@ public function onLoad():void
 	
 	xml = new XMLLoader();
 	xml.LoadWS(xmlPerguntasWS);
-	//xml.Load("Arquivos/perguntas.xml");
+
 	xml.addEventListener("XML_Loaded", xmlDone);
 	xml.addEventListener("XML_IOError", error);
 	xml.addEventListener("XML_SecurityError", error);
@@ -149,13 +146,13 @@ protected function GetTrechosQuestao_resultHandler(e:ResultEvent):void
 	questaoTrechosWS = ArrayCollection(e.result);
 }
 
-private function textEvent(e:TextEvent):void {
+private function textEvent(e:TextEvent):void 
+{	
+	PopUpManager.addPopUp(repostaWindow,this,true);
 	
-		PopUpManager.addPopUp(repostaWindow,this,true);
-		
-		if(respostas.length  != 0)
-			repostaWindow.cbResposta.selectedIndex = (Resposta)(respostas.getItemAt(parseInt(e.text)-1)).motivoErroId;
-		PopUpManager.centerPopUp(repostaWindow);
+	if(respostas.length  != 0)
+		repostaWindow.cbResposta.selectedIndex = (Resposta)(respostas.getItemAt(parseInt(e.text)-1)).motivoErroId;
+	PopUpManager.centerPopUp(repostaWindow);
 }
 
 protected function btnProximaPergunta_clickHandler(event:MouseEvent):void
@@ -187,6 +184,11 @@ protected function btnProximaPergunta_clickHandler(event:MouseEvent):void
 		{
 			respostaSelecionada = 0;
 			++perguntaNum;
+			
+			questaoTrechosWS.removeAll();
+			var q:QuestaoEntity = xmlPerguntasWS[perguntaNum] as QuestaoEntity;
+			GetTrechosQuestao.token = ws.GetTrechosDefeito(q.Q_ID);
+			
 			field.styleSheet = css.sheet;
 			field.htmlText = xml.perguntas[perguntaNum];
 		}

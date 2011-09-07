@@ -39,13 +39,11 @@
 				Alert.show("Aqui deveria ocorrer o rank");
 			}
 			
-
 			protected function button1_clickHandler(event:MouseEvent):void
 			{
 				nivelDificuldade =1;
 				this.currentState = "ResultadoFinal";
 			}
-
 
 			protected function button2_clickHandler(event:MouseEvent):void
 			{
@@ -53,19 +51,16 @@
 				this.currentState = "ResultadoFinal";
 			}
 
-
 			protected function button3_clickHandler(event:MouseEvent):void
 			{
 				nivelDificuldade =3;
 				this.currentState = "ResultadoFinal";
 			}
 
-
 			protected function btnVoltar_clickHandler(event:MouseEvent):void
 			{
 				this.currentState = "Dificuldade";
 			}
-
 
 			protected function lbt_Configurar_clickHandler(event:MouseEvent):void
 			{

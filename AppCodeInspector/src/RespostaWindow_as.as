@@ -20,12 +20,13 @@ protected function btnConfirmarMotivoErro_clickHandler(event:MouseEvent):void
 	
 	var _resposta:Resposta = new Resposta();
 	
-	if (AppCodeInspector.nivelDificuldade!= 1)
+	if (AppCodeInspector.nivelDificuldade!= 0)
 	{
 		_resposta.inicioErro= AppCodeInspector.selection.beginIndex;
 		_resposta.fimErro = AppCodeInspector.selection.endIndex;
-		AppCodeInspector.selection.htmlText = "<font color='#FF0000'><a href='event:"+AppCodeInspector.respostaIndexAtual+"'>" + AppCodeInspector.selection.text + "</a></font>";
+		//AppCodeInspector.selection.htmlText = "<font color='#FF0000'><a href='event:"+AppCodeInspector.respostaIndexAtual+"'>" + AppCodeInspector.selection.text + "</a></font>";
 	}
+	
 	_resposta.motivoErroId = selectedIndex;
 	_resposta.perguntaNumero = AppCodeInspector.perguntaNum; 
 	
