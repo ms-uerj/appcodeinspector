@@ -105,6 +105,8 @@
 		<s:CallResponder id="GetQuestoesResult"  result="GetQuestoesResultFacil_resultHandler(event)"/>
 		<s:CallResponder id="GetTaxonomia"  result="GetTaxonomia_resultHandler(event)"/>
 		<s:CallResponder id="GetTrechosQuestao"  result="GetTrechosQuestao_resultHandler(event)"/>
+		<s:CallResponder id="IniciarPartida"  result="IniciarPartida_resultHandler(event)"/>
+		<s:CallResponder id="SetQuestaoAcerto"  result="SetQuestaoAcerto_resultHandler(event)"/>
 		<s:CallResponder id="GetQuestoesResult2"  result="GetQuestoesResultIntermediario_resultHandler(event)"/>
 		<s:CallResponder id="GetQuestoesResult3"  result="GetQuestoesResultDificil_resultHandler(event)"/>
 		<s:CallResponder id="EncerraPartida" result="EncerrarPartidaResult_resultHandler(event)"/>		
