@@ -22,6 +22,7 @@ import mx.states.AddChild;
 import services.wscodeinspector.WSCodeInspector;
 
 import valueObjects.QuestaoEntity;
+import valueObjects.TrechoDefeitoEntity;
 
 private var xml:XMLLoader;
 private var css:CSS;
@@ -33,10 +34,13 @@ public  static var perguntaNum:int = 0;
 
 
 [Bindable]
-public var listRespostasSelecionadas:ArrayCollection = new ArrayCollection();
+public static var listRespostasSelecionadas:ArrayCollection = new ArrayCollection();
 
 [Bindable]
 public static var respostaSelecionada:int = 0;
+
+public var pontosTotal:int;
+public var partidaAtualId:int;
 
 protected var container:UIComponent;
 public var repostaWindow:RespostaWindow = new RespostaWindow();
@@ -54,14 +58,13 @@ public static var selection:TextRange;
 public function onLoad():void
 {
 	repostaWindow.questaoTaxonomiaId=taxonomia_Id;
-	
+	IniciarPartida.token = wSCodeInspector.IniciarPartida(nivelDificuldade,LoginUsuario);
+		
 	field = new TextArea();
-	
 	container = new UIComponent();
-	
 	addElement(container);
 	container.addChild(field);
-
+	
 	with (field) 
 	{
 		x = (stage.width/2) - 400;
@@ -131,10 +134,8 @@ private function allDone():void
 		
 		field.htmlText = q.Q_XML;
 		
-		//field.htmlText = xml.perguntas[perguntaNum];
-		
+		//field.htmlText = xml.perguntas[perguntaNum];	
 		var ws:services.wscodeinspector.WSCodeInspector = new WSCodeInspector();
-		
 		
 		GetTrechosQuestao.token = ws.GetTrechosDefeito(q.Q_ID);
 		field.addEventListener(TextEvent.LINK, textEvent);
@@ -144,6 +145,11 @@ private function allDone():void
 protected function GetTrechosQuestao_resultHandler(e:ResultEvent):void
 {
 	questaoTrechosWS = ArrayCollection(e.result);
+}
+
+protected function IniciarPartida_resultHandler(e:ResultEvent):void
+{
+	partidaAtualId = e.result as int;
 }
 
 private function textEvent(e:TextEvent):void 
@@ -157,28 +163,18 @@ private function textEvent(e:TextEvent):void
 
 protected function btnProximaPergunta_clickHandler(event:MouseEvent):void
 {
-	if(respostaSelecionada == 0)
+	if(listRespostasSelecionadas.length == 0)
 		Alert.show("Selecione o motivo do erro antes de prosseguir");
-	else if(questaoTrechosWS[perguntaNum]!=respostaSelecionada)
+	else if(questaoTrechosWS.length!=listRespostasSelecionadas.length)
 	{
 		xml.perguntas[perguntaNum]
-		Alert.show("")
+		Alert.show("Ainda faltam defeitos na questão.")
 	}
 	else
 	{
-		listRespostasSelecionadas.addItem("Pergunta Nº "+(perguntaNum+1) + " " + getRespostas(respostaSelecionada));
-		
-		if(xml.perguntas.length <= perguntaNum +1)
+		if(xmlPerguntasWS.length <= perguntaNum +1)
 		{	
-			removeElement(container);
 			
-			var respostasXML:String = respostaToXml(respostas);
-			
-			var ws:services.wscodeinspector.WSCodeInspector = new WSCodeInspector();
-			ws.addEventListener(ResultEvent.RESULT,EncerrarPartidaResult_resultHandler);
-			var id:int=0;
-			
-			ws.EncerrarPartida(id,id);
 		}
 		else
 		{
@@ -187,12 +183,45 @@ protected function btnProximaPergunta_clickHandler(event:MouseEvent):void
 			
 			questaoTrechosWS.removeAll();
 			var q:QuestaoEntity = xmlPerguntasWS[perguntaNum] as QuestaoEntity;
-			GetTrechosQuestao.token = ws.GetTrechosDefeito(q.Q_ID);
+			verificarRespostas();
 			
+			GetTrechosQuestao.token = wSCodeInspector.GetTrechosDefeito(q.Q_ID);		
+			pontosTotal =0;
 			field.styleSheet = css.sheet;
 			field.htmlText = xml.perguntas[perguntaNum];
 		}
+		
 	}
+}
+
+protected function verificarRespostas():void
+{
+	var q:QuestaoEntity = xmlPerguntasWS[perguntaNum] as QuestaoEntity;
+	for (var trechoObejct:Object in questaoTrechosWS)
+	{
+		var trechoQuestao:TrechoDefeitoEntity = trechoObejct as TrechoDefeitoEntity;
+		
+		for(var trechoRespostaObject:Object in listRespostasSelecionadas)
+		{
+			var trechoResposta:TrechoDefeitoEntity = trechoRespostaObject as TrechoDefeitoEntity;
+	
+			if((trechoQuestao._internal_Conteudo==trechoResposta._internal_Conteudo)&&(trechoQuestao._internal_IT_ID==trechoResposta._internal_IT_ID))
+			{
+				++pontosTotal;
+			}
+			else
+			{
+				Alert.show("Você errou, o trecho correto era:"+trechoQuestao.Conteudo+"Possuia o defeito: "+trechoQuestao.IT_ID.toString());
+			}
+		}
+	}
+	SetQuestaoAcerto.token = wSCodeInspector.setQuestaoAcerto(partidaAtualId,q.Q_ID,pontosTotal);
+}
+
+protected function SetQuestaoAcerto_resultHandler(e:ResultEvent):void
+{
+	if(e.result)
+		Alert.show("Questão não foi computada!");
 }
 
 protected function EncerrarPartidaResult_resultHandler(e:ResultEvent):void
