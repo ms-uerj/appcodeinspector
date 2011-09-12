@@ -34,6 +34,10 @@ namespace CIFacade.Facade
             return questoes.GetQuestoesRespostas(nivelDificuldade);
         }
 
+        public bool setQuestaoAcerto(int questao_id, int partidada_id, int pontos)
+        {
+            return new QuestaoDAO().setQuestaoAcerto(questao_id, partidada_id, pontos);
+        }
 
         public List<Questao> GetQuestoesList(int tax_id)
         {

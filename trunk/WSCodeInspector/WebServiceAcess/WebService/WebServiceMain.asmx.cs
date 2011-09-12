@@ -199,9 +199,9 @@ namespace WebServiceAcess.WebService
         }
 
         [WebMethod]
-        public void IniciarPartida(PartidaEntity partidaIniciada, string userLogin)
+        public int IniciarPartida(int partDificuldade,string userLogin)
         {
-            new PartidaFacade().iniciarPartida(partidaIniciada, userLogin);
+            return new PartidaFacade().iniciarPartida(partDificuldade,userLogin);
         }
 
         [WebMethod]
@@ -226,6 +226,12 @@ namespace WebServiceAcess.WebService
         public ItemTaxonomiaEntity GetTDResposta(int td_id)
         {
             return new TrechoDefeitoFacade().getTrechoDefeitoResposta(td_id);
+        }
+
+        [WebMethod]
+        public bool setQuestaoAcerto(int questao_id, int partidada_id, int pontos)
+        {
+            return new QuestaoFacade().setQuestaoAcerto(questao_id, partidada_id, pontos);
         }
     }
 }

@@ -11,19 +11,18 @@ namespace CIFacade.Facade
     public class PartidaFacade
     {
 
-        public void iniciarPartida(PartidaEntity partidaIniciada, string userLogin)
+        public int iniciarPartida(int partDificuldade,string userLogin)
         {
 
             #region [ Preenchimento do objeto ]
 
             Partida p = new Partida();
-            p.P_NIVEL_DIFICULDADE = partidaIniciada.P_NIVEL_DIFICULDADE;
-            p.P_DATA = partidaIniciada.P_DATA;
+            p.P_NIVEL_DIFICULDADE = partDificuldade;
             p.P_DATA = DateTime.Now;
 
             #endregion
 
-            new PartidaDAO().iniciarPartida(p, userLogin);
+            return new PartidaDAO().iniciarPartida(p, userLogin);
 
         }
 
