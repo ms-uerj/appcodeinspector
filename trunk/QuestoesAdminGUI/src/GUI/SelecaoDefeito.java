@@ -17,12 +17,14 @@ public class SelecaoDefeito extends javax.swing.JFrame
     String Defeito;
     ArrayOfTrechoDefeitoEntity TrechoList;
     
-    public SelecaoDefeito(ArrayOfTrechoDefeitoEntity arrayTd,TaxonomiaEntity tax, String defeito) 
+    public SelecaoDefeito(ArrayOfTrechoDefeitoEntity arrayTd,TaxonomiaEntity tax, String defeito,InserirQuestao parentFrame) 
     {
         initComponents();
         Defeito = defeito;
         Tax = tax;
         TrechoList=arrayTd;
+        insQuestFrame = parentFrame;
+        
         setComboxDefeitos();
     }
 
@@ -149,8 +151,10 @@ public class SelecaoDefeito extends javax.swing.JFrame
             trecho.setITID(itemTax.getID());
             
             TrechoList.getTrechoDefeitoEntity().add(trecho);
+            insQuestFrame.lst_DefeitosSelecionados.setListData(TrechoList.getTrechoDefeitoEntity().toArray());
             
             JOptionPane.showMessageDialog(this, "Defeito registrado com sucesso!");
+            
             this.setVisible(false);
         } else
             JOptionPane.showMessageDialog(this, "Por favor preencha todos os campos!");
