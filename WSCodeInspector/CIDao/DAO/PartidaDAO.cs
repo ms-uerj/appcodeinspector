@@ -17,6 +17,7 @@ namespace CIDao.DAO
         {
             try
             {
+
                 Usuario usuarioAtual = db.Usuarios.Single(u => u.U_LOGIN == userLogin);
                 usuarioAtual.Partidas.Add(partidaIniciada);               
                 db.SubmitChanges();

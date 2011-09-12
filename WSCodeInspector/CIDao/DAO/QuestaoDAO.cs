@@ -112,9 +112,12 @@ namespace CIDao.DAO
                 questEnList.Add(questEn);
             }
 
-
-
             return questEnList;
+        }
+
+        public void setTrechoQuestaoAcerto(int questaoId,int trechoDfeitoId)
+        {
+            
         }
 
         /// <summary>
