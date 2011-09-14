@@ -289,7 +289,8 @@
       <s:element name="EncerrarPartida">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="partidaEncerrada" type="tns:PartidaEntity" />
+            <s:element minOccurs="1" maxOccurs="1" name="partidaEncerrada_id" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="pontuacaoTotal" type="s:int" />
           </s:sequence>
         </s:complexType>
       </s:element>

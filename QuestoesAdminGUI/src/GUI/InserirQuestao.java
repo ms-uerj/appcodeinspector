@@ -5,13 +5,14 @@ import InspectorXWebserv.ArrayOfTrechoDefeitoEntity;
 import InspectorXWebserv.QuestaoEntity;
 import InspectorXWebserv.TaxonomiaEntity;
 import java.awt.Color;
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class InserirQuestao extends javax.swing.JFrame {
 
     public TaxonomiaEntity Tax;
     public ArrayOfTrechoDefeitoEntity trechoList = new ArrayOfTrechoDefeitoEntity();
+    
+    private final int QUESTAO_DIFICIL = 2;
 
     
     public InserirQuestao(TaxonomiaEntity tax) 
@@ -203,7 +204,7 @@ public class InserirQuestao extends javax.swing.JFrame {
 
 private void txa_QuestaoCorpoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txa_QuestaoCorpoMouseReleased
     
-    if(cbxDificuldade.getSelectedIndex()!=3 && trechoList.getTrechoDefeitoEntity().size()==1)
+    if(cbxDificuldade.getSelectedIndex() != QUESTAO_DIFICIL && trechoList.getTrechoDefeitoEntity().size()==1)
         JOptionPane.showMessageDialog(this, "Trecho com defeito já selecionado");
     
     if(!txa_QuestaoCorpo.getText().trim().isEmpty()&&tbt_SelecionarDefeito.isSelected())
