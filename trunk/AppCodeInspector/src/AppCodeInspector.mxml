@@ -116,7 +116,7 @@
 	<s:Panel title="Login" horizontalCenter="-1" verticalCenter="-4" includeIn="Configurar,Login" height="183" width.Configurar="338" height.Configurar="214" horizontalCenter.Configurar="-1" verticalCenter.Configurar="11" title.Configurar="Configuração">
 		<mx:Form width="232" height="150" label="Login" horizontalCenter="0" top="0" width.Configurar="316" height.Configurar="171" top.Configurar="0" horizontalCenter.Configurar="-1">
 			<mx:FormItem label="Usuário" required="true" includeIn="Login">
-				<s:TextInput id="txtUsuario" text="Vinicius"/>
+				<s:TextInput id="txtUsuario" text="hpotter"/>
 			</mx:FormItem>
 			<mx:FormItem label="Senha" required="true" includeIn="Login">
 				<s:TextInput id="txtSenha" displayAsPassword="true" text="123"/>

@@ -211,7 +211,8 @@ protected function verificarRespostas():void
 			}
 			else
 			{
-				Alert.show("Você errou, o trecho correto era:"+trechoQuestao.Conteudo+"Possuia o defeito: "+trechoQuestao.IT_ID.toString());
+				Alert.show("Ops! Você errou!\nO trecho correto era: "+trechoQuestao.Conteudo+".\nO defeito associado a este trecho era \""+trechoQuestao.IT_ID.toString()
+				+ "\" ("+ trechoQuestao._internal_Explicacao +").");
 			}
 		}
 	}
