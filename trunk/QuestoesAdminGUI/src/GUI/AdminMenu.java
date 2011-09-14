@@ -257,16 +257,16 @@ public class AdminMenu extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 797, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(154, 154, 154)
-                        .addComponent(lblTitle))
-                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, 797, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(pnlTaxonomia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(pnl_Questoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(pnl_Questoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(162, 162, 162)
+                        .addComponent(lblTitle)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -276,7 +276,7 @@ public class AdminMenu extends javax.swing.JFrame {
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(11, 11, 11)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -449,9 +449,6 @@ public static void main(String args[]) {
     private javax.swing.JPanel pnlTaxonomia;
     private javax.swing.JPanel pnl_Questoes;
     // End of variables declaration//GEN-END:variables
-
-
-   
 
     private static ArrayOfItemTaxonomiaEntity pegarItemsTaxonomia(int taxonomiaId) {
         InspectorXWebserv.WebServiceMain service = new InspectorXWebserv.WebServiceMain();
