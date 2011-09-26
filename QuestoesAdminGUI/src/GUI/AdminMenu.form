@@ -29,29 +29,23 @@
                       <Component id="jSeparator2" pref="901" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-<<<<<<< .mine
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jSeparator1" pref="901" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-=======
->>>>>>> .r144
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="pnlTaxonomia" min="-2" max="-2" attributes="1"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="pnl_Questoes" max="32767" attributes="0"/>
                   </Group>
-<<<<<<< .mine
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="217" max="-2" attributes="0"/>
                       <Component id="lblTitle" min="-2" max="-2" attributes="0"/>
                   </Group>
-=======
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="162" max="-2" attributes="0"/>
                       <Component id="lblTitle" min="-2" max="-2" attributes="0"/>
                   </Group>
->>>>>>> .r144
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
