@@ -269,22 +269,17 @@
       <s:element name="IniciarPartida">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="partidaIniciada" type="tns:PartidaEntity" />
+            <s:element minOccurs="1" maxOccurs="1" name="partDificuldade" type="s:int" />
             <s:element minOccurs="0" maxOccurs="1" name="userLogin" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:complexType name="PartidaEntity">
-        <s:sequence>
-          <s:element minOccurs="1" maxOccurs="1" name="P_ID" type="s:int" />
-          <s:element minOccurs="1" maxOccurs="1" name="U_ID" type="s:int" />
-          <s:element minOccurs="1" maxOccurs="1" name="P_DATA" type="s:dateTime" />
-          <s:element minOccurs="1" maxOccurs="1" name="P_NIVEL_DIFICULDADE" type="s:int" />
-          <s:element minOccurs="1" maxOccurs="1" name="P_PONTUACAO_TOTAL" type="s:int" />
-        </s:sequence>
-      </s:complexType>
       <s:element name="IniciarPartidaResponse">
-        <s:complexType />
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="IniciarPartidaResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
       </s:element>
       <s:element name="EncerrarPartida">
         <s:complexType>
@@ -337,6 +332,116 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="GetTDRespostaResult" type="tns:ItemTaxonomiaEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="setQuestaoAcerto">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="questao_id" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="partidada_id" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="pontos" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="setQuestaoAcertoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="setQuestaoAcertoResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getTiposArtefatos">
+        <s:complexType />
+      </s:element>
+      <s:element name="getTiposArtefatosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getTiposArtefatosResult" type="tns:ArrayOfTipoArtefatoEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfTipoArtefatoEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="TipoArtefatoEntity" nillable="true" type="tns:TipoArtefatoEntity" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TipoArtefatoEntity">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="TA_ID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="TA_DESCRICAO" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TA_NOME" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="setRealacaoTaxonomia">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="taxId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="tipoArtId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="setRealacaoTaxonomiaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="setRealacaoTaxonomiaResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getTrechosDefeitoList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="itemTaxonomiaId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getTrechosDefeitoListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getTrechosDefeitoListResult" type="tns:ArrayOfTrechoDefeitoEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getTipoArtefato">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="taxId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getTipoArtefatoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getTipoArtefatoResult" type="tns:TipoArtefatoEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetQuestoesByType">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="nivelDificuldade" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="tipoArtefatoId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetQuestoesByTypeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetQuestoesByTypeResult" type="tns:ArrayOfQuestaoEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTaxonomia">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="tipoArtefatoId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTaxonomiaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTaxonomiaResult" type="tns:TaxonomiaEntity" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -462,6 +567,48 @@
   <wsdl:message name="GetTDRespostaSoapOut">
     <wsdl:part name="parameters" element="tns:GetTDRespostaResponse" />
   </wsdl:message>
+  <wsdl:message name="setQuestaoAcertoSoapIn">
+    <wsdl:part name="parameters" element="tns:setQuestaoAcerto" />
+  </wsdl:message>
+  <wsdl:message name="setQuestaoAcertoSoapOut">
+    <wsdl:part name="parameters" element="tns:setQuestaoAcertoResponse" />
+  </wsdl:message>
+  <wsdl:message name="getTiposArtefatosSoapIn">
+    <wsdl:part name="parameters" element="tns:getTiposArtefatos" />
+  </wsdl:message>
+  <wsdl:message name="getTiposArtefatosSoapOut">
+    <wsdl:part name="parameters" element="tns:getTiposArtefatosResponse" />
+  </wsdl:message>
+  <wsdl:message name="setRealacaoTaxonomiaSoapIn">
+    <wsdl:part name="parameters" element="tns:setRealacaoTaxonomia" />
+  </wsdl:message>
+  <wsdl:message name="setRealacaoTaxonomiaSoapOut">
+    <wsdl:part name="parameters" element="tns:setRealacaoTaxonomiaResponse" />
+  </wsdl:message>
+  <wsdl:message name="getTrechosDefeitoListSoapIn">
+    <wsdl:part name="parameters" element="tns:getTrechosDefeitoList" />
+  </wsdl:message>
+  <wsdl:message name="getTrechosDefeitoListSoapOut">
+    <wsdl:part name="parameters" element="tns:getTrechosDefeitoListResponse" />
+  </wsdl:message>
+  <wsdl:message name="getTipoArtefatoSoapIn">
+    <wsdl:part name="parameters" element="tns:getTipoArtefato" />
+  </wsdl:message>
+  <wsdl:message name="getTipoArtefatoSoapOut">
+    <wsdl:part name="parameters" element="tns:getTipoArtefatoResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetQuestoesByTypeSoapIn">
+    <wsdl:part name="parameters" element="tns:GetQuestoesByType" />
+  </wsdl:message>
+  <wsdl:message name="GetQuestoesByTypeSoapOut">
+    <wsdl:part name="parameters" element="tns:GetQuestoesByTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTaxonomiaSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTaxonomia" />
+  </wsdl:message>
+  <wsdl:message name="GetTaxonomiaSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTaxonomiaResponse" />
+  </wsdl:message>
   <wsdl:portType name="WebServiceMainSoap">
     <wsdl:operation name="AutenticarUsuario">
       <wsdl:input message="tns:AutenticarUsuarioSoapIn" />
@@ -542,6 +689,34 @@
     <wsdl:operation name="GetTDResposta">
       <wsdl:input message="tns:GetTDRespostaSoapIn" />
       <wsdl:output message="tns:GetTDRespostaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="setQuestaoAcerto">
+      <wsdl:input message="tns:setQuestaoAcertoSoapIn" />
+      <wsdl:output message="tns:setQuestaoAcertoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getTiposArtefatos">
+      <wsdl:input message="tns:getTiposArtefatosSoapIn" />
+      <wsdl:output message="tns:getTiposArtefatosSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="setRealacaoTaxonomia">
+      <wsdl:input message="tns:setRealacaoTaxonomiaSoapIn" />
+      <wsdl:output message="tns:setRealacaoTaxonomiaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getTrechosDefeitoList">
+      <wsdl:input message="tns:getTrechosDefeitoListSoapIn" />
+      <wsdl:output message="tns:getTrechosDefeitoListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getTipoArtefato">
+      <wsdl:input message="tns:getTipoArtefatoSoapIn" />
+      <wsdl:output message="tns:getTipoArtefatoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetQuestoesByType">
+      <wsdl:input message="tns:GetQuestoesByTypeSoapIn" />
+      <wsdl:output message="tns:GetQuestoesByTypeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTaxonomia">
+      <wsdl:input message="tns:GetTaxonomiaSoapIn" />
+      <wsdl:output message="tns:GetTaxonomiaSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WebServiceMainSoap" type="tns:WebServiceMainSoap">
@@ -726,6 +901,69 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="setQuestaoAcerto">
+      <soap:operation soapAction="http://tempuri.org/setQuestaoAcerto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getTiposArtefatos">
+      <soap:operation soapAction="http://tempuri.org/getTiposArtefatos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setRealacaoTaxonomia">
+      <soap:operation soapAction="http://tempuri.org/setRealacaoTaxonomia" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getTrechosDefeitoList">
+      <soap:operation soapAction="http://tempuri.org/getTrechosDefeitoList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getTipoArtefato">
+      <soap:operation soapAction="http://tempuri.org/getTipoArtefato" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetQuestoesByType">
+      <soap:operation soapAction="http://tempuri.org/GetQuestoesByType" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTaxonomia">
+      <soap:operation soapAction="http://tempuri.org/GetTaxonomia" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="WebServiceMainSoap12" type="tns:WebServiceMainSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -902,6 +1140,69 @@
     </wsdl:operation>
     <wsdl:operation name="GetTDResposta">
       <soap12:operation soapAction="http://tempuri.org/GetTDResposta" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setQuestaoAcerto">
+      <soap12:operation soapAction="http://tempuri.org/setQuestaoAcerto" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getTiposArtefatos">
+      <soap12:operation soapAction="http://tempuri.org/getTiposArtefatos" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setRealacaoTaxonomia">
+      <soap12:operation soapAction="http://tempuri.org/setRealacaoTaxonomia" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getTrechosDefeitoList">
+      <soap12:operation soapAction="http://tempuri.org/getTrechosDefeitoList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getTipoArtefato">
+      <soap12:operation soapAction="http://tempuri.org/getTipoArtefato" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetQuestoesByType">
+      <soap12:operation soapAction="http://tempuri.org/GetQuestoesByType" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTaxonomia">
+      <soap12:operation soapAction="http://tempuri.org/GetTaxonomia" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
