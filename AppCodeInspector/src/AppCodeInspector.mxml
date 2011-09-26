@@ -12,6 +12,7 @@
 			import spark.events.IndexChangeEvent;
 			
 			import valueObjects.TaxonomiaEntity;
+			import valueObjects.TipoArtefatoEntity;
 			[Bindable]
 			public var LoginUsuario:String="Anônimo";
 			
@@ -64,21 +65,21 @@
 
 			protected function lbt_Configurar_clickHandler(event:MouseEvent):void
 			{
-				GetTaxonomia.token = wSCodeInspector.PegarTaxonomias();
+				GetTiposArtefato.token = wSCodeInspector.getTiposArtefatos();
 				this.currentState = "Configurar";
 			}
 
-			protected function GetTaxonomia_resultHandler(e:ResultEvent):void
+			protected function GetTiposArtefato_resultHandler(e:ResultEvent):void
 			{
-				taxonomias = ArrayCollection(e.result);
-				cbx_Taxonomia.dataProvider=taxonomias;
+				tiposArtefato = ArrayCollection(e.result);
+				cbx_TipoQuestao.dataProvider=tiposArtefato;
 			}
 
 			protected function btn_Voltar_clickHandler(event:MouseEvent):void
 			{
-				var t:TaxonomiaEntity;
-			    t =cbx_Taxonomia.selectedItem as TaxonomiaEntity;
-				taxonomia_Id=t.ID;
+				var t:TipoArtefatoEntity;
+			    t = cbx_TipoQuestao.selectedItem as TipoArtefatoEntity;
+				tipoArtefato_Id=t._internal_TA_ID;
 				this.currentState = "Login";
 			}
 
@@ -104,6 +105,7 @@
 		<wscodeinspector:WSCodeInspector id="wSCodeInspector" fault="Alert.show(event.fault.faultString + '\n' + event.fault.faultDetail)" showBusyCursor="true"/>
 		<s:CallResponder id="GetQuestoesResult"  result="GetQuestoesResultFacil_resultHandler(event)"/>
 		<s:CallResponder id="GetTaxonomia"  result="GetTaxonomia_resultHandler(event)"/>
+		<s:CallResponder id="GetTiposArtefato"  result="GetTiposArtefato_resultHandler(event)"/>
 		<s:CallResponder id="GetTrechosQuestao"  result="GetTrechosQuestao_resultHandler(event)"/>
 		<s:CallResponder id="IniciarPartida"  result="IniciarPartida_resultHandler(event)"/>
 		<s:CallResponder id="SetQuestaoAcerto"  result="SetQuestaoAcerto_resultHandler(event)"/>
@@ -124,10 +126,10 @@
 			<mx:FormItem width="193" horizontalAlign="right" includeIn="Login">
 				<s:Button label="Logar" id="_btnLogar" click="_btnLogar_clickHandler(event)"/>
 			</mx:FormItem>
-			<mx:FormItem includeIn="Configurar" label="Utilizar Taxonomia :">
-				<s:ComboBox id="cbx_Taxonomia" labelField="_internal_Nome" width="169"/>
+			<mx:FormItem includeIn="Configurar" label="Tipos de artefato:">
+				<s:ComboBox id="cbx_TipoQuestao" labelField="_internal_Nome" width="169"/>
 			</mx:FormItem>
-			<s:Button label="Button" height="30" id="btn_Voltar" includeIn="Configurar" click="btn_Voltar_clickHandler(event)"/>
+			<s:Button label="Confirmar" height="30" id="btn_Voltar" includeIn="Configurar" click="btn_Voltar_clickHandler(event)"/>
 			<mx:LinkButton label="Configurar" id="lbt_Configurar" includeIn="Login" click="lbt_Configurar_clickHandler(event)"/>
 		</mx:Form>
 	</s:Panel>

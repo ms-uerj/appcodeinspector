@@ -22,6 +22,7 @@ import mx.states.AddChild;
 import services.wscodeinspector.WSCodeInspector;
 
 import valueObjects.QuestaoEntity;
+import valueObjects.TaxonomiaEntity;
 import valueObjects.TrechoDefeitoEntity;
 
 private var xml:XMLLoader;
@@ -49,17 +50,23 @@ public var xmlPerguntasWS:ArrayCollection;
 public var questaoTrechosWS:ArrayCollection;
 public var taxonomias:ArrayCollection;
 
+public var tiposArtefato:ArrayCollection;
+
 public static var nivelDificuldade:int;
+
+public static var tipoArtefato_Id:int;
 public static var taxonomia_Id:int;
+
+
 public static var respostas:ArrayCollection = new ArrayCollection();
 public static var respostaIndexAtual:int = 0;
 public static var selection:TextRange;
 
 public function onLoad():void
 {
-	repostaWindow.questaoTaxonomiaId=taxonomia_Id;
+	GetTaxonomia.token = wSCodeInspector.GetTaxonomia(tipoArtefato_Id);
 	IniciarPartida.token = wSCodeInspector.IniciarPartida(nivelDificuldade,LoginUsuario);
-		
+	
 	field = new TextArea();
 	container = new UIComponent();
 	addElement(container);
@@ -147,6 +154,12 @@ protected function GetTrechosQuestao_resultHandler(e:ResultEvent):void
 	questaoTrechosWS = ArrayCollection(e.result);
 }
 
+protected function GetTaxonomia_resultHandler(e:ResultEvent):void
+{
+	var t:TaxonomiaEntity = e.result as TaxonomiaEntity;
+	repostaWindow.questaoTaxonomiaId=taxonomia_Id;
+}
+
 protected function IniciarPartida_resultHandler(e:ResultEvent):void
 {
 	partidaAtualId = e.result as int;
@@ -173,8 +186,8 @@ protected function btnProximaPergunta_clickHandler(event:MouseEvent):void
 	else
 	{
 		if(xmlPerguntasWS.length <= perguntaNum +1)
-		{	
-			
+		{
+				
 		}
 		else
 		{
