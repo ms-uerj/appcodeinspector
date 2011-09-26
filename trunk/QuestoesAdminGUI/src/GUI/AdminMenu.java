@@ -270,26 +270,19 @@ public class AdminMenu extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, 901, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-<<<<<<< .mine
                         .addContainerGap()
                         .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 901, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-=======
->>>>>>> .r144
                         .addContainerGap()
                         .addComponent(pnlTaxonomia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-<<<<<<< .mine
                         .addComponent(pnl_Questoes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(217, 217, 217)
-                        .addComponent(lblTitle)))
-=======
-                        .addComponent(pnl_Questoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(lblTitle))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(162, 162, 162)
                         .addComponent(lblTitle)))
->>>>>>> .r144
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -492,10 +485,7 @@ public static void main(String args[]) {
     private javax.swing.JPanel pnl_Questoes;
     // End of variables declaration//GEN-END:variables
 
-<<<<<<< .mine
 
-=======
->>>>>>> .r144
     private static ArrayOfItemTaxonomiaEntity pegarItemsTaxonomia(int taxonomiaId) {
         InspectorXWebserv.WebServiceMain service = new InspectorXWebserv.WebServiceMain();
         InspectorXWebserv.WebServiceMainSoap port = service.getWebServiceMainSoap12();
