@@ -22,6 +22,7 @@ public class SelecaoDefeito extends javax.swing.JFrame
         initComponents();
         Defeito = defeito;
         Tax = tax;
+        txf_Taxonomia.setText(tax.getNome());
         TrechoList=arrayTd;
         insQuestFrame = parentFrame;
         
