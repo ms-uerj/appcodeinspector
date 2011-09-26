@@ -63,6 +63,39 @@ namespace CIDao.DAO
             return questoesEn;
         }
 
+        public List<QuestaoEntity> GetQuestoesByType(int nivelDificuldade, int tipoArtefatoId)
+        {
+            var questoes = (from q in db.Questaos
+                            from it in db.ItemTaxonomias
+                            from td in db.TrechoDefeitos
+                            from qtd in db.Questao_TrechoDefeitos
+                            from t in db.Taxonomias
+                            from tat in db.TipoArtefato_Taxonomias
+                            where tat.TA_ID == tipoArtefatoId
+                            && tat.TA_T_ID == t.T_ID
+                            && it.T_ID == t.T_ID
+                            && it.IT_ID == td.IT_ID
+                            && td.D_ID == qtd.TD_id
+                            && q.Q_ID == qtd.Q_id
+                            && q.Q_NIVEL_DIFICULDADE == nivelDificuldade
+                            select q).Distinct();
+
+            List<QuestaoEntity> questoesEn = new List<QuestaoEntity>();
+            List<Questao> questaL = questoes.ToList();
+
+            foreach (Questao item in questoes)
+            {
+                QuestaoEntity qe = new QuestaoEntity();
+                qe.Q_ID = item.Q_ID;
+                qe.Q_Nivel_Dificuldade = item.Q_NIVEL_DIFICULDADE;
+                qe.Q_XML = item.Q_XML;
+                qe.Q_nome = item.Q_Nome;
+                questoesEn.Add(qe);
+            }
+
+            return questoesEn;
+        }
+
         //Depricated
         public List<int?> GetQuestoesRespostas(int nivelDificuldade)
         {
@@ -129,15 +162,18 @@ namespace CIDao.DAO
         {
             try
             {
-                
+
+                Questao questao = new Questao();
+
+                questao.Q_ID = novaQuestao.Q_ID;
+                questao.Q_NIVEL_DIFICULDADE = novaQuestao.Q_Nivel_Dificuldade;
+                questao.Q_XML = novaQuestao.Q_XML;
+                questao.Q_Nome = novaQuestao.Q_nome;
 
                 foreach (TrechoDefeitoEntity tde in tdList)
                 {
-                    Questao questao = new Questao();
-                    questao.Q_ID = novaQuestao.Q_ID;
-                    questao.Q_NIVEL_DIFICULDADE = novaQuestao.Q_Nivel_Dificuldade;
-                    questao.Q_XML = novaQuestao.Q_XML;
-                    questao.Q_Nome = novaQuestao.Q_nome;
+                    
+                    
 
                     Questao_TrechoDefeito q_td = new Questao_TrechoDefeito();
                     q_td.Questao = questao;

@@ -46,6 +46,7 @@
     <Compile Include="DAO\PartidaDAO.cs" />
     <Compile Include="DAO\QuestaoDAO.cs" />
     <Compile Include="DAO\TaxonomiaDao.cs" />
+    <Compile Include="DAO\TipoArtefatoDao.cs" />
     <Compile Include="DAO\TrechoDefeitoDAO.cs" />
     <Compile Include="DAO\UsuarioDAO.cs" />
     <Compile Include="Domain\ItemTaxonomiaEntity.cs" />
@@ -53,6 +54,7 @@
     <Compile Include="Domain\QuestaoEntity.cs" />
     <Compile Include="Domain\Questao_TrechoDefeitoEntity.cs" />
     <Compile Include="Domain\TaxonomiaEntity.cs" />
+    <Compile Include="Domain\TipoArtefatoEntity.cs" />
     <Compile Include="Domain\TrechoDefeitoEntity.cs" />
     <Compile Include="InspectorXDB.designer.cs">
       <AutoGen>True</AutoGen>

@@ -55,6 +55,29 @@ namespace CIDao.DAO
             return iteResposta;
         }
 
+        public List<TrechoDefeitoEntity> getTrechosDefeitoList(int itemTaxonomiaId)
+        {
+            var trechosDefeito = (from td in db.TrechoDefeitos
+                            from it in db.ItemTaxonomias
+                            where td.IT_ID == it.IT_ID
+                            && it.IT_ID == itemTaxonomiaId
+                            select td);
+
+            TrechoDefeitoEntity tde = new TrechoDefeitoEntity();
+
+            List<TrechoDefeitoEntity> tdeList = new List<TrechoDefeitoEntity>();
+            foreach (TrechoDefeito td in trechosDefeito)
+            {
+                tde.Conteudo= td.D_Conteudo;
+                tde.D_ID = td.D_ID;
+                tde.Explicacao = td.D_Explicacao;
+                tde.IT_ID= td.IT_ID;
+
+                tdeList.Add(tde);
+            }
+            return tdeList;
+        }
+
         public bool AdicionarTrechoDefeito(Questao questaoAlvo, TrechoDefeito novoTrechoDefeito)
         {
             try
