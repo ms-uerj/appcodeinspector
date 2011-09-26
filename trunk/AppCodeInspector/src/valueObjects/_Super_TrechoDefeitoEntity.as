@@ -43,7 +43,7 @@ public class _Super_TrechoDefeitoEntity extends flash.events.EventDispatcher imp
 	public var _internal_Explicacao : String;
 	public var _internal_Conteudo : String;
 
-    private static var emptyArray:Array = new Array();
+	public static var emptyArray:Array = new Array();
 
 
     /**

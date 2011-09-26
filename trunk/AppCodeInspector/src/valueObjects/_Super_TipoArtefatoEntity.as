@@ -1,6 +1,6 @@
 /**
  * This is a generated class and is not intended for modification.  To customize behavior
- * of this value object you may modify the generated sub-class of this class - ItemTaxonomiaEntity.as.
+ * of this value object you may modify the generated sub-class of this class - TipoArtefatoEntity.as.
  */
 
 package valueObjects
@@ -23,7 +23,7 @@ import com.adobe.fiber.valueobjects.AvailablePropertyIterator;
 use namespace model_internal;
 
 [ExcludeClass]
-public class _Super_ItemTaxonomiaEntity extends flash.events.EventDispatcher implements com.adobe.fiber.valueobjects.IValueObject
+public class _Super_TipoArtefatoEntity extends flash.events.EventDispatcher implements com.adobe.fiber.valueobjects.IValueObject
 {
     model_internal static function initRemoteClassAliasSingle(cz:Class) : void
     {
@@ -33,15 +33,14 @@ public class _Super_ItemTaxonomiaEntity extends flash.events.EventDispatcher imp
     {
     }
 
-    model_internal var _dminternal_model : _ItemTaxonomiaEntityEntityMetadata;
+    model_internal var _dminternal_model : _TipoArtefatoEntityEntityMetadata;
 
     /**
      * properties
      */
-	public var _internal_ID : int;
-	public var _internal_T_ID : int;
-	public var _internal_Nome : String;
-	public var _internal_Descricao : String;
+	public var _internal_TA_ID : int;
+	public var _internal_TA_DESCRICAO : String;
+	public var _internal_TA_NOME : String;
 
     private static var emptyArray:Array = new Array();
 
@@ -53,13 +52,13 @@ public class _Super_ItemTaxonomiaEntity extends flash.events.EventDispatcher imp
 
     model_internal var _changeWatcherArray:Array = new Array();
 
-    public function _Super_ItemTaxonomiaEntity()
+    public function _Super_TipoArtefatoEntity()
     {
-        _model = new _ItemTaxonomiaEntityEntityMetadata(this);
+        _model = new _TipoArtefatoEntityEntityMetadata(this);
 
         // Bind to own data properties for cache invalidation triggering
-        model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "Nome", model_internal::setterListenerNome));
-        model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "Descricao", model_internal::setterListenerDescricao));
+        model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "TA_DESCRICAO", model_internal::setterListenerTA_DESCRICAO));
+        model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "TA_NOME", model_internal::setterListenerTA_NOME));
 
     }
 
@@ -68,70 +67,54 @@ public class _Super_ItemTaxonomiaEntity extends flash.events.EventDispatcher imp
      */
 
     [Bindable(event="propertyChange")]
-    public function get ID() : int
+    public function get TA_ID() : int
     {
-        return _internal_ID;
+        return _internal_TA_ID;
     }
 
     [Bindable(event="propertyChange")]
-    public function get T_ID() : int
+    public function get TA_DESCRICAO() : String
     {
-        return _internal_T_ID;
+        return _internal_TA_DESCRICAO;
     }
 
     [Bindable(event="propertyChange")]
-    public function get Nome() : String
+    public function get TA_NOME() : String
     {
-        return _internal_Nome;
-    }
-
-    [Bindable(event="propertyChange")]
-    public function get Descricao() : String
-    {
-        return _internal_Descricao;
+        return _internal_TA_NOME;
     }
 
     /**
      * data property setters
      */
 
-    public function set ID(value:int) : void
+    public function set TA_ID(value:int) : void
     {
-        var oldValue:int = _internal_ID;
+        var oldValue:int = _internal_TA_ID;
         if (oldValue !== value)
         {
-            _internal_ID = value;
-            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "ID", oldValue, _internal_ID));
+            _internal_TA_ID = value;
+            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "TA_ID", oldValue, _internal_TA_ID));
         }
     }
 
-    public function set T_ID(value:int) : void
+    public function set TA_DESCRICAO(value:String) : void
     {
-        var oldValue:int = _internal_T_ID;
+        var oldValue:String = _internal_TA_DESCRICAO;
         if (oldValue !== value)
         {
-            _internal_T_ID = value;
-            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "T_ID", oldValue, _internal_T_ID));
+            _internal_TA_DESCRICAO = value;
+            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "TA_DESCRICAO", oldValue, _internal_TA_DESCRICAO));
         }
     }
 
-    public function set Nome(value:String) : void
+    public function set TA_NOME(value:String) : void
     {
-        var oldValue:String = _internal_Nome;
+        var oldValue:String = _internal_TA_NOME;
         if (oldValue !== value)
         {
-            _internal_Nome = value;
-            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "Nome", oldValue, _internal_Nome));
-        }
-    }
-
-    public function set Descricao(value:String) : void
-    {
-        var oldValue:String = _internal_Descricao;
-        if (oldValue !== value)
-        {
-            _internal_Descricao = value;
-            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "Descricao", oldValue, _internal_Descricao));
+            _internal_TA_NOME = value;
+            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "TA_NOME", oldValue, _internal_TA_NOME));
         }
     }
 
@@ -147,14 +130,14 @@ public class _Super_ItemTaxonomiaEntity extends flash.events.EventDispatcher imp
      *  - the validity of the property (and the containing entity) if the given data property is required.
      */
 
-    model_internal function setterListenerNome(value:flash.events.Event):void
+    model_internal function setterListenerTA_DESCRICAO(value:flash.events.Event):void
     {
-        _model.invalidateDependentOnNome();
+        _model.invalidateDependentOnTA_DESCRICAO();
     }
 
-    model_internal function setterListenerDescricao(value:flash.events.Event):void
+    model_internal function setterListenerTA_NOME(value:flash.events.Event):void
     {
-        _model.invalidateDependentOnDescricao();
+        _model.invalidateDependentOnTA_NOME();
     }
 
 
@@ -178,15 +161,15 @@ public class _Super_ItemTaxonomiaEntity extends flash.events.EventDispatcher imp
         var validationFailureMessages:Array = new Array();
 
         var propertyValidity:Boolean = true;
-        if (!_model.NomeIsValid)
+        if (!_model.TA_DESCRICAOIsValid)
         {
             propertyValidity = false;
-            com.adobe.fiber.util.FiberUtils.arrayAdd(validationFailureMessages, _model.model_internal::_NomeValidationFailureMessages);
+            com.adobe.fiber.util.FiberUtils.arrayAdd(validationFailureMessages, _model.model_internal::_TA_DESCRICAOValidationFailureMessages);
         }
-        if (!_model.DescricaoIsValid)
+        if (!_model.TA_NOMEIsValid)
         {
             propertyValidity = false;
-            com.adobe.fiber.util.FiberUtils.arrayAdd(validationFailureMessages, _model.model_internal::_DescricaoValidationFailureMessages);
+            com.adobe.fiber.util.FiberUtils.arrayAdd(validationFailureMessages, _model.model_internal::_TA_NOMEValidationFailureMessages);
         }
 
         model_internal::_cacheInitialized_isValid = true;
@@ -215,14 +198,14 @@ public class _Super_ItemTaxonomiaEntity extends flash.events.EventDispatcher imp
 
     [Transient]
     [Bindable(event="propertyChange")]
-    public function get _model() : _ItemTaxonomiaEntityEntityMetadata
+    public function get _model() : _TipoArtefatoEntityEntityMetadata
     {
         return model_internal::_dminternal_model;
     }
 
-    public function set _model(value : _ItemTaxonomiaEntityEntityMetadata) : void
+    public function set _model(value : _TipoArtefatoEntityEntityMetadata) : void
     {
-        var oldValue : _ItemTaxonomiaEntityEntityMetadata = model_internal::_dminternal_model;
+        var oldValue : _TipoArtefatoEntityEntityMetadata = model_internal::_dminternal_model;
         if (oldValue !== value)
         {
             model_internal::_dminternal_model = value;
@@ -267,56 +250,56 @@ public class _Super_ItemTaxonomiaEntity extends flash.events.EventDispatcher imp
         }
     }
 
-    model_internal var _doValidationCacheOfNome : Array = null;
-    model_internal var _doValidationLastValOfNome : String;
+    model_internal var _doValidationCacheOfTA_DESCRICAO : Array = null;
+    model_internal var _doValidationLastValOfTA_DESCRICAO : String;
 
-    model_internal function _doValidationForNome(valueIn:Object):Array
+    model_internal function _doValidationForTA_DESCRICAO(valueIn:Object):Array
     {
         var value : String = valueIn as String;
 
-        if (model_internal::_doValidationCacheOfNome != null && model_internal::_doValidationLastValOfNome == value)
-           return model_internal::_doValidationCacheOfNome ;
+        if (model_internal::_doValidationCacheOfTA_DESCRICAO != null && model_internal::_doValidationLastValOfTA_DESCRICAO == value)
+           return model_internal::_doValidationCacheOfTA_DESCRICAO ;
 
-        _model.model_internal::_NomeIsValidCacheInitialized = true;
+        _model.model_internal::_TA_DESCRICAOIsValidCacheInitialized = true;
         var validationFailures:Array = new Array();
         var errorMessage:String;
         var failure:Boolean;
 
         var valRes:ValidationResult;
-        if (_model.isNomeAvailable && _internal_Nome == null)
+        if (_model.isTA_DESCRICAOAvailable && _internal_TA_DESCRICAO == null)
         {
-            validationFailures.push(new ValidationResult(true, "", "", "Nome is required"));
+            validationFailures.push(new ValidationResult(true, "", "", "TA_DESCRICAO is required"));
         }
 
-        model_internal::_doValidationCacheOfNome = validationFailures;
-        model_internal::_doValidationLastValOfNome = value;
+        model_internal::_doValidationCacheOfTA_DESCRICAO = validationFailures;
+        model_internal::_doValidationLastValOfTA_DESCRICAO = value;
 
         return validationFailures;
     }
     
-    model_internal var _doValidationCacheOfDescricao : Array = null;
-    model_internal var _doValidationLastValOfDescricao : String;
+    model_internal var _doValidationCacheOfTA_NOME : Array = null;
+    model_internal var _doValidationLastValOfTA_NOME : String;
 
-    model_internal function _doValidationForDescricao(valueIn:Object):Array
+    model_internal function _doValidationForTA_NOME(valueIn:Object):Array
     {
         var value : String = valueIn as String;
 
-        if (model_internal::_doValidationCacheOfDescricao != null && model_internal::_doValidationLastValOfDescricao == value)
-           return model_internal::_doValidationCacheOfDescricao ;
+        if (model_internal::_doValidationCacheOfTA_NOME != null && model_internal::_doValidationLastValOfTA_NOME == value)
+           return model_internal::_doValidationCacheOfTA_NOME ;
 
-        _model.model_internal::_DescricaoIsValidCacheInitialized = true;
+        _model.model_internal::_TA_NOMEIsValidCacheInitialized = true;
         var validationFailures:Array = new Array();
         var errorMessage:String;
         var failure:Boolean;
 
         var valRes:ValidationResult;
-        if (_model.isDescricaoAvailable && _internal_Descricao == null)
+        if (_model.isTA_NOMEAvailable && _internal_TA_NOME == null)
         {
-            validationFailures.push(new ValidationResult(true, "", "", "Descricao is required"));
+            validationFailures.push(new ValidationResult(true, "", "", "TA_NOME is required"));
         }
 
-        model_internal::_doValidationCacheOfDescricao = validationFailures;
-        model_internal::_doValidationLastValOfDescricao = value;
+        model_internal::_doValidationCacheOfTA_NOME = validationFailures;
+        model_internal::_doValidationLastValOfTA_NOME = value;
 
         return validationFailures;
     }
