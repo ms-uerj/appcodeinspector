@@ -1,10 +1,12 @@
 package GUI;
 
 import InspectorXWebserv.ArrayOfItemTaxonomiaEntity;
-import InspectorXWebserv.InserirTaxonomia;
+import InspectorXWebserv.ArrayOfTipoArtefatoEntity;
 import InspectorXWebserv.ItemTaxonomiaEntity;
 import InspectorXWebserv.TaxonomiaEntity;
+import InspectorXWebserv.TipoArtefatoEntity;
 import java.util.List;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 public class AdicionarTaxonomia extends javax.swing.JFrame 
@@ -21,21 +23,33 @@ public class AdicionarTaxonomia extends javax.swing.JFrame
     public AdicionarTaxonomia(AdminMenu parentframe) 
     {
         initComponents();
+        
         Parentframe=parentframe;
         Parentframe.btnDeletarTaxonomia.setEnabled(false);
         Parentframe.btnInserirTaxonomia.setEnabled(false);
         Parentframe.btn_editarTaxonomia.setEnabled(false);
+        setTipoArtefatoItemsCbx();
     }
     
-    public AdicionarTaxonomia(TaxonomiaEntity tax) 
+    public AdicionarTaxonomia(AdminMenu parentframe,TaxonomiaEntity tax) 
     {
         initComponents();
+        
         Tax=tax;
         txf_taxonomiaNome.setText(tax.getNome());
-        lbl_Nome.setEnabled(false);
+        lbl_TaxNome.setEnabled(false);
         txf_taxonomiaNome.setEnabled(false);
         btn_CriarTaxonomia.setEnabled(false);
+        
+        Parentframe=parentframe;
+        Parentframe.btnDeletarTaxonomia.setEnabled(false);
+        Parentframe.btnInserirTaxonomia.setEnabled(false);
+        Parentframe.btn_editarTaxonomia.setEnabled(false);
+        
+        
         setItemsList();
+        setTipoArtefatoItemsCbx();
+        getTipoArtefato(tax.getID());
     }
 
 
@@ -44,7 +58,7 @@ public class AdicionarTaxonomia extends javax.swing.JFrame
     private void initComponents() {
 
         lblTaxonomiaTitle = new javax.swing.JLabel();
-        lbl_Nome = new javax.swing.JLabel();
+        lbl_TaxNome = new javax.swing.JLabel();
         txf_taxonomiaNome = new javax.swing.JTextField();
         btn_CriarTaxonomia = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -55,6 +69,12 @@ public class AdicionarTaxonomia extends javax.swing.JFrame
         btn_editarItemTaxonomia = new javax.swing.JButton();
         btn_finalizar = new javax.swing.JButton();
         btn_refresh = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
+        cbx_TipoArtefato = new javax.swing.JComboBox();
+        lbl_TipoArtefato = new javax.swing.JLabel();
+        btn_DefinirTipoArtefato = new javax.swing.JButton();
+        lbl_TpoArtefatoDefinido = new javax.swing.JLabel();
+        txf_TipoArtefatoDefinido = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Taxonomia InspectorX");
@@ -62,7 +82,7 @@ public class AdicionarTaxonomia extends javax.swing.JFrame
         lblTaxonomiaTitle.setFont(new java.awt.Font("Tahoma", 1, 18));
         lblTaxonomiaTitle.setText("Taxonomia");
 
-        lbl_Nome.setText("Nome:");
+        lbl_TaxNome.setText("Nome:");
 
         btn_CriarTaxonomia.setText("Criar");
         btn_CriarTaxonomia.addActionListener(new java.awt.event.ActionListener() {
@@ -134,32 +154,59 @@ public class AdicionarTaxonomia extends javax.swing.JFrame
             }
         });
 
+        lbl_TipoArtefato.setText("Tipo do Artefato:");
+
+        btn_DefinirTipoArtefato.setText("Definir");
+        btn_DefinirTipoArtefato.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_DefinirTipoArtefatoActionPerformed(evt);
+            }
+        });
+
+        lbl_TpoArtefatoDefinido.setText("Tipo de artefato definido:");
+
+        txf_TipoArtefatoDefinido.setEditable(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 392, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(pnl_Taxonomia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(btn_refresh)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 250, Short.MAX_VALUE)
+                                .addComponent(btn_finalizar))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addComponent(lbl_TipoArtefato)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(cbx_TipoArtefato, 0, 236, Short.MAX_VALUE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(lbl_TaxNome)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txf_taxonomiaNome, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(btn_CriarTaxonomia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btn_DefinirTipoArtefato, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(130, 130, 130)
+                        .addGap(156, 156, 156)
                         .addComponent(lblTaxonomiaTitle))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lbl_Nome)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txf_taxonomiaNome, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btn_CriarTaxonomia))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(pnl_Taxonomia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(btn_refresh)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 201, Short.MAX_VALUE)
-                        .addComponent(btn_finalizar)))
+                        .addComponent(lbl_TpoArtefatoDefinido)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txf_TipoArtefatoDefinido, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -167,12 +214,23 @@ public class AdicionarTaxonomia extends javax.swing.JFrame
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblTaxonomiaTitle)
-                .addGap(32, 32, 32)
+                .addGap(4, 4, 4)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbl_Nome)
+                    .addComponent(lbl_TaxNome)
                     .addComponent(txf_taxonomiaNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_CriarTaxonomia))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbx_TipoArtefato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbl_TipoArtefato)
+                    .addComponent(btn_DefinirTipoArtefato))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbl_TpoArtefatoDefinido)
+                    .addComponent(txf_TipoArtefatoDefinido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(pnl_Taxonomia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -180,7 +238,7 @@ public class AdicionarTaxonomia extends javax.swing.JFrame
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_finalizar)
                     .addComponent(btn_refresh))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -192,54 +250,42 @@ private void btn_CriarTaxonomiaActionPerformed(java.awt.event.ActionEvent evt) {
     {
         Tax = pegarTaxonomia(txf_taxonomiaNome.getText().trim());
         JOptionPane.showMessageDialog(this,"Taxonomia criada com sucesso!");
+        lbl_TaxNome.setEnabled(false);
+        txf_taxonomiaNome.setEnabled(false);
+        btn_CriarTaxonomia.setEnabled(false);
     }
     else
     {
         JOptionPane.showMessageDialog(this,"Nome de taxonomia já existente!");
     }
-    
-    lbl_Nome.setEnabled(false);
-    txf_taxonomiaNome.setEnabled(false);
-    btn_CriarTaxonomia.setEnabled(false);
-    
+     
 }//GEN-LAST:event_btn_CriarTaxonomiaActionPerformed
 
 private void btn_finalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_finalizarActionPerformed
+    
     Parentframe.setTaxonomia();
     Parentframe.btnDeletarTaxonomia.setEnabled(true);
     Parentframe.btnInserirTaxonomia.setEnabled(true);
     Parentframe.btn_editarTaxonomia.setEnabled(true);
     this.setVisible(false);
+    
 }//GEN-LAST:event_btn_finalizarActionPerformed
 
 private void btn_refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_refreshActionPerformed
     setItemsList();
-    
 }//GEN-LAST:event_btn_refreshActionPerformed
-
-public void setItemsList()
-{
-    try{
-    ArrayOfItemTaxonomiaEntity itemTaxEntity = pegarItemsTaxonomia(Tax.getID()); 
-    itemsTaxList = itemTaxEntity.getItemTaxonomiaEntity();
-    if(!itemsTaxList.isEmpty())
-        lst_DefitosList.setListData(itemsTaxList.toArray());
-    }
-    catch(Exception ex)
-    {
-        JOptionPane.showMessageDialog(this, ex.getMessage());
-    }
-}
 
 private void btnInserirItemTaxonomiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInserirItemTaxonomiaActionPerformed
    
-   if(Tax !=null)
+   if(Tax !=null&&!cbx_TipoArtefato.isEnabled())
    {
         AdicionarItemTaxonomia addItemTax = new AdicionarItemTaxonomia(this,Tax.getID());
         addItemTax.setVisible(true);
    }
    else
-        JOptionPane.showMessageDialog(this,"Nome de taxonomia já existente!");
+   {
+        JOptionPane.showMessageDialog(this,"Taxonomia ou tipo do artefato ainda não definido!");
+   }
    
 }//GEN-LAST:event_btnInserirItemTaxonomiaActionPerformed
 
@@ -249,25 +295,91 @@ private void btn_editarItemTaxonomiaActionPerformed(java.awt.event.ActionEvent e
 
 private void btnDeletarItemTaxonomiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarItemTaxonomiaActionPerformed
     
-    ItemTaxonomiaEntity itemTax = (ItemTaxonomiaEntity)lst_DefitosList.getSelectedValue();
-    deletarItemTaxonomia(itemTax.getID());
-    setItemsList();
+    if(lst_DefitosList.getSelectedValue()!=null)
+    {
+        ItemTaxonomiaEntity itemTax = (ItemTaxonomiaEntity)lst_DefitosList.getSelectedValue();
+        deletarItemTaxonomia(itemTax.getID());
+        setItemsList();
+    }else
+        JOptionPane.showMessageDialog(this, "Por favor selecione um item para ser deletado.");
     
 }//GEN-LAST:event_btnDeletarItemTaxonomiaActionPerformed
 
+    private void btn_DefinirTipoArtefatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_DefinirTipoArtefatoActionPerformed
+       
+        if(txf_taxonomiaNome.isEnabled()&&cbx_TipoArtefato.getSelectedItem()!=null)
+        {
+            JOptionPane.showMessageDialog(this, "Por favor crie, primeiramente, a taxonomia.");
+        }         
+        else
+        {
+            try 
+            {
+                TipoArtefatoEntity tae = (TipoArtefatoEntity)cbx_TipoArtefato.getSelectedItem();
+                setRealacaoTaxonomia(Tax.getID(),tae.getTAID());
+                
+                cbx_TipoArtefato.setEnabled(false);
+                btn_DefinirTipoArtefato.setEnabled(false);
+                txf_TipoArtefatoDefinido.setText(tae.getTANOME());
+                
+                JOptionPane.showMessageDialog(this, "Tipo de artefato definido com sucesso!");
+            } 
+            catch (Exception e) 
+            {
+                JOptionPane.showMessageDialog(this, e.getMessage());
+            }
+        }
+            
+    }//GEN-LAST:event_btn_DefinirTipoArtefatoActionPerformed
+
+    public void setTipoArtefatoItemsCbx()
+    {
+        DefaultComboBoxModel theModel = (DefaultComboBoxModel)cbx_TipoArtefato.getModel();
+        theModel.removeAllElements();
+        
+        ArrayOfTipoArtefatoEntity artefactsArray = getTiposArtefatos();
+
+        List<TipoArtefatoEntity> taeList = artefactsArray.getTipoArtefatoEntity();
+
+        for(TipoArtefatoEntity tae : taeList)
+        {
+            cbx_TipoArtefato.addItem(tae);
+        }
+    }
+    
+    public void setItemsList()
+    {
+        try
+        {
+            ArrayOfItemTaxonomiaEntity itemTaxEntity = pegarItemsTaxonomia(Tax.getID()); 
+            itemsTaxList = itemTaxEntity.getItemTaxonomiaEntity();
+            if(!itemsTaxList.isEmpty())
+                lst_DefitosList.setListData(itemsTaxList.toArray());
+        }
+        catch(Exception ex)
+        {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }   
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDeletarItemTaxonomia;
     private javax.swing.JButton btnInserirItemTaxonomia;
     private javax.swing.JButton btn_CriarTaxonomia;
+    private javax.swing.JButton btn_DefinirTipoArtefato;
     private javax.swing.JButton btn_editarItemTaxonomia;
     private javax.swing.JButton btn_finalizar;
     private javax.swing.JButton btn_refresh;
+    private javax.swing.JComboBox cbx_TipoArtefato;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblTaxonomiaTitle;
-    private javax.swing.JLabel lbl_Nome;
+    private javax.swing.JLabel lbl_TaxNome;
+    private javax.swing.JLabel lbl_TipoArtefato;
+    private javax.swing.JLabel lbl_TpoArtefatoDefinido;
     private javax.swing.JList lst_DefitosList;
     private javax.swing.JPanel pnl_Taxonomia;
+    private javax.swing.JTextField txf_TipoArtefatoDefinido;
     private javax.swing.JTextField txf_taxonomiaNome;
     // End of variables declaration//GEN-END:variables
 
@@ -295,4 +407,23 @@ private void btnDeletarItemTaxonomiaActionPerformed(java.awt.event.ActionEvent e
         return port.deletarItemTaxonomia(taxonomiaId);
     }
 
+    private static ArrayOfTipoArtefatoEntity getTiposArtefatos() {
+        InspectorXWebserv.WebServiceMain service = new InspectorXWebserv.WebServiceMain();
+        InspectorXWebserv.WebServiceMainSoap port = service.getWebServiceMainSoap12();
+        return port.getTiposArtefatos();
+    }
+
+    private static boolean setRealacaoTaxonomia(int taxId, int tipoArtId) {
+        InspectorXWebserv.WebServiceMain service = new InspectorXWebserv.WebServiceMain();
+        InspectorXWebserv.WebServiceMainSoap port = service.getWebServiceMainSoap12();
+        return port.setRealacaoTaxonomia(taxId, tipoArtId);
+    }
+
+    private static TipoArtefatoEntity getTipoArtefato(int taxId) {
+        InspectorXWebserv.WebServiceMain service = new InspectorXWebserv.WebServiceMain();
+        InspectorXWebserv.WebServiceMainSoap port = service.getWebServiceMainSoap12();
+        return port.getTipoArtefato(taxId);
+    }
+    
+    
 }
