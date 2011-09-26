@@ -114,17 +114,6 @@ namespace WebServiceAcess.WebService
             return new UsuarioFacade().CriarUsuario(nome, login, email, senha);
         }
 
-        /// <summary>
-        /// Recupera as questões baseada em um nível de dificuldade
-        /// </summary>
-        /// <param name="nivelDificuldade">Nível das questões a ser procurados</param>
-        /// <returns>Uma string com todas as questoes do mesmo nível</returns>
-        //[WebMethod]
-        //public List<QuestaoEntity> GetQuestoes(int nivelDificuldade)
-        //{
-        //    return new QuestaoFacade().GetQuestoes(nivelDificuldade);
-        //}
-
         [WebMethod]
         public List<QuestaoEntity> GetQuestoesTaxList(int tax_id)
         {
@@ -137,18 +126,6 @@ namespace WebServiceAcess.WebService
             var retorno = new QuestaoFacade().GetQuestoesRespostas(nivelDificuldade);
             return retorno;
         }
-
-        /// <summary>
-        /// Recupera um objeto do tipo datatable de usuarios com nome, email , quantidade de acertos e              erros, o objeto
-        /// está ordenado pela quantidade de acertos
-        /// </summary>
-        /// <param name="nivelDificuldade">Nivel de dificuladade do usuario atual</param>
-        /// <returns>Datatable ordenado pela quantidade de acertos</returns>
-        //[WebMethod]
-        //public List<CIDao.RankRetorno> GetUsersRank(int nivelDificuldade)
-        //{
-        //    return new UsuarioFacade().GetUsersRank(nivelDificuldade);
-        //}
 
         [WebMethod]
         public bool InserirTaxonomia(string nome)
@@ -182,6 +159,7 @@ namespace WebServiceAcess.WebService
 
         [WebMethod]
         public bool AdicionarItemTaxonomia(int taxonomia_id, string nome, string descricao)
+
         {
             return new ItemTaxonomiaFacade().AdicionarItemTaxonomia(taxonomia_id, nome, descricao);
         }
@@ -233,5 +211,42 @@ namespace WebServiceAcess.WebService
         {
             return new QuestaoFacade().setQuestaoAcerto(questao_id, partidada_id, pontos);
         }
+
+        [WebMethod]
+        public List<TipoArtefatoEntity> getTiposArtefatos()
+        {
+            return new TipoArtefatoFacade().GetTiposArtefatos();
+        }
+
+        [WebMethod]
+        public bool setRealacaoTaxonomia(int taxId, int tipoArtId)
+        {
+            return new TipoArtefatoFacade().SetRealacaoTaxonomia(taxId, tipoArtId);
+        }
+
+        [WebMethod]
+        public List<TrechoDefeitoEntity> getTrechosDefeitoList(int itemTaxonomiaId)
+        {
+            return new TrechoDefeitoFacade().getTrechosDefeitoList(itemTaxonomiaId);
+        }
+
+        [WebMethod]
+        public TipoArtefatoEntity getTipoArtefato(int taxId)
+        {
+            return new TipoArtefatoFacade().getTipoArtefato(taxId);
+        }
+
+        [WebMethod]
+        public List<QuestaoEntity> GetQuestoesByType(int nivelDificuldade, int tipoArtefatoId)
+        {
+            return new QuestaoFacade().GetQuestoesByType(nivelDificuldade, tipoArtefatoId);
+        }
+
+        [WebMethod]
+        public TaxonomiaEntity GetTaxonomia(int tipoArtefatoId)
+        {
+            return new TaxonomiaFacade().GetTaxonomia(tipoArtefatoId);
+        }
+
     }
 }

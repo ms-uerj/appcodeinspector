@@ -47,6 +47,29 @@ namespace CIDao.DAO
 
         }
 
+        public TaxonomiaEntity GetTaxonomia(int tipoArtefato)
+        {
+
+            var taxonomias = from tat in db.TipoArtefato_Taxonomias
+                             from t in db.Taxonomias
+                             where tat.TA_ID==tipoArtefato
+                             && tat.T_ID==t.T_ID
+                             select t;
+
+            List<TaxonomiaEntity> taxlist = new List<TaxonomiaEntity>();
+
+            foreach (Taxonomia t in taxonomias.ToList())
+            {
+                TaxonomiaEntity taxentity = new TaxonomiaEntity();
+                taxentity.ID = t.T_ID;
+                taxentity.Nome = t.T_Nome;
+                taxlist.Add(taxentity);
+            }
+
+            return taxlist[0];
+
+        }
+
         public bool DeletarTaxonomia(int taxInt)
         {
             try
@@ -68,8 +91,8 @@ namespace CIDao.DAO
             {
 
                 int taxonomias = (from t in db.Taxonomias
-                                  where t.T_Nome.Contains(tax.T_Nome)
-                                  select t).Count();
+                                    where t.T_Nome.Contains(tax.T_Nome)
+                                    select t).Count();
 
                 if (!Convert.ToBoolean(taxonomias))
                 {
@@ -78,7 +101,7 @@ namespace CIDao.DAO
                     return true;
                 }
                 else
-                    return false;       
+                    return false;   
                 
             }
             catch (InvalidOperationException ex)
@@ -86,5 +109,6 @@ namespace CIDao.DAO
                 return false;
             }
         }
+
     }
 }

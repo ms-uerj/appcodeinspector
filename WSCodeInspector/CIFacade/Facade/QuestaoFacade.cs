@@ -23,8 +23,13 @@ namespace CIFacade.Facade
         public List<QuestaoEntity> GetQuestoes(int nivelDificuldade, int taxonomia_id)
         {
             QuestaoDAO questoes = new QuestaoDAO();
-
             return questoes.GetQuestoes(nivelDificuldade,taxonomia_id);
+        }
+
+        public List<QuestaoEntity> GetQuestoesByType(int nivelDificuldade, int tipoArtefato_id)
+        {
+            QuestaoDAO questoes = new QuestaoDAO();
+            return questoes.GetQuestoesByType(nivelDificuldade, tipoArtefato_id);
         }
 
         public List<int?> GetQuestoesRespostas(int nivelDificuldade)

@@ -44,6 +44,7 @@
     <Compile Include="Facade\PartidaFacade.cs" />
     <Compile Include="Facade\QuestaoFacade.cs" />
     <Compile Include="Facade\TaxonomiaFacade.cs" />
+    <Compile Include="Facade\TipoArtefatoFacade.cs" />
     <Compile Include="Facade\TrechoDefeitoFacade.cs" />
     <Compile Include="Facade\UsuarioFacade.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

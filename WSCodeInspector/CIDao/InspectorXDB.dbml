@@ -1,15 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="CodeInspector" Class="InspectorXDBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="AppSettings" ConnectionString="Data Source=ENUMA-PC;Initial Catalog=CodeInspector;Integrated Security=True" SettingsObjectName="CIDao.Properties.Settings" SettingsPropertyName="CodeInspectorConnectionString" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.Usuario" Member="Usuarios">
-    <Type Name="Usuario">
-      <Column Name="U_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="U_NOME" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="U_EMAIL" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="U_SENHA" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
-      <Column Name="U_LOGIN" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Association Name="Usuario_Partida" Member="Partidas" ThisKey="U_ID" OtherKey="U_ID" Type="Partida" />
-    </Type>
-  </Table>
   <Table Name="dbo.Historico_Questao" Member="Historico_Questaos">
     <Type Name="Historico_Questao">
       <Column Name="H_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -19,6 +9,16 @@
       <Column Name="H_QTD_ERRO" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="Partida_Historico_Questao" Member="Partida" ThisKey="P_ID" OtherKey="P_ID" Type="Partida" IsForeignKey="true" />
       <Association Name="Questao_Historico_Questao" Member="Questao" ThisKey="Q_ID" OtherKey="Q_ID" Type="Questao" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Usuario" Member="Usuarios">
+    <Type Name="Usuario">
+      <Column Name="U_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="U_NOME" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="U_EMAIL" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="U_SENHA" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
+      <Column Name="U_LOGIN" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Usuario_Partida" Member="Partidas" ThisKey="U_ID" OtherKey="U_ID" Type="Partida" />
     </Type>
   </Table>
   <Table Name="dbo.ItemTaxonomia" Member="ItemTaxonomias">
@@ -69,6 +69,24 @@
       <Column Name="T_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="T_Nome" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Association Name="Taxonomia_ItemTaxonomia" Member="ItemTaxonomias" ThisKey="T_ID" OtherKey="T_ID" Type="ItemTaxonomia" />
+      <Association Name="Taxonomia_TipoArtefato_Taxonomia" Member="TipoArtefato_Taxonomias" ThisKey="T_ID" OtherKey="T_ID" Type="TipoArtefato_Taxonomia" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TipoArtefato" Member="TipoArtefatos">
+    <Type Name="TipoArtefato">
+      <Column Name="TA_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TA_DESCRICAO" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="TA_NOME" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="TipoArtefato_TipoArtefato_Taxonomia" Member="TipoArtefato_Taxonomias" ThisKey="TA_ID" OtherKey="TA_ID" Type="TipoArtefato_Taxonomia" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TipoArtefato_Taxonomia" Member="TipoArtefato_Taxonomias">
+    <Type Name="TipoArtefato_Taxonomia">
+      <Column Name="TA_T_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="T_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TA_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Taxonomia_TipoArtefato_Taxonomia" Member="Taxonomia" ThisKey="T_ID" OtherKey="T_ID" Type="Taxonomia" IsForeignKey="true" />
+      <Association Name="TipoArtefato_TipoArtefato_Taxonomia" Member="TipoArtefato" ThisKey="TA_ID" OtherKey="TA_ID" Type="TipoArtefato" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.TrechoDefeito" Member="TrechoDefeitos">

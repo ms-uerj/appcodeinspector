@@ -28,6 +28,11 @@ namespace CIFacade.Facade
             return new TaxonomiaDao().GetTaxonomiaList();
         }
 
+        public TaxonomiaEntity GetTaxonomia(int tipoArtefatoId)
+        {
+            return new TaxonomiaDao().GetTaxonomia(tipoArtefatoId);
+        }
+
         public bool DeletarTaxonomia(int taxonomia_id)
         {
             try

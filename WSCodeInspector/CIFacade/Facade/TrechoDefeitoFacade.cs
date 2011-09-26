@@ -15,6 +15,11 @@ namespace CIFacade.Facade
             return new TrechoDefeitoDAO().GetTrechosDefeitoList(questao_id);
         }
 
+        public List<TrechoDefeitoEntity> getTrechosDefeitoList(int itemTaxonomiaId)
+        {
+            return new TrechoDefeitoDAO().getTrechosDefeitoList(itemTaxonomiaId);
+        }
+
         public ItemTaxonomiaEntity getTrechoDefeitoResposta(int td_id)
         {
             return new TrechoDefeitoDAO().getTrechoDefeitoResposta(td_id);
@@ -33,7 +38,6 @@ namespace CIFacade.Facade
                 q.Q_ID = questao_id;
 
                 return new TrechoDefeitoDAO().AdicionarTrechoDefeito(q, td);
-
             }
             catch (System.Exception ex)
             {
