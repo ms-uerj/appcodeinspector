@@ -178,8 +178,20 @@ public class AdminMenu extends javax.swing.JFrame {
         });
 
         btn_DeletarQuestao.setText("Deletar");
+        btn_DeletarQuestao.setEnabled(false);
+        btn_DeletarQuestao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_DeletarQuestaoActionPerformed(evt);
+            }
+        });
 
         btn_EditarQuestao.setText("Editar");
+        btn_EditarQuestao.setEnabled(false);
+        btn_EditarQuestao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_EditarQuestaoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -381,6 +393,14 @@ private void cbx_TaxonomiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN
     private void lstQuestoesValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstQuestoesValueChanged
         setTrechoDefeitoList();
     }//GEN-LAST:event_lstQuestoesValueChanged
+
+    private void btn_DeletarQuestaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_DeletarQuestaoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_DeletarQuestaoActionPerformed
+
+    private void btn_EditarQuestaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_EditarQuestaoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_EditarQuestaoActionPerformed
 
     private void setItemTaxonomiaList()
     {
