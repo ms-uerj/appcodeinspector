@@ -9,7 +9,7 @@ import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
-public class AdicionarTaxonomia extends javax.swing.JFrame 
+public final class AdicionarTaxonomia extends javax.swing.JFrame 
 {
     AdminMenu Parentframe;
     TaxonomiaEntity Tax;
