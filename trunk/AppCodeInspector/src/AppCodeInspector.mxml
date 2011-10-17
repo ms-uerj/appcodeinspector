@@ -42,19 +42,19 @@
 			
 			protected function button1_clickHandler(event:MouseEvent):void
 			{
-				nivelDificuldade =1;
+				nivelDificuldade =0;
 				this.currentState = "ResultadoFinal";
 			}
 
 			protected function button2_clickHandler(event:MouseEvent):void
 			{
-				nivelDificuldade =2;
+				nivelDificuldade =1;
 				this.currentState = "ResultadoFinal";
 			}
 
 			protected function button3_clickHandler(event:MouseEvent):void
 			{
-				nivelDificuldade =3;
+				nivelDificuldade =2;
 				this.currentState = "ResultadoFinal";
 			}
 

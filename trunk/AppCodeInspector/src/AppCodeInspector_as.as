@@ -64,7 +64,8 @@ public static var selection:TextRange;
 
 public function onLoad():void
 {
-	GetTaxonomia.token = wSCodeInspector.GetTaxonomia(tipoArtefato_Id);
+	var ta:int = tipoArtefato_Id;
+	GetTaxonomia.token = wSCodeInspector.GetTaxonomia(ta);
 	IniciarPartida.token = wSCodeInspector.IniciarPartida(nivelDificuldade,LoginUsuario);
 	
 	field = new TextArea();
@@ -82,7 +83,7 @@ public function onLoad():void
 		
 		wordWrap = true;
 		condenseWhite = true;
-		if(nivelDificuldade == 1)
+		if(nivelDificuldade == 0)
 			selectable = false;
 		else
 			selectable = true;
@@ -157,7 +158,7 @@ protected function GetTrechosQuestao_resultHandler(e:ResultEvent):void
 protected function GetTaxonomia_resultHandler(e:ResultEvent):void
 {
 	var t:TaxonomiaEntity = e.result as TaxonomiaEntity;
-	repostaWindow.questaoTaxonomiaId=taxonomia_Id;
+	repostaWindow.questaoTaxonomiaId=t._internal_ID;
 }
 
 protected function IniciarPartida_resultHandler(e:ResultEvent):void
@@ -180,8 +181,8 @@ protected function btnProximaPergunta_clickHandler(event:MouseEvent):void
 		Alert.show("Selecione o motivo do erro antes de prosseguir");
 	else if(questaoTrechosWS.length!=listRespostasSelecionadas.length)
 	{
-		xml.perguntas[perguntaNum]
-		Alert.show("Ainda faltam defeitos na questão.")
+		xml.perguntas[perguntaNum];
+		Alert.show("Ainda faltam defeitos na questão.");
 	}
 	else
 	{
