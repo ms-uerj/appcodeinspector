@@ -303,7 +303,8 @@ public class _Super_TipoArtefatoEntity extends flash.events.EventDispatcher impl
 
         return validationFailures;
     }
-    
+	
+
 
 }
 

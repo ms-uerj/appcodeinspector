@@ -38,11 +38,11 @@ public class _Super_PartidaEntity extends flash.events.EventDispatcher implement
     /**
      * properties
      */
-    private var _internal_P_ID : int;
-    private var _internal_U_ID : int;
-    private var _internal_P_DATA : Date;
-    private var _internal_P_NIVEL_DIFICULDADE : int;
-    private var _internal_P_PONTUACAO_TOTAL : int;
+	public var _internal_P_ID : int;
+	public var _internal_U_ID : int;
+	public var _internal_P_DATA : Date;
+	public var _internal_P_NIVEL_DIFICULDADE : int;
+	public var _internal_P_PONTUACAO_TOTAL : int;
 
     private static var emptyArray:Array = new Array();
 
