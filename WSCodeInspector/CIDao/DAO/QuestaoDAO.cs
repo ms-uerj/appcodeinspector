@@ -72,7 +72,7 @@ namespace CIDao.DAO
                             from t in db.Taxonomias
                             from tat in db.TipoArtefato_Taxonomias
                             where tat.TA_ID == tipoArtefatoId
-                            && tat.TA_T_ID == t.T_ID
+                            && tat.T_ID == t.T_ID
                             && it.T_ID == t.T_ID
                             && it.IT_ID == td.IT_ID
                             && td.D_ID == qtd.TD_id
