@@ -23,18 +23,6 @@
 			import spark.events.IndexChangeEvent;
 					
 			
-			[Bindable] 
-			private var comboProvider:Array = 
-				[
-					{label:"Comissão", data:{tip:"Ocorre quando um existe algum segmento de código incorreto, ou seja, esse segmento foi implementado de uma maneira diferente do que foi especificado."}}, 
-					{label:"Inicialização", data:{tip:"Ocorre quando se tenta acessar uma variável que não foi inicializada."}}, 
-					{label:"Computação", data:{tip:"Similar ao defeito de comissão, a diferença se encontra quando um valor é definido erroneamente para uma variável."}}, 
-					{label:"Desempenho", data:{tip:"Algumas rotinas executam laços (loops) desnecessários."}}, 
-					{label:"Controle", data:{tip:"Ocorre quando é usado de forma incorreta um comando de desvio condicional. "}}, 
-					{label:"Excesso", data:{tip:"Existe trechos de códigos irrelevantes e desnecessários."}}, 
-					{label:"Dados", data:{tip:"Ocorre quando uma estrutura de dados é manipulada de forma incorreta; um exemplo é quando se tenta acessar um índice inexistente de um array."}}, 
-				];
-			
 			private var customTip:UIComponent;
 			
 			public function showListTip(event:ListEvent):void 
@@ -50,7 +38,7 @@
 						var format:TextFormat = new TextFormat();
 						format.font = "Verdana";
 						format.color = 0xFFFFFF;
-						format.size = 9;
+						format.size = 12;
 						var tipGFX:Shape;
 						var tipTag:TextField;
 						if (customTip == null) 

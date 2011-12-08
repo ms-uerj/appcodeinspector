@@ -38,8 +38,8 @@ public class _Super_TaxonomiaEntity extends flash.events.EventDispatcher impleme
     /**
      * properties
      */
-	public var _internal_ID : int;
-	public var _internal_Nome : String;
+    private var _internal_ID : int;
+    private var _internal_Nome : String;
 
     private static var emptyArray:Array = new Array();
 

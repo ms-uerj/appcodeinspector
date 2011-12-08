@@ -9,9 +9,9 @@ import valueObjects.QuestaoEntity;
 
 protected var txtTutorials:TXT;
 
-public const FACIL : int = 0;
-public const INTERMEDIARIO : int= 1;
-public const DIFICIL : int= 2;
+public const FACIL : int = 1;
+public const INTERMEDIARIO : int= 2;
+public const DIFICIL : int= 3;
 
 
 
