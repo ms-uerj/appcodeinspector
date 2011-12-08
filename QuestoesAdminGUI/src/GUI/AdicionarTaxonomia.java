@@ -77,7 +77,7 @@ public final class AdicionarTaxonomia extends javax.swing.JFrame
         txf_TipoArtefatoDefinido = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setTitle("Taxonomia InspectorX");
+        setTitle("Administrador de Taxonomias");
 
         lblTaxonomiaTitle.setFont(new java.awt.Font("Tahoma", 1, 18));
         lblTaxonomiaTitle.setText("Taxonomia");

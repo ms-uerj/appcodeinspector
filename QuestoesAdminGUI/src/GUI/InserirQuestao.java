@@ -1,17 +1,19 @@
 package GUI;
 
-
 import InspectorXWebserv.ArrayOfTrechoDefeitoEntity;
 import InspectorXWebserv.QuestaoEntity;
 import InspectorXWebserv.TaxonomiaEntity;
-import java.awt.Color;
 import javax.swing.JOptionPane;
 
 public class InserirQuestao extends javax.swing.JFrame {
 
     public TaxonomiaEntity Tax;
     public ArrayOfTrechoDefeitoEntity trechoList = new ArrayOfTrechoDefeitoEntity();
-    private final int NIVEL_DIFICIL = 2;
+    private final int NIVEL_DIFICIL_INDEX = 2;
+    
+    private final int Nivel_Facil = 1;
+    private final int Nivel_Medio = 2;
+    private final int Nivel_Dificil = 3;
     
     public InserirQuestao(TaxonomiaEntity tax) 
     {   
@@ -183,72 +185,88 @@ public class InserirQuestao extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void btnInserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInserirActionPerformed
+
+        try 
+        {
+            if(cbxDificuldade.getSelectedIndex()==NIVEL_DIFICIL_INDEX&&trechoList.getTrechoDefeitoEntity().size()<2)
+            {
+                JOptionPane.showMessageDialog(this, "No nível difícil é necessário definir mais de 1 defeito.");
+                return;
+            }
+            if(trechoList.getTrechoDefeitoEntity().isEmpty())
+            {
+                JOptionPane.showMessageDialog(this, "È necessário definir um trecho com defeito.");
+            }
+            else
+            {
+                QuestaoEntity queste = new QuestaoEntity();
+                queste.setQXML(hepCorpoQuestao.getText());
+                //TODO Concertando o nível de dificuldade, no banco de dados deve ser 1-fácil,2-médio,3-difícil
+                //Sendo assim basta somar 1 ao index da cbx (MELHORAR)
+                queste.setQNivelDificuldade(cbxDificuldade.getSelectedIndex()+1);
+                adicionarQuestao(queste, trechoList);
+                JOptionPane.showMessageDialog(this, "Questão adicionada com sucesso!");
+                this.setVisible(false);          
+            }
+        } 
+        catch (Exception ex) 
+        {
+            ex.getMessage();
+        }
         
-        if(cbxDificuldade.getSelectedIndex()==NIVEL_DIFICIL&&trechoList.getTrechoDefeitoEntity().size()<2)
-        {
-            JOptionPane.showMessageDialog(this, "No nível difícil é necessário definir mais de 1 defeito.");
-            return;
-        }
-        if(trechoList.getTrechoDefeitoEntity().isEmpty())
-        {
-            JOptionPane.showMessageDialog(this, "È necessário definir um trecho com defeito.");
-        }
-        else
-        {
-            QuestaoEntity queste = new QuestaoEntity();
-            queste.setQXML(hepCorpoQuestao.getText());
-            queste.setQNivelDificuldade(cbxDificuldade.getSelectedIndex());
-            adicionarQuestao(queste, trechoList);
-            JOptionPane.showMessageDialog(this, "Questão adicionada com sucesso!");
-            this.setVisible(false);          
-        }
+        
         
     }//GEN-LAST:event_btnInserirActionPerformed
 
 private void txa_QuestaoCorpoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txa_QuestaoCorpoMouseReleased
     
-    if(cbxDificuldade.getSelectedIndex()<NIVEL_DIFICIL && trechoList.getTrechoDefeitoEntity().size()==1)
+    try 
     {
-        JOptionPane.showMessageDialog(this, "Trecho com defeito já selecionado");
-        return;
-    }   
-    
-    if(!txa_QuestaoCorpo.getText().trim().isEmpty()&&tbt_SelecionarDefeito.isSelected())
-    {
-        if(!txa_QuestaoCorpo.getSelectedText().isEmpty())
+        if(cbxDificuldade.getSelectedIndex()<NIVEL_DIFICIL_INDEX && trechoList.getTrechoDefeitoEntity().size()==1)
         {
-            StringBuilder strDefeito = new StringBuilder();
-            
-            if (cbxDificuldade.getSelectedIndex()==0) 
-            {
-                setTrechoNivelFacil(strDefeito);
+            JOptionPane.showMessageDialog(this, "Trecho com defeito já selecionado./nPara mais defeitos aumento o nível de dificuldade para difícil.");
+            return;
+        }   
+
+        if(!txa_QuestaoCorpo.getText().trim().isEmpty()&&tbt_SelecionarDefeito.isSelected())
+        {
+            if(!txa_QuestaoCorpo.getSelectedText().isEmpty())
+            {            
+                //Nivel fácil no banco equivale ao nível 1, no como estamos usando o modelo default e o fácil esta na primeira posição o index será 0.
+                if (cbxDificuldade.getSelectedIndex()==0) 
+                {
+                    setTrechoNivelFacil();
+                }
+                else
+                    setTrecho();
+
+                SelecaoDefeito setDefeito = new SelecaoDefeito(trechoList, Tax, txa_QuestaoCorpo.getSelectedText().trim(),this);
+                setDefeito.setVisible(true);
             }
-            else
-                setTrecho(strDefeito);
-            
-            SelecaoDefeito setDefeito = new SelecaoDefeito(trechoList, Tax, strDefeito.toString(),this);
-            setDefeito.setVisible(true);
         }
+    } 
+    catch (Exception ex) 
+    {
+        JOptionPane.showMessageDialog(this, ex.getMessage());
     }
+    
+    
     
 }//GEN-LAST:event_txa_QuestaoCorpoMouseReleased
 
-public void setTrecho(StringBuilder strDefeito)
+public void setTrecho()
 {
     StringBuilder strCorpo = new StringBuilder();
-
-    //txa_QuestaoCorpo.setSelectionColor(Color.red);
-    
-    strDefeito.append(txa_QuestaoCorpo.getSelectedText());
     strCorpo.append(texto2Html(txa_QuestaoCorpo.getText().trim()));
 
     hepCorpoQuestao.setText(strCorpo.toString());
 }
 
-public void setTrechoNivelFacil(StringBuilder strDefeito)
+public void setTrechoNivelFacil()
 {
     StringBuilder strCorpo = new StringBuilder();
     StringBuilder strCorpoHtml = new StringBuilder();
+    StringBuilder strDefeito = new StringBuilder();
     
     strDefeito.append("<span class='erro'><a href='event:erro'>")
               .append(txa_QuestaoCorpo.getSelectedText())
@@ -268,8 +286,7 @@ public void setTrechoNivelFacil(StringBuilder strDefeito)
     hepCorpoQuestao.setText(strCorpoHtml.toString());
 
     strCorpo.insert(txa_QuestaoCorpo.getSelectionStart(),strDefeito.toString());
-    txa_QuestaoCorpo.setText(strCorpo.toString());
-    
+    //txa_QuestaoCorpo.setText(strCorpo.toString());
 }
 
 public static int fixModifiedIndexPosition(String s,int limitIndexPoint)
