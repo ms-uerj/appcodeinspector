@@ -367,21 +367,27 @@ private void btn_editarTaxonomiaActionPerformed(java.awt.event.ActionEvent evt) 
 }//GEN-LAST:event_btn_editarTaxonomiaActionPerformed
 
 private void btnDeletarTaxonomiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarTaxonomiaActionPerformed
-    
-    TaxonomiaEntity tax = (TaxonomiaEntity)cbx_Taxonomia.getSelectedItem();
-    ArrayOfItemTaxonomiaEntity itemTaxEntity = pegarItemsTaxonomia(tax.getID() );
-    
-    List<ItemTaxonomiaEntity> itemTaxList = itemTaxEntity.getItemTaxonomiaEntity();
-    
-    if(!itemTaxList.isEmpty())
+    try 
     {
-        for(ItemTaxonomiaEntity it : itemTaxList)
+        TaxonomiaEntity tax = (TaxonomiaEntity)cbx_Taxonomia.getSelectedItem();
+        ArrayOfItemTaxonomiaEntity itemTaxEntity = pegarItemsTaxonomia(tax.getID() );
+
+        List<ItemTaxonomiaEntity> itemTaxList = itemTaxEntity.getItemTaxonomiaEntity();
+
+        if(!itemTaxList.isEmpty())
         {
-            deletarItemTaxonomia(it.getID());
+            for(ItemTaxonomiaEntity it : itemTaxList)
+            {
+                deletarItemTaxonomia(it.getID());
+            }
         }
-    }
     
     deletarTaxonomias(tax.getID());
+    }
+    catch (Exception ex) 
+    {
+        JOptionPane.showMessageDialog(this, ex.getMessage());
+    }
     
 }//GEN-LAST:event_btnDeletarTaxonomiaActionPerformed
 
@@ -404,22 +410,32 @@ private void cbx_TaxonomiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN
 
     private void setItemTaxonomiaList()
     {
-        TaxonomiaEntity tax = (TaxonomiaEntity)cbx_Taxonomia.getSelectedItem();
-        lst_itemsTaxonomia.setListData(new Object[0]);
-        if(tax!=null)
+        try 
         {
-            ArrayOfItemTaxonomiaEntity itemTaxEntityArray = pegarItemsTaxonomia(tax.getID());
-            List<ItemTaxonomiaEntity> itemTaxList = itemTaxEntityArray.getItemTaxonomiaEntity();
-            if(!itemTaxList.isEmpty())
-                lst_itemsTaxonomia.setListData(itemTaxList.toArray());
+            TaxonomiaEntity tax = (TaxonomiaEntity)cbx_Taxonomia.getSelectedItem();
+            lst_itemsTaxonomia.setListData(new Object[0]);
+            if(tax!=null)
+            {
+                ArrayOfItemTaxonomiaEntity itemTaxEntityArray = pegarItemsTaxonomia(tax.getID());
+                List<ItemTaxonomiaEntity> itemTaxList = itemTaxEntityArray.getItemTaxonomiaEntity();
+                if(!itemTaxList.isEmpty())
+                    lst_itemsTaxonomia.setListData(itemTaxList.toArray());
 
+            }
+        } 
+        catch (Exception ex) 
+        {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
         }
+        
     }
     
     private void setTrechoDefeitoList()
     {
-        if(lstQuestoes.getSelectedValue()!=null)
+        try 
         {
+            if(lstQuestoes.getSelectedValue()!=null)
+            {
             QuestaoEntity questaoEntity = (QuestaoEntity)lstQuestoes.getSelectedValue();
             ArrayOfTrechoDefeitoEntity tdEntityArray = getTrechosDefeito(questaoEntity.getQID());
             
@@ -427,21 +443,35 @@ private void cbx_TaxonomiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN
             lst_TrechoDefeitos.setListData(new Object[0]);
             if(!tdList.isEmpty())
                 lst_TrechoDefeitos.setListData(tdList.toArray());
+            }
+        } 
+        catch (Exception ex) 
+        {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
         }
+        
     }
     
     public void setQuestaoList()
     {
-        TaxonomiaEntity tax = (TaxonomiaEntity)cbx_Taxonomia.getSelectedItem();
-        if(tax!=null)
+        try 
         {
-            ArrayOfQuestaoEntity questaoEntity = getQuestoesTaxList(tax.getID());
-            List<QuestaoEntity> questaoList = questaoEntity.getQuestaoEntity();
-            lstQuestoes.setListData(new Object[0]);
-            if(!questaoList.isEmpty())
-                lstQuestoes.setListData(questaoList.toArray());
+            TaxonomiaEntity tax = (TaxonomiaEntity)cbx_Taxonomia.getSelectedItem();
+            if(tax!=null)
+            {
+                ArrayOfQuestaoEntity questaoEntity = getQuestoesTaxList(tax.getID());
+                List<QuestaoEntity> questaoList = questaoEntity.getQuestaoEntity();
+                lstQuestoes.setListData(new Object[0]);
+                if(!questaoList.isEmpty())
+                    lstQuestoes.setListData(questaoList.toArray());
 
+            }
+        } 
+        catch (Exception ex) 
+        {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
         }
+        
     }
 
     public void setTaxonomia()

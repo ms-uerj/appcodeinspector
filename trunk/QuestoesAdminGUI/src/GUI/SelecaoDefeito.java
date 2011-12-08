@@ -17,7 +17,7 @@ public class SelecaoDefeito extends javax.swing.JFrame
     String Defeito;
     ArrayOfTrechoDefeitoEntity TrechoList;
     
-    public SelecaoDefeito(ArrayOfTrechoDefeitoEntity arrayTd,TaxonomiaEntity tax, String defeito,InserirQuestao parentFrame) 
+    public SelecaoDefeito(ArrayOfTrechoDefeitoEntity arrayTd,TaxonomiaEntity tax,String defeito,InserirQuestao parentFrame) 
     {
         initComponents();
         Defeito = defeito;
