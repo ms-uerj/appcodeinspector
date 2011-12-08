@@ -38,23 +38,12 @@ package CodeInspector
 		{	
 			lenXML = _req.length;//data.children().length();
 			
-			//faz um parse do XML em arrays
+
 			for (i=0; i < lenXML; i++) 
 			{
 				perguntas.push(_req[i]);
 			}
-			/*try {
-			*/
-			//"<?xml version='1.0' encoding='utf-8' ?><data><pergunta erro='1'><span class='questao_facil'>Pertunta Nº 1<br/><br/>-RF2: O sistema deve solicitar a informação necessária para inserir um item<br/>bibliográfico: título, autor, data, lugar, assunto, resumo, número, editor,<br/>periódico, congresso.<br/><br/>-RF3: O sistema deve dar uma mensagem de alerta quando o usuário tentar<br/>inserir um item incompleto. Essa mensagem deve questionar o usuário se ele<br/>deseja cancelar a operação, completar a informação ou concluir a inserção<br/>como está.<br/><br/><span class='erro'><a href='event:erro'>Qual informação é necessária para possibilitar uma inserção incompleta?</a></span></span></pergunta><pergunta erro='1'><span class='questao_facil'>Pertunta Nº 1<br/><br/>-RF2: O sistema deve solicitar a informação necessária para inserir um item<br/>bibliográfico: título, autor, data, lugar, assunto, resumo, número, editor,<br/>periódico, congresso.<br/><br/>-RF3: O sistema deve dar uma mensagem de alerta quando o usuário tentar<br/>inserir um item incompleto. Essa mensagem deve questionar o usuário se ele<br/>deseja cancelar a operação, completar a informação ou concluir a inserção<br/>como está.<br/><br/><span class='erro'><a href='event:erro'>Qual informação é necessária para possibilitar uma inserção incompleta?</a></span></span></pergunta></data>"
-			//"<?xml version='1.0' encoding='utf-8' ?><data><pergunta erro='1'><span class='questao_facil'>Pertunta Nº 1<br/><br/>-RF2: O sistema deve solicitar a informação necessária para inserir um item<br/>bibliográfico: título, autor, data, lugar, assunto, resumo, número, editor,<br/>periódico, congresso.<br/><br/>-RF3: O sistema deve dar uma mensagem de alerta quando o usuário tentar<br/>inserir um item incompleto. Essa mensagem deve questionar o usuário se ele<br/>deseja cancelar a operação, completar a informação ou concluir a inserção<br/>como está.<br/><br/><span class='erro'><a href='event:erro'>Qual informação é necessária para possibilitar uma inserção incompleta?</a></span></span></pergunta><pergunta erro='1'><span class='questao_facil'>Pergunta Nº 2<br/><br/>–RNF1: O sistema deve fornecer os resultados tão rápido quanto possível.<br/><span class='erro'><a href='event:erro'>Tão rápido quanto possível?</a></span></span></pergunta></data>"
-			//trace(_req);
-			//var xmlteste:String = "<?xml version='1.0' encoding='utf-8' ?><data><pergunta erro='1'><span class='questao_facil'>Pertunta Nº 1<br/><br/>-RF2: O sistema deve solicitar a informação necessária para inserir um item<br/>bibliográfico: título, autor, data, lugar, assunto, resumo, número, editor,<br/>periódico, congresso.<br/><br/>-RF3: O sistema deve dar uma mensagem de alerta quando o usuário tentar<br/>inserir um item incompleto. Essa mensagem deve questionar o usuário se ele<br/>deseja cancelar a operação, completar a informação ou concluir a inserção<br/>como está.<br/><br/><span class='erro'><a href='event:erro'>Qual informação é necessária para possibilitar uma inserção incompleta?</a></span></span></pergunta><pergunta erro='1'><span class='questao_facil'>Pergunta Nº 2<br/><br/>–RNF1: O sistema deve fornecer os resultados tão rápido quanto possível.<br/><span class='erro'><a href='event:erro'>Tão rápido quanto possível?</a></span></span></pergunta></data>";//_req.replace( String.fromCharCode(65279), "" ) ;
-			//	data = new XML(_req);
 
-			//	dispatchEvent(new Event("XML_Loaded"));
-			/*} catch (e:Error) {//caso o parse dê erro...
-				dispatchEvent(new Event("XML_ParseError"));
-			}*/
 		}
 		
 		private function ioError(e:Event):void {

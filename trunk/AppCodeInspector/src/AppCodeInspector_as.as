@@ -113,7 +113,7 @@ private function onMouseUp(evt:MouseEvent):void
 	selection = new TextRange(field,false,field.selectionBeginIndex,field.selectionEndIndex);
 	var selLength:int = selection.endIndex - selection.beginIndex;
 	
-	if((selLength))
+	if(selLength)
 	{
 		PopUpManager.addPopUp(repostaWindow,this,true);
 		PopUpManager.centerPopUp(repostaWindow);
@@ -138,7 +138,10 @@ private function allDone():void
 	if(cssBool && xmlBool)
 	{
 		field.styleSheet = css.sheet;
-		var q:QuestaoEntity = xmlPerguntasWS[perguntaNum] as QuestaoEntity;
+		if(xmlPerguntasWS.length!=0)
+			var q:QuestaoEntity = xmlPerguntasWS[perguntaNum] as QuestaoEntity;
+		else
+			Alert.show("Selecione o motivo do erro antes de prosseguir");
 		
 		field.htmlText = q.Q_XML;
 		
@@ -170,7 +173,7 @@ private function textEvent(e:TextEvent):void
 {	
 	PopUpManager.addPopUp(repostaWindow,this,true);
 	
-	if(respostas.length  != 0)
+	if(respostas.length!=0)
 		repostaWindow.cbResposta.selectedIndex = (Resposta)(respostas.getItemAt(parseInt(e.text)-1)).motivoErroId;
 	PopUpManager.centerPopUp(repostaWindow);
 }
@@ -186,9 +189,12 @@ protected function btnProximaPergunta_clickHandler(event:MouseEvent):void
 	}
 	else
 	{
-		if(xmlPerguntasWS.length <= perguntaNum +1)
+		if(xmlPerguntasWS.length==0)
 		{
-				
+			Alert.show("Não existem perguntas para os tipos de artefatos selecionados.");
+		}
+		else if(xmlPerguntasWS.length <= perguntaNum +1)
+		{
 		}
 		else
 		{
@@ -236,57 +242,15 @@ protected function verificarRespostas():void
 protected function SetQuestaoAcerto_resultHandler(e:ResultEvent):void
 {
 	if(e.result)
-		Alert.show("Questão não foi computada!");
+		Alert.show("A questão não foi computada!");
 }
 
 protected function EncerrarPartidaResult_resultHandler(e:ResultEvent):void
 {
 	this.currentState = "ResultadoFinal";
 }
-protected function respostaToXml(respostas:ArrayCollection):String
-{
-	var string:String = "<r>";
-	for each(var item:Resposta in respostas)
-	{
-		string+="<resposta fimErro=\""+ item.fimErro +
-			"\" inicioErro=\""+ item.inicioErro +
-			"\" motivoErroId=\""+ item.motivoErroId +
-			"\" perguntaNumero=\""+ item.perguntaNumero +"\"" +
-			"/>";
-	}
-	string +="</r>" 
-	/*var qName:QName = new QName("root");
-	var xmlDocument:XMLDocument = new XMLDocument();
-	var simpleXMLEncoder:SimpleXMLEncoder= new SimpleXMLEncoder(xmlDocument);
-	var xmlNode:XMLNode= simpleXMLEncoder.encodeValue(respostas, qName, xmlDocument);
-	var xml:XML = new XML(xmlDocument.toString());*/
-	
-	return string;
-}
-protected function getRespostas(respostaId:int):String
-{
-	switch(respostaId)
-	{
-		case 1:
-			return "Defeitos de Omissão";
-			break;
-		case 2:
-			return "Defeitos de Fato Incorreto";
-			break;
-		case 3:
-			return "Defeitos de Inconsitência";
-			break;
-		case 4:
-			return "Defeitos de Ambiguidade";
-			break;
-		case 5:
-			return "Defeitos de Informação Estranha";
-			break;
-		default:
-			return "";
-			break;
-	}
-}
+
+
 
 private function error(e:Event):void {
 	switch(e.type) {

@@ -38,9 +38,9 @@ public class _Super_TipoArtefatoEntity extends flash.events.EventDispatcher impl
     /**
      * properties
      */
-	public var _internal_TA_ID : int;
-	public var _internal_TA_DESCRICAO : String;
-	public var _internal_TA_NOME : String;
+    private var _internal_TA_ID : int;
+    private var _internal_TA_DESCRICAO : String;
+    private var _internal_TA_NOME : String;
 
     private static var emptyArray:Array = new Array();
 
@@ -303,8 +303,7 @@ public class _Super_TipoArtefatoEntity extends flash.events.EventDispatcher impl
 
         return validationFailures;
     }
-	
-
+    
 
 }
 
