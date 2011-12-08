@@ -65,20 +65,21 @@ namespace CIDao.DAO
 
         public List<QuestaoEntity> GetQuestoesByType(int nivelDificuldade, int tipoArtefatoId)
         {
-            var questoes = (from q in db.Questaos
-                            from it in db.ItemTaxonomias
-                            from td in db.TrechoDefeitos
+            var questoes = (from questoesdb in db.Questaos
+                            from itemtax in db.ItemTaxonomias
+                            from trechoDef in db.TrechoDefeitos
                             from qtd in db.Questao_TrechoDefeitos
-                            from t in db.Taxonomias
-                            from tat in db.TipoArtefato_Taxonomias
-                            where tat.TA_ID == tipoArtefatoId
-                            && tat.T_ID == t.T_ID
-                            && it.T_ID == t.T_ID
-                            && it.IT_ID == td.IT_ID
-                            && td.D_ID == qtd.TD_id
-                            && q.Q_ID == qtd.Q_id
-                            && q.Q_NIVEL_DIFICULDADE == nivelDificuldade
-                            select q).Distinct();
+                            from taxonomia in db.Taxonomias
+                            from tipoArtef_Tax in db.TipoArtefato_Taxonomias
+                            where 
+                               tipoArtef_Tax.TA_ID == tipoArtefatoId
+                            && tipoArtef_Tax.T_ID == taxonomia.T_ID
+                            && itemtax.T_ID == taxonomia.T_ID
+                            && itemtax.IT_ID == trechoDef.IT_ID
+                            && trechoDef.D_ID == qtd.TD_id
+                            && questoesdb.Q_ID == qtd.Q_id
+                            && questoesdb.Q_NIVEL_DIFICULDADE == nivelDificuldade
+                            select questoesdb).Distinct();
 
             List<QuestaoEntity> questoesEn = new List<QuestaoEntity>();
             List<Questao> questaL = questoes.ToList();
