@@ -58,7 +58,7 @@ namespace CIFacade.Facade
 
             #endregion
 
-            return new UsuarioDAO().CriarUsuario(novoUsuario ,email, senha);
+            return new UsuarioDAO().CriarUsuario(novoUsuario);
         }
 
         //public List<RankRetorno> GetUsersRank(int nivelDificuldade)
