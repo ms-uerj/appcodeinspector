@@ -79,25 +79,19 @@ namespace CIDao.DAO
           
         }
 
-        public bool CriarUsuario(Usuario novoUsuario, string email, string senha)
+        public bool CriarUsuario(Usuario novoUsuario)
         {
-            if (AtenticarUsuario(email, senha) == false)
+            try
+            {
 
-                try
-                {
-
-                    db.Usuarios.InsertOnSubmit(novoUsuario);
-                    db.SubmitChanges();
-                    return true;
-
-                }
-                catch (Exception)
-                {
-                    throw;
-                }
-
-            else return false;
-
+                db.Usuarios.InsertOnSubmit(novoUsuario);
+                db.SubmitChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         //public List<RankRetorno> GetUsersRank(int nivelDificuldade)
