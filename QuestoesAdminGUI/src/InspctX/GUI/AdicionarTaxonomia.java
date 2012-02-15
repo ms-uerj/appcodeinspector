@@ -1,17 +1,14 @@
-package GUI;
+package InspctX.GUI;
 
-import InspectorXWebserv.ArrayOfItemTaxonomiaEntity;
-import InspectorXWebserv.ArrayOfTipoArtefatoEntity;
-import InspectorXWebserv.ItemTaxonomiaEntity;
-import InspectorXWebserv.TaxonomiaEntity;
-import InspectorXWebserv.TipoArtefatoEntity;
+import InspctX.Componentes.TaxonomiasAdmin;
+import InspectorXWebserv.*;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 public final class AdicionarTaxonomia extends javax.swing.JFrame 
 {
-    AdminMenu Parentframe;
+    TaxonomiasAdmin Parentframe;
     TaxonomiaEntity Tax;
     List<ItemTaxonomiaEntity> itemsTaxList;
     
@@ -20,7 +17,7 @@ public final class AdicionarTaxonomia extends javax.swing.JFrame
         initComponents();
     }
     
-    public AdicionarTaxonomia(AdminMenu parentframe) 
+    public AdicionarTaxonomia(TaxonomiasAdmin parentframe) 
     {
         initComponents();
         
@@ -31,7 +28,7 @@ public final class AdicionarTaxonomia extends javax.swing.JFrame
         setTipoArtefatoItemsCbx();
     }
     
-    public AdicionarTaxonomia(AdminMenu parentframe,TaxonomiaEntity tax) 
+    public AdicionarTaxonomia(TaxonomiasAdmin parentframe,TaxonomiaEntity tax) 
     {
         initComponents();
         
@@ -79,7 +76,7 @@ public final class AdicionarTaxonomia extends javax.swing.JFrame
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Administrador de Taxonomias");
 
-        lblTaxonomiaTitle.setFont(new java.awt.Font("Tahoma", 1, 18));
+        lblTaxonomiaTitle.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblTaxonomiaTitle.setText("Taxonomia");
 
         lbl_TaxNome.setText("Nome:");

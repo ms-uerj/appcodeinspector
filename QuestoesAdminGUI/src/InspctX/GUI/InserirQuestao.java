@@ -1,4 +1,4 @@
-package GUI;
+package InspctX.GUI;
 
 import InspectorXWebserv.ArrayOfTrechoDefeitoEntity;
 import InspectorXWebserv.QuestaoEntity;
@@ -45,7 +45,7 @@ public class InserirQuestao extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        lblInserirTitulo.setFont(new java.awt.Font("Tahoma", 0, 18));
+        lblInserirTitulo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblInserirTitulo.setText("Inserir Questão");
 
         jLabel1.setText("Corpo da questão:");
@@ -86,7 +86,7 @@ public class InserirQuestao extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(lst_DefeitosSelecionados);
 
-        label1.setFont(new java.awt.Font("Tahoma", 0, 11));
+        label1.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         label1.setText("Defeitos Selecionados :");
 
         javax.swing.GroupLayout pnlCorpoQuestaoLayout = new javax.swing.GroupLayout(pnlCorpoQuestao);

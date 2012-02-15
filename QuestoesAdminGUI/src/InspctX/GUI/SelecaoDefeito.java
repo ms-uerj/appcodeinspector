@@ -1,4 +1,4 @@
-package GUI;
+package InspctX.GUI;
 
 import InspectorXWebserv.ArrayOfItemTaxonomiaEntity;
 import InspectorXWebserv.ArrayOfTrechoDefeitoEntity;
@@ -76,7 +76,7 @@ public class SelecaoDefeito extends javax.swing.JFrame
             }
         });
 
-        lblSelecionarDefeito.setFont(new java.awt.Font("Tahoma", 0, 18));
+        lblSelecionarDefeito.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblSelecionarDefeito.setText("Defeito ");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -95,9 +95,7 @@ public class SelecaoDefeito extends javax.swing.JFrame
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(cbx_Defeito, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(txf_Taxonomia, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                    .addComponent(txf_Taxonomia, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE))
                                 .addGap(118, 118, 118))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(162, 162, 162)

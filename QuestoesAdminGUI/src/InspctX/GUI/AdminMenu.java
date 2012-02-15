@@ -1,26 +1,16 @@
 package InspctX.GUI;
 
-import GUI.AdicionarTaxonomia;
-import GUI.InserirQuestao;
 import InspectorXWebserv.ArrayOfItemTaxonomiaEntity;
 import InspectorXWebserv.ArrayOfQuestaoEntity;
 import InspectorXWebserv.ArrayOfTaxonomiaEntity;
 import InspectorXWebserv.ArrayOfTrechoDefeitoEntity;
-import InspectorXWebserv.ItemTaxonomiaEntity;
-import InspectorXWebserv.QuestaoEntity;
-import InspectorXWebserv.TaxonomiaEntity;
-import InspectorXWebserv.TrechoDefeitoEntity;
-import java.util.List;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JOptionPane;
 
 public class AdminMenu extends javax.swing.JFrame {
 
     public AdminMenu() 
     {
         initComponents();
-        setTaxonomia();
-        setItemTaxonomiaList();
+
     }
 
     @SuppressWarnings("unchecked")
@@ -28,480 +18,152 @@ public class AdminMenu extends javax.swing.JFrame {
     private void initComponents() {
 
         lblTitle = new javax.swing.JLabel();
-        pnlTaxonomia = new javax.swing.JPanel();
-        lblTaxonomiaSelecionada = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        btnInserirTaxonomia = new javax.swing.JButton();
-        btnDeletarTaxonomia = new javax.swing.JButton();
-        btn_editarTaxonomia = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        lst_itemsTaxonomia = new javax.swing.JList();
-        btn_refreshTaxonomia = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        cbx_Taxonomia = new javax.swing.JComboBox();
-        pnl_Questoes = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
-        btn_InserirQuestao = new javax.swing.JButton();
-        btn_DeletarQuestao = new javax.swing.JButton();
-        btn_EditarQuestao = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        lstQuestoes = new javax.swing.JList();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        lst_TrechoDefeitos = new javax.swing.JList();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        taxonomiasAdmin1 = new InspctX.Componentes.TaxonomiasAdmin();
+        questoesAdmin1 = new InspctX.Componentes.QuestoesAdmin();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         lblTitle.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblTitle.setText("Administrador de questões e taxonomias do jogo InspectorX");
 
-        pnlTaxonomia.setBorder(javax.swing.BorderFactory.createTitledBorder("Taxonomias"));
-
-        lblTaxonomiaSelecionada.setText("Selecionar:");
-
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Opções"));
-
-        btnInserirTaxonomia.setText("Inserir");
-        btnInserirTaxonomia.setToolTipText("Inserir nova taxonomia");
-        btnInserirTaxonomia.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnInserirTaxonomiaActionPerformed(evt);
-            }
-        });
-
-        btnDeletarTaxonomia.setText("Deletar");
-        btnDeletarTaxonomia.setToolTipText("Deletar taxonomia selecionada");
-        btnDeletarTaxonomia.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeletarTaxonomiaActionPerformed(evt);
-            }
-        });
-
-        btn_editarTaxonomia.setText("Editar");
-        btn_editarTaxonomia.setToolTipText("Editar taxonomia selecionada");
-        btn_editarTaxonomia.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_editarTaxonomiaActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(btnDeletarTaxonomia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_editarTaxonomia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnInserirTaxonomia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnInserirTaxonomia)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnDeletarTaxonomia)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_editarTaxonomia)
-                .addContainerGap())
-        );
-
-        jScrollPane2.setViewportView(lst_itemsTaxonomia);
-
-        btn_refreshTaxonomia.setText("Refresh");
-        btn_refreshTaxonomia.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_refreshTaxonomiaActionPerformed(evt);
-            }
-        });
-
-        jLabel1.setText("Definições presentes:");
-
-        cbx_Taxonomia.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbx_TaxonomiaActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout pnlTaxonomiaLayout = new javax.swing.GroupLayout(pnlTaxonomia);
-        pnlTaxonomia.setLayout(pnlTaxonomiaLayout);
-        pnlTaxonomiaLayout.setHorizontalGroup(
-            pnlTaxonomiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlTaxonomiaLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnlTaxonomiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn_refreshTaxonomia, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(pnlTaxonomiaLayout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(pnlTaxonomiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
-                            .addComponent(jLabel1)))
-                    .addGroup(pnlTaxonomiaLayout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addComponent(lblTaxonomiaSelecionada)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbx_Taxonomia, 0, 250, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        pnlTaxonomiaLayout.setVerticalGroup(
-            pnlTaxonomiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlTaxonomiaLayout.createSequentialGroup()
-                .addComponent(btn_refreshTaxonomia)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(pnlTaxonomiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbx_Taxonomia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblTaxonomiaSelecionada))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlTaxonomiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlTaxonomiaLayout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(1, 1, 1)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE))
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-        );
-
-        pnl_Questoes.setBorder(javax.swing.BorderFactory.createTitledBorder("Questões Relacionadas"));
-
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Opções"));
-
-        btn_InserirQuestao.setText("Inserir");
-        btn_InserirQuestao.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_InserirQuestaoActionPerformed(evt);
-            }
-        });
-
-        btn_DeletarQuestao.setText("Deletar");
-        btn_DeletarQuestao.setEnabled(false);
-        btn_DeletarQuestao.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_DeletarQuestaoActionPerformed(evt);
-            }
-        });
-
-        btn_EditarQuestao.setText("Editar");
-        btn_EditarQuestao.setEnabled(false);
-        btn_EditarQuestao.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_EditarQuestaoActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(btn_DeletarQuestao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_EditarQuestao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_InserirQuestao))
-                .addContainerGap())
-        );
-
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btn_DeletarQuestao, btn_EditarQuestao, btn_InserirQuestao});
-
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btn_InserirQuestao)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_DeletarQuestao)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_EditarQuestao)
-                .addContainerGap())
-        );
-
-        lstQuestoes.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                lstQuestoesValueChanged(evt);
-            }
-        });
-        jScrollPane1.setViewportView(lstQuestoes);
-
-        jScrollPane3.setViewportView(lst_TrechoDefeitos);
-
-        jLabel2.setText("Questões :");
-
-        jLabel3.setText("Defeitos :");
-
-        javax.swing.GroupLayout pnl_QuestoesLayout = new javax.swing.GroupLayout(pnl_Questoes);
-        pnl_Questoes.setLayout(pnl_QuestoesLayout);
-        pnl_QuestoesLayout.setHorizontalGroup(
-            pnl_QuestoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnl_QuestoesLayout.createSequentialGroup()
-                .addGroup(pnl_QuestoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnl_QuestoesLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnl_QuestoesLayout.createSequentialGroup()
-                        .addGap(119, 119, 119)
-                        .addComponent(jLabel2)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnl_QuestoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        pnl_QuestoesLayout.setVerticalGroup(
-            pnl_QuestoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnl_QuestoesLayout.createSequentialGroup()
-                .addGroup(pnl_QuestoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnl_QuestoesLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(pnl_QuestoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(pnl_QuestoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane3)
-                            .addComponent(jScrollPane1)))
-                    .addGroup(pnl_QuestoesLayout.createSequentialGroup()
-                        .addGap(57, 57, 57)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
-        );
+        jTabbedPane1.addTab("Taxonomias", taxonomiasAdmin1);
+        jTabbedPane1.addTab("Questões", questoesAdmin1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, 901, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 901, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(pnlTaxonomia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(pnl_Questoes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(217, 217, 217)
-                        .addComponent(lblTitle))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(162, 162, 162)
-                        .addComponent(lblTitle)))
-                .addContainerGap())
+                        .addComponent(jTabbedPane1)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(20, 20, 20)
+                                .addComponent(lblTitle))
+                            .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(89, 89, 89))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(11, 11, 11)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addComponent(lblTitle)))
+                .addGap(8, 8, 8)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnl_Questoes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnlTaxonomia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 390, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn_InserirQuestaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_InserirQuestaoActionPerformed
- 
-        if((TaxonomiaEntity)cbx_Taxonomia.getSelectedItem()!=null)
-        {
-            InserirQuestao insQuest = new InserirQuestao((TaxonomiaEntity)cbx_Taxonomia.getSelectedItem());
-            insQuest.setVisible(true);
-        }
-        else
-            JOptionPane.showMessageDialog(this, "Por favor selecione uma taxonomia.\n ou cadatre uma nova!");
-    }//GEN-LAST:event_btn_InserirQuestaoActionPerformed
-
-private void btnInserirTaxonomiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInserirTaxonomiaActionPerformed
-    
-    AdicionarTaxonomia addTax= new AdicionarTaxonomia(this);
-    addTax.setVisible(true);
-    
-}//GEN-LAST:event_btnInserirTaxonomiaActionPerformed
-
-private void btn_refreshTaxonomiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_refreshTaxonomiaActionPerformed
-    
-    try
-    {
-        DefaultComboBoxModel theModel = (DefaultComboBoxModel)cbx_Taxonomia.getModel();
-        theModel.removeAllElements();
-        
-        ArrayOfTaxonomiaEntity taxArray = pegarTaxonomias();
-
-        List<TaxonomiaEntity> taxList = taxArray.getTaxonomiaEntity();
-
-        for(TaxonomiaEntity txe : taxList)
-        {
-            cbx_Taxonomia.addItem(txe);
-        }
-
-    }
-    catch(Exception ex)
-    {
-        JOptionPane.showMessageDialog(this, ex);
-    }
-}//GEN-LAST:event_btn_refreshTaxonomiaActionPerformed
-
-private void btn_editarTaxonomiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editarTaxonomiaActionPerformed
-    
-    TaxonomiaEntity tax = (TaxonomiaEntity)cbx_Taxonomia.getSelectedItem();
-    
-    AdicionarTaxonomia addTax = new AdicionarTaxonomia(this,tax);
-    addTax.setVisible(true);
-    
-}//GEN-LAST:event_btn_editarTaxonomiaActionPerformed
-
-private void btnDeletarTaxonomiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarTaxonomiaActionPerformed
-    try 
-    {
-        TaxonomiaEntity tax = (TaxonomiaEntity)cbx_Taxonomia.getSelectedItem();
-        ArrayOfItemTaxonomiaEntity itemTaxEntity = pegarItemsTaxonomia(tax.getID() );
-
-        List<ItemTaxonomiaEntity> itemTaxList = itemTaxEntity.getItemTaxonomiaEntity();
-
-        if(!itemTaxList.isEmpty())
-        {
-            for(ItemTaxonomiaEntity it : itemTaxList)
-            {
-                deletarItemTaxonomia(it.getID());
-            }
-        }
-    
-    deletarTaxonomias(tax.getID());
-    }
-    catch (Exception ex) 
-    {
-        JOptionPane.showMessageDialog(this, ex.getMessage());
-    }
-    
-}//GEN-LAST:event_btnDeletarTaxonomiaActionPerformed
-
-private void cbx_TaxonomiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbx_TaxonomiaActionPerformed
-    setItemTaxonomiaList();
-    setQuestaoList();
-}//GEN-LAST:event_cbx_TaxonomiaActionPerformed
-
-    private void lstQuestoesValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstQuestoesValueChanged
-        setTrechoDefeitoList();
-    }//GEN-LAST:event_lstQuestoesValueChanged
-
-    private void btn_DeletarQuestaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_DeletarQuestaoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_DeletarQuestaoActionPerformed
-
-    private void btn_EditarQuestaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_EditarQuestaoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_EditarQuestaoActionPerformed
-
-    private void setItemTaxonomiaList()
-    {
-        try 
-        {
-            TaxonomiaEntity tax = (TaxonomiaEntity)cbx_Taxonomia.getSelectedItem();
-            lst_itemsTaxonomia.setListData(new Object[0]);
-            if(tax!=null)
-            {
-                ArrayOfItemTaxonomiaEntity itemTaxEntityArray = pegarItemsTaxonomia(tax.getID());
-                List<ItemTaxonomiaEntity> itemTaxList = itemTaxEntityArray.getItemTaxonomiaEntity();
-                if(!itemTaxList.isEmpty())
-                    lst_itemsTaxonomia.setListData(itemTaxList.toArray());
-
-            }
-        } 
-        catch (Exception ex) 
-        {
-            JOptionPane.showMessageDialog(this, ex.getMessage());
-        }
-        
-    }
-    
-    private void setTrechoDefeitoList()
-    {
-        try 
-        {
-            if(lstQuestoes.getSelectedValue()!=null)
-            {
-            QuestaoEntity questaoEntity = (QuestaoEntity)lstQuestoes.getSelectedValue();
-            ArrayOfTrechoDefeitoEntity tdEntityArray = getTrechosDefeito(questaoEntity.getQID());
-            
-            List<TrechoDefeitoEntity> tdList = tdEntityArray.getTrechoDefeitoEntity();
-            lst_TrechoDefeitos.setListData(new Object[0]);
-            if(!tdList.isEmpty())
-                lst_TrechoDefeitos.setListData(tdList.toArray());
-            }
-        } 
-        catch (Exception ex) 
-        {
-            JOptionPane.showMessageDialog(this, ex.getMessage());
-        }
-        
-    }
-    
-    public void setQuestaoList()
-    {
-        try 
-        {
-            TaxonomiaEntity tax = (TaxonomiaEntity)cbx_Taxonomia.getSelectedItem();
-            if(tax!=null)
-            {
-                ArrayOfQuestaoEntity questaoEntity = getQuestoesTaxList(tax.getID());
-                List<QuestaoEntity> questaoList = questaoEntity.getQuestaoEntity();
-                lstQuestoes.setListData(new Object[0]);
-                if(!questaoList.isEmpty())
-                    lstQuestoes.setListData(questaoList.toArray());
-
-            }
-        } 
-        catch (Exception ex) 
-        {
-            JOptionPane.showMessageDialog(this, ex.getMessage());
-        }
-        
-    }
-
-    public void setTaxonomia()
-    {
-        try
-        {
-            DefaultComboBoxModel theModel = (DefaultComboBoxModel)cbx_Taxonomia.getModel();
-            theModel.removeAllElements();
-
-            ArrayOfTaxonomiaEntity taxArray = pegarTaxonomias();
-
-            List<TaxonomiaEntity> taxList = taxArray.getTaxonomiaEntity();
-
-            for(TaxonomiaEntity txe : taxList)
-            {
-                cbx_Taxonomia.addItem(txe);
-            }
-
-        }
-        catch(Exception ex)
-        {
-            JOptionPane.showMessageDialog(this, ex);
-        }
-    }
+//    private void setItemTaxonomiaList()
+//    {
+//        try 
+//        {
+//            TaxonomiaEntity tax = (TaxonomiaEntity)cbx_Taxonomia.getSelectedItem();
+//            lst_itemsTaxonomia.setListData(new Object[0]);
+//            if(tax!=null)
+//            {
+//                ArrayOfItemTaxonomiaEntity itemTaxEntityArray = pegarItemsTaxonomia(tax.getID());
+//                List<ItemTaxonomiaEntity> itemTaxList = itemTaxEntityArray.getItemTaxonomiaEntity();
+//                if(!itemTaxList.isEmpty())
+//                    lst_itemsTaxonomia.setListData(itemTaxList.toArray());
+//
+//            }
+//        } 
+//        catch (Exception ex) 
+//        {
+//            JOptionPane.showMessageDialog(this, ex.getMessage());
+//        }
+//        
+//    }
+//    
+//    private void setTrechoDefeitoList()
+//    {
+//        try 
+//        {
+//            if(lstQuestoes.getSelectedValue()!=null)
+//            {
+//            QuestaoEntity questaoEntity = (QuestaoEntity)lstQuestoes.getSelectedValue();
+//            ArrayOfTrechoDefeitoEntity tdEntityArray = getTrechosDefeito(questaoEntity.getQID());
+//            
+//            List<TrechoDefeitoEntity> tdList = tdEntityArray.getTrechoDefeitoEntity();
+//            lst_TrechoDefeitos.setListData(new Object[0]);
+//            if(!tdList.isEmpty())
+//                lst_TrechoDefeitos.setListData(tdList.toArray());
+//            }
+//        } 
+//        catch (Exception ex) 
+//        {
+//            JOptionPane.showMessageDialog(this, ex.getMessage());
+//        }
+//        
+//    }
+//    
+//    public void setQuestaoList()
+//    {
+//        try 
+//        {
+//            TaxonomiaEntity tax = (TaxonomiaEntity)cbx_Taxonomia.getSelectedItem();
+//            if(tax!=null)
+//            {
+//                ArrayOfQuestaoEntity questaoEntity = getQuestoesTaxList(tax.getID());
+//                List<QuestaoEntity> questaoList = questaoEntity.getQuestaoEntity();
+//                lstQuestoes.setListData(new Object[0]);
+//                if(!questaoList.isEmpty())
+//                    lstQuestoes.setListData(questaoList.toArray());
+//
+//            }
+//        } 
+//        catch (Exception ex) 
+//        {
+//            JOptionPane.showMessageDialog(this, ex.getMessage());
+//        }
+//        
+//    }
+//
+//    public void setTaxonomia()
+//    {
+//        try
+//        {
+//            DefaultComboBoxModel theModel = (DefaultComboBoxModel)cbx_Taxonomia.getModel();
+//            theModel.removeAllElements();
+//
+//            ArrayOfTaxonomiaEntity taxArray = pegarTaxonomias();
+//
+//            List<TaxonomiaEntity> taxList = taxArray.getTaxonomiaEntity();
+//
+//            for(TaxonomiaEntity txe : taxList)
+//            {
+//                cbx_Taxonomia.addItem(txe);
+//            }
+//
+//        }
+//        catch(Exception ex)
+//        {
+//            JOptionPane.showMessageDialog(this, ex);
+//        }
+//    }
 
 public static void main(String args[]) {
     java.awt.EventQueue.invokeLater(new Runnable() {
 
+            @Override
         public void run() {
             new AdminMenu().setVisible(true);
         }
@@ -510,31 +172,12 @@ public static void main(String args[]) {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton btnDeletarTaxonomia;
-    public javax.swing.JButton btnInserirTaxonomia;
-    private javax.swing.JButton btn_DeletarQuestao;
-    private javax.swing.JButton btn_EditarQuestao;
-    private javax.swing.JButton btn_InserirQuestao;
-    public javax.swing.JButton btn_editarTaxonomia;
-    private javax.swing.JButton btn_refreshTaxonomia;
-    private javax.swing.JComboBox cbx_Taxonomia;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JLabel lblTaxonomiaSelecionada;
+    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel lblTitle;
-    private javax.swing.JList lstQuestoes;
-    private javax.swing.JList lst_TrechoDefeitos;
-    private javax.swing.JList lst_itemsTaxonomia;
-    private javax.swing.JPanel pnlTaxonomia;
-    private javax.swing.JPanel pnl_Questoes;
+    private InspctX.Componentes.QuestoesAdmin questoesAdmin1;
+    private InspctX.Componentes.TaxonomiasAdmin taxonomiasAdmin1;
     // End of variables declaration//GEN-END:variables
 
 
