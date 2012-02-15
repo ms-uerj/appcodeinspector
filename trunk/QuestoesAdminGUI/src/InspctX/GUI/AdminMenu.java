@@ -1,5 +1,7 @@
-package GUI;
+package InspctX.GUI;
 
+import GUI.AdicionarTaxonomia;
+import GUI.InserirQuestao;
 import InspectorXWebserv.ArrayOfItemTaxonomiaEntity;
 import InspectorXWebserv.ArrayOfQuestaoEntity;
 import InspectorXWebserv.ArrayOfTaxonomiaEntity;
@@ -53,7 +55,7 @@ public class AdminMenu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        lblTitle.setFont(new java.awt.Font("Tahoma", 0, 18));
+        lblTitle.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblTitle.setText("Administrador de questões e taxonomias do jogo InspectorX");
 
         pnlTaxonomia.setBorder(javax.swing.BorderFactory.createTitledBorder("Taxonomias"));
@@ -264,8 +266,8 @@ public class AdminMenu extends javax.swing.JFrame {
                             .addComponent(jLabel3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(pnl_QuestoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)))
+                            .addComponent(jScrollPane3)
+                            .addComponent(jScrollPane1)))
                     .addGroup(pnl_QuestoesLayout.createSequentialGroup()
                         .addGap(57, 57, 57)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
