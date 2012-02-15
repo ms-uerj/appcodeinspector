@@ -1,4 +1,4 @@
-package GUI;
+package InspctX.GUI;
 
 
 import javax.swing.JOptionPane;
@@ -40,7 +40,7 @@ public class AdicionarItemTaxonomia extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Defeito");
 
-        lblDefeitoTitle.setFont(new java.awt.Font("Tahoma", 1, 18));
+        lblDefeitoTitle.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblDefeitoTitle.setText("Novo Defeito");
 
         jLabel1.setText("Nome :");
