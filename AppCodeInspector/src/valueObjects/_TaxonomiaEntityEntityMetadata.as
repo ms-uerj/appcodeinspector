@@ -28,12 +28,15 @@ internal class _TaxonomiaEntityEntityMetadata extends com.adobe.fiber.valueobjec
     model_internal static var allAlwaysAvailableProperties:Array = new Array("ID", "Nome");
     model_internal static var guardedProperties:Array = new Array();
     model_internal static var dataProperties:Array = new Array("ID", "Nome");
+    model_internal static var sourceProperties:Array = emptyArray
+    model_internal static var nonDerivedProperties:Array = new Array("ID", "Nome");
     model_internal static var derivedProperties:Array = new Array();
     model_internal static var collectionProperties:Array = new Array();
     model_internal static var collectionBaseMap:Object;
     model_internal static var entityName:String = "TaxonomiaEntity";
     model_internal static var dependentsOnMap:Object;
     model_internal static var dependedOnServices:Array = new Array();
+    model_internal static var propertyTypeMap:Object;
 
     
     model_internal var _NomeIsValid:Boolean;
@@ -49,14 +52,19 @@ internal class _TaxonomiaEntityEntityMetadata extends com.adobe.fiber.valueobjec
         // initialize property maps
         if (model_internal::dependentsOnMap == null)
         {
-            // depenents map
+            // dependents map
             model_internal::dependentsOnMap = new Object();
             model_internal::dependentsOnMap["ID"] = new Array();
             model_internal::dependentsOnMap["Nome"] = new Array();
 
             // collection base map
-            model_internal::collectionBaseMap = new Object()
+            model_internal::collectionBaseMap = new Object();
         }
+
+        // Property type Map
+        model_internal::propertyTypeMap = new Object();
+        model_internal::propertyTypeMap["ID"] = "int";
+        model_internal::propertyTypeMap["Nome"] = "String";
 
         model_internal::_instance = value;
         model_internal::_NomeValidator = new StyleValidator(model_internal::_instance.model_internal::_doValidationForNome);
@@ -91,6 +99,16 @@ internal class _TaxonomiaEntityEntityMetadata extends com.adobe.fiber.valueobjec
         return model_internal::dataProperties;
     }
 
+    public function getSourceProperties():Array
+    {
+        return model_internal::sourceProperties;
+    }
+
+    public function getNonDerivedProperties():Array
+    {
+        return model_internal::nonDerivedProperties;
+    }
+
     override public function getGuardedProperties():Array
     {
         return model_internal::guardedProperties;
@@ -103,8 +121,8 @@ internal class _TaxonomiaEntityEntityMetadata extends com.adobe.fiber.valueobjec
 
     override public function getDependants(propertyName:String):Array
     {
-       if (model_internal::dataProperties.indexOf(propertyName) == -1)
-            throw new Error(propertyName + " is not a data property of entity TaxonomiaEntity");  
+       if (model_internal::nonDerivedProperties.indexOf(propertyName) == -1)
+            throw new Error(propertyName + " is not a data property of entity TaxonomiaEntity");
             
        return model_internal::dependentsOnMap[propertyName] as Array;  
     }
@@ -122,9 +140,17 @@ internal class _TaxonomiaEntityEntityMetadata extends com.adobe.fiber.valueobjec
     override public function getCollectionBase(propertyName:String):String
     {
         if (model_internal::collectionProperties.indexOf(propertyName) == -1)
-            throw new Error(propertyName + " is not a collection property of entity TaxonomiaEntity");  
+            throw new Error(propertyName + " is not a collection property of entity TaxonomiaEntity");
 
         return model_internal::collectionBaseMap[propertyName];
+    }
+    
+    override public function getPropertyType(propertyName:String):String
+    {
+        if (model_internal::allProperties.indexOf(propertyName) == -1)
+            throw new Error(propertyName + " is not a property of TaxonomiaEntity");
+
+        return model_internal::propertyTypeMap[propertyName];
     }
 
     override public function getAvailableProperties():com.adobe.fiber.valueobjects.IPropertyIterator
@@ -144,9 +170,9 @@ internal class _TaxonomiaEntityEntityMetadata extends com.adobe.fiber.valueobjec
 
     override public function setValue(propertyName:String, value:*):void
     {
-        if (model_internal::dataProperties.indexOf(propertyName) == -1)
+        if (model_internal::nonDerivedProperties.indexOf(propertyName) == -1)
         {
-            throw new Error(propertyName + " is not a data property of entity TaxonomiaEntity");
+            throw new Error(propertyName + " is not a modifiable property of entity TaxonomiaEntity");
         }
 
         model_internal::_instance[propertyName] = value;

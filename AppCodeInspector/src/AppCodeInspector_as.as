@@ -2,6 +2,7 @@ import CodeInspector.CSS;
 import CodeInspector.XMLLoader;
 
 import flash.display.Stage;
+import flash.events.Event;
 import flash.events.MouseEvent;
 import flash.events.TextEvent;
 import flash.profiler.showRedrawRegions;
@@ -31,7 +32,9 @@ private var field:TextArea;
 
 private var cssBool:Boolean = false;
 private var xmlBool:Boolean = false;
-public  static var perguntaNum:int = 0;
+public  static var perguntaAtual:int = 0;
+
+private var pertguntasTotal:int = 10;
 
 
 [Bindable]
@@ -60,7 +63,8 @@ public static var taxonomia_Id:int;
 
 public static var respostas:ArrayCollection = new ArrayCollection();
 public static var respostaIndexAtual:int = 0;
-public static var selection:TextRange;
+
+public static var selectedText:TextRange;
 
 public function onLoad():void
 {
@@ -69,14 +73,16 @@ public function onLoad():void
 	IniciarPartida.token = wSCodeInspector.IniciarPartida(nivelDificuldade,LoginUsuario);
 	
 	field = new TextArea();
+
+	
 	container = new UIComponent();
-	addElement(container);
+	this.addElement(container);
 	container.addChild(field);
 	
 	with (field) 
 	{
-		x = (stage.width/2) - 400;
-		y = (stage.height/2) - 200;
+		x = (stage.width/2) - 850;
+		y = (stage.height/2) - 320;
 		width = 800;
 		height = 450;
 		multiline = true;
@@ -95,31 +101,39 @@ public function onLoad():void
 	xml.LoadWS(xmlPerguntasWS);
 
 	xml.addEventListener("XML_Loaded", xmlDone);
-	xml.addEventListener("XML_IOError", error);
-	xml.addEventListener("XML_SecurityError", error);
-	xml.addEventListener("XML_ParseError", error);
+//	xml.addEventListener("XML_IOError", error);
+//	xml.addEventListener("XML_SecurityError", error);
+//	xml.addEventListener("XML_ParseError", error);
 	
 	css = new CSS();
 	css.Load("Arquivos/styles.css");
 	css.addEventListener("CSS_Loaded", cssDone);
-	css.addEventListener("CSS_IOError", error);
-	css.addEventListener("CSS_SecurityError", error);
-	css.addEventListener("CSS_ParseError", error);
+//	css.addEventListener("CSS_IOError", error);
+//	css.addEventListener("CSS_SecurityError", error);
+//	css.addEventListener("CSS_ParseError", error);
 }
 
 
 private function onMouseUp(evt:MouseEvent):void
 {
-	selection = new TextRange(field,false,field.selectionBeginIndex,field.selectionEndIndex);
-	var selLength:int = selection.endIndex - selection.beginIndex;
+	selectedText = new TextRange(field,false,field.selectionBeginIndex,field.selectionEndIndex);
+	var selLength:int = selectedText.endIndex - selectedText.beginIndex;
 	
 	if(selLength)
 	{
+		repostaWindow.nivelDificuldade = nivelDificuldade;
+			
 		PopUpManager.addPopUp(repostaWindow,this,true);
 		PopUpManager.centerPopUp(repostaWindow);
 	}
 }
 
+private function textEvent(e:TextEvent):void 
+{	
+	repostaWindow.nivelDificuldade = nivelDificuldade;
+	PopUpManager.addPopUp(repostaWindow,this,true);
+	PopUpManager.centerPopUp(repostaWindow);
+}
 
 
 private function cssDone(e:Event):void {
@@ -138,14 +152,13 @@ private function allDone():void
 	if(cssBool && xmlBool)
 	{
 		field.styleSheet = css.sheet;
+		
 		if(xmlPerguntasWS.length!=0)
-			var q:QuestaoEntity = xmlPerguntasWS[perguntaNum] as QuestaoEntity;
-		else
-			Alert.show("Selecione o motivo do erro antes de prosseguir");
+			var q:QuestaoEntity = xmlPerguntasWS[perguntaAtual] as QuestaoEntity;
 		
 		field.htmlText = q.Q_XML;
 		
-		//field.htmlText = xml.perguntas[perguntaNum];	
+		//field.htmlText = xml.perguntas[perguntaNum];
 		var ws:services.wscodeinspector.WSCodeInspector = new WSCodeInspector();
 		
 		GetTrechosQuestao.token = ws.GetTrechosDefeito(q.Q_ID);
@@ -161,21 +174,12 @@ protected function GetTrechosQuestao_resultHandler(e:ResultEvent):void
 protected function GetTaxonomia_resultHandler(e:ResultEvent):void
 {
 	var t:TaxonomiaEntity = e.result as TaxonomiaEntity;
-	repostaWindow.questaoTaxonomiaId=t._internal_ID;
+	repostaWindow.questaoTaxonomiaId=t.ID;
 }
 
 protected function IniciarPartida_resultHandler(e:ResultEvent):void
 {
 	partidaAtualId = e.result as int;
-}
-
-private function textEvent(e:TextEvent):void 
-{	
-	PopUpManager.addPopUp(repostaWindow,this,true);
-	
-	if(respostas.length!=0)
-		repostaWindow.cbResposta.selectedIndex = (Resposta)(respostas.getItemAt(parseInt(e.text)-1)).motivoErroId;
-	PopUpManager.centerPopUp(repostaWindow);
 }
 
 protected function btnProximaPergunta_clickHandler(event:MouseEvent):void
@@ -184,7 +188,7 @@ protected function btnProximaPergunta_clickHandler(event:MouseEvent):void
 		Alert.show("Selecione o motivo do erro antes de prosseguir");
 	else if(questaoTrechosWS.length!=listRespostasSelecionadas.length)
 	{
-		xml.perguntas[perguntaNum];
+		xml.perguntas[perguntaAtual];
 		Alert.show("Ainda faltam defeitos na questão.");
 	}
 	else
@@ -193,30 +197,37 @@ protected function btnProximaPergunta_clickHandler(event:MouseEvent):void
 		{
 			Alert.show("Não existem perguntas para os tipos de artefatos selecionados.");
 		}
-		else if(xmlPerguntasWS.length <= perguntaNum +1)
-		{
-		}
 		else
 		{
 			respostaSelecionada = 0;
-			++perguntaNum;
+			++perguntaAtual;
 			
 			questaoTrechosWS.removeAll();
-			var q:QuestaoEntity = xmlPerguntasWS[perguntaNum] as QuestaoEntity;
+			var q:QuestaoEntity = xmlPerguntasWS[perguntaAtual] as QuestaoEntity;
 			verificarRespostas();
 			
 			GetTrechosQuestao.token = wSCodeInspector.GetTrechosDefeito(q.Q_ID);		
 			pontosTotal =0;
 			field.styleSheet = css.sheet;
-			field.htmlText = xml.perguntas[perguntaNum];
-		}
-		
+			
+			if (perguntaAtual==(xmlPerguntasWS.length-1))
+			{
+				//TODO Ranking
+				Alert.show("O jogo Terminou");
+				this.currentState="Login";
+			}
+			else
+			{
+				field.htmlText = xml.perguntas[perguntaAtual];
+			}
+			
+		}	
 	}
 }
 
 protected function verificarRespostas():void
 {
-	var q:QuestaoEntity = xmlPerguntasWS[perguntaNum] as QuestaoEntity;
+	var q:QuestaoEntity = xmlPerguntasWS[perguntaAtual] as QuestaoEntity;
 	for (var trechoObejct:Object in questaoTrechosWS)
 	{
 		var trechoQuestao:TrechoDefeitoEntity = trechoObejct as TrechoDefeitoEntity;
@@ -224,19 +235,34 @@ protected function verificarRespostas():void
 		for(var trechoRespostaObject:Object in listRespostasSelecionadas)
 		{
 			var trechoResposta:TrechoDefeitoEntity = trechoRespostaObject as TrechoDefeitoEntity;
-	
-			if((trechoQuestao._internal_Conteudo==trechoResposta._internal_Conteudo)&&(trechoQuestao._internal_IT_ID==trechoResposta._internal_IT_ID))
+			
+			if(nivelDificuldade==FACIL)
 			{
-				++pontosTotal;
+				if(trechoQuestao.IT_ID==trechoResposta.IT_ID)
+				{
+					++pontosTotal;
+				}
+				else
+				{
+					Alert.show("Ops! Você errou!\nO trecho correto era: "+trechoQuestao.Conteudo+".\nO defeito associado a este trecho era \""+trechoQuestao.IT_ID.toString()
+						+ "\" ("+ trechoQuestao.Explicacao +").");
+				}		
 			}
 			else
 			{
-				Alert.show("Ops! Você errou!\nO trecho correto era: "+trechoQuestao.Conteudo+".\nO defeito associado a este trecho era \""+trechoQuestao.IT_ID.toString()
-				+ "\" ("+ trechoQuestao._internal_Explicacao +").");
+				if((trechoQuestao.Conteudo==trechoResposta.Conteudo)&&(trechoQuestao.IT_ID==trechoResposta.IT_ID))
+				{
+					++pontosTotal;
+				}
+				else
+				{
+					Alert.show("Ops! Você errou!\nO trecho correto era: "+trechoQuestao.Conteudo+".\nO defeito associado a este trecho era \""+trechoQuestao.IT_ID.toString()
+						+ "\" ("+ trechoQuestao.Explicacao +").");
+				}
+				
 			}
 		}
 	}
-	SetQuestaoAcerto.token = wSCodeInspector.setQuestaoAcerto(partidaAtualId,q.Q_ID,pontosTotal);
 }
 
 protected function SetQuestaoAcerto_resultHandler(e:ResultEvent):void
@@ -248,29 +274,4 @@ protected function SetQuestaoAcerto_resultHandler(e:ResultEvent):void
 protected function EncerrarPartidaResult_resultHandler(e:ResultEvent):void
 {
 	this.currentState = "ResultadoFinal";
-}
-
-
-
-private function error(e:Event):void {
-	switch(e.type) {
-		case "XML_IOError":
-			field.htmlText = '<p align="center"><b><font color="#FF0000" size="12" face="Verdana, Arial, Helvetica, sans-serif"><br> XML IO ERROR<br>Por favor corrija o caminho do arquivo XML!</font></b></p>'				
-			break;
-		case "XML_SecurityError":
-			field.htmlText = '<p align="center"><b><font color="#FF0000" size="12" face="Verdana, Arial, Helvetica, sans-serif"><br> XML SECURITY ERROR<br>Por favor corrija os seus arquivos de policy!</font></b></p>'				
-			break;
-		case "XML_ParseError":
-			field.htmlText = '<p align="center"><b><font color="#FF0000" size="12" face="Verdana, Arial, Helvetica, sans-serif"><br> XML PARSE ERROR<br>Por favor corrija o seu arquivo XML!</font></b></p>'				
-			break;
-		case "CSS_IOError":
-			field.htmlText = '<p align="center"><b><font color="#FF0000" size="12" face="Verdana, Arial, Helvetica, sans-serif"><br> CSS IO ERROR<br>Por favor corrija o caminho do arquivo CSS!</font></b></p>'				
-			break;
-		case "CSS_SecurityError":
-			field.htmlText = '<p align="center"><b><font color="#FF0000" size="12" face="Verdana, Arial, Helvetica, sans-serif"><br> CSS SECURITY ERROR<br>Por favor corrija os seus arquivos de policy!</font></b></p>'				
-			break;
-		case "CSS_ParseError":
-			field.htmlText = '<p align="center"><b><font color="#FF0000" size="12" face="Verdana, Arial, Helvetica, sans-serif"><br> CSS PARSE ERROR<br>Por favor corrija o seu arquivo CSS!</font></b></p>'				
-			break;
-	}
 }

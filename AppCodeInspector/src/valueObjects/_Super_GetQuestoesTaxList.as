@@ -8,6 +8,7 @@ package valueObjects
 import com.adobe.fiber.services.IFiberManagingService;
 import com.adobe.fiber.valueobjects.IValueObject;
 import flash.events.EventDispatcher;
+import mx.collections.ArrayCollection;
 import mx.events.PropertyChangeEvent;
 
 import flash.net.registerClassAlias;
@@ -30,6 +31,18 @@ public class _Super_GetQuestoesTaxList extends flash.events.EventDispatcher impl
     }
 
     model_internal var _dminternal_model : _GetQuestoesTaxListEntityMetadata;
+    model_internal var _changedObjects:mx.collections.ArrayCollection = new ArrayCollection();
+
+    public function getChangedObjects() : Array
+    {
+        _changedObjects.addItemAt(this,0);
+        return _changedObjects.source;
+    }
+
+    public function clearChangedObjects() : void
+    {
+        _changedObjects.removeAll();
+    }
 
     /**
      * properties
@@ -49,20 +62,24 @@ public class _Super_GetQuestoesTaxList extends flash.events.EventDispatcher impl
     {
         _model = new _GetQuestoesTaxListEntityMetadata(this);
 
-        // Bind to own data properties for cache invalidation triggering
+        // Bind to own data or source properties for cache invalidation triggering
 
     }
 
     /**
-     * data property getters
+     * data/source property getters
+     */
+
+    public function clearAssociations() : void
+    {
+    }
+
+    /**
+     * data/source property setters
      */
 
     /**
-     * data property setters
-     */
-
-    /**
-     * Data property setter listeners
+     * Data/source property setter listeners
      *
      * Each data property whose value affects other properties or the validity of the entity
      * needs to invalidate all previously calculated artifacts. These include:

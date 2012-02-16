@@ -11,6 +11,7 @@ import com.adobe.fiber.valueobjects.IValueObject;
 import flash.events.Event;
 import flash.events.EventDispatcher;
 import mx.binding.utils.ChangeWatcher;
+import mx.collections.ArrayCollection;
 import mx.events.PropertyChangeEvent;
 import mx.validators.ValidationResult;
 
@@ -34,15 +35,27 @@ public class _Super_PartidaEntity extends flash.events.EventDispatcher implement
     }
 
     model_internal var _dminternal_model : _PartidaEntityEntityMetadata;
+    model_internal var _changedObjects:mx.collections.ArrayCollection = new ArrayCollection();
+
+    public function getChangedObjects() : Array
+    {
+        _changedObjects.addItemAt(this,0);
+        return _changedObjects.source;
+    }
+
+    public function clearChangedObjects() : void
+    {
+        _changedObjects.removeAll();
+    }
 
     /**
      * properties
      */
-	public var _internal_P_ID : int;
-	public var _internal_U_ID : int;
-	public var _internal_P_DATA : Date;
-	public var _internal_P_NIVEL_DIFICULDADE : int;
-	public var _internal_P_PONTUACAO_TOTAL : int;
+    private var _internal_P_ID : int;
+    private var _internal_U_ID : int;
+    private var _internal_P_DATA : Date;
+    private var _internal_P_NIVEL_DIFICULDADE : int;
+    private var _internal_P_PONTUACAO_TOTAL : int;
 
     private static var emptyArray:Array = new Array();
 
@@ -58,13 +71,13 @@ public class _Super_PartidaEntity extends flash.events.EventDispatcher implement
     {
         _model = new _PartidaEntityEntityMetadata(this);
 
-        // Bind to own data properties for cache invalidation triggering
+        // Bind to own data or source properties for cache invalidation triggering
         model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "P_DATA", model_internal::setterListenerP_DATA));
 
     }
 
     /**
-     * data property getters
+     * data/source property getters
      */
 
     [Bindable(event="propertyChange")]
@@ -97,8 +110,12 @@ public class _Super_PartidaEntity extends flash.events.EventDispatcher implement
         return _internal_P_PONTUACAO_TOTAL;
     }
 
+    public function clearAssociations() : void
+    {
+    }
+
     /**
-     * data property setters
+     * data/source property setters
      */
 
     public function set P_ID(value:int) : void
@@ -152,7 +169,7 @@ public class _Super_PartidaEntity extends flash.events.EventDispatcher implement
     }
 
     /**
-     * Data property setter listeners
+     * Data/source property setter listeners
      *
      * Each data property whose value affects other properties or the validity of the entity
      * needs to invalidate all previously calculated artifacts. These include:

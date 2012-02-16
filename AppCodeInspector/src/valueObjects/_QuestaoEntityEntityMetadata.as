@@ -28,12 +28,15 @@ internal class _QuestaoEntityEntityMetadata extends com.adobe.fiber.valueobjects
     model_internal static var allAlwaysAvailableProperties:Array = new Array("Q_ID", "Q_Nivel_Dificuldade", "Q_XML", "Q_TEMPO", "Q_nome");
     model_internal static var guardedProperties:Array = new Array();
     model_internal static var dataProperties:Array = new Array("Q_ID", "Q_Nivel_Dificuldade", "Q_XML", "Q_TEMPO", "Q_nome");
+    model_internal static var sourceProperties:Array = emptyArray
+    model_internal static var nonDerivedProperties:Array = new Array("Q_ID", "Q_Nivel_Dificuldade", "Q_XML", "Q_TEMPO", "Q_nome");
     model_internal static var derivedProperties:Array = new Array();
     model_internal static var collectionProperties:Array = new Array();
     model_internal static var collectionBaseMap:Object;
     model_internal static var entityName:String = "QuestaoEntity";
     model_internal static var dependentsOnMap:Object;
     model_internal static var dependedOnServices:Array = new Array();
+    model_internal static var propertyTypeMap:Object;
 
     
     model_internal var _Q_XMLIsValid:Boolean;
@@ -54,7 +57,7 @@ internal class _QuestaoEntityEntityMetadata extends com.adobe.fiber.valueobjects
         // initialize property maps
         if (model_internal::dependentsOnMap == null)
         {
-            // depenents map
+            // dependents map
             model_internal::dependentsOnMap = new Object();
             model_internal::dependentsOnMap["Q_ID"] = new Array();
             model_internal::dependentsOnMap["Q_Nivel_Dificuldade"] = new Array();
@@ -63,8 +66,16 @@ internal class _QuestaoEntityEntityMetadata extends com.adobe.fiber.valueobjects
             model_internal::dependentsOnMap["Q_nome"] = new Array();
 
             // collection base map
-            model_internal::collectionBaseMap = new Object()
+            model_internal::collectionBaseMap = new Object();
         }
+
+        // Property type Map
+        model_internal::propertyTypeMap = new Object();
+        model_internal::propertyTypeMap["Q_ID"] = "int";
+        model_internal::propertyTypeMap["Q_Nivel_Dificuldade"] = "int";
+        model_internal::propertyTypeMap["Q_XML"] = "String";
+        model_internal::propertyTypeMap["Q_TEMPO"] = "int";
+        model_internal::propertyTypeMap["Q_nome"] = "String";
 
         model_internal::_instance = value;
         model_internal::_Q_XMLValidator = new StyleValidator(model_internal::_instance.model_internal::_doValidationForQ_XML);
@@ -104,6 +115,16 @@ internal class _QuestaoEntityEntityMetadata extends com.adobe.fiber.valueobjects
         return model_internal::dataProperties;
     }
 
+    public function getSourceProperties():Array
+    {
+        return model_internal::sourceProperties;
+    }
+
+    public function getNonDerivedProperties():Array
+    {
+        return model_internal::nonDerivedProperties;
+    }
+
     override public function getGuardedProperties():Array
     {
         return model_internal::guardedProperties;
@@ -116,8 +137,8 @@ internal class _QuestaoEntityEntityMetadata extends com.adobe.fiber.valueobjects
 
     override public function getDependants(propertyName:String):Array
     {
-       if (model_internal::dataProperties.indexOf(propertyName) == -1)
-            throw new Error(propertyName + " is not a data property of entity QuestaoEntity");  
+       if (model_internal::nonDerivedProperties.indexOf(propertyName) == -1)
+            throw new Error(propertyName + " is not a data property of entity QuestaoEntity");
             
        return model_internal::dependentsOnMap[propertyName] as Array;  
     }
@@ -135,9 +156,17 @@ internal class _QuestaoEntityEntityMetadata extends com.adobe.fiber.valueobjects
     override public function getCollectionBase(propertyName:String):String
     {
         if (model_internal::collectionProperties.indexOf(propertyName) == -1)
-            throw new Error(propertyName + " is not a collection property of entity QuestaoEntity");  
+            throw new Error(propertyName + " is not a collection property of entity QuestaoEntity");
 
         return model_internal::collectionBaseMap[propertyName];
+    }
+    
+    override public function getPropertyType(propertyName:String):String
+    {
+        if (model_internal::allProperties.indexOf(propertyName) == -1)
+            throw new Error(propertyName + " is not a property of QuestaoEntity");
+
+        return model_internal::propertyTypeMap[propertyName];
     }
 
     override public function getAvailableProperties():com.adobe.fiber.valueobjects.IPropertyIterator
@@ -157,9 +186,9 @@ internal class _QuestaoEntityEntityMetadata extends com.adobe.fiber.valueobjects
 
     override public function setValue(propertyName:String, value:*):void
     {
-        if (model_internal::dataProperties.indexOf(propertyName) == -1)
+        if (model_internal::nonDerivedProperties.indexOf(propertyName) == -1)
         {
-            throw new Error(propertyName + " is not a data property of entity QuestaoEntity");
+            throw new Error(propertyName + " is not a modifiable property of entity QuestaoEntity");
         }
 
         model_internal::_instance[propertyName] = value;
