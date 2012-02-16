@@ -125,9 +125,9 @@ public final class QuestoesAdmin extends javax.swing.JPanel {
         pnl_QuestoesOptionLayout.setHorizontalGroup(
             pnl_QuestoesOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_QuestoesOptionLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pnl_QuestaoCRUD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(11, 11, 11)
+                .addComponent(pnl_QuestaoCRUD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pnl_QuestoesOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnl_QuestoesOptionLayout.createSequentialGroup()
                         .addComponent(lbl_QuestoesLST)
@@ -161,7 +161,7 @@ public final class QuestoesAdmin extends javax.swing.JPanel {
                         .addGap(117, 117, 117)
                         .addComponent(lbl_Symbol1))
                     .addGroup(pnl_QuestoesOptionLayout.createSequentialGroup()
-                        .addGap(63, 63, 63)
+                        .addContainerGap()
                         .addComponent(pnl_QuestaoCRUD, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );

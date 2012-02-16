@@ -260,7 +260,7 @@ private void btn_CriarTaxonomiaActionPerformed(java.awt.event.ActionEvent evt) {
 
 private void btn_finalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_finalizarActionPerformed
     
-    Parentframe.setTaxonomia();
+    Parentframe.setTaxonomiaComboBox();
     Parentframe.btnDeletarTaxonomia.setEnabled(true);
     Parentframe.btnInserirTaxonomia.setEnabled(true);
     Parentframe.btn_editarTaxonomia.setEnabled(true);
