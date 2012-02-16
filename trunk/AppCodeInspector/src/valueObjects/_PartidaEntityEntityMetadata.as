@@ -28,12 +28,15 @@ internal class _PartidaEntityEntityMetadata extends com.adobe.fiber.valueobjects
     model_internal static var allAlwaysAvailableProperties:Array = new Array("P_ID", "U_ID", "P_DATA", "P_NIVEL_DIFICULDADE", "P_PONTUACAO_TOTAL");
     model_internal static var guardedProperties:Array = new Array();
     model_internal static var dataProperties:Array = new Array("P_ID", "U_ID", "P_DATA", "P_NIVEL_DIFICULDADE", "P_PONTUACAO_TOTAL");
+    model_internal static var sourceProperties:Array = emptyArray
+    model_internal static var nonDerivedProperties:Array = new Array("P_ID", "U_ID", "P_DATA", "P_NIVEL_DIFICULDADE", "P_PONTUACAO_TOTAL");
     model_internal static var derivedProperties:Array = new Array();
     model_internal static var collectionProperties:Array = new Array();
     model_internal static var collectionBaseMap:Object;
     model_internal static var entityName:String = "PartidaEntity";
     model_internal static var dependentsOnMap:Object;
     model_internal static var dependedOnServices:Array = new Array();
+    model_internal static var propertyTypeMap:Object;
 
     
     model_internal var _P_DATAIsValid:Boolean;
@@ -49,7 +52,7 @@ internal class _PartidaEntityEntityMetadata extends com.adobe.fiber.valueobjects
         // initialize property maps
         if (model_internal::dependentsOnMap == null)
         {
-            // depenents map
+            // dependents map
             model_internal::dependentsOnMap = new Object();
             model_internal::dependentsOnMap["P_ID"] = new Array();
             model_internal::dependentsOnMap["U_ID"] = new Array();
@@ -58,8 +61,16 @@ internal class _PartidaEntityEntityMetadata extends com.adobe.fiber.valueobjects
             model_internal::dependentsOnMap["P_PONTUACAO_TOTAL"] = new Array();
 
             // collection base map
-            model_internal::collectionBaseMap = new Object()
+            model_internal::collectionBaseMap = new Object();
         }
+
+        // Property type Map
+        model_internal::propertyTypeMap = new Object();
+        model_internal::propertyTypeMap["P_ID"] = "int";
+        model_internal::propertyTypeMap["U_ID"] = "int";
+        model_internal::propertyTypeMap["P_DATA"] = "Date";
+        model_internal::propertyTypeMap["P_NIVEL_DIFICULDADE"] = "int";
+        model_internal::propertyTypeMap["P_PONTUACAO_TOTAL"] = "int";
 
         model_internal::_instance = value;
         model_internal::_P_DATAValidator = new StyleValidator(model_internal::_instance.model_internal::_doValidationForP_DATA);
@@ -94,6 +105,16 @@ internal class _PartidaEntityEntityMetadata extends com.adobe.fiber.valueobjects
         return model_internal::dataProperties;
     }
 
+    public function getSourceProperties():Array
+    {
+        return model_internal::sourceProperties;
+    }
+
+    public function getNonDerivedProperties():Array
+    {
+        return model_internal::nonDerivedProperties;
+    }
+
     override public function getGuardedProperties():Array
     {
         return model_internal::guardedProperties;
@@ -106,8 +127,8 @@ internal class _PartidaEntityEntityMetadata extends com.adobe.fiber.valueobjects
 
     override public function getDependants(propertyName:String):Array
     {
-       if (model_internal::dataProperties.indexOf(propertyName) == -1)
-            throw new Error(propertyName + " is not a data property of entity PartidaEntity");  
+       if (model_internal::nonDerivedProperties.indexOf(propertyName) == -1)
+            throw new Error(propertyName + " is not a data property of entity PartidaEntity");
             
        return model_internal::dependentsOnMap[propertyName] as Array;  
     }
@@ -125,9 +146,17 @@ internal class _PartidaEntityEntityMetadata extends com.adobe.fiber.valueobjects
     override public function getCollectionBase(propertyName:String):String
     {
         if (model_internal::collectionProperties.indexOf(propertyName) == -1)
-            throw new Error(propertyName + " is not a collection property of entity PartidaEntity");  
+            throw new Error(propertyName + " is not a collection property of entity PartidaEntity");
 
         return model_internal::collectionBaseMap[propertyName];
+    }
+    
+    override public function getPropertyType(propertyName:String):String
+    {
+        if (model_internal::allProperties.indexOf(propertyName) == -1)
+            throw new Error(propertyName + " is not a property of PartidaEntity");
+
+        return model_internal::propertyTypeMap[propertyName];
     }
 
     override public function getAvailableProperties():com.adobe.fiber.valueobjects.IPropertyIterator
@@ -147,9 +176,9 @@ internal class _PartidaEntityEntityMetadata extends com.adobe.fiber.valueobjects
 
     override public function setValue(propertyName:String, value:*):void
     {
-        if (model_internal::dataProperties.indexOf(propertyName) == -1)
+        if (model_internal::nonDerivedProperties.indexOf(propertyName) == -1)
         {
-            throw new Error(propertyName + " is not a data property of entity PartidaEntity");
+            throw new Error(propertyName + " is not a modifiable property of entity PartidaEntity");
         }
 
         model_internal::_instance[propertyName] = value;

@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		   xmlns:s="library://ns.adobe.com/flex/spark" 
-		   xmlns:mx="library://ns.adobe.com/flex/mx" width="400" height="226" backgroundAlpha=".0" xmlns:wscodeinspector="services.wscodeinspector.*">
-	
-	
+		   xmlns:mx="library://ns.adobe.com/flex/mx" width="408" height="208" backgroundAlpha=".0" xmlns:wscodeinspector="services.wscodeinspector.*">
 	
 	<fx:Script>
 		<![CDATA[
@@ -29,9 +27,9 @@
 			{
 				hideListTip(event);
 				//if (event.target.dataProvider[event.rowIndex].data.tip != undefined) 
-				if (event.target.dataProvider[event.rowIndex]._internal_Descricao != undefined) 
+				if (event.target.dataProvider[event.rowIndex].Descricao != undefined) 
 				{
-					var tipText:String = event.target.dataProvider[event.rowIndex]._internal_Descricao;
+					var tipText:String = event.target.dataProvider[event.rowIndex].Descricao;
 					if (tipText.length>0)
 					{
 						var tipColor:uint = 0xD20000;
@@ -108,6 +106,7 @@
 			}
 
 			]]>
+		
 	</fx:Script>
 	
 	
@@ -117,22 +116,22 @@
 	</fx:Declarations>
 	<fx:Script source="RespostaWindow_as.as"/>
 	
-	<s:Panel width="100%" height="100%" left="0" top="0" id="pnl_MotivoDefeito" creationComplete="pnl_MotivoDefeito_creationCompleteHandler(event)">
-		<s:Label text="Selecione o motivo do defeito:" fontSize="24" horizontalCenter="-1" top="0" color="#FFFFFF" fontWeight="bold"/>
+	<s:Panel width="100%" height="182" left="0" top="0" id="pnl_MotivoDefeito" creationComplete="pnl_MotivoDefeito_creationCompleteHandler(event)" title="Defeito identificado!" fontSize="16">
+		<s:Label text="Selecione o motivo do defeito:" fontSize="16" horizontalCenter="-79" top="29" color="#020202" fontWeight="bold"/>
 		<mx:ComboBox id="cbResposta"   			
-					horizontalCenter="0"
+					horizontalCenter="-3"
 					itemRollOver="showListTip(event)" 
 					itemRollOut="hideListTip(event)"
-					verticalCenter="-20" 
+					verticalCenter="-9" 
 					width="377" 
-					fontSize="18" 
+					fontSize="16" 
 					selectedIndex="{selectedIndex}" 
 					color="#000000" 
 					
 					labelField="_internal_Nome" 
 					>
 		</mx:ComboBox>
-		<s:Button label="Cancelar" fontSize="26" id="btnCancelarMotivoErro" height="40" width="140" click="btnCancelarMotivoErro_clickHandler(event)" x="248" y="143"/>
-		<s:Button label="Confirmar" fontSize="26" id="btnConfirmarMotivoErro" width="140" height="40" click="btnConfirmarMotivoErro_clickHandler(event)" x="100" y="143"/>
+		<s:Button label="Cancelar" fontSize="12" id="btnCancelarMotivoErro" height="24" width="123" click="btnCancelarMotivoErro_clickHandler(event)" x="146" y="113"/>
+		<s:Button label="Confirmar" fontSize="12" id="btnConfirmarMotivoErro" width="111" height="24" click="btnConfirmarMotivoErro_clickHandler(event)" x="273" y="114"/>
 	</s:Panel>
 </mx:Canvas>

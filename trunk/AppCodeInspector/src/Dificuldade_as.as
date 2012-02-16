@@ -19,7 +19,6 @@ public const DIFICIL : int= 3;
 protected function _btnFacil_clickHandler(event:MouseEvent):void
 {
 	nivelDificuldade = FACIL;
-	//var questoes:QuestaoEntity[] = new QuestaoEntity()[];
 	GetQuestoesResult.token = wSCodeInspector.GetQuestoesByType(FACIL,tipoArtefato_Id);
 }
 
@@ -27,8 +26,6 @@ protected function GetQuestoesResultFacil_resultHandler(e:ResultEvent):void
 {
 	
 	xmlPerguntasWS = ArrayCollection(e.result);
-	//Pegando todas as respostas das questões no nível fácil
-	//xmlRespostasWS = ArrayCollection(wSCodeInspector.GetQuestoesRespostas(FACIL));
 	
 	txtTutorials = new TXT();
 	txtTutorials.Load("Arquivos/Tutorial/Facil.txt");

@@ -28,12 +28,15 @@ internal class _RankRetornoEntityMetadata extends com.adobe.fiber.valueobjects.A
     model_internal static var allAlwaysAvailableProperties:Array = new Array("Usuario", "Pontuacao", "Email");
     model_internal static var guardedProperties:Array = new Array();
     model_internal static var dataProperties:Array = new Array("Usuario", "Pontuacao", "Email");
+    model_internal static var sourceProperties:Array = emptyArray
+    model_internal static var nonDerivedProperties:Array = new Array("Usuario", "Pontuacao", "Email");
     model_internal static var derivedProperties:Array = new Array();
     model_internal static var collectionProperties:Array = new Array();
     model_internal static var collectionBaseMap:Object;
     model_internal static var entityName:String = "RankRetorno";
     model_internal static var dependentsOnMap:Object;
     model_internal static var dependedOnServices:Array = new Array();
+    model_internal static var propertyTypeMap:Object;
 
     
     model_internal var _UsuarioIsValid:Boolean;
@@ -54,15 +57,21 @@ internal class _RankRetornoEntityMetadata extends com.adobe.fiber.valueobjects.A
         // initialize property maps
         if (model_internal::dependentsOnMap == null)
         {
-            // depenents map
+            // dependents map
             model_internal::dependentsOnMap = new Object();
             model_internal::dependentsOnMap["Usuario"] = new Array();
             model_internal::dependentsOnMap["Pontuacao"] = new Array();
             model_internal::dependentsOnMap["Email"] = new Array();
 
             // collection base map
-            model_internal::collectionBaseMap = new Object()
+            model_internal::collectionBaseMap = new Object();
         }
+
+        // Property type Map
+        model_internal::propertyTypeMap = new Object();
+        model_internal::propertyTypeMap["Usuario"] = "String";
+        model_internal::propertyTypeMap["Pontuacao"] = "int";
+        model_internal::propertyTypeMap["Email"] = "String";
 
         model_internal::_instance = value;
         model_internal::_UsuarioValidator = new StyleValidator(model_internal::_instance.model_internal::_doValidationForUsuario);
@@ -102,6 +111,16 @@ internal class _RankRetornoEntityMetadata extends com.adobe.fiber.valueobjects.A
         return model_internal::dataProperties;
     }
 
+    public function getSourceProperties():Array
+    {
+        return model_internal::sourceProperties;
+    }
+
+    public function getNonDerivedProperties():Array
+    {
+        return model_internal::nonDerivedProperties;
+    }
+
     override public function getGuardedProperties():Array
     {
         return model_internal::guardedProperties;
@@ -114,8 +133,8 @@ internal class _RankRetornoEntityMetadata extends com.adobe.fiber.valueobjects.A
 
     override public function getDependants(propertyName:String):Array
     {
-       if (model_internal::dataProperties.indexOf(propertyName) == -1)
-            throw new Error(propertyName + " is not a data property of entity RankRetorno");  
+       if (model_internal::nonDerivedProperties.indexOf(propertyName) == -1)
+            throw new Error(propertyName + " is not a data property of entity RankRetorno");
             
        return model_internal::dependentsOnMap[propertyName] as Array;  
     }
@@ -133,9 +152,17 @@ internal class _RankRetornoEntityMetadata extends com.adobe.fiber.valueobjects.A
     override public function getCollectionBase(propertyName:String):String
     {
         if (model_internal::collectionProperties.indexOf(propertyName) == -1)
-            throw new Error(propertyName + " is not a collection property of entity RankRetorno");  
+            throw new Error(propertyName + " is not a collection property of entity RankRetorno");
 
         return model_internal::collectionBaseMap[propertyName];
+    }
+    
+    override public function getPropertyType(propertyName:String):String
+    {
+        if (model_internal::allProperties.indexOf(propertyName) == -1)
+            throw new Error(propertyName + " is not a property of RankRetorno");
+
+        return model_internal::propertyTypeMap[propertyName];
     }
 
     override public function getAvailableProperties():com.adobe.fiber.valueobjects.IPropertyIterator
@@ -155,9 +182,9 @@ internal class _RankRetornoEntityMetadata extends com.adobe.fiber.valueobjects.A
 
     override public function setValue(propertyName:String, value:*):void
     {
-        if (model_internal::dataProperties.indexOf(propertyName) == -1)
+        if (model_internal::nonDerivedProperties.indexOf(propertyName) == -1)
         {
-            throw new Error(propertyName + " is not a data property of entity RankRetorno");
+            throw new Error(propertyName + " is not a modifiable property of entity RankRetorno");
         }
 
         model_internal::_instance[propertyName] = value;

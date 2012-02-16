@@ -26,12 +26,15 @@ internal class _GetUsersRankResponseEntityMetadata extends com.adobe.fiber.value
     model_internal static var allAlwaysAvailableProperties:Array = new Array();
     model_internal static var guardedProperties:Array = new Array();
     model_internal static var dataProperties:Array = new Array();
+    model_internal static var sourceProperties:Array = emptyArray
+    model_internal static var nonDerivedProperties:Array = new Array();
     model_internal static var derivedProperties:Array = new Array();
     model_internal static var collectionProperties:Array = new Array();
     model_internal static var collectionBaseMap:Object;
     model_internal static var entityName:String = "GetUsersRankResponse";
     model_internal static var dependentsOnMap:Object;
     model_internal static var dependedOnServices:Array = new Array();
+    model_internal static var propertyTypeMap:Object;
 
 
     model_internal var _instance:_Super_GetUsersRankResponse;
@@ -42,12 +45,15 @@ internal class _GetUsersRankResponseEntityMetadata extends com.adobe.fiber.value
         // initialize property maps
         if (model_internal::dependentsOnMap == null)
         {
-            // depenents map
+            // dependents map
             model_internal::dependentsOnMap = new Object();
 
             // collection base map
-            model_internal::collectionBaseMap = new Object()
+            model_internal::collectionBaseMap = new Object();
         }
+
+        // Property type Map
+        model_internal::propertyTypeMap = new Object();
 
         model_internal::_instance = value;
     }
@@ -77,6 +83,16 @@ internal class _GetUsersRankResponseEntityMetadata extends com.adobe.fiber.value
         return model_internal::dataProperties;
     }
 
+    public function getSourceProperties():Array
+    {
+        return model_internal::sourceProperties;
+    }
+
+    public function getNonDerivedProperties():Array
+    {
+        return model_internal::nonDerivedProperties;
+    }
+
     override public function getGuardedProperties():Array
     {
         return model_internal::guardedProperties;
@@ -89,8 +105,8 @@ internal class _GetUsersRankResponseEntityMetadata extends com.adobe.fiber.value
 
     override public function getDependants(propertyName:String):Array
     {
-       if (model_internal::dataProperties.indexOf(propertyName) == -1)
-            throw new Error(propertyName + " is not a data property of entity GetUsersRankResponse");  
+       if (model_internal::nonDerivedProperties.indexOf(propertyName) == -1)
+            throw new Error(propertyName + " is not a data property of entity GetUsersRankResponse");
             
        return model_internal::dependentsOnMap[propertyName] as Array;  
     }
@@ -108,9 +124,17 @@ internal class _GetUsersRankResponseEntityMetadata extends com.adobe.fiber.value
     override public function getCollectionBase(propertyName:String):String
     {
         if (model_internal::collectionProperties.indexOf(propertyName) == -1)
-            throw new Error(propertyName + " is not a collection property of entity GetUsersRankResponse");  
+            throw new Error(propertyName + " is not a collection property of entity GetUsersRankResponse");
 
         return model_internal::collectionBaseMap[propertyName];
+    }
+    
+    override public function getPropertyType(propertyName:String):String
+    {
+        if (model_internal::allProperties.indexOf(propertyName) == -1)
+            throw new Error(propertyName + " is not a property of GetUsersRankResponse");
+
+        return model_internal::propertyTypeMap[propertyName];
     }
 
     override public function getAvailableProperties():com.adobe.fiber.valueobjects.IPropertyIterator
@@ -130,9 +154,9 @@ internal class _GetUsersRankResponseEntityMetadata extends com.adobe.fiber.value
 
     override public function setValue(propertyName:String, value:*):void
     {
-        if (model_internal::dataProperties.indexOf(propertyName) == -1)
+        if (model_internal::nonDerivedProperties.indexOf(propertyName) == -1)
         {
-            throw new Error(propertyName + " is not a data property of entity GetUsersRankResponse");
+            throw new Error(propertyName + " is not a modifiable property of entity GetUsersRankResponse");
         }
 
         model_internal::_instance[propertyName] = value;

@@ -46,6 +46,9 @@ public class ItemTaxonomiaEntity extends _Super_ItemTaxonomiaEntity
      * END OF DO NOT MODIFY SECTION
      *
      **/    
+	override public function toString():String {
+		return Nome;
+	};
 }
 
 }

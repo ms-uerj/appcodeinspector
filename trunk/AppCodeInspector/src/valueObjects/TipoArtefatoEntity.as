@@ -49,7 +49,7 @@ public class TipoArtefatoEntity extends _Super_TipoArtefatoEntity
 	
 	
 	override public function toString():String {
-		return _internal_TA_NOME;
+		return TA_NOME;
 	};
 	
 }

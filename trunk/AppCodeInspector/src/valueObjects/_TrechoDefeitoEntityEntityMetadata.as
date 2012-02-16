@@ -28,12 +28,15 @@ internal class _TrechoDefeitoEntityEntityMetadata extends com.adobe.fiber.valueo
     model_internal static var allAlwaysAvailableProperties:Array = new Array("D_ID", "IT_ID", "Explicacao", "Conteudo");
     model_internal static var guardedProperties:Array = new Array();
     model_internal static var dataProperties:Array = new Array("D_ID", "IT_ID", "Explicacao", "Conteudo");
+    model_internal static var sourceProperties:Array = emptyArray
+    model_internal static var nonDerivedProperties:Array = new Array("D_ID", "IT_ID", "Explicacao", "Conteudo");
     model_internal static var derivedProperties:Array = new Array();
     model_internal static var collectionProperties:Array = new Array();
     model_internal static var collectionBaseMap:Object;
     model_internal static var entityName:String = "TrechoDefeitoEntity";
     model_internal static var dependentsOnMap:Object;
     model_internal static var dependedOnServices:Array = new Array();
+    model_internal static var propertyTypeMap:Object;
 
     
     model_internal var _ExplicacaoIsValid:Boolean;
@@ -54,7 +57,7 @@ internal class _TrechoDefeitoEntityEntityMetadata extends com.adobe.fiber.valueo
         // initialize property maps
         if (model_internal::dependentsOnMap == null)
         {
-            // depenents map
+            // dependents map
             model_internal::dependentsOnMap = new Object();
             model_internal::dependentsOnMap["D_ID"] = new Array();
             model_internal::dependentsOnMap["IT_ID"] = new Array();
@@ -62,8 +65,15 @@ internal class _TrechoDefeitoEntityEntityMetadata extends com.adobe.fiber.valueo
             model_internal::dependentsOnMap["Conteudo"] = new Array();
 
             // collection base map
-            model_internal::collectionBaseMap = new Object()
+            model_internal::collectionBaseMap = new Object();
         }
+
+        // Property type Map
+        model_internal::propertyTypeMap = new Object();
+        model_internal::propertyTypeMap["D_ID"] = "int";
+        model_internal::propertyTypeMap["IT_ID"] = "int";
+        model_internal::propertyTypeMap["Explicacao"] = "String";
+        model_internal::propertyTypeMap["Conteudo"] = "String";
 
         model_internal::_instance = value;
         model_internal::_ExplicacaoValidator = new StyleValidator(model_internal::_instance.model_internal::_doValidationForExplicacao);
@@ -103,6 +113,16 @@ internal class _TrechoDefeitoEntityEntityMetadata extends com.adobe.fiber.valueo
         return model_internal::dataProperties;
     }
 
+    public function getSourceProperties():Array
+    {
+        return model_internal::sourceProperties;
+    }
+
+    public function getNonDerivedProperties():Array
+    {
+        return model_internal::nonDerivedProperties;
+    }
+
     override public function getGuardedProperties():Array
     {
         return model_internal::guardedProperties;
@@ -115,8 +135,8 @@ internal class _TrechoDefeitoEntityEntityMetadata extends com.adobe.fiber.valueo
 
     override public function getDependants(propertyName:String):Array
     {
-       if (model_internal::dataProperties.indexOf(propertyName) == -1)
-            throw new Error(propertyName + " is not a data property of entity TrechoDefeitoEntity");  
+       if (model_internal::nonDerivedProperties.indexOf(propertyName) == -1)
+            throw new Error(propertyName + " is not a data property of entity TrechoDefeitoEntity");
             
        return model_internal::dependentsOnMap[propertyName] as Array;  
     }
@@ -134,9 +154,17 @@ internal class _TrechoDefeitoEntityEntityMetadata extends com.adobe.fiber.valueo
     override public function getCollectionBase(propertyName:String):String
     {
         if (model_internal::collectionProperties.indexOf(propertyName) == -1)
-            throw new Error(propertyName + " is not a collection property of entity TrechoDefeitoEntity");  
+            throw new Error(propertyName + " is not a collection property of entity TrechoDefeitoEntity");
 
         return model_internal::collectionBaseMap[propertyName];
+    }
+    
+    override public function getPropertyType(propertyName:String):String
+    {
+        if (model_internal::allProperties.indexOf(propertyName) == -1)
+            throw new Error(propertyName + " is not a property of TrechoDefeitoEntity");
+
+        return model_internal::propertyTypeMap[propertyName];
     }
 
     override public function getAvailableProperties():com.adobe.fiber.valueobjects.IPropertyIterator
@@ -156,9 +184,9 @@ internal class _TrechoDefeitoEntityEntityMetadata extends com.adobe.fiber.valueo
 
     override public function setValue(propertyName:String, value:*):void
     {
-        if (model_internal::dataProperties.indexOf(propertyName) == -1)
+        if (model_internal::nonDerivedProperties.indexOf(propertyName) == -1)
         {
-            throw new Error(propertyName + " is not a data property of entity TrechoDefeitoEntity");
+            throw new Error(propertyName + " is not a modifiable property of entity TrechoDefeitoEntity");
         }
 
         model_internal::_instance[propertyName] = value;
