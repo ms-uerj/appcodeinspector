@@ -157,22 +157,8 @@ public class TaxonomiasAdmin extends javax.swing.JPanel {
 
     private void btn_refreshTaxonomiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_refreshTaxonomiaActionPerformed
 
-        try 
-        {
-            DefaultComboBoxModel theModel = (DefaultComboBoxModel) cbx_Taxonomia.getModel();
-            theModel.removeAllElements();
-
-            ArrayOfTaxonomiaEntity taxArray = pegarTaxonomias();
-
-            List<TaxonomiaEntity> taxList = taxArray.getTaxonomiaEntity();
-
-            for (TaxonomiaEntity txe : taxList) {
-                cbx_Taxonomia.addItem(txe);
-            }
-
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, ex);
-        }
+        setTaxonomiaComboBox();
+        lst_itemsTaxonomia.setListData(new Object[0]);
         
     }//GEN-LAST:event_btn_refreshTaxonomiaActionPerformed
 
@@ -217,7 +203,7 @@ public class TaxonomiasAdmin extends javax.swing.JPanel {
 
     }//GEN-LAST:event_btn_editarTaxonomiaActionPerformed
 
-    public void setTaxonomia()
+    public void setTaxonomiaComboBox()
     {
         try
         {
