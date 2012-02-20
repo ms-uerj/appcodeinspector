@@ -1,23 +1,25 @@
 package InspctX.GUI;
 
 
+import InspectorXWebserv.TaxonomiaEntity;
 import javax.swing.JOptionPane;
 
 public class AdicionarItemTaxonomia extends javax.swing.JFrame {
 
-    int Taxonomia_id;
-    AdicionarTaxonomia AddTax;
+    TaxonomiaEntity Tax;
+    AdicionarTaxonomia ParentFrame;
     
     public AdicionarItemTaxonomia() {
         initComponents();
     }
     
-    public AdicionarItemTaxonomia(AdicionarTaxonomia addTax,int taxonomia_id) 
+    public AdicionarItemTaxonomia(AdicionarTaxonomia parentFrame,TaxonomiaEntity tax) 
     {
         
         initComponents();
-        AddTax=addTax;
-        Taxonomia_id=taxonomia_id;
+        ParentFrame=parentFrame;
+        Tax=tax;
+        txf_taxonomiaAtual.setText(tax.getNome());
         
     }
 
@@ -127,8 +129,8 @@ public class AdicionarItemTaxonomia extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
 private void btn_FecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_FecharActionPerformed
-    AddTax.setItemsList();
-    this.setVisible(false);
+    ParentFrame.setItemsList();
+    dispose();
 }//GEN-LAST:event_btn_FecharActionPerformed
 
 private void btn_InserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_InserirActionPerformed
@@ -137,9 +139,9 @@ private void btn_InserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     {
         if(!txf_nome.getText().trim().isEmpty()&&!txa_descricao.getText().trim().isEmpty())
         {
-            if(adicionarItemTaxonomia(Taxonomia_id,txf_nome.getText().trim(),txa_descricao.getText().trim()))
+            if(adicionarItemTaxonomia(Tax.getID(),txf_nome.getText().trim(),txa_descricao.getText().trim()))
             {
-                AddTax.setItemsList();
+                ParentFrame.setItemsList();
                 JOptionPane.showMessageDialog(this,"Item criado com sucesso!");
                 this.setVisible(false);
             }

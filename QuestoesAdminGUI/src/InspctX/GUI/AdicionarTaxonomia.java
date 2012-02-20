@@ -276,7 +276,7 @@ private void btnInserirItemTaxonomiaActionPerformed(java.awt.event.ActionEvent e
    
    if(Tax !=null&&!cbx_TipoArtefato.isEnabled())
    {
-        AdicionarItemTaxonomia addItemTax = new AdicionarItemTaxonomia(this,Tax.getID());
+        AdicionarItemTaxonomia addItemTax = new AdicionarItemTaxonomia(this,Tax);
         addItemTax.setVisible(true);
    }
    else
@@ -306,7 +306,7 @@ private void btnDeletarItemTaxonomiaActionPerformed(java.awt.event.ActionEvent e
        
         if(txf_taxonomiaNome.isEnabled()&&cbx_TipoArtefato.getSelectedItem()!=null)
         {
-            JOptionPane.showMessageDialog(this, "Por favor crie, primeiramente, a taxonomia.");
+            JOptionPane.showMessageDialog(this, "É necessário criar a taxonomia.");
         }         
         else
         {
