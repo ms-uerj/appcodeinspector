@@ -188,6 +188,8 @@ public class TaxonomiasAdmin extends javax.swing.JPanel {
             }
 
             deletarTaxonomias(tax.getID());
+            
+            setTaxonomiaComboBox();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
         }
