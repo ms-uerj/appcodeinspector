@@ -1072,73 +1072,19 @@
       <item name="http://tempuri.org/,ArrayOfItemTaxonomiaEntity">ItemTaxonomiaEntity::http://tempuri.org/,ItemTaxonomiaEntity</item>
       <item name="http://tempuri.org/,ArrayOfTipoArtefatoEntity">TipoArtefatoEntity::http://tempuri.org/,TipoArtefatoEntity</item>
     </annotation>
-    <function name="EncerrarPartida" return-type="void">
+    <function name="GetTrechosDefeito" return-type="TrechoDefeitoEntity[]">
       <annotation name="analyze group">
         <item name="analyzed">true</item>
       </annotation>
       <annotation name="WSDLName">
-        <item name="EncerrarPartida">http://tempuri.org/,EncerrarPartida</item>
-        <item name="SOAPAction">http://tempuri.org/EncerrarPartida</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="inputParams">integer,integer</item>
-      </annotation>
-      <parameter name="partidaEncerrada_id" type="integer"/>
-      <parameter name="pontuacaoTotal" type="integer"/>
-    </function>
-    <function name="GetQuestoesRespostas" return-type="integer[]">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="WSDLName">
-        <item name="SOAPAction">http://tempuri.org/GetQuestoesRespostas</item>
-        <item name="GetQuestoesRespostas">http://tempuri.org/,GetQuestoesRespostas</item>
+        <item name="SOAPAction">http://tempuri.org/GetTrechosDefeito</item>
+        <item name="GetTrechosDefeito">http://tempuri.org/,GetTrechosDefeito</item>
       </annotation>
       <annotation name="original signature">
         <item name="inputParams">integer</item>
-        <item name="returnType">integer</item>
+        <item name="returnType">TrechoDefeitoEntity</item>
       </annotation>
-      <parameter name="nivelDificuldade" type="integer"/>
-    </function>
-    <function name="GetTDResposta" return-type="ItemTaxonomiaEntity">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="WSDLName">
-        <item name="GetTDResposta">http://tempuri.org/,GetTDResposta</item>
-        <item name="SOAPAction">http://tempuri.org/GetTDResposta</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="inputParams">integer</item>
-        <item name="returnType">ItemTaxonomiaEntity</item>
-      </annotation>
-      <parameter name="td_id" type="integer"/>
-    </function>
-    <function name="getTiposArtefatos" return-type="TipoArtefatoEntity[]">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="WSDLName">
-        <item name="getTiposArtefatos">http://tempuri.org/,getTiposArtefatos</item>
-        <item name="SOAPAction">http://tempuri.org/getTiposArtefatos</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="returnType">TipoArtefatoEntity</item>
-      </annotation>
-    </function>
-    <function name="PegarItemsTaxonomia" return-type="ItemTaxonomiaEntity[]">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="WSDLName">
-        <item name="SOAPAction">http://tempuri.org/PegarItemsTaxonomia</item>
-        <item name="PegarItemsTaxonomia">http://tempuri.org/,PegarItemsTaxonomia</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="inputParams">integer</item>
-        <item name="returnType">ItemTaxonomiaEntity</item>
-      </annotation>
-      <parameter name="taxonomia_id" type="integer"/>
+      <parameter name="questao_id" type="integer"/>
     </function>
     <function name="AutenticarUsuario" return-type="boolean">
       <annotation name="analyze group">
@@ -1155,35 +1101,6 @@
       <parameter name="login" type="string"/>
       <parameter name="senha" type="string"/>
     </function>
-    <function name="GetQuestoes" return-type="QuestaoEntity[]">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="WSDLName">
-        <item name="SOAPAction">http://tempuri.org/GetQuestoes</item>
-        <item name="GetQuestoes">http://tempuri.org/,GetQuestoes</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="inputParams">integer,integer</item>
-        <item name="returnType">QuestaoEntity</item>
-      </annotation>
-      <parameter name="nivelDificuldade" type="integer"/>
-      <parameter name="taxonomia_id" type="integer"/>
-    </function>
-    <function name="getTipoArtefato" return-type="TipoArtefatoEntity">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="WSDLName">
-        <item name="getTipoArtefato">http://tempuri.org/,getTipoArtefato</item>
-        <item name="SOAPAction">http://tempuri.org/getTipoArtefato</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="inputParams">integer</item>
-        <item name="returnType">TipoArtefatoEntity</item>
-      </annotation>
-      <parameter name="taxId" type="integer"/>
-    </function>
     <function name="PegarTaxonomia" return-type="TaxonomiaEntity">
       <annotation name="analyze group">
         <item name="analyzed">true</item>
@@ -1197,34 +1114,6 @@
         <item name="returnType">TaxonomiaEntity</item>
       </annotation>
       <parameter name="nome" type="string"/>
-    </function>
-    <function name="setQuestaoAcerto" return-type="boolean">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="WSDLName">
-        <item name="setQuestaoAcerto">http://tempuri.org/,setQuestaoAcerto</item>
-        <item name="SOAPAction">http://tempuri.org/setQuestaoAcerto</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="inputParams">integer,integer,integer</item>
-        <item name="returnType">boolean</item>
-      </annotation>
-      <parameter name="questao_id" type="integer"/>
-      <parameter name="partidada_id" type="integer"/>
-      <parameter name="pontos" type="integer"/>
-    </function>
-    <function name="PegarTaxonomias" return-type="TaxonomiaEntity[]">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="WSDLName">
-        <item name="PegarTaxonomias">http://tempuri.org/,PegarTaxonomias</item>
-        <item name="SOAPAction">http://tempuri.org/PegarTaxonomias</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="returnType">TaxonomiaEntity</item>
-      </annotation>
     </function>
     <function name="CriarUsuario" return-type="boolean">
       <annotation name="analyze group">
@@ -1243,6 +1132,18 @@
       <parameter name="email" type="string"/>
       <parameter name="senha" type="string"/>
     </function>
+    <function name="PegarTaxonomias" return-type="TaxonomiaEntity[]">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="WSDLName">
+        <item name="PegarTaxonomias">http://tempuri.org/,PegarTaxonomias</item>
+        <item name="SOAPAction">http://tempuri.org/PegarTaxonomias</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="returnType">TaxonomiaEntity</item>
+      </annotation>
+    </function>
     <function name="RecuperarSenha" return-type="void">
       <annotation name="analyze group">
         <item name="analyzed">true</item>
@@ -1255,63 +1156,6 @@
         <item name="inputParams">string</item>
       </annotation>
       <parameter name="email" type="string"/>
-    </function>
-    <function name="GetTaxonomia" return-type="TaxonomiaEntity">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="WSDLName">
-        <item name="SOAPAction">http://tempuri.org/GetTaxonomia</item>
-        <item name="GetTaxonomia">http://tempuri.org/,GetTaxonomia</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="inputParams">integer</item>
-        <item name="returnType">TaxonomiaEntity</item>
-      </annotation>
-      <parameter name="tipoArtefatoId" type="integer"/>
-    </function>
-    <function name="GetTrechosDefeito" return-type="TrechoDefeitoEntity[]">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="WSDLName">
-        <item name="SOAPAction">http://tempuri.org/GetTrechosDefeito</item>
-        <item name="GetTrechosDefeito">http://tempuri.org/,GetTrechosDefeito</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="inputParams">integer</item>
-        <item name="returnType">TrechoDefeitoEntity</item>
-      </annotation>
-      <parameter name="questao_id" type="integer"/>
-    </function>
-    <function name="IniciarPartida" return-type="integer">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="WSDLName">
-        <item name="IniciarPartida">http://tempuri.org/,IniciarPartida</item>
-        <item name="SOAPAction">http://tempuri.org/IniciarPartida</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="inputParams">integer,string</item>
-        <item name="returnType">integer</item>
-      </annotation>
-      <parameter name="partDificuldade" type="integer"/>
-      <parameter name="userLogin" type="string"/>
-    </function>
-    <function name="GetQuestoesTaxList" return-type="QuestaoEntity[]">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="WSDLName">
-        <item name="SOAPAction">http://tempuri.org/GetQuestoesTaxList</item>
-        <item name="GetQuestoesTaxList">http://tempuri.org/,GetQuestoesTaxList</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="inputParams">integer</item>
-        <item name="returnType">QuestaoEntity</item>
-      </annotation>
-      <parameter name="tax_id" type="integer"/>
     </function>
     <function name="AdicionarQuestao" return-type="void">
       <annotation name="analyze group">
@@ -1330,20 +1174,19 @@
       <parameter name="questao" type="QuestaoEntity"/>
       <parameter name="tdList" type="TrechoDefeitoEntity[]"/>
     </function>
-    <function name="GetQuestoesByType" return-type="QuestaoEntity[]">
+    <function name="GetTDResposta" return-type="ItemTaxonomiaEntity">
       <annotation name="analyze group">
         <item name="analyzed">true</item>
       </annotation>
       <annotation name="WSDLName">
-        <item name="GetQuestoesByType">http://tempuri.org/,GetQuestoesByType</item>
-        <item name="SOAPAction">http://tempuri.org/GetQuestoesByType</item>
+        <item name="GetTDResposta">http://tempuri.org/,GetTDResposta</item>
+        <item name="SOAPAction">http://tempuri.org/GetTDResposta</item>
       </annotation>
       <annotation name="original signature">
-        <item name="inputParams">integer,integer</item>
-        <item name="returnType">QuestaoEntity</item>
+        <item name="inputParams">integer</item>
+        <item name="returnType">ItemTaxonomiaEntity</item>
       </annotation>
-      <parameter name="nivelDificuldade" type="integer"/>
-      <parameter name="tipoArtefatoId" type="integer"/>
+      <parameter name="td_id" type="integer"/>
     </function>
     <function name="AlterarUsuario" return-type="boolean">
       <annotation name="analyze group">
@@ -1364,6 +1207,177 @@
       <parameter name="novaSenha" type="string"/>
       <parameter name="novoEmail" type="string"/>
     </function>
+    <function name="EncerrarPartida" return-type="void">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="WSDLName">
+        <item name="EncerrarPartida">http://tempuri.org/,EncerrarPartida</item>
+        <item name="SOAPAction">http://tempuri.org/EncerrarPartida</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">integer,integer</item>
+      </annotation>
+      <parameter name="partidaEncerrada_id" type="integer"/>
+      <parameter name="pontuacaoTotal" type="integer"/>
+    </function>
+    <function name="GetQuestoes" return-type="QuestaoEntity[]">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="WSDLName">
+        <item name="SOAPAction">http://tempuri.org/GetQuestoes</item>
+        <item name="GetQuestoes">http://tempuri.org/,GetQuestoes</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">integer,integer</item>
+        <item name="returnType">QuestaoEntity</item>
+      </annotation>
+      <parameter name="nivelDificuldade" type="integer"/>
+      <parameter name="taxonomia_id" type="integer"/>
+    </function>
+    <function name="GetTaxonomia" return-type="TaxonomiaEntity">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="WSDLName">
+        <item name="SOAPAction">http://tempuri.org/GetTaxonomia</item>
+        <item name="GetTaxonomia">http://tempuri.org/,GetTaxonomia</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">integer</item>
+        <item name="returnType">TaxonomiaEntity</item>
+      </annotation>
+      <parameter name="tipoArtefatoId" type="integer"/>
+    </function>
+    <function name="GetQuestoesByType" return-type="QuestaoEntity[]">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="WSDLName">
+        <item name="GetQuestoesByType">http://tempuri.org/,GetQuestoesByType</item>
+        <item name="SOAPAction">http://tempuri.org/GetQuestoesByType</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">integer,integer</item>
+        <item name="returnType">QuestaoEntity</item>
+      </annotation>
+      <parameter name="nivelDificuldade" type="integer"/>
+      <parameter name="tipoArtefatoId" type="integer"/>
+    </function>
+    <function name="GetQuestoesTaxList" return-type="QuestaoEntity[]">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="WSDLName">
+        <item name="SOAPAction">http://tempuri.org/GetQuestoesTaxList</item>
+        <item name="GetQuestoesTaxList">http://tempuri.org/,GetQuestoesTaxList</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">integer</item>
+        <item name="returnType">QuestaoEntity</item>
+      </annotation>
+      <parameter name="tax_id" type="integer"/>
+    </function>
+    <function name="GetQuestaoTaxonomia" return-type="TaxonomiaEntity">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="WSDLName">
+        <item name="GetQuestaoTaxonomia">http://tempuri.org/,GetQuestaoTaxonomia</item>
+        <item name="SOAPAction">http://tempuri.org/GetQuestaoTaxonomia</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">integer</item>
+        <item name="returnType">TaxonomiaEntity</item>
+      </annotation>
+      <parameter name="questaoId" type="integer"/>
+    </function>
+    <function name="getTiposArtefatos" return-type="TipoArtefatoEntity[]">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="WSDLName">
+        <item name="getTiposArtefatos">http://tempuri.org/,getTiposArtefatos</item>
+        <item name="SOAPAction">http://tempuri.org/getTiposArtefatos</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="returnType">TipoArtefatoEntity</item>
+      </annotation>
+    </function>
+    <function name="setQuestaoAcerto" return-type="boolean">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="WSDLName">
+        <item name="setQuestaoAcerto">http://tempuri.org/,setQuestaoAcerto</item>
+        <item name="SOAPAction">http://tempuri.org/setQuestaoAcerto</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">integer,integer,integer</item>
+        <item name="returnType">boolean</item>
+      </annotation>
+      <parameter name="questao_id" type="integer"/>
+      <parameter name="partidada_id" type="integer"/>
+      <parameter name="pontos" type="integer"/>
+    </function>
+    <function name="IniciarPartida" return-type="integer">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="WSDLName">
+        <item name="IniciarPartida">http://tempuri.org/,IniciarPartida</item>
+        <item name="SOAPAction">http://tempuri.org/IniciarPartida</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">integer,string</item>
+        <item name="returnType">integer</item>
+      </annotation>
+      <parameter name="partDificuldade" type="integer"/>
+      <parameter name="userLogin" type="string"/>
+    </function>
+    <function name="PegarItemsTaxonomia" return-type="ItemTaxonomiaEntity[]">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="WSDLName">
+        <item name="SOAPAction">http://tempuri.org/PegarItemsTaxonomia</item>
+        <item name="PegarItemsTaxonomia">http://tempuri.org/,PegarItemsTaxonomia</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">integer</item>
+        <item name="returnType">ItemTaxonomiaEntity</item>
+      </annotation>
+      <parameter name="taxonomia_id" type="integer"/>
+    </function>
+    <function name="GetQuestoesRespostas" return-type="integer[]">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="WSDLName">
+        <item name="SOAPAction">http://tempuri.org/GetQuestoesRespostas</item>
+        <item name="GetQuestoesRespostas">http://tempuri.org/,GetQuestoesRespostas</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">integer</item>
+        <item name="returnType">integer</item>
+      </annotation>
+      <parameter name="nivelDificuldade" type="integer"/>
+    </function>
+    <function name="getTipoArtefato" return-type="TipoArtefatoEntity">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="WSDLName">
+        <item name="getTipoArtefato">http://tempuri.org/,getTipoArtefato</item>
+        <item name="SOAPAction">http://tempuri.org/getTipoArtefato</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">integer</item>
+        <item name="returnType">TipoArtefatoEntity</item>
+      </annotation>
+      <parameter name="taxId" type="integer"/>
+    </function>
   </service>
   <entity name="ItemTaxonomiaEntity">
     <annotation name="EntityProperties">
@@ -1378,10 +1392,10 @@
     <annotation name="ActionScriptGeneration">
       <item name="Package">valueObjects</item>
     </annotation>
-    <property name="ID" type="integer" required="true"/>
-    <property name="T_ID" type="integer" required="true"/>
-    <property name="Nome" type="string" required="true"/>
-    <property name="Descricao" type="string" required="true"/>
+    <property name="ID" type="integer"/>
+    <property name="T_ID" type="integer"/>
+    <property name="Nome" type="string"/>
+    <property name="Descricao" type="string"/>
   </entity>
   <entity name="TipoArtefatoEntity">
     <annotation name="EntityProperties">
@@ -1396,9 +1410,9 @@
     <annotation name="ActionScriptGeneration">
       <item name="Package">valueObjects</item>
     </annotation>
-    <property name="TA_ID" type="integer" required="true"/>
-    <property name="TA_DESCRICAO" type="string" required="true"/>
-    <property name="TA_NOME" type="string" required="true"/>
+    <property name="TA_ID" type="integer"/>
+    <property name="TA_DESCRICAO" type="string"/>
+    <property name="TA_NOME" type="string"/>
   </entity>
   <entity name="QuestaoEntity">
     <annotation name="EntityProperties">
@@ -1416,11 +1430,11 @@
     <annotation name="ActionScriptGeneration">
       <item name="Package">valueObjects</item>
     </annotation>
-    <property name="Q_ID" type="integer" required="true"/>
-    <property name="Q_Nivel_Dificuldade" type="integer" required="true"/>
-    <property name="Q_XML" type="string" required="true"/>
-    <property name="Q_TEMPO" type="integer" required="true"/>
-    <property name="Q_nome" type="string" required="true"/>
+    <property name="Q_ID" type="integer"/>
+    <property name="Q_Nivel_Dificuldade" type="integer"/>
+    <property name="Q_XML" type="string"/>
+    <property name="Q_TEMPO" type="integer"/>
+    <property name="Q_nome" type="string"/>
   </entity>
   <entity name="TrechoDefeitoEntity">
     <annotation name="EntityProperties">
@@ -1435,10 +1449,10 @@
     <annotation name="ActionScriptGeneration">
       <item name="Package">valueObjects</item>
     </annotation>
-    <property name="D_ID" type="integer" required="true"/>
-    <property name="IT_ID" type="integer" required="true"/>
-    <property name="Explicacao" type="string" required="true"/>
-    <property name="Conteudo" type="string" required="true"/>
+    <property name="D_ID" type="integer"/>
+    <property name="IT_ID" type="integer"/>
+    <property name="Explicacao" type="string"/>
+    <property name="Conteudo" type="string"/>
   </entity>
   <entity name="TaxonomiaEntity">
     <annotation name="EntityProperties">
@@ -1453,7 +1467,7 @@
     <annotation name="ActionScriptGeneration">
       <item name="Package">valueObjects</item>
     </annotation>
-    <property name="ID" type="integer" required="true"/>
-    <property name="Nome" type="string" required="true"/>
+    <property name="ID" type="integer"/>
+    <property name="Nome" type="string"/>
   </entity>
 </model>
