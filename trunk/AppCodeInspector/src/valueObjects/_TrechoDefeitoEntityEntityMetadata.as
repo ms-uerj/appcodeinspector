@@ -6,11 +6,9 @@ package valueObjects
 {
 import com.adobe.fiber.styles.IStyle;
 import com.adobe.fiber.styles.Style;
-import com.adobe.fiber.styles.StyleValidator;
 import com.adobe.fiber.valueobjects.AbstractEntityMetadata;
 import com.adobe.fiber.valueobjects.AvailablePropertyIterator;
 import com.adobe.fiber.valueobjects.IPropertyIterator;
-import mx.events.ValidationResultEvent;
 import com.adobe.fiber.core.model_internal;
 import com.adobe.fiber.valueobjects.IModelType;
 import mx.events.PropertyChangeEvent;
@@ -24,7 +22,7 @@ internal class _TrechoDefeitoEntityEntityMetadata extends com.adobe.fiber.valueo
 
     model_internal static var allProperties:Array = new Array("D_ID", "IT_ID", "Explicacao", "Conteudo");
     model_internal static var allAssociationProperties:Array = new Array();
-    model_internal static var allRequiredProperties:Array = new Array("D_ID", "IT_ID", "Explicacao", "Conteudo");
+    model_internal static var allRequiredProperties:Array = new Array();
     model_internal static var allAlwaysAvailableProperties:Array = new Array("D_ID", "IT_ID", "Explicacao", "Conteudo");
     model_internal static var guardedProperties:Array = new Array();
     model_internal static var dataProperties:Array = new Array("D_ID", "IT_ID", "Explicacao", "Conteudo");
@@ -38,16 +36,6 @@ internal class _TrechoDefeitoEntityEntityMetadata extends com.adobe.fiber.valueo
     model_internal static var dependedOnServices:Array = new Array();
     model_internal static var propertyTypeMap:Object;
 
-    
-    model_internal var _ExplicacaoIsValid:Boolean;
-    model_internal var _ExplicacaoValidator:com.adobe.fiber.styles.StyleValidator;
-    model_internal var _ExplicacaoIsValidCacheInitialized:Boolean = false;
-    model_internal var _ExplicacaoValidationFailureMessages:Array;
-    
-    model_internal var _ConteudoIsValid:Boolean;
-    model_internal var _ConteudoValidator:com.adobe.fiber.styles.StyleValidator;
-    model_internal var _ConteudoIsValidCacheInitialized:Boolean = false;
-    model_internal var _ConteudoValidationFailureMessages:Array;
 
     model_internal var _instance:_Super_TrechoDefeitoEntity;
     model_internal static var _nullStyle:com.adobe.fiber.styles.Style = new com.adobe.fiber.styles.Style();
@@ -76,16 +64,6 @@ internal class _TrechoDefeitoEntityEntityMetadata extends com.adobe.fiber.valueo
         model_internal::propertyTypeMap["Conteudo"] = "String";
 
         model_internal::_instance = value;
-        model_internal::_ExplicacaoValidator = new StyleValidator(model_internal::_instance.model_internal::_doValidationForExplicacao);
-        model_internal::_ExplicacaoValidator.required = true;
-        model_internal::_ExplicacaoValidator.requiredFieldError = "Explicacao is required";
-        //model_internal::_ExplicacaoValidator.source = model_internal::_instance;
-        //model_internal::_ExplicacaoValidator.property = "Explicacao";
-        model_internal::_ConteudoValidator = new StyleValidator(model_internal::_instance.model_internal::_doValidationForConteudo);
-        model_internal::_ConteudoValidator.required = true;
-        model_internal::_ConteudoValidator.requiredFieldError = "Conteudo is required";
-        //model_internal::_ConteudoValidator.source = model_internal::_instance;
-        //model_internal::_ConteudoValidator.property = "Conteudo";
     }
 
     override public function getEntityName():String
@@ -340,22 +318,6 @@ internal class _TrechoDefeitoEntityEntityMetadata extends com.adobe.fiber.valueo
     /**
      * derived property recalculation
      */
-    public function invalidateDependentOnExplicacao():void
-    {
-        if (model_internal::_ExplicacaoIsValidCacheInitialized )
-        {
-            model_internal::_instance.model_internal::_doValidationCacheOfExplicacao = null;
-            model_internal::calculateExplicacaoIsValid();
-        }
-    }
-    public function invalidateDependentOnConteudo():void
-    {
-        if (model_internal::_ConteudoIsValidCacheInitialized )
-        {
-            model_internal::_instance.model_internal::_doValidationCacheOfConteudo = null;
-            model_internal::calculateConteudoIsValid();
-        }
-    }
 
     model_internal function fireChangeEvent(propertyName:String, oldValue:Object, newValue:Object):void
     {
@@ -380,198 +342,10 @@ internal class _TrechoDefeitoEntityEntityMetadata extends com.adobe.fiber.valueo
         return model_internal::_nullStyle;
     }
 
-    public function get ExplicacaoValidator() : StyleValidator
-    {
-        return model_internal::_ExplicacaoValidator;
-    }
-
-    model_internal function set _ExplicacaoIsValid_der(value:Boolean):void 
-    {
-        var oldValue:Boolean = model_internal::_ExplicacaoIsValid;         
-        if (oldValue !== value)
-        {
-            model_internal::_ExplicacaoIsValid = value;
-            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "ExplicacaoIsValid", oldValue, value));
-        }                             
-    }
-
-    [Bindable(event="propertyChange")]
-    public function get ExplicacaoIsValid():Boolean
-    {
-        if (!model_internal::_ExplicacaoIsValidCacheInitialized)
-        {
-            model_internal::calculateExplicacaoIsValid();
-        }
-
-        return model_internal::_ExplicacaoIsValid;
-    }
-
-    model_internal function calculateExplicacaoIsValid():void
-    {
-        var valRes:ValidationResultEvent = model_internal::_ExplicacaoValidator.validate(model_internal::_instance.Explicacao)
-        model_internal::_ExplicacaoIsValid_der = (valRes.results == null);
-        model_internal::_ExplicacaoIsValidCacheInitialized = true;
-        if (valRes.results == null)
-             model_internal::ExplicacaoValidationFailureMessages_der = emptyArray;
-        else
-        {
-            var _valFailures:Array = new Array();
-            for (var a:int = 0 ; a<valRes.results.length ; a++)
-            {
-                _valFailures.push(valRes.results[a].errorMessage);
-            }
-            model_internal::ExplicacaoValidationFailureMessages_der = _valFailures;
-        }
-    }
-
-    [Bindable(event="propertyChange")]
-    public function get ExplicacaoValidationFailureMessages():Array
-    {
-        if (model_internal::_ExplicacaoValidationFailureMessages == null)
-            model_internal::calculateExplicacaoIsValid();
-
-        return _ExplicacaoValidationFailureMessages;
-    }
-
-    model_internal function set ExplicacaoValidationFailureMessages_der(value:Array) : void
-    {
-        var oldValue:Array = model_internal::_ExplicacaoValidationFailureMessages;
-
-        var needUpdate : Boolean = false;
-        if (oldValue == null)
-            needUpdate = true;
-    
-        // avoid firing the event when old and new value are different empty arrays
-        if (!needUpdate && (oldValue !== value && (oldValue.length > 0 || value.length > 0)))
-        {
-            if (oldValue.length == value.length)
-            {
-                for (var a:int=0; a < oldValue.length; a++)
-                {
-                    if (oldValue[a] !== value[a])
-                    {
-                        needUpdate = true;
-                        break;
-                    }
-                }
-            }
-            else
-            {
-                needUpdate = true;
-            }
-        }
-
-        if (needUpdate)
-        {
-            model_internal::_ExplicacaoValidationFailureMessages = value;   
-            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "ExplicacaoValidationFailureMessages", oldValue, value));
-            // Only execute calculateIsValid if it has been called before, to update the validationFailureMessages for
-            // the entire entity.
-            if (model_internal::_instance.model_internal::_cacheInitialized_isValid)
-            {
-                model_internal::_instance.model_internal::isValid_der = model_internal::_instance.model_internal::calculateIsValid();
-            }
-        }
-    }
-
     [Bindable(event="propertyChange")]   
     public function get ConteudoStyle():com.adobe.fiber.styles.Style
     {
         return model_internal::_nullStyle;
-    }
-
-    public function get ConteudoValidator() : StyleValidator
-    {
-        return model_internal::_ConteudoValidator;
-    }
-
-    model_internal function set _ConteudoIsValid_der(value:Boolean):void 
-    {
-        var oldValue:Boolean = model_internal::_ConteudoIsValid;         
-        if (oldValue !== value)
-        {
-            model_internal::_ConteudoIsValid = value;
-            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "ConteudoIsValid", oldValue, value));
-        }                             
-    }
-
-    [Bindable(event="propertyChange")]
-    public function get ConteudoIsValid():Boolean
-    {
-        if (!model_internal::_ConteudoIsValidCacheInitialized)
-        {
-            model_internal::calculateConteudoIsValid();
-        }
-
-        return model_internal::_ConteudoIsValid;
-    }
-
-    model_internal function calculateConteudoIsValid():void
-    {
-        var valRes:ValidationResultEvent = model_internal::_ConteudoValidator.validate(model_internal::_instance.Conteudo)
-        model_internal::_ConteudoIsValid_der = (valRes.results == null);
-        model_internal::_ConteudoIsValidCacheInitialized = true;
-        if (valRes.results == null)
-             model_internal::ConteudoValidationFailureMessages_der = emptyArray;
-        else
-        {
-            var _valFailures:Array = new Array();
-            for (var a:int = 0 ; a<valRes.results.length ; a++)
-            {
-                _valFailures.push(valRes.results[a].errorMessage);
-            }
-            model_internal::ConteudoValidationFailureMessages_der = _valFailures;
-        }
-    }
-
-    [Bindable(event="propertyChange")]
-    public function get ConteudoValidationFailureMessages():Array
-    {
-        if (model_internal::_ConteudoValidationFailureMessages == null)
-            model_internal::calculateConteudoIsValid();
-
-        return _ConteudoValidationFailureMessages;
-    }
-
-    model_internal function set ConteudoValidationFailureMessages_der(value:Array) : void
-    {
-        var oldValue:Array = model_internal::_ConteudoValidationFailureMessages;
-
-        var needUpdate : Boolean = false;
-        if (oldValue == null)
-            needUpdate = true;
-    
-        // avoid firing the event when old and new value are different empty arrays
-        if (!needUpdate && (oldValue !== value && (oldValue.length > 0 || value.length > 0)))
-        {
-            if (oldValue.length == value.length)
-            {
-                for (var a:int=0; a < oldValue.length; a++)
-                {
-                    if (oldValue[a] !== value[a])
-                    {
-                        needUpdate = true;
-                        break;
-                    }
-                }
-            }
-            else
-            {
-                needUpdate = true;
-            }
-        }
-
-        if (needUpdate)
-        {
-            model_internal::_ConteudoValidationFailureMessages = value;   
-            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "ConteudoValidationFailureMessages", oldValue, value));
-            // Only execute calculateIsValid if it has been called before, to update the validationFailureMessages for
-            // the entire entity.
-            if (model_internal::_instance.model_internal::_cacheInitialized_isValid)
-            {
-                model_internal::_instance.model_internal::isValid_der = model_internal::_instance.model_internal::calculateIsValid();
-            }
-        }
     }
 
 
@@ -599,14 +373,6 @@ internal class _TrechoDefeitoEntityEntityMetadata extends com.adobe.fiber.valueo
      {
          switch(propertyName)
          {
-            case("Explicacao"):
-            {
-                return ExplicacaoValidationFailureMessages;
-            }
-            case("Conteudo"):
-            {
-                return ConteudoValidationFailureMessages;
-            }
             default:
             {
                 return emptyArray;

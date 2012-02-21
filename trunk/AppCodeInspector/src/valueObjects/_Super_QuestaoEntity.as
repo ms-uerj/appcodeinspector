@@ -6,14 +6,10 @@
 package valueObjects
 {
 import com.adobe.fiber.services.IFiberManagingService;
-import com.adobe.fiber.util.FiberUtils;
 import com.adobe.fiber.valueobjects.IValueObject;
-import flash.events.Event;
 import flash.events.EventDispatcher;
-import mx.binding.utils.ChangeWatcher;
 import mx.collections.ArrayCollection;
 import mx.events.PropertyChangeEvent;
-import mx.validators.ValidationResult;
 
 import flash.net.registerClassAlias;
 import flash.net.getClassByAlias;
@@ -72,8 +68,6 @@ public class _Super_QuestaoEntity extends flash.events.EventDispatcher implement
         _model = new _QuestaoEntityEntityMetadata(this);
 
         // Bind to own data or source properties for cache invalidation triggering
-        model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "Q_XML", model_internal::setterListenerQ_XML));
-        model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "Q_nome", model_internal::setterListenerQ_nome));
 
     }
 
@@ -181,16 +175,6 @@ public class _Super_QuestaoEntity extends flash.events.EventDispatcher implement
      *  - the validity of the property (and the containing entity) if the given data property is required.
      */
 
-    model_internal function setterListenerQ_XML(value:flash.events.Event):void
-    {
-        _model.invalidateDependentOnQ_XML();
-    }
-
-    model_internal function setterListenerQ_nome(value:flash.events.Event):void
-    {
-        _model.invalidateDependentOnQ_nome();
-    }
-
 
     /**
      * valid related derived properties
@@ -212,16 +196,6 @@ public class _Super_QuestaoEntity extends flash.events.EventDispatcher implement
         var validationFailureMessages:Array = new Array();
 
         var propertyValidity:Boolean = true;
-        if (!_model.Q_XMLIsValid)
-        {
-            propertyValidity = false;
-            com.adobe.fiber.util.FiberUtils.arrayAdd(validationFailureMessages, _model.model_internal::_Q_XMLValidationFailureMessages);
-        }
-        if (!_model.Q_nomeIsValid)
-        {
-            propertyValidity = false;
-            com.adobe.fiber.util.FiberUtils.arrayAdd(validationFailureMessages, _model.model_internal::_Q_nomeValidationFailureMessages);
-        }
 
         model_internal::_cacheInitialized_isValid = true;
         model_internal::invalidConstraints_der = violatedConsts;
@@ -301,60 +275,6 @@ public class _Super_QuestaoEntity extends flash.events.EventDispatcher implement
         }
     }
 
-    model_internal var _doValidationCacheOfQ_XML : Array = null;
-    model_internal var _doValidationLastValOfQ_XML : String;
-
-    model_internal function _doValidationForQ_XML(valueIn:Object):Array
-    {
-        var value : String = valueIn as String;
-
-        if (model_internal::_doValidationCacheOfQ_XML != null && model_internal::_doValidationLastValOfQ_XML == value)
-           return model_internal::_doValidationCacheOfQ_XML ;
-
-        _model.model_internal::_Q_XMLIsValidCacheInitialized = true;
-        var validationFailures:Array = new Array();
-        var errorMessage:String;
-        var failure:Boolean;
-
-        var valRes:ValidationResult;
-        if (_model.isQ_XMLAvailable && _internal_Q_XML == null)
-        {
-            validationFailures.push(new ValidationResult(true, "", "", "Q_XML is required"));
-        }
-
-        model_internal::_doValidationCacheOfQ_XML = validationFailures;
-        model_internal::_doValidationLastValOfQ_XML = value;
-
-        return validationFailures;
-    }
-    
-    model_internal var _doValidationCacheOfQ_nome : Array = null;
-    model_internal var _doValidationLastValOfQ_nome : String;
-
-    model_internal function _doValidationForQ_nome(valueIn:Object):Array
-    {
-        var value : String = valueIn as String;
-
-        if (model_internal::_doValidationCacheOfQ_nome != null && model_internal::_doValidationLastValOfQ_nome == value)
-           return model_internal::_doValidationCacheOfQ_nome ;
-
-        _model.model_internal::_Q_nomeIsValidCacheInitialized = true;
-        var validationFailures:Array = new Array();
-        var errorMessage:String;
-        var failure:Boolean;
-
-        var valRes:ValidationResult;
-        if (_model.isQ_nomeAvailable && _internal_Q_nome == null)
-        {
-            validationFailures.push(new ValidationResult(true, "", "", "Q_nome is required"));
-        }
-
-        model_internal::_doValidationCacheOfQ_nome = validationFailures;
-        model_internal::_doValidationLastValOfQ_nome = value;
-
-        return validationFailures;
-    }
-    
 
 }
 
