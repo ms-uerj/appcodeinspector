@@ -69,8 +69,9 @@ public static var selectedText:TextRange;
 public function onLoad():void
 {
 	var ta:int = tipoArtefato_Id;
-	GetTaxonomia.token = wSCodeInspector.GetTaxonomia(ta);
+	
 	IniciarPartida.token = wSCodeInspector.IniciarPartida(nivelDificuldade,LoginUsuario);
+
 	
 	field = new TextArea();
 
@@ -81,7 +82,7 @@ public function onLoad():void
 	
 	with (field) 
 	{
-		x = (stage.width/2) - 850;
+		x = (stage.width/2) - 450;
 		y = (stage.height/2) - 320;
 		width = 800;
 		height = 450;
@@ -101,16 +102,10 @@ public function onLoad():void
 	xml.LoadWS(xmlPerguntasWS);
 
 	xml.addEventListener("XML_Loaded", xmlDone);
-//	xml.addEventListener("XML_IOError", error);
-//	xml.addEventListener("XML_SecurityError", error);
-//	xml.addEventListener("XML_ParseError", error);
-	
+
 	css = new CSS();
 	css.Load("Arquivos/styles.css");
 	css.addEventListener("CSS_Loaded", cssDone);
-//	css.addEventListener("CSS_IOError", error);
-//	css.addEventListener("CSS_SecurityError", error);
-//	css.addEventListener("CSS_ParseError", error);
 }
 
 
@@ -146,7 +141,7 @@ public function xmlDone():void {
 	xmlBool = true;
 	allDone();
 }
-
+	
 private function allDone():void	
 {
 	if(cssBool && xmlBool)
@@ -154,7 +149,10 @@ private function allDone():void
 		field.styleSheet = css.sheet;
 		
 		if(xmlPerguntasWS.length!=0)
+		{
 			var q:QuestaoEntity = xmlPerguntasWS[perguntaAtual] as QuestaoEntity;
+			GetQuestoesTaxonomia.token = wSCodeInspector.GetQuestaoTaxonomia(q.Q_ID);
+		}
 		
 		field.htmlText = q.Q_XML;
 		
@@ -171,7 +169,7 @@ protected function GetTrechosQuestao_resultHandler(e:ResultEvent):void
 	questaoTrechosWS = ArrayCollection(e.result);
 }
 
-protected function GetTaxonomia_resultHandler(e:ResultEvent):void
+protected function GetQuestoesTaxonomia_resultHandler(e:ResultEvent):void
 {
 	var t:TaxonomiaEntity = e.result as TaxonomiaEntity;
 	repostaWindow.questaoTaxonomiaId=t.ID;
@@ -204,15 +202,16 @@ protected function btnProximaPergunta_clickHandler(event:MouseEvent):void
 			
 			questaoTrechosWS.removeAll();
 			var q:QuestaoEntity = xmlPerguntasWS[perguntaAtual] as QuestaoEntity;
+			GetTrechosQuestao.token = wSCodeInspector.GetTrechosDefeito(q.Q_ID);
+			GetQuestoesTaxonomia.token = wSCodeInspector.GetQuestaoTaxonomia(q.Q_ID);
+			
 			verificarRespostas();
 			
-			GetTrechosQuestao.token = wSCodeInspector.GetTrechosDefeito(q.Q_ID);		
 			pontosTotal =0;
 			field.styleSheet = css.sheet;
 			
 			if (perguntaAtual==(xmlPerguntasWS.length-1))
 			{
-				//TODO Ranking
 				Alert.show("O jogo Terminou");
 				this.currentState="Login";
 			}

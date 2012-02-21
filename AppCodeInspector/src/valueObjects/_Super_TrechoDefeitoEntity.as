@@ -6,14 +6,10 @@
 package valueObjects
 {
 import com.adobe.fiber.services.IFiberManagingService;
-import com.adobe.fiber.util.FiberUtils;
 import com.adobe.fiber.valueobjects.IValueObject;
-import flash.events.Event;
 import flash.events.EventDispatcher;
-import mx.binding.utils.ChangeWatcher;
 import mx.collections.ArrayCollection;
 import mx.events.PropertyChangeEvent;
-import mx.validators.ValidationResult;
 
 import flash.net.registerClassAlias;
 import flash.net.getClassByAlias;
@@ -71,8 +67,6 @@ public class _Super_TrechoDefeitoEntity extends flash.events.EventDispatcher imp
         _model = new _TrechoDefeitoEntityEntityMetadata(this);
 
         // Bind to own data or source properties for cache invalidation triggering
-        model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "Explicacao", model_internal::setterListenerExplicacao));
-        model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "Conteudo", model_internal::setterListenerConteudo));
 
     }
 
@@ -164,16 +158,6 @@ public class _Super_TrechoDefeitoEntity extends flash.events.EventDispatcher imp
      *  - the validity of the property (and the containing entity) if the given data property is required.
      */
 
-    model_internal function setterListenerExplicacao(value:flash.events.Event):void
-    {
-        _model.invalidateDependentOnExplicacao();
-    }
-
-    model_internal function setterListenerConteudo(value:flash.events.Event):void
-    {
-        _model.invalidateDependentOnConteudo();
-    }
-
 
     /**
      * valid related derived properties
@@ -195,16 +179,6 @@ public class _Super_TrechoDefeitoEntity extends flash.events.EventDispatcher imp
         var validationFailureMessages:Array = new Array();
 
         var propertyValidity:Boolean = true;
-        if (!_model.ExplicacaoIsValid)
-        {
-            propertyValidity = false;
-            com.adobe.fiber.util.FiberUtils.arrayAdd(validationFailureMessages, _model.model_internal::_ExplicacaoValidationFailureMessages);
-        }
-        if (!_model.ConteudoIsValid)
-        {
-            propertyValidity = false;
-            com.adobe.fiber.util.FiberUtils.arrayAdd(validationFailureMessages, _model.model_internal::_ConteudoValidationFailureMessages);
-        }
 
         model_internal::_cacheInitialized_isValid = true;
         model_internal::invalidConstraints_der = violatedConsts;
@@ -284,60 +258,6 @@ public class _Super_TrechoDefeitoEntity extends flash.events.EventDispatcher imp
         }
     }
 
-    model_internal var _doValidationCacheOfExplicacao : Array = null;
-    model_internal var _doValidationLastValOfExplicacao : String;
-
-    model_internal function _doValidationForExplicacao(valueIn:Object):Array
-    {
-        var value : String = valueIn as String;
-
-        if (model_internal::_doValidationCacheOfExplicacao != null && model_internal::_doValidationLastValOfExplicacao == value)
-           return model_internal::_doValidationCacheOfExplicacao ;
-
-        _model.model_internal::_ExplicacaoIsValidCacheInitialized = true;
-        var validationFailures:Array = new Array();
-        var errorMessage:String;
-        var failure:Boolean;
-
-        var valRes:ValidationResult;
-        if (_model.isExplicacaoAvailable && _internal_Explicacao == null)
-        {
-            validationFailures.push(new ValidationResult(true, "", "", "Explicacao is required"));
-        }
-
-        model_internal::_doValidationCacheOfExplicacao = validationFailures;
-        model_internal::_doValidationLastValOfExplicacao = value;
-
-        return validationFailures;
-    }
-    
-    model_internal var _doValidationCacheOfConteudo : Array = null;
-    model_internal var _doValidationLastValOfConteudo : String;
-
-    model_internal function _doValidationForConteudo(valueIn:Object):Array
-    {
-        var value : String = valueIn as String;
-
-        if (model_internal::_doValidationCacheOfConteudo != null && model_internal::_doValidationLastValOfConteudo == value)
-           return model_internal::_doValidationCacheOfConteudo ;
-
-        _model.model_internal::_ConteudoIsValidCacheInitialized = true;
-        var validationFailures:Array = new Array();
-        var errorMessage:String;
-        var failure:Boolean;
-
-        var valRes:ValidationResult;
-        if (_model.isConteudoAvailable && _internal_Conteudo == null)
-        {
-            validationFailures.push(new ValidationResult(true, "", "", "Conteudo is required"));
-        }
-
-        model_internal::_doValidationCacheOfConteudo = validationFailures;
-        model_internal::_doValidationLastValOfConteudo = value;
-
-        return validationFailures;
-    }
-    
 
 }
 

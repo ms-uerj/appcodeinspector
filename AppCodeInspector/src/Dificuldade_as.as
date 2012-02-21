@@ -1,10 +1,7 @@
 import CodeInspector.TXT;
-
 import flash.events.Event;
-
 import mx.collections.ArrayCollection;
 import mx.utils.ObjectUtil;
-
 import valueObjects.QuestaoEntity;
 
 protected var txtTutorials:TXT;
@@ -15,7 +12,7 @@ public const DIFICIL : int= 3;
 
 
 
-//Adiciciona a um token que dispara o evento (GetQuestoesResultFacil_resultHandler).
+//Adiciona a um token que dispara o evento (GetQuestoesResultFacil_resultHandler).
 protected function _btnFacil_clickHandler(event:MouseEvent):void
 {
 	nivelDificuldade = FACIL;

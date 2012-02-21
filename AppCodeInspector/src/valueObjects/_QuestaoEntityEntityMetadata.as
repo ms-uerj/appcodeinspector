@@ -6,11 +6,9 @@ package valueObjects
 {
 import com.adobe.fiber.styles.IStyle;
 import com.adobe.fiber.styles.Style;
-import com.adobe.fiber.styles.StyleValidator;
 import com.adobe.fiber.valueobjects.AbstractEntityMetadata;
 import com.adobe.fiber.valueobjects.AvailablePropertyIterator;
 import com.adobe.fiber.valueobjects.IPropertyIterator;
-import mx.events.ValidationResultEvent;
 import com.adobe.fiber.core.model_internal;
 import com.adobe.fiber.valueobjects.IModelType;
 import mx.events.PropertyChangeEvent;
@@ -24,7 +22,7 @@ internal class _QuestaoEntityEntityMetadata extends com.adobe.fiber.valueobjects
 
     model_internal static var allProperties:Array = new Array("Q_ID", "Q_Nivel_Dificuldade", "Q_XML", "Q_TEMPO", "Q_nome");
     model_internal static var allAssociationProperties:Array = new Array();
-    model_internal static var allRequiredProperties:Array = new Array("Q_ID", "Q_Nivel_Dificuldade", "Q_XML", "Q_TEMPO", "Q_nome");
+    model_internal static var allRequiredProperties:Array = new Array();
     model_internal static var allAlwaysAvailableProperties:Array = new Array("Q_ID", "Q_Nivel_Dificuldade", "Q_XML", "Q_TEMPO", "Q_nome");
     model_internal static var guardedProperties:Array = new Array();
     model_internal static var dataProperties:Array = new Array("Q_ID", "Q_Nivel_Dificuldade", "Q_XML", "Q_TEMPO", "Q_nome");
@@ -38,16 +36,6 @@ internal class _QuestaoEntityEntityMetadata extends com.adobe.fiber.valueobjects
     model_internal static var dependedOnServices:Array = new Array();
     model_internal static var propertyTypeMap:Object;
 
-    
-    model_internal var _Q_XMLIsValid:Boolean;
-    model_internal var _Q_XMLValidator:com.adobe.fiber.styles.StyleValidator;
-    model_internal var _Q_XMLIsValidCacheInitialized:Boolean = false;
-    model_internal var _Q_XMLValidationFailureMessages:Array;
-    
-    model_internal var _Q_nomeIsValid:Boolean;
-    model_internal var _Q_nomeValidator:com.adobe.fiber.styles.StyleValidator;
-    model_internal var _Q_nomeIsValidCacheInitialized:Boolean = false;
-    model_internal var _Q_nomeValidationFailureMessages:Array;
 
     model_internal var _instance:_Super_QuestaoEntity;
     model_internal static var _nullStyle:com.adobe.fiber.styles.Style = new com.adobe.fiber.styles.Style();
@@ -78,16 +66,6 @@ internal class _QuestaoEntityEntityMetadata extends com.adobe.fiber.valueobjects
         model_internal::propertyTypeMap["Q_nome"] = "String";
 
         model_internal::_instance = value;
-        model_internal::_Q_XMLValidator = new StyleValidator(model_internal::_instance.model_internal::_doValidationForQ_XML);
-        model_internal::_Q_XMLValidator.required = true;
-        model_internal::_Q_XMLValidator.requiredFieldError = "Q_XML is required";
-        //model_internal::_Q_XMLValidator.source = model_internal::_instance;
-        //model_internal::_Q_XMLValidator.property = "Q_XML";
-        model_internal::_Q_nomeValidator = new StyleValidator(model_internal::_instance.model_internal::_doValidationForQ_nome);
-        model_internal::_Q_nomeValidator.required = true;
-        model_internal::_Q_nomeValidator.requiredFieldError = "Q_nome is required";
-        //model_internal::_Q_nomeValidator.source = model_internal::_instance;
-        //model_internal::_Q_nomeValidator.property = "Q_nome";
     }
 
     override public function getEntityName():String
@@ -348,22 +326,6 @@ internal class _QuestaoEntityEntityMetadata extends com.adobe.fiber.valueobjects
     /**
      * derived property recalculation
      */
-    public function invalidateDependentOnQ_XML():void
-    {
-        if (model_internal::_Q_XMLIsValidCacheInitialized )
-        {
-            model_internal::_instance.model_internal::_doValidationCacheOfQ_XML = null;
-            model_internal::calculateQ_XMLIsValid();
-        }
-    }
-    public function invalidateDependentOnQ_nome():void
-    {
-        if (model_internal::_Q_nomeIsValidCacheInitialized )
-        {
-            model_internal::_instance.model_internal::_doValidationCacheOfQ_nome = null;
-            model_internal::calculateQ_nomeIsValid();
-        }
-    }
 
     model_internal function fireChangeEvent(propertyName:String, oldValue:Object, newValue:Object):void
     {
@@ -388,100 +350,6 @@ internal class _QuestaoEntityEntityMetadata extends com.adobe.fiber.valueobjects
         return model_internal::_nullStyle;
     }
 
-    public function get Q_XMLValidator() : StyleValidator
-    {
-        return model_internal::_Q_XMLValidator;
-    }
-
-    model_internal function set _Q_XMLIsValid_der(value:Boolean):void 
-    {
-        var oldValue:Boolean = model_internal::_Q_XMLIsValid;         
-        if (oldValue !== value)
-        {
-            model_internal::_Q_XMLIsValid = value;
-            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "Q_XMLIsValid", oldValue, value));
-        }                             
-    }
-
-    [Bindable(event="propertyChange")]
-    public function get Q_XMLIsValid():Boolean
-    {
-        if (!model_internal::_Q_XMLIsValidCacheInitialized)
-        {
-            model_internal::calculateQ_XMLIsValid();
-        }
-
-        return model_internal::_Q_XMLIsValid;
-    }
-
-    model_internal function calculateQ_XMLIsValid():void
-    {
-        var valRes:ValidationResultEvent = model_internal::_Q_XMLValidator.validate(model_internal::_instance.Q_XML)
-        model_internal::_Q_XMLIsValid_der = (valRes.results == null);
-        model_internal::_Q_XMLIsValidCacheInitialized = true;
-        if (valRes.results == null)
-             model_internal::Q_XMLValidationFailureMessages_der = emptyArray;
-        else
-        {
-            var _valFailures:Array = new Array();
-            for (var a:int = 0 ; a<valRes.results.length ; a++)
-            {
-                _valFailures.push(valRes.results[a].errorMessage);
-            }
-            model_internal::Q_XMLValidationFailureMessages_der = _valFailures;
-        }
-    }
-
-    [Bindable(event="propertyChange")]
-    public function get Q_XMLValidationFailureMessages():Array
-    {
-        if (model_internal::_Q_XMLValidationFailureMessages == null)
-            model_internal::calculateQ_XMLIsValid();
-
-        return _Q_XMLValidationFailureMessages;
-    }
-
-    model_internal function set Q_XMLValidationFailureMessages_der(value:Array) : void
-    {
-        var oldValue:Array = model_internal::_Q_XMLValidationFailureMessages;
-
-        var needUpdate : Boolean = false;
-        if (oldValue == null)
-            needUpdate = true;
-    
-        // avoid firing the event when old and new value are different empty arrays
-        if (!needUpdate && (oldValue !== value && (oldValue.length > 0 || value.length > 0)))
-        {
-            if (oldValue.length == value.length)
-            {
-                for (var a:int=0; a < oldValue.length; a++)
-                {
-                    if (oldValue[a] !== value[a])
-                    {
-                        needUpdate = true;
-                        break;
-                    }
-                }
-            }
-            else
-            {
-                needUpdate = true;
-            }
-        }
-
-        if (needUpdate)
-        {
-            model_internal::_Q_XMLValidationFailureMessages = value;   
-            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "Q_XMLValidationFailureMessages", oldValue, value));
-            // Only execute calculateIsValid if it has been called before, to update the validationFailureMessages for
-            // the entire entity.
-            if (model_internal::_instance.model_internal::_cacheInitialized_isValid)
-            {
-                model_internal::_instance.model_internal::isValid_der = model_internal::_instance.model_internal::calculateIsValid();
-            }
-        }
-    }
-
     [Bindable(event="propertyChange")]   
     public function get Q_TEMPOStyle():com.adobe.fiber.styles.Style
     {
@@ -492,100 +360,6 @@ internal class _QuestaoEntityEntityMetadata extends com.adobe.fiber.valueobjects
     public function get Q_nomeStyle():com.adobe.fiber.styles.Style
     {
         return model_internal::_nullStyle;
-    }
-
-    public function get Q_nomeValidator() : StyleValidator
-    {
-        return model_internal::_Q_nomeValidator;
-    }
-
-    model_internal function set _Q_nomeIsValid_der(value:Boolean):void 
-    {
-        var oldValue:Boolean = model_internal::_Q_nomeIsValid;         
-        if (oldValue !== value)
-        {
-            model_internal::_Q_nomeIsValid = value;
-            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "Q_nomeIsValid", oldValue, value));
-        }                             
-    }
-
-    [Bindable(event="propertyChange")]
-    public function get Q_nomeIsValid():Boolean
-    {
-        if (!model_internal::_Q_nomeIsValidCacheInitialized)
-        {
-            model_internal::calculateQ_nomeIsValid();
-        }
-
-        return model_internal::_Q_nomeIsValid;
-    }
-
-    model_internal function calculateQ_nomeIsValid():void
-    {
-        var valRes:ValidationResultEvent = model_internal::_Q_nomeValidator.validate(model_internal::_instance.Q_nome)
-        model_internal::_Q_nomeIsValid_der = (valRes.results == null);
-        model_internal::_Q_nomeIsValidCacheInitialized = true;
-        if (valRes.results == null)
-             model_internal::Q_nomeValidationFailureMessages_der = emptyArray;
-        else
-        {
-            var _valFailures:Array = new Array();
-            for (var a:int = 0 ; a<valRes.results.length ; a++)
-            {
-                _valFailures.push(valRes.results[a].errorMessage);
-            }
-            model_internal::Q_nomeValidationFailureMessages_der = _valFailures;
-        }
-    }
-
-    [Bindable(event="propertyChange")]
-    public function get Q_nomeValidationFailureMessages():Array
-    {
-        if (model_internal::_Q_nomeValidationFailureMessages == null)
-            model_internal::calculateQ_nomeIsValid();
-
-        return _Q_nomeValidationFailureMessages;
-    }
-
-    model_internal function set Q_nomeValidationFailureMessages_der(value:Array) : void
-    {
-        var oldValue:Array = model_internal::_Q_nomeValidationFailureMessages;
-
-        var needUpdate : Boolean = false;
-        if (oldValue == null)
-            needUpdate = true;
-    
-        // avoid firing the event when old and new value are different empty arrays
-        if (!needUpdate && (oldValue !== value && (oldValue.length > 0 || value.length > 0)))
-        {
-            if (oldValue.length == value.length)
-            {
-                for (var a:int=0; a < oldValue.length; a++)
-                {
-                    if (oldValue[a] !== value[a])
-                    {
-                        needUpdate = true;
-                        break;
-                    }
-                }
-            }
-            else
-            {
-                needUpdate = true;
-            }
-        }
-
-        if (needUpdate)
-        {
-            model_internal::_Q_nomeValidationFailureMessages = value;   
-            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "Q_nomeValidationFailureMessages", oldValue, value));
-            // Only execute calculateIsValid if it has been called before, to update the validationFailureMessages for
-            // the entire entity.
-            if (model_internal::_instance.model_internal::_cacheInitialized_isValid)
-            {
-                model_internal::_instance.model_internal::isValid_der = model_internal::_instance.model_internal::calculateIsValid();
-            }
-        }
     }
 
 
@@ -613,14 +387,6 @@ internal class _QuestaoEntityEntityMetadata extends com.adobe.fiber.valueobjects
      {
          switch(propertyName)
          {
-            case("Q_XML"):
-            {
-                return Q_XMLValidationFailureMessages;
-            }
-            case("Q_nome"):
-            {
-                return Q_nomeValidationFailureMessages;
-            }
             default:
             {
                 return emptyArray;

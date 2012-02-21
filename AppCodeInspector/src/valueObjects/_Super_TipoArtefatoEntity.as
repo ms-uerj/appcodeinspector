@@ -6,14 +6,10 @@
 package valueObjects
 {
 import com.adobe.fiber.services.IFiberManagingService;
-import com.adobe.fiber.util.FiberUtils;
 import com.adobe.fiber.valueobjects.IValueObject;
-import flash.events.Event;
 import flash.events.EventDispatcher;
-import mx.binding.utils.ChangeWatcher;
 import mx.collections.ArrayCollection;
 import mx.events.PropertyChangeEvent;
-import mx.validators.ValidationResult;
 
 import flash.net.registerClassAlias;
 import flash.net.getClassByAlias;
@@ -70,8 +66,6 @@ public class _Super_TipoArtefatoEntity extends flash.events.EventDispatcher impl
         _model = new _TipoArtefatoEntityEntityMetadata(this);
 
         // Bind to own data or source properties for cache invalidation triggering
-        model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "TA_DESCRICAO", model_internal::setterListenerTA_DESCRICAO));
-        model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "TA_NOME", model_internal::setterListenerTA_NOME));
 
     }
 
@@ -147,16 +141,6 @@ public class _Super_TipoArtefatoEntity extends flash.events.EventDispatcher impl
      *  - the validity of the property (and the containing entity) if the given data property is required.
      */
 
-    model_internal function setterListenerTA_DESCRICAO(value:flash.events.Event):void
-    {
-        _model.invalidateDependentOnTA_DESCRICAO();
-    }
-
-    model_internal function setterListenerTA_NOME(value:flash.events.Event):void
-    {
-        _model.invalidateDependentOnTA_NOME();
-    }
-
 
     /**
      * valid related derived properties
@@ -178,16 +162,6 @@ public class _Super_TipoArtefatoEntity extends flash.events.EventDispatcher impl
         var validationFailureMessages:Array = new Array();
 
         var propertyValidity:Boolean = true;
-        if (!_model.TA_DESCRICAOIsValid)
-        {
-            propertyValidity = false;
-            com.adobe.fiber.util.FiberUtils.arrayAdd(validationFailureMessages, _model.model_internal::_TA_DESCRICAOValidationFailureMessages);
-        }
-        if (!_model.TA_NOMEIsValid)
-        {
-            propertyValidity = false;
-            com.adobe.fiber.util.FiberUtils.arrayAdd(validationFailureMessages, _model.model_internal::_TA_NOMEValidationFailureMessages);
-        }
 
         model_internal::_cacheInitialized_isValid = true;
         model_internal::invalidConstraints_der = violatedConsts;
@@ -267,60 +241,6 @@ public class _Super_TipoArtefatoEntity extends flash.events.EventDispatcher impl
         }
     }
 
-    model_internal var _doValidationCacheOfTA_DESCRICAO : Array = null;
-    model_internal var _doValidationLastValOfTA_DESCRICAO : String;
-
-    model_internal function _doValidationForTA_DESCRICAO(valueIn:Object):Array
-    {
-        var value : String = valueIn as String;
-
-        if (model_internal::_doValidationCacheOfTA_DESCRICAO != null && model_internal::_doValidationLastValOfTA_DESCRICAO == value)
-           return model_internal::_doValidationCacheOfTA_DESCRICAO ;
-
-        _model.model_internal::_TA_DESCRICAOIsValidCacheInitialized = true;
-        var validationFailures:Array = new Array();
-        var errorMessage:String;
-        var failure:Boolean;
-
-        var valRes:ValidationResult;
-        if (_model.isTA_DESCRICAOAvailable && _internal_TA_DESCRICAO == null)
-        {
-            validationFailures.push(new ValidationResult(true, "", "", "TA_DESCRICAO is required"));
-        }
-
-        model_internal::_doValidationCacheOfTA_DESCRICAO = validationFailures;
-        model_internal::_doValidationLastValOfTA_DESCRICAO = value;
-
-        return validationFailures;
-    }
-    
-    model_internal var _doValidationCacheOfTA_NOME : Array = null;
-    model_internal var _doValidationLastValOfTA_NOME : String;
-
-    model_internal function _doValidationForTA_NOME(valueIn:Object):Array
-    {
-        var value : String = valueIn as String;
-
-        if (model_internal::_doValidationCacheOfTA_NOME != null && model_internal::_doValidationLastValOfTA_NOME == value)
-           return model_internal::_doValidationCacheOfTA_NOME ;
-
-        _model.model_internal::_TA_NOMEIsValidCacheInitialized = true;
-        var validationFailures:Array = new Array();
-        var errorMessage:String;
-        var failure:Boolean;
-
-        var valRes:ValidationResult;
-        if (_model.isTA_NOMEAvailable && _internal_TA_NOME == null)
-        {
-            validationFailures.push(new ValidationResult(true, "", "", "TA_NOME is required"));
-        }
-
-        model_internal::_doValidationCacheOfTA_NOME = validationFailures;
-        model_internal::_doValidationLastValOfTA_NOME = value;
-
-        return validationFailures;
-    }
-    
 
 }
 
