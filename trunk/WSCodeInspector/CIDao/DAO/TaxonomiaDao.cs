@@ -52,8 +52,8 @@ namespace CIDao.DAO
 
             var taxonomias = from tat in db.TipoArtefato_Taxonomias
                              from t in db.Taxonomias
-                             where tat.TA_ID==tipoArtefato
-                             && tat.T_ID==t.T_ID
+                             where tat.TA_ID == tipoArtefato
+                             && tat.T_ID == t.T_ID
                              select t;
 
             List<TaxonomiaEntity> taxlist = new List<TaxonomiaEntity>();
@@ -70,10 +70,43 @@ namespace CIDao.DAO
 
         }
 
+        public TaxonomiaEntity GetQuestaoTaxonomia(int questaoId)
+        {
+
+            var taxonomias = (
+                              from q in db.Questaos
+                              from qtd in db.Questao_TrechoDefeitos
+                              from td in db.TrechoDefeitos
+                              from it in db.ItemTaxonomias
+                              from t in db.Taxonomias
+
+                              where qtd.Q_id == questaoId
+                                 && qtd.TD_id == td.D_ID
+                                 && td.IT_ID == it.IT_ID
+                                 && it.T_ID == t.T_ID
+                             select t
+                             ).Distinct();
+
+            List<TaxonomiaEntity> taxlist = new List<TaxonomiaEntity>();
+
+            foreach (Taxonomia t in taxonomias.ToList())
+            {
+                TaxonomiaEntity taxentity = new TaxonomiaEntity();
+                taxentity.ID = t.T_ID;
+                taxentity.Nome = t.T_Nome;
+                return taxentity;
+            }
+
+            return null;
+        }
+
         public bool DeletarTaxonomia(int taxInt)
         {
             try
             {
+                TipoArtefato_Taxonomia tipo_arte = db.TipoArtefato_Taxonomias.Single(t_art => t_art.T_ID == taxInt);
+                db.TipoArtefato_Taxonomias.DeleteOnSubmit(tipo_arte);
+                db.SubmitChanges();
                 Taxonomia taxonomia = db.Taxonomias.Single(tax => tax.T_ID == taxInt);
                 db.Taxonomias.DeleteOnSubmit(taxonomia);
                 db.SubmitChanges();
