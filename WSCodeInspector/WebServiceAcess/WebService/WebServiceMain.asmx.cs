@@ -248,5 +248,10 @@ namespace WebServiceAcess.WebService
             return new TaxonomiaFacade().GetTaxonomia(tipoArtefatoId);
         }
 
+        [WebMethod]
+        public TaxonomiaEntity GetQuestaoTaxonomia(int questaoId)
+        {
+            return new TaxonomiaFacade().GetQuestaoTaxonomia(questaoId);
+        }
     }
 }
