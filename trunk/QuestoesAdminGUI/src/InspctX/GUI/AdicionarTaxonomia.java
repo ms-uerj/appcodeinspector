@@ -43,7 +43,8 @@ public final class AdicionarTaxonomia extends javax.swing.JFrame
         Parentframe.btnInserirTaxonomia.setEnabled(false);
         Parentframe.btn_editarTaxonomia.setEnabled(false);
         
-        
+        cbx_TipoArtefato.setEnabled(false);
+        btn_DefinirTipoArtefato.setEnabled(false);
         setItemsList();
         setTipoArtefatoItemsCbx();
         getTipoArtefato(tax.getID());
