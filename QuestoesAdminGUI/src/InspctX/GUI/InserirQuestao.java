@@ -1,5 +1,6 @@
 package InspctX.GUI;
 
+import InspctX.Componentes.QuestoesAdmin;
 import InspectorXWebserv.ArrayOfTrechoDefeitoEntity;
 import InspectorXWebserv.QuestaoEntity;
 import InspectorXWebserv.TaxonomiaEntity;
@@ -7,6 +8,8 @@ import javax.swing.JOptionPane;
 
 public class InserirQuestao extends javax.swing.JFrame {
 
+    
+    private QuestoesAdmin ParentFrame;
     public TaxonomiaEntity Tax;
     public ArrayOfTrechoDefeitoEntity trechoList = new ArrayOfTrechoDefeitoEntity();
     private final int NIVEL_DIFICIL_INDEX = 2;
@@ -15,9 +18,10 @@ public class InserirQuestao extends javax.swing.JFrame {
     private final int Nivel_Medio = 2;
     private final int Nivel_Dificil = 3;
     
-    public InserirQuestao(TaxonomiaEntity tax) 
+    public InserirQuestao(QuestoesAdmin qAdmin, TaxonomiaEntity tax) 
     {   
         Tax = tax;
+        ParentFrame=qAdmin;
         initComponents();
     }
     
@@ -111,19 +115,18 @@ public class InserirQuestao extends javax.swing.JFrame {
         pnlCorpoQuestaoLayout.setVerticalGroup(
             pnlCorpoQuestaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlCorpoQuestaoLayout.createSequentialGroup()
-                .addGap(21, 21, 21)
+                .addContainerGap(21, Short.MAX_VALUE)
                 .addGroup(pnlCorpoQuestaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(tbt_SelecionarDefeito)
                     .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlCorpoQuestaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
-                    .addComponent(txateste, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE))
+                .addGroup(pnlCorpoQuestaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txateste)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(hepCorpoQuestao, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(hepCorpoQuestao, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -169,12 +172,12 @@ public class InserirQuestao extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlCorpoQuestao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pnlCorpoQuestao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnVoltar)
                     .addComponent(btnInserir))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -206,6 +209,7 @@ public class InserirQuestao extends javax.swing.JFrame {
                 queste.setQNivelDificuldade(cbxDificuldade.getSelectedIndex()+1);
                 adicionarQuestao(queste, trechoList);
                 JOptionPane.showMessageDialog(this, "Questão adicionada com sucesso!");
+                ParentFrame.setQuestaoList();
                 this.setVisible(false);          
             }
         } 
