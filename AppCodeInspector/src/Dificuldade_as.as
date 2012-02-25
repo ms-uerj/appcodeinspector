@@ -2,7 +2,9 @@ import CodeInspector.TXT;
 import flash.events.Event;
 import mx.collections.ArrayCollection;
 import mx.utils.ObjectUtil;
+import mx.rpc.events.ResultEvent;
 import valueObjects.QuestaoEntity;
+import flash.events.MouseEvent;
 
 protected var txtTutorials:TXT;
 

@@ -1,107 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
 			   xmlns:s="library://ns.adobe.com/flex/spark" 
 			   xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="955" minHeight="600" currentState="Login" minWidth.Perguntas="800" xmlns:wscodeinspector="services.wscodeinspector.*" width.ArtefatosSelecao="866" height.ArtefatosSelecao="704" width.Login="814" height.Login="702" width.Perguntas="866" height.Perguntas="704" minWidth.Login="800" minWidth.Dificuldade="800" width.Dificuldade="866" height.Dificuldade="704" minWidth.Tutorial="800" width.Tutorial="866" height.Tutorial="704" minWidth.ResultadoFinal="800" width.ResultadoFinal="866" height.ResultadoFinal="704" minWidth.Configurar="800" width.Configurar="866" height.Configurar="704" height.Cadastro="704" minWidth.Cadastro="800" width.Cadastro="866">
-	
-	<fx:Script>
-		<![CDATA[
-			import mx.events.FlexEvent;
-			import mx.rpc.events.ResultEvent;
-			import mx.utils.ObjectUtil;
-			
-			import spark.events.IndexChangeEvent;
-			
-			import valueObjects.TaxonomiaEntity;
-			import valueObjects.TipoArtefatoEntity;
-			[Bindable]
-			public var LoginUsuario:String="Anônimo";
-			public var SenhaUsuario:String;
-			
-			protected function _btnLogar_clickHandler(event:MouseEvent):void
-			{
-				AutenticarUsuarioResult.token = wSCodeInspector.AutenticarUsuario(txtUsuario.text,txtSenha.text);
-			}
-			protected function AutenticarUsuarioResult_resultHandler(e:ResultEvent):void
-			{
-				if(e.result == false)
-				{
-					Alert.show("Usuário Inválido, por favor tente novamente.");
-				}
-				else
-				{	
-					Alert.show("Usuário Autenticado com Sucesso! Seja Bem Vindo!");
-					LoginUsuario = txtUsuario.text;
-					SenhaUsuario = txtSenha.text;
-					GetTiposArtefato.token = wSCodeInspector.getTiposArtefatos();
-					this.currentState = "ArtefatosSelecao";
-				}
-			}
-			protected function dataGrid_creationCompleteHandler(event:FlexEvent):void
-			{
-				//GetUsersRankResult.token = wSCodeInspector.GetUsersRank(nivielDificuldade);
-				Alert.show("Aqui deveria ocorrer o rank");
-			}
-			
-			protected function button1_clickHandler(event:MouseEvent):void
-			{
-				nivelDificuldade =0;
-				this.currentState = "ResultadoFinal";
-			}
-
-			protected function button2_clickHandler(event:MouseEvent):void
-			{
-				nivelDificuldade =1;
-				this.currentState = "ResultadoFinal";
-			}
-
-			protected function button3_clickHandler(event:MouseEvent):void
-			{
-				nivelDificuldade =2;
-				this.currentState = "ResultadoFinal";
-			}
-
-			protected function btnVoltar_clickHandler(event:MouseEvent):void
-			{
-				this.currentState = "Dificuldade";
-			}
-
-			protected function GetTiposArtefato_resultHandler(e:ResultEvent):void
-			{
-				tiposArtefato = ArrayCollection(e.result);
-				cbx_TipoQuestao.dataProvider=tiposArtefato;
-			}
-
-			protected function lnk_Cadastro_clickHandler(event:MouseEvent):void
-			{
-				this.currentState = "Cadastro";
-			}
-
-			protected function btn_ConfirmarCadstro_clickHandler(event:MouseEvent):void
-			{
-				CriarUsuarioResult.token = wSCodeInspector.CriarUsuario("", txtUsuario.text,txt_Email.text, txtSenha.text);
-			}
-			protected function CriarUsuarioResult_resultHandler(e:ResultEvent):void
-			{
-				if(e.result == false)
-				{
-					Alert.show("Erro ao tentar criar usuario");
-				}
-				else
-				{	
-					Alert.show("Usuário criado com Sucesso! Seja Bem Vindo!");
-					this.currentState = "Login";
-				}
-			}
-
-		]]>
-		
-	</fx:Script>
 	
 	<fx:Script source="Login_as.as"/>
 	<fx:Script source="Dificuldade_as.as"/>
 	<fx:Script source="Tutorial_as.as"/>
 	<fx:Script source="AppCodeInspector_as.as"/>
 	<fx:Script source="ArtefatosSelecao_as.as"/>
+	<fx:Script source="ResultadoFinal_as.as"/>
+	<fx:Script source="Cadastro_as.as"/>
 	
 	<s:states>
 		<s:State name="Login"/>
@@ -113,6 +22,7 @@
 		<s:State name="ArtefatosSelecao"/>
 		<s:State name="Cadastro"/>
 	</s:states>
+	
 	<fx:Declarations>
 		<s:CallResponder id="AutenticarUsuarioResult" result="AutenticarUsuarioResult_resultHandler(event)"/>
 		<wscodeinspector:WSCodeInspector id="wSCodeInspector" fault="Alert.show(event.fault.faultString + '\n' + event.fault.faultDetail)" showBusyCursor="true"/>
@@ -124,7 +34,7 @@
 		<s:CallResponder id="GetQuestoesResult2"  result="GetQuestoesResultIntermediario_resultHandler(event)"/>
 		<s:CallResponder id="GetQuestoesResult3"  result="GetQuestoesResultDificil_resultHandler(event)"/>
 		<s:CallResponder id="EncerraPartida" result="EncerrarPartidaResult_resultHandler(event)"/>
-		<s:CallResponder id="GetQuestoesTaxonomia" result="GetQuestoesTaxonomiaResult_resultHandler(event)"/>
+		<s:CallResponder id="GetQuestoesTaxonomia" result="GetQuestoesTaxonomia_resultHandler(event)"/>
 		<s:CallResponder id="GetUsersRankResult"/>
 		<s:CallResponder id="CriarUsuarioResult" result="CriarUsuarioResult_resultHandler(event)"/>
 	</fx:Declarations>
