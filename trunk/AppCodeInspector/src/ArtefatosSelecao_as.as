@@ -1,3 +1,8 @@
+import valueObjects.TipoArtefatoEntity;
+import mx.rpc.events.ResultEvent;
+import flash.events.MouseEvent;
+import mx.controls.Alert;
+import mx.collections.ArrayCollection;
 
 
 protected function btn_ConfirmarSelArtefato_clickHandler(event:MouseEvent):void
@@ -21,6 +26,12 @@ protected function btn_ConfirmarSelArtefato_clickHandler(event:MouseEvent):void
 		Alert.show(e.message);
 	}
 	
+}
+
+protected function GetTiposArtefato_resultHandler(e:ResultEvent):void
+{
+	tiposArtefato = ArrayCollection(e.result);
+	cbx_TipoQuestao.dataProvider=tiposArtefato;
 }
 
 protected function btn_VoltarCadastro_clickHandler(event:MouseEvent):void
