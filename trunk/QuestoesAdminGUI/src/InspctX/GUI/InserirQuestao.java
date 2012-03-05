@@ -23,6 +23,7 @@ public class InserirQuestao extends javax.swing.JFrame {
         Tax = tax;
         ParentFrame=qAdmin;
         initComponents();
+        setLocationRelativeTo(null);
     }
     
     @SuppressWarnings("unchecked")

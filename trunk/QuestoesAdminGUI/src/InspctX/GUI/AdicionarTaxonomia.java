@@ -15,6 +15,7 @@ public final class AdicionarTaxonomia extends javax.swing.JFrame
     public AdicionarTaxonomia() 
     {
         initComponents();
+        setLocationRelativeTo(null);
     }
     
     public AdicionarTaxonomia(TaxonomiasAdmin parentframe) 
@@ -26,6 +27,7 @@ public final class AdicionarTaxonomia extends javax.swing.JFrame
         Parentframe.btnInserirTaxonomia.setEnabled(false);
         Parentframe.btn_editarTaxonomia.setEnabled(false);
         setTipoArtefatoItemsCbx();
+        setLocationRelativeTo(null);
     }
     
     public AdicionarTaxonomia(TaxonomiasAdmin parentframe,TaxonomiaEntity tax) 
@@ -48,6 +50,7 @@ public final class AdicionarTaxonomia extends javax.swing.JFrame
         setItemsList();
         setTipoArtefatoItemsCbx();
         getTipoArtefato(tax.getID());
+        setLocationRelativeTo(null);
     }
 
 

@@ -12,6 +12,7 @@ public class AdminMenu extends javax.swing.JFrame {
         initComponents();
         pnl_TaxonomiaAdmin.setTaxonomiaComboBox();
         pnl_QuestoesAdmin.setTaxonomiaCombobox();
+        setLocationRelativeTo(null);
     }
 
     @SuppressWarnings("unchecked")
