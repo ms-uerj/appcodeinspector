@@ -1,5 +1,6 @@
 import CodeInspector.TXT;
 import flash.events.Event;
+import mx.controls.Alert;
 import mx.collections.ArrayCollection;
 import mx.utils.ObjectUtil;
 import mx.rpc.events.ResultEvent;
@@ -26,6 +27,11 @@ protected function GetQuestoesResultFacil_resultHandler(e:ResultEvent):void
 	
 	xmlPerguntasWS = ArrayCollection(e.result);
 	
+	if(xmlPerguntasWS.length==0)
+	{
+		Alert.show("Não existem perguntas para o nível de dificuldade selecionado.");
+		return;
+	}
 	txtTutorials = new TXT();
 	txtTutorials.Load("Arquivos/Tutorial/Facil.txt");
 	txtTutorials.addEventListener("TXT_Loaded",txtTutorial_TXTLoaded);
@@ -41,6 +47,11 @@ protected function _btnIntermediario_clickHandler(event:MouseEvent):void
 protected function GetQuestoesResultIntermediario_resultHandler(e:ResultEvent):void
 {
 	xmlPerguntasWS = ArrayCollection(e.result);
+	if(xmlPerguntasWS.length==0)
+	{
+		Alert.show("Não existem perguntas para o nível de dificuldade selecionado.");
+		return;
+	}
 	txtTutorials = new TXT();
 	txtTutorials.Load("Arquivos/Tutorial/Inter.txt");
 	txtTutorials.addEventListener("TXT_Loaded",txtTutorial_TXTLoaded);
@@ -56,6 +67,11 @@ protected function _btnDificil_clickHandler(event:MouseEvent):void
 protected function GetQuestoesResultDificil_resultHandler(e:ResultEvent):void
 {
 	xmlPerguntasWS = ArrayCollection(e.result);
+	if(xmlPerguntasWS.length==0)
+	{
+		Alert.show("Não existem perguntas para o nível de dificuldade selecionado.");
+		return;
+	}
 	txtTutorials = new TXT();
 	txtTutorials.Load("Arquivos/Tutorial/Dificil.txt");
 	txtTutorials.addEventListener("TXT_Loaded",txtTutorial_TXTLoaded);

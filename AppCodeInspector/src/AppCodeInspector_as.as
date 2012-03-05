@@ -40,9 +40,6 @@ private var pertguntasTotal:int = 10;
 [Bindable]
 public static var listRespostasSelecionadas:ArrayCollection = new ArrayCollection();
 
-[Bindable]
-public static var respostaSelecionada:int = 0;
-
 public var pontosTotal:int;
 public var partidaAtualId:int;
 
@@ -72,31 +69,7 @@ public function onLoad():void
 	
 	IniciarPartida.token = wSCodeInspector.IniciarPartida(nivelDificuldade,LoginUsuario);
 
-	
-	field = new TextArea();
-
-	
-	container = new UIComponent();
-	this.addElement(container);
-	container.addChild(field);
-	
-	with (field) 
-	{
-		x = (stage.width/2) - 450;
-		y = (stage.height/2) - 320;
-		width = 800;
-		height = 450;
-		multiline = true;
-		
-		wordWrap = true;
-		condenseWhite = true;
-		if(nivelDificuldade == 0)
-			selectable = false;
-		else
-			selectable = true;
-	}
-	
-	field.addEventListener(MouseEvent.MOUSE_UP,onMouseUp);
+	setQuestaoTextArea();
 	
 	xml = new XMLLoader();
 	xml.LoadWS(xmlPerguntasWS);
@@ -197,7 +170,6 @@ protected function btnProximaPergunta_clickHandler(event:MouseEvent):void
 		}
 		else
 		{
-			respostaSelecionada = 0;
 			++perguntaAtual;
 			
 			questaoTrechosWS.removeAll();
@@ -224,7 +196,7 @@ protected function btnProximaPergunta_clickHandler(event:MouseEvent):void
 	}
 }
 
-protected function verificarRespostas():void
+private function verificarRespostas():void
 {
 	var q:QuestaoEntity = xmlPerguntasWS[perguntaAtual] as QuestaoEntity;
 	for (var trechoObejct:Object in questaoTrechosWS)
@@ -262,6 +234,36 @@ protected function verificarRespostas():void
 			}
 		}
 	}
+}
+
+
+
+private function setQuestaoTextArea():void
+{
+	field = new TextArea();
+	
+	
+	container = new UIComponent();
+	this.addElement(container);
+	container.addChild(field);
+	
+	with (field) 
+	{
+		x = (stage.width/2) - 450;
+		y = (stage.height/2) - 320;
+		width = 800;
+		height = 450;
+		multiline = true;
+		
+		wordWrap = true;
+		condenseWhite = true;
+		if(nivelDificuldade == 0)
+			selectable = false;
+		else
+			selectable = true;
+	}
+	
+	field.addEventListener(MouseEvent.MOUSE_UP,onMouseUp);
 }
 
 protected function SetQuestaoAcerto_resultHandler(e:ResultEvent):void
