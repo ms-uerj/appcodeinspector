@@ -1,10 +1,6 @@
 package InspctX.GUI;
 
-import InspectorXWebserv.ArrayOfItemTaxonomiaEntity;
-import InspectorXWebserv.ArrayOfTrechoDefeitoEntity;
-import InspectorXWebserv.ItemTaxonomiaEntity;
-import InspectorXWebserv.TaxonomiaEntity;
-import InspectorXWebserv.TrechoDefeitoEntity;
+import InspectorXWebserv.*;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -25,7 +21,7 @@ public class SelecaoDefeito extends javax.swing.JFrame
         txf_Taxonomia.setText(tax.getNome());
         TrechoList=arrayTd;
         insQuestFrame = parentFrame;
-        
+        setLocationRelativeTo(null);
         setComboxDefeitos();
     }
 

@@ -15,12 +15,11 @@ public class AdicionarItemTaxonomia extends javax.swing.JFrame {
     
     public AdicionarItemTaxonomia(AdicionarTaxonomia parentFrame,TaxonomiaEntity tax) 
     {
-        
         initComponents();
         ParentFrame=parentFrame;
         Tax=tax;
         txf_taxonomiaAtual.setText(tax.getNome());
-        
+        setLocationRelativeTo(null);   
     }
 
     @SuppressWarnings("unchecked")
