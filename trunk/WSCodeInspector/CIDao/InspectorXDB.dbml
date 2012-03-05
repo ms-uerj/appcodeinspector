@@ -1,5 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="CodeInspector" Class="InspectorXDBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=ENUMA-LAPTOP;Initial Catalog=CodeInspector;Integrated Security=True" SettingsObjectName="CIDao.Properties.Settings" SettingsPropertyName="CodeInspectorConnectionString3" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=ENUMA-PC;Initial Catalog=CodeInspector;Integrated Security=True" SettingsObjectName="CIDao.Properties.Settings" SettingsPropertyName="CodeInspectorConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Usuario" Member="Usuarios">
+    <Type Name="Usuario">
+      <Column Name="U_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="U_NOME" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="U_EMAIL" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="U_SENHA" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
+      <Column Name="U_LOGIN" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Usuario_Partida" Member="Partidas" ThisKey="U_ID" OtherKey="U_ID" Type="Partida" />
+    </Type>
+  </Table>
   <Table Name="dbo.Historico_Questao" Member="Historico_Questaos">
     <Type Name="Historico_Questao">
       <Column Name="H_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -9,16 +19,6 @@
       <Column Name="H_QTD_ERRO" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="Partida_Historico_Questao" Member="Partida" ThisKey="P_ID" OtherKey="P_ID" Type="Partida" IsForeignKey="true" />
       <Association Name="Questao_Historico_Questao" Member="Questao" ThisKey="Q_ID" OtherKey="Q_ID" Type="Questao" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Usuario" Member="Usuarios">
-    <Type Name="Usuario">
-      <Column Name="U_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="U_NOME" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="U_EMAIL" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="U_SENHA" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
-      <Column Name="U_LOGIN" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Association Name="Usuario_Partida" Member="Partidas" ThisKey="U_ID" OtherKey="U_ID" Type="Partida" />
     </Type>
   </Table>
   <Table Name="dbo.ItemTaxonomia" Member="ItemTaxonomias">
