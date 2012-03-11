@@ -101,6 +101,7 @@ public class _Super_IniciarPartidaResponse extends flash.events.EventDispatcher 
     /**
      * derived property calculators
      */
+    
 
     /**
      * isValid calculator

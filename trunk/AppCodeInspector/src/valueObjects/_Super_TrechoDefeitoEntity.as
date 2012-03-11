@@ -169,6 +169,7 @@ public class _Super_TrechoDefeitoEntity extends flash.events.EventDispatcher imp
     /**
      * derived property calculators
      */
+    
 
     /**
      * isValid calculator

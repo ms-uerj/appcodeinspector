@@ -169,6 +169,7 @@ public class _Super_ItemTaxonomiaEntity extends flash.events.EventDispatcher imp
     /**
      * derived property calculators
      */
+    
 
     /**
      * isValid calculator

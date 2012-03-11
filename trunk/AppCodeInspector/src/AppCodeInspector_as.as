@@ -20,7 +20,7 @@ import mx.rpc.events.ResultEvent;
 import mx.rpc.xml.SimpleXMLEncoder;
 import mx.states.AddChild;
 
-import services.wscodeinspector.WSCodeInspector;
+import services.wscodeinspector.Wscodeinspector;
 
 import valueObjects.QuestaoEntity;
 import valueObjects.TaxonomiaEntity;
@@ -130,9 +130,9 @@ private function allDone():void
 		field.htmlText = q.Q_XML;
 		
 		//field.htmlText = xml.perguntas[perguntaNum];
-		var ws:services.wscodeinspector.WSCodeInspector = new WSCodeInspector();
+		//var ws:services.wscodeinspector.WSCodeInspector = new WSCodeInspector();
 		
-		GetTrechosQuestao.token = ws.GetTrechosDefeito(q.Q_ID);
+		GetTrechosQuestao.token = wSCodeInspector.GetTrechosDefeito(q.Q_ID);
 		field.addEventListener(TextEvent.LINK, textEvent);
 	}
 }

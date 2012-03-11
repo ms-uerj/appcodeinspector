@@ -101,6 +101,7 @@ public class _Super_RecuperarSenhaResponse extends flash.events.EventDispatcher 
     /**
      * derived property calculators
      */
+    
 
     /**
      * isValid calculator
