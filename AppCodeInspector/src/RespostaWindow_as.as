@@ -7,7 +7,7 @@ import mx.events.CloseEvent;
 import mx.managers.PopUpManager;
 import mx.states.AddItems;
 
-import services.wscodeinspector.WSCodeInspector;
+import services.wscodeinspector.Wscodeinspector;
 
 import valueObjects.ItemTaxonomiaEntity;
 import valueObjects.TrechoDefeitoEntity;

@@ -152,6 +152,7 @@ public class _Super_TipoArtefatoEntity extends flash.events.EventDispatcher impl
     /**
      * derived property calculators
      */
+    
 
     /**
      * isValid calculator

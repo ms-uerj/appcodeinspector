@@ -186,6 +186,7 @@ public class _Super_QuestaoEntity extends flash.events.EventDispatcher implement
     /**
      * derived property calculators
      */
+    
 
     /**
      * isValid calculator

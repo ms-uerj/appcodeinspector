@@ -25,7 +25,7 @@
 	
 	<fx:Declarations>
 		<s:CallResponder id="AutenticarUsuarioResult" result="AutenticarUsuarioResult_resultHandler(event)"/>
-		<wscodeinspector:WSCodeInspector id="wSCodeInspector" fault="Alert.show(event.fault.faultString + '\n' + event.fault.faultDetail)" showBusyCursor="true"/>
+		<wscodeinspector:Wscodeinspector id="wSCodeInspector" fault="Alert.show(event.fault.faultString + '\n' + event.fault.faultDetail)" showBusyCursor="true"/>
 		<s:CallResponder id="GetQuestoesResult"  result="GetQuestoesResultFacil_resultHandler(event)"/>
 		<s:CallResponder id="GetTiposArtefato"  result="GetTiposArtefato_resultHandler(event)"/>
 		<s:CallResponder id="GetTrechosQuestao"  result="GetTrechosQuestao_resultHandler(event)"/>

@@ -3,114 +3,11 @@
   <annotation name="ActionScriptGeneration">
     <item name="FullyQualifyReferences">true</item>
   </annotation>
-  <entity name="GetUsersRankResponse">
-    <annotation name="EntityProperties">
-      <item name="EntityOriginalName">GetUsersRankResponse</item>
-    </annotation>
-    <annotation name="service Group">
-      <item name="service">WSCodeInspector</item>
-    </annotation>
-    <annotation name="ServerProperties">
-      <item name="IncludeRemoteClass">nonempty</item>
-    </annotation>
-    <annotation name="ActionScriptGeneration">
-      <item name="Package">valueObjects</item>
-    </annotation>
-  </entity>
-  <entity name="GetUsersRank">
-    <annotation name="EntityProperties">
-      <item name="EntityOriginalName">GetUsersRank</item>
-    </annotation>
-    <annotation name="service Group">
-      <item name="service">WSCodeInspector</item>
-    </annotation>
-    <annotation name="ServerProperties">
-      <item name="IncludeRemoteClass">nonempty</item>
-    </annotation>
-    <annotation name="ActionScriptGeneration">
-      <item name="Package">valueObjects</item>
-    </annotation>
-  </entity>
-  <entity name="RankRetorno">
-    <annotation name="EntityProperties">
-      <item name="EntityOriginalName">RankRetorno</item>
-    </annotation>
-    <annotation name="service Group">
-      <item name="service">WSCodeInspector</item>
-    </annotation>
-    <annotation name="ServerProperties">
-      <item name="IncludeRemoteClass">nonempty</item>
-    </annotation>
-    <annotation name="ActionScriptGeneration">
-      <item name="Package">valueObjects</item>
-    </annotation>
-    <property name="Usuario" type="string" required="true"/>
-    <property name="Pontuacao" type="integer" required="true"/>
-    <property name="Email" type="string" required="true"/>
-  </entity>
   <entity name="IniciarPartidaResponse">
     <annotation name="EntityProperties">
       <item name="EntityOriginalName">IniciarPartidaResponse</item>
     </annotation>
-    <annotation name="service Group">
-      <item name="service">WSCodeInspector</item>
-    </annotation>
-    <annotation name="ServerProperties">
-      <item name="IncludeRemoteClass">nonempty</item>
-    </annotation>
-    <annotation name="ActionScriptGeneration">
-      <item name="Package">valueObjects</item>
-    </annotation>
-  </entity>
-  <entity name="CriarUsuario">
-    <annotation name="EntityProperties">
-      <item name="EntityOriginalName">CriarUsuario</item>
-    </annotation>
-    <annotation name="service Group">
-      <item name="service">WSCodeInspector</item>
-    </annotation>
-    <annotation name="ServerProperties">
-      <item name="IncludeRemoteClass">nonempty</item>
-    </annotation>
-    <annotation name="ActionScriptGeneration">
-      <item name="Package">valueObjects</item>
-    </annotation>
-  </entity>
-  <entity name="EncerrarPartida2">
-    <annotation name="EntityProperties">
-      <item name="EntityOriginalName">EncerrarPartida2</item>
-    </annotation>
-    <annotation name="service Group">
-      <item name="service">WSCodeInspector</item>
-    </annotation>
-    <annotation name="ServerProperties">
-      <item name="IncludeRemoteClass">nonempty</item>
-    </annotation>
-    <annotation name="ActionScriptGeneration">
-      <item name="Package">valueObjects</item>
-    </annotation>
-  </entity>
-  <entity name="GetTDRespostaResponse">
-    <annotation name="EntityProperties">
-      <item name="EntityOriginalName">GetTDRespostaResponse</item>
-    </annotation>
-    <annotation name="service Group">
-      <item name="service">WSCodeInspector</item>
-    </annotation>
-    <annotation name="ServerProperties">
-      <item name="IncludeRemoteClass">nonempty</item>
-    </annotation>
-    <annotation name="ActionScriptGeneration">
-      <item name="Package">valueObjects</item>
-    </annotation>
-  </entity>
-  <entity name="GetQuestoesResponse">
-    <annotation name="EntityProperties">
-      <item name="EntityOriginalName">GetQuestoesResponse</item>
-    </annotation>
-    <annotation name="service Group">
-      <item name="service">WSCodeInspector</item>
-    </annotation>
+    <annotation name="service Group"/>
     <annotation name="ServerProperties">
       <item name="IncludeRemoteClass">nonempty</item>
     </annotation>
@@ -122,9 +19,286 @@
     <annotation name="EntityProperties">
       <item name="EntityOriginalName">AlterarUsuarioResponse</item>
     </annotation>
-    <annotation name="service Group">
-      <item name="service">WSCodeInspector</item>
+    <annotation name="service Group"/>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
     </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+  </entity>
+  <entity name="AutenticarUsuario">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">AutenticarUsuario</item>
+    </annotation>
+    <annotation name="service Group"/>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+  </entity>
+  <entity name="GetQuestoesTaxList">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">GetQuestoesTaxList</item>
+    </annotation>
+    <annotation name="service Group"/>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+  </entity>
+  <entity name="GetQuestoesRespostasResponse">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">GetQuestoesRespostasResponse</item>
+    </annotation>
+    <annotation name="service Group"/>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+  </entity>
+  <entity name="InserirTaxonomiaResponse">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">InserirTaxonomiaResponse</item>
+    </annotation>
+    <annotation name="service Group"/>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+  </entity>
+  <entity name="GetTrechosDefeitoResponse">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">GetTrechosDefeitoResponse</item>
+    </annotation>
+    <annotation name="service Group"/>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+  </entity>
+  <entity name="GetQuestoes">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">GetQuestoes</item>
+    </annotation>
+    <annotation name="service Group"/>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+  </entity>
+  <entity name="PegarTaxonomiasResponse">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">PegarTaxonomiasResponse</item>
+    </annotation>
+    <annotation name="service Group"/>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+  </entity>
+  <entity name="DeletarItemTaxonomiaResponse">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">DeletarItemTaxonomiaResponse</item>
+    </annotation>
+    <annotation name="service Group"/>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+  </entity>
+  <entity name="AdicionarItemTaxonomiaResponse">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">AdicionarItemTaxonomiaResponse</item>
+    </annotation>
+    <annotation name="service Group"/>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+  </entity>
+  <entity name="GetTDResposta">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">GetTDResposta</item>
+    </annotation>
+    <annotation name="service Group"/>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+  </entity>
+  <entity name="PegarTaxonomiaResponse">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">PegarTaxonomiaResponse</item>
+    </annotation>
+    <annotation name="service Group"/>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+  </entity>
+  <entity name="AlterarUsuario">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">AlterarUsuario</item>
+    </annotation>
+    <annotation name="service Group"/>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+  </entity>
+  <entity name="AdicionarItemTaxonomia">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">AdicionarItemTaxonomia</item>
+    </annotation>
+    <annotation name="service Group"/>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+  </entity>
+  <entity name="IniciarPartida">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">IniciarPartida</item>
+    </annotation>
+    <annotation name="service Group"/>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+  </entity>
+  <entity name="GetQuestoesTaxListResponse">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">GetQuestoesTaxListResponse</item>
+    </annotation>
+    <annotation name="service Group"/>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+  </entity>
+  <entity name="DeletarTaxonomiasResponse">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">DeletarTaxonomiasResponse</item>
+    </annotation>
+    <annotation name="service Group"/>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+  </entity>
+  <entity name="RecuperarSenhaResponse">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">RecuperarSenhaResponse</item>
+    </annotation>
+    <annotation name="service Group"/>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+  </entity>
+  <entity name="CriarUsuario">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">CriarUsuario</item>
+    </annotation>
+    <annotation name="service Group"/>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+  </entity>
+  <entity name="EncerrarPartida2">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">EncerrarPartida2</item>
+    </annotation>
+    <annotation name="service Group"/>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+  </entity>
+  <entity name="GetTDRespostaResponse">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">GetTDRespostaResponse</item>
+    </annotation>
+    <annotation name="service Group"/>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+  </entity>
+  <entity name="RankRetorno">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">RankRetorno</item>
+    </annotation>
+    <annotation name="service Group"/>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+    <property name="Usuario" type="string" required="true"/>
+    <property name="Pontuacao" type="integer" required="true"/>
+    <property name="Email" type="string" required="true"/>
+  </entity>
+  <entity name="GetQuestoesResponse">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">GetQuestoesResponse</item>
+    </annotation>
+    <annotation name="service Group"/>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+  </entity>
+  <entity name="GetUsersRankResponse">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">GetUsersRankResponse</item>
+    </annotation>
+    <annotation name="service Group"/>
     <annotation name="ServerProperties">
       <item name="IncludeRemoteClass">nonempty</item>
     </annotation>
@@ -136,9 +310,7 @@
     <annotation name="EntityProperties">
       <item name="EntityOriginalName">DeletarTaxonomias</item>
     </annotation>
-    <annotation name="service Group">
-      <item name="service">WSCodeInspector</item>
-    </annotation>
+    <annotation name="service Group"/>
     <annotation name="ServerProperties">
       <item name="IncludeRemoteClass">nonempty</item>
     </annotation>
@@ -150,9 +322,7 @@
     <annotation name="EntityProperties">
       <item name="EntityOriginalName">InserirTaxonomia</item>
     </annotation>
-    <annotation name="service Group">
-      <item name="service">WSCodeInspector</item>
-    </annotation>
+    <annotation name="service Group"/>
     <annotation name="ServerProperties">
       <item name="IncludeRemoteClass">nonempty</item>
     </annotation>
@@ -164,9 +334,7 @@
     <annotation name="EntityProperties">
       <item name="EntityOriginalName">PartidaEntity</item>
     </annotation>
-    <annotation name="service Group">
-      <item name="service">WSCodeInspector</item>
-    </annotation>
+    <annotation name="service Group"/>
     <annotation name="ServerProperties">
       <item name="IncludeRemoteClass">nonempty</item>
     </annotation>
@@ -183,23 +351,7 @@
     <annotation name="EntityProperties">
       <item name="EntityOriginalName">EncerrarPartida2Response</item>
     </annotation>
-    <annotation name="service Group">
-      <item name="service">WSCodeInspector</item>
-    </annotation>
-    <annotation name="ServerProperties">
-      <item name="IncludeRemoteClass">nonempty</item>
-    </annotation>
-    <annotation name="ActionScriptGeneration">
-      <item name="Package">valueObjects</item>
-    </annotation>
-  </entity>
-  <entity name="AutenticarUsuario">
-    <annotation name="EntityProperties">
-      <item name="EntityOriginalName">AutenticarUsuario</item>
-    </annotation>
-    <annotation name="service Group">
-      <item name="service">WSCodeInspector</item>
-    </annotation>
+    <annotation name="service Group"/>
     <annotation name="ServerProperties">
       <item name="IncludeRemoteClass">nonempty</item>
     </annotation>
@@ -211,23 +363,7 @@
     <annotation name="EntityProperties">
       <item name="EntityOriginalName">EncerrarPartidaResponse</item>
     </annotation>
-    <annotation name="service Group">
-      <item name="service">WSCodeInspector</item>
-    </annotation>
-    <annotation name="ServerProperties">
-      <item name="IncludeRemoteClass">nonempty</item>
-    </annotation>
-    <annotation name="ActionScriptGeneration">
-      <item name="Package">valueObjects</item>
-    </annotation>
-  </entity>
-  <entity name="GetQuestoesTaxList">
-    <annotation name="EntityProperties">
-      <item name="EntityOriginalName">GetQuestoesTaxList</item>
-    </annotation>
-    <annotation name="service Group">
-      <item name="service">WSCodeInspector</item>
-    </annotation>
+    <annotation name="service Group"/>
     <annotation name="ServerProperties">
       <item name="IncludeRemoteClass">nonempty</item>
     </annotation>
@@ -239,9 +375,7 @@
     <annotation name="EntityProperties">
       <item name="EntityOriginalName">EncerrarPartida</item>
     </annotation>
-    <annotation name="service Group">
-      <item name="service">WSCodeInspector</item>
-    </annotation>
+    <annotation name="service Group"/>
     <annotation name="ServerProperties">
       <item name="IncludeRemoteClass">nonempty</item>
     </annotation>
@@ -253,37 +387,7 @@
     <annotation name="EntityProperties">
       <item name="EntityOriginalName">AutenticarUsuarioResponse</item>
     </annotation>
-    <annotation name="service Group">
-      <item name="service">WSCodeInspector</item>
-    </annotation>
-    <annotation name="ServerProperties">
-      <item name="IncludeRemoteClass">nonempty</item>
-    </annotation>
-    <annotation name="ActionScriptGeneration">
-      <item name="Package">valueObjects</item>
-    </annotation>
-  </entity>
-  <entity name="GetQuestoesRespostasResponse">
-    <annotation name="EntityProperties">
-      <item name="EntityOriginalName">GetQuestoesRespostasResponse</item>
-    </annotation>
-    <annotation name="service Group">
-      <item name="service">WSCodeInspector</item>
-    </annotation>
-    <annotation name="ServerProperties">
-      <item name="IncludeRemoteClass">nonempty</item>
-    </annotation>
-    <annotation name="ActionScriptGeneration">
-      <item name="Package">valueObjects</item>
-    </annotation>
-  </entity>
-  <entity name="InserirTaxonomiaResponse">
-    <annotation name="EntityProperties">
-      <item name="EntityOriginalName">InserirTaxonomiaResponse</item>
-    </annotation>
-    <annotation name="service Group">
-      <item name="service">WSCodeInspector</item>
-    </annotation>
+    <annotation name="service Group"/>
     <annotation name="ServerProperties">
       <item name="IncludeRemoteClass">nonempty</item>
     </annotation>
@@ -295,9 +399,7 @@
     <annotation name="EntityProperties">
       <item name="EntityOriginalName">DeletarItemTaxonomia</item>
     </annotation>
-    <annotation name="service Group">
-      <item name="service">WSCodeInspector</item>
-    </annotation>
+    <annotation name="service Group"/>
     <annotation name="ServerProperties">
       <item name="IncludeRemoteClass">nonempty</item>
     </annotation>
@@ -309,9 +411,7 @@
     <annotation name="EntityProperties">
       <item name="EntityOriginalName">GetQuestoesRespostas</item>
     </annotation>
-    <annotation name="service Group">
-      <item name="service">WSCodeInspector</item>
-    </annotation>
+    <annotation name="service Group"/>
     <annotation name="ServerProperties">
       <item name="IncludeRemoteClass">nonempty</item>
     </annotation>
@@ -323,107 +423,7 @@
     <annotation name="EntityProperties">
       <item name="EntityOriginalName">RecuperarSenha</item>
     </annotation>
-    <annotation name="service Group">
-      <item name="service">WSCodeInspector</item>
-    </annotation>
-    <annotation name="ServerProperties">
-      <item name="IncludeRemoteClass">nonempty</item>
-    </annotation>
-    <annotation name="ActionScriptGeneration">
-      <item name="Package">valueObjects</item>
-    </annotation>
-  </entity>
-  <entity name="GetTrechosDefeitoResponse">
-    <annotation name="EntityProperties">
-      <item name="EntityOriginalName">GetTrechosDefeitoResponse</item>
-    </annotation>
-    <annotation name="service Group">
-      <item name="service">WSCodeInspector</item>
-    </annotation>
-    <annotation name="ServerProperties">
-      <item name="IncludeRemoteClass">nonempty</item>
-    </annotation>
-    <annotation name="ActionScriptGeneration">
-      <item name="Package">valueObjects</item>
-    </annotation>
-  </entity>
-  <entity name="GetQuestoes">
-    <annotation name="EntityProperties">
-      <item name="EntityOriginalName">GetQuestoes</item>
-    </annotation>
-    <annotation name="service Group">
-      <item name="service">WSCodeInspector</item>
-    </annotation>
-    <annotation name="ServerProperties">
-      <item name="IncludeRemoteClass">nonempty</item>
-    </annotation>
-    <annotation name="ActionScriptGeneration">
-      <item name="Package">valueObjects</item>
-    </annotation>
-  </entity>
-  <entity name="PegarTaxonomiasResponse">
-    <annotation name="EntityProperties">
-      <item name="EntityOriginalName">PegarTaxonomiasResponse</item>
-    </annotation>
-    <annotation name="service Group">
-      <item name="service">WSCodeInspector</item>
-    </annotation>
-    <annotation name="ServerProperties">
-      <item name="IncludeRemoteClass">nonempty</item>
-    </annotation>
-    <annotation name="ActionScriptGeneration">
-      <item name="Package">valueObjects</item>
-    </annotation>
-  </entity>
-  <entity name="DeletarItemTaxonomiaResponse">
-    <annotation name="EntityProperties">
-      <item name="EntityOriginalName">DeletarItemTaxonomiaResponse</item>
-    </annotation>
-    <annotation name="service Group">
-      <item name="service">WSCodeInspector</item>
-    </annotation>
-    <annotation name="ServerProperties">
-      <item name="IncludeRemoteClass">nonempty</item>
-    </annotation>
-    <annotation name="ActionScriptGeneration">
-      <item name="Package">valueObjects</item>
-    </annotation>
-  </entity>
-  <entity name="AdicionarItemTaxonomiaResponse">
-    <annotation name="EntityProperties">
-      <item name="EntityOriginalName">AdicionarItemTaxonomiaResponse</item>
-    </annotation>
-    <annotation name="service Group">
-      <item name="service">WSCodeInspector</item>
-    </annotation>
-    <annotation name="ServerProperties">
-      <item name="IncludeRemoteClass">nonempty</item>
-    </annotation>
-    <annotation name="ActionScriptGeneration">
-      <item name="Package">valueObjects</item>
-    </annotation>
-  </entity>
-  <entity name="GetTDResposta">
-    <annotation name="EntityProperties">
-      <item name="EntityOriginalName">GetTDResposta</item>
-    </annotation>
-    <annotation name="service Group">
-      <item name="service">WSCodeInspector</item>
-    </annotation>
-    <annotation name="ServerProperties">
-      <item name="IncludeRemoteClass">nonempty</item>
-    </annotation>
-    <annotation name="ActionScriptGeneration">
-      <item name="Package">valueObjects</item>
-    </annotation>
-  </entity>
-  <entity name="PegarTaxonomia">
-    <annotation name="EntityProperties">
-      <item name="EntityOriginalName">PegarTaxonomia</item>
-    </annotation>
-    <annotation name="service Group">
-      <item name="service">WSCodeInspector</item>
-    </annotation>
+    <annotation name="service Group"/>
     <annotation name="ServerProperties">
       <item name="IncludeRemoteClass">nonempty</item>
     </annotation>
@@ -435,9 +435,7 @@
     <annotation name="EntityProperties">
       <item name="EntityOriginalName">PegarTaxonomias</item>
     </annotation>
-    <annotation name="service Group">
-      <item name="service">WSCodeInspector</item>
-    </annotation>
+    <annotation name="service Group"/>
     <annotation name="ServerProperties">
       <item name="IncludeRemoteClass">nonempty</item>
     </annotation>
@@ -445,13 +443,11 @@
       <item name="Package">valueObjects</item>
     </annotation>
   </entity>
-  <entity name="PegarTaxonomiaResponse">
+  <entity name="PegarTaxonomia">
     <annotation name="EntityProperties">
-      <item name="EntityOriginalName">PegarTaxonomiaResponse</item>
+      <item name="EntityOriginalName">PegarTaxonomia</item>
     </annotation>
-    <annotation name="service Group">
-      <item name="service">WSCodeInspector</item>
-    </annotation>
+    <annotation name="service Group"/>
     <annotation name="ServerProperties">
       <item name="IncludeRemoteClass">nonempty</item>
     </annotation>
@@ -463,9 +459,19 @@
     <annotation name="EntityProperties">
       <item name="EntityOriginalName">PegarItemsTaxonomiaResponse</item>
     </annotation>
-    <annotation name="service Group">
-      <item name="service">WSCodeInspector</item>
+    <annotation name="service Group"/>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
     </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">valueObjects</item>
+    </annotation>
+  </entity>
+  <entity name="GetUsersRank">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">GetUsersRank</item>
+    </annotation>
+    <annotation name="service Group"/>
     <annotation name="ServerProperties">
       <item name="IncludeRemoteClass">nonempty</item>
     </annotation>
@@ -477,9 +483,7 @@
     <annotation name="EntityProperties">
       <item name="EntityOriginalName">AdicionarQuestaoResponse</item>
     </annotation>
-    <annotation name="service Group">
-      <item name="service">WSCodeInspector</item>
-    </annotation>
+    <annotation name="service Group"/>
     <annotation name="ServerProperties">
       <item name="IncludeRemoteClass">nonempty</item>
     </annotation>
@@ -491,23 +495,7 @@
     <annotation name="EntityProperties">
       <item name="EntityOriginalName">GetTrechosDefeito</item>
     </annotation>
-    <annotation name="service Group">
-      <item name="service">WSCodeInspector</item>
-    </annotation>
-    <annotation name="ServerProperties">
-      <item name="IncludeRemoteClass">nonempty</item>
-    </annotation>
-    <annotation name="ActionScriptGeneration">
-      <item name="Package">valueObjects</item>
-    </annotation>
-  </entity>
-  <entity name="AlterarUsuario">
-    <annotation name="EntityProperties">
-      <item name="EntityOriginalName">AlterarUsuario</item>
-    </annotation>
-    <annotation name="service Group">
-      <item name="service">WSCodeInspector</item>
-    </annotation>
+    <annotation name="service Group"/>
     <annotation name="ServerProperties">
       <item name="IncludeRemoteClass">nonempty</item>
     </annotation>
@@ -519,51 +507,7 @@
     <annotation name="EntityProperties">
       <item name="EntityOriginalName">AdicionarQuestao</item>
     </annotation>
-    <annotation name="service Group">
-      <item name="service">WSCodeInspector</item>
-    </annotation>
-    <annotation name="ServerProperties">
-      <item name="IncludeRemoteClass">nonempty</item>
-    </annotation>
-    <annotation name="ActionScriptGeneration">
-      <item name="Package">valueObjects</item>
-    </annotation>
-  </entity>
-  <entity name="AdicionarItemTaxonomia">
-    <annotation name="EntityProperties">
-      <item name="EntityOriginalName">AdicionarItemTaxonomia</item>
-    </annotation>
-    <annotation name="service Group">
-      <item name="service">WSCodeInspector</item>
-    </annotation>
-    <annotation name="ServerProperties">
-      <item name="IncludeRemoteClass">nonempty</item>
-    </annotation>
-    <annotation name="ActionScriptGeneration">
-      <item name="Package">valueObjects</item>
-    </annotation>
-  </entity>
-  <entity name="IniciarPartida">
-    <annotation name="EntityProperties">
-      <item name="EntityOriginalName">IniciarPartida</item>
-    </annotation>
-    <annotation name="service Group">
-      <item name="service">WSCodeInspector</item>
-    </annotation>
-    <annotation name="ServerProperties">
-      <item name="IncludeRemoteClass">nonempty</item>
-    </annotation>
-    <annotation name="ActionScriptGeneration">
-      <item name="Package">valueObjects</item>
-    </annotation>
-  </entity>
-  <entity name="GetQuestoesTaxListResponse">
-    <annotation name="EntityProperties">
-      <item name="EntityOriginalName">GetQuestoesTaxListResponse</item>
-    </annotation>
-    <annotation name="service Group">
-      <item name="service">WSCodeInspector</item>
-    </annotation>
+    <annotation name="service Group"/>
     <annotation name="ServerProperties">
       <item name="IncludeRemoteClass">nonempty</item>
     </annotation>
@@ -575,37 +519,7 @@
     <annotation name="EntityProperties">
       <item name="EntityOriginalName">CriarUsuarioResponse</item>
     </annotation>
-    <annotation name="service Group">
-      <item name="service">WSCodeInspector</item>
-    </annotation>
-    <annotation name="ServerProperties">
-      <item name="IncludeRemoteClass">nonempty</item>
-    </annotation>
-    <annotation name="ActionScriptGeneration">
-      <item name="Package">valueObjects</item>
-    </annotation>
-  </entity>
-  <entity name="DeletarTaxonomiasResponse">
-    <annotation name="EntityProperties">
-      <item name="EntityOriginalName">DeletarTaxonomiasResponse</item>
-    </annotation>
-    <annotation name="service Group">
-      <item name="service">WSCodeInspector</item>
-    </annotation>
-    <annotation name="ServerProperties">
-      <item name="IncludeRemoteClass">nonempty</item>
-    </annotation>
-    <annotation name="ActionScriptGeneration">
-      <item name="Package">valueObjects</item>
-    </annotation>
-  </entity>
-  <entity name="RecuperarSenhaResponse">
-    <annotation name="EntityProperties">
-      <item name="EntityOriginalName">RecuperarSenhaResponse</item>
-    </annotation>
-    <annotation name="service Group">
-      <item name="service">WSCodeInspector</item>
-    </annotation>
+    <annotation name="service Group"/>
     <annotation name="ServerProperties">
       <item name="IncludeRemoteClass">nonempty</item>
     </annotation>
@@ -617,9 +531,7 @@
     <annotation name="EntityProperties">
       <item name="EntityOriginalName">PegarItemsTaxonomia</item>
     </annotation>
-    <annotation name="service Group">
-      <item name="service">WSCodeInspector</item>
-    </annotation>
+    <annotation name="service Group"/>
     <annotation name="ServerProperties">
       <item name="IncludeRemoteClass">nonempty</item>
     </annotation>
@@ -627,12 +539,12 @@
       <item name="Package">valueObjects</item>
     </annotation>
   </entity>
-  <service name="WebServiceMain">
+  <service name="Wscodeinspector">
     <annotation name="ActionScriptGeneration">
       <item name="WSDL-service">WebServiceMain</item>
       <item name="ServiceType">WebService</item>
-      <item name="WSDL">http://189.32.135.4/WebService/WebServiceMain.asmx?WSDL</item>
-      <item name="Package">services.webservicemain</item>
+      <item name="WSDL">http://inspectorx.linksysnet.com:8080/WebServiceAcess_deploy/webservice/webserviceMain.asmx?WSDL</item>
+      <item name="Package">services.wscodeinspector</item>
       <item name="WSDL-port">WebServiceMainSoap</item>
     </annotation>
     <annotation name="ServiceTypeGroup">
@@ -648,37 +560,183 @@
     </annotation>
     <annotation name="ServiceConfig">
       <item name="DEFAULT_ENTITY_PACKAGE">valueObjects</item>
-      <item name="WSDL-endpoint">http://189.32.135.4/WebService/WebServiceMain.asmx</item>
+      <item name="WSDL-endpoint">http://inspectorx.linksysnet.com:8080/WebServiceAcess_deploy/webservice/webserviceMain.asmx</item>
       <item name="LINKED_FILE"></item>
     </annotation>
-    <function name="DeletarTaxonomias" return-type="boolean">
+    <function name="AdicionarItemTaxonomia" return-type="boolean">
       <annotation name="analyze group">
         <item name="analyzed">true</item>
       </annotation>
       <annotation name="WSDLName">
-        <item name="SOAPAction">http://tempuri.org/DeletarTaxonomias</item>
-        <item name="DeletarTaxonomias">http://tempuri.org/,DeletarTaxonomias</item>
+        <item name="AdicionarItemTaxonomia">http://tempuri.org/,AdicionarItemTaxonomia</item>
+        <item name="SOAPAction">http://tempuri.org/AdicionarItemTaxonomia</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">integer,string,string</item>
+        <item name="returnType">boolean</item>
+      </annotation>
+      <parameter name="taxonomia_id" type="integer"/>
+      <parameter name="nome" type="string"/>
+      <parameter name="descricao" type="string"/>
+    </function>
+    <function name="AutenticarUsuario" return-type="boolean">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="WSDLName">
+        <item name="SOAPAction">http://tempuri.org/AutenticarUsuario</item>
+        <item name="AutenticarUsuario">http://tempuri.org/,AutenticarUsuario</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">string,string</item>
+        <item name="returnType">boolean</item>
+      </annotation>
+      <parameter name="login" type="string"/>
+      <parameter name="senha" type="string"/>
+    </function>
+    <function name="DeletarItemTaxonomia" return-type="boolean">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="WSDLName">
+        <item name="DeletarItemTaxonomia">http://tempuri.org/,DeletarItemTaxonomia</item>
+        <item name="SOAPAction">http://tempuri.org/DeletarItemTaxonomia</item>
       </annotation>
       <annotation name="original signature">
         <item name="inputParams">integer</item>
         <item name="returnType">boolean</item>
       </annotation>
-      <parameter name="taxonomia" type="integer"/>
+      <parameter name="taxonomia_id" type="integer"/>
     </function>
-    <function name="GetQuestoesByType" return-type="QuestaoEntity[]">
+    <function name="GetTrechosDefeito" return-type="TrechoDefeitoEntity[]">
       <annotation name="analyze group">
         <item name="analyzed">true</item>
       </annotation>
       <annotation name="WSDLName">
-        <item name="GetQuestoesByType">http://tempuri.org/,GetQuestoesByType</item>
-        <item name="SOAPAction">http://tempuri.org/GetQuestoesByType</item>
+        <item name="SOAPAction">http://tempuri.org/GetTrechosDefeito</item>
+        <item name="GetTrechosDefeito">http://tempuri.org/,GetTrechosDefeito</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">integer</item>
+        <item name="returnType">TrechoDefeitoEntity</item>
+      </annotation>
+      <parameter name="questao_id" type="integer"/>
+    </function>
+    <function name="PegarTaxonomias" return-type="TaxonomiaEntity[]">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="WSDLName">
+        <item name="PegarTaxonomias">http://tempuri.org/,PegarTaxonomias</item>
+        <item name="SOAPAction">http://tempuri.org/PegarTaxonomias</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="returnType">TaxonomiaEntity</item>
+      </annotation>
+    </function>
+    <function name="IniciarPartida" return-type="integer">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="WSDLName">
+        <item name="IniciarPartida">http://tempuri.org/,IniciarPartida</item>
+        <item name="SOAPAction">http://tempuri.org/IniciarPartida</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">integer,string</item>
+        <item name="returnType">integer</item>
+      </annotation>
+      <parameter name="partDificuldade" type="integer"/>
+      <parameter name="userLogin" type="string"/>
+    </function>
+    <function name="getTipoArtefato" return-type="TipoArtefatoEntity">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="WSDLName">
+        <item name="getTipoArtefato">http://tempuri.org/,getTipoArtefato</item>
+        <item name="SOAPAction">http://tempuri.org/getTipoArtefato</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">integer</item>
+        <item name="returnType">TipoArtefatoEntity</item>
+      </annotation>
+      <parameter name="taxId" type="integer"/>
+    </function>
+    <function name="GetQuestoes" return-type="QuestaoEntity[]">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="WSDLName">
+        <item name="SOAPAction">http://tempuri.org/GetQuestoes</item>
+        <item name="GetQuestoes">http://tempuri.org/,GetQuestoes</item>
       </annotation>
       <annotation name="original signature">
         <item name="inputParams">integer,integer</item>
         <item name="returnType">QuestaoEntity</item>
       </annotation>
       <parameter name="nivelDificuldade" type="integer"/>
+      <parameter name="taxonomia_id" type="integer"/>
+    </function>
+    <function name="AdicionarQuestao" return-type="void">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="WSDLCollectionTypes">
+        <item name="tdList">http://tempuri.org/,ArrayOfTrechoDefeitoEntity</item>
+      </annotation>
+      <annotation name="WSDLName">
+        <item name="AdicionarQuestao">http://tempuri.org/,AdicionarQuestao</item>
+        <item name="SOAPAction">http://tempuri.org/AdicionarQuestao</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">QuestaoEntity,TrechoDefeitoEntity</item>
+      </annotation>
+      <parameter name="questao" type="QuestaoEntity"/>
+      <parameter name="tdList" type="TrechoDefeitoEntity[]"/>
+    </function>
+    <function name="setRealacaoTaxonomia" return-type="boolean">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="WSDLName">
+        <item name="SOAPAction">http://tempuri.org/setRealacaoTaxonomia</item>
+        <item name="setRealacaoTaxonomia">http://tempuri.org/,setRealacaoTaxonomia</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">integer,integer</item>
+        <item name="returnType">boolean</item>
+      </annotation>
+      <parameter name="taxId" type="integer"/>
+      <parameter name="tipoArtId" type="integer"/>
+    </function>
+    <function name="GetTaxonomia" return-type="TaxonomiaEntity">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="WSDLName">
+        <item name="SOAPAction">http://tempuri.org/GetTaxonomia</item>
+        <item name="GetTaxonomia">http://tempuri.org/,GetTaxonomia</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">integer</item>
+        <item name="returnType">TaxonomiaEntity</item>
+      </annotation>
       <parameter name="tipoArtefatoId" type="integer"/>
+    </function>
+    <function name="InserirTaxonomia" return-type="boolean">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="WSDLName">
+        <item name="SOAPAction">http://tempuri.org/InserirTaxonomia</item>
+        <item name="InserirTaxonomia">http://tempuri.org/,InserirTaxonomia</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">string</item>
+        <item name="returnType">boolean</item>
+      </annotation>
+      <parameter name="nome" type="string"/>
     </function>
     <function name="getTiposArtefatos" return-type="TipoArtefatoEntity[]">
       <annotation name="analyze group">
@@ -706,20 +764,24 @@
       <parameter name="partidaEncerrada_id" type="integer"/>
       <parameter name="pontuacaoTotal" type="integer"/>
     </function>
-    <function name="GetQuestoes" return-type="QuestaoEntity[]">
+    <function name="AlterarUsuario" return-type="boolean">
       <annotation name="analyze group">
         <item name="analyzed">true</item>
       </annotation>
       <annotation name="WSDLName">
-        <item name="SOAPAction">http://tempuri.org/GetQuestoes</item>
-        <item name="GetQuestoes">http://tempuri.org/,GetQuestoes</item>
+        <item name="SOAPAction">http://tempuri.org/AlterarUsuario</item>
+        <item name="AlterarUsuario">http://tempuri.org/,AlterarUsuario</item>
       </annotation>
       <annotation name="original signature">
-        <item name="inputParams">integer,integer</item>
-        <item name="returnType">QuestaoEntity</item>
+        <item name="inputParams">string,string,string,string,string,string</item>
+        <item name="returnType">boolean</item>
       </annotation>
-      <parameter name="nivelDificuldade" type="integer"/>
-      <parameter name="taxonomia_id" type="integer"/>
+      <parameter name="loginAtual" type="string"/>
+      <parameter name="senhaAtual" type="string"/>
+      <parameter name="novoNome" type="string"/>
+      <parameter name="novoLogin" type="string"/>
+      <parameter name="novaSenha" type="string"/>
+      <parameter name="novoEmail" type="string"/>
     </function>
     <function name="setQuestaoAcerto" return-type="boolean">
       <annotation name="analyze group">
@@ -737,89 +799,19 @@
       <parameter name="partidada_id" type="integer"/>
       <parameter name="pontos" type="integer"/>
     </function>
-    <function name="AutenticarUsuario" return-type="boolean">
+    <function name="PegarTaxonomia" return-type="TaxonomiaEntity">
       <annotation name="analyze group">
         <item name="analyzed">true</item>
       </annotation>
       <annotation name="WSDLName">
-        <item name="SOAPAction">http://tempuri.org/AutenticarUsuario</item>
-        <item name="AutenticarUsuario">http://tempuri.org/,AutenticarUsuario</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="inputParams">string,string</item>
-        <item name="returnType">boolean</item>
-      </annotation>
-      <parameter name="login" type="string"/>
-      <parameter name="senha" type="string"/>
-    </function>
-    <function name="GetQuestoesTaxList" return-type="QuestaoEntity[]">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="WSDLName">
-        <item name="SOAPAction">http://tempuri.org/GetQuestoesTaxList</item>
-        <item name="GetQuestoesTaxList">http://tempuri.org/,GetQuestoesTaxList</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="inputParams">integer</item>
-        <item name="returnType">QuestaoEntity</item>
-      </annotation>
-      <parameter name="tax_id" type="integer"/>
-    </function>
-    <function name="RecuperarSenha" return-type="void">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="WSDLName">
-        <item name="SOAPAction">http://tempuri.org/RecuperarSenha</item>
-        <item name="RecuperarSenha">http://tempuri.org/,RecuperarSenha</item>
+        <item name="PegarTaxonomia">http://tempuri.org/,PegarTaxonomia</item>
+        <item name="SOAPAction">http://tempuri.org/PegarTaxonomia</item>
       </annotation>
       <annotation name="original signature">
         <item name="inputParams">string</item>
-      </annotation>
-      <parameter name="email" type="string"/>
-    </function>
-    <function name="InserirTaxonomia" return-type="boolean">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="WSDLName">
-        <item name="SOAPAction">http://tempuri.org/InserirTaxonomia</item>
-        <item name="InserirTaxonomia">http://tempuri.org/,InserirTaxonomia</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="inputParams">string</item>
-        <item name="returnType">boolean</item>
+        <item name="returnType">TaxonomiaEntity</item>
       </annotation>
       <parameter name="nome" type="string"/>
-    </function>
-    <function name="DeletarItemTaxonomia" return-type="boolean">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="WSDLName">
-        <item name="DeletarItemTaxonomia">http://tempuri.org/,DeletarItemTaxonomia</item>
-        <item name="SOAPAction">http://tempuri.org/DeletarItemTaxonomia</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="inputParams">integer</item>
-        <item name="returnType">boolean</item>
-      </annotation>
-      <parameter name="taxonomia_id" type="integer"/>
-    </function>
-    <function name="getTrechosDefeitoList" return-type="TrechoDefeitoEntity[]">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="WSDLName">
-        <item name="getTrechosDefeitoList">http://tempuri.org/,getTrechosDefeitoList</item>
-        <item name="SOAPAction">http://tempuri.org/getTrechosDefeitoList</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="inputParams">integer</item>
-        <item name="returnType">TrechoDefeitoEntity</item>
-      </annotation>
-      <parameter name="itemTaxonomiaId" type="integer"/>
     </function>
     <function name="CriarUsuario" return-type="boolean">
       <annotation name="analyze group">
@@ -838,23 +830,6 @@
       <parameter name="email" type="string"/>
       <parameter name="senha" type="string"/>
     </function>
-    <function name="AdicionarQuestao" return-type="void">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="WSDLCollectionTypes">
-        <item name="tdList">http://tempuri.org/,ArrayOfTrechoDefeitoEntity</item>
-      </annotation>
-      <annotation name="WSDLName">
-        <item name="AdicionarQuestao">http://tempuri.org/,AdicionarQuestao</item>
-        <item name="SOAPAction">http://tempuri.org/AdicionarQuestao</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="inputParams">QuestaoEntity,TrechoDefeitoEntity</item>
-      </annotation>
-      <parameter name="questao" type="QuestaoEntity"/>
-      <parameter name="tdList" type="TrechoDefeitoEntity[]"/>
-    </function>
     <function name="GetTDResposta" return-type="ItemTaxonomiaEntity">
       <annotation name="analyze group">
         <item name="analyzed">true</item>
@@ -868,139 +843,6 @@
         <item name="returnType">ItemTaxonomiaEntity</item>
       </annotation>
       <parameter name="td_id" type="integer"/>
-    </function>
-    <function name="AdicionarItemTaxonomia" return-type="boolean">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="WSDLName">
-        <item name="AdicionarItemTaxonomia">http://tempuri.org/,AdicionarItemTaxonomia</item>
-        <item name="SOAPAction">http://tempuri.org/AdicionarItemTaxonomia</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="inputParams">integer,string,string</item>
-        <item name="returnType">boolean</item>
-      </annotation>
-      <parameter name="taxonomia_id" type="integer"/>
-      <parameter name="nome" type="string"/>
-      <parameter name="descricao" type="string"/>
-    </function>
-    <function name="IniciarPartida" return-type="integer">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="WSDLName">
-        <item name="IniciarPartida">http://tempuri.org/,IniciarPartida</item>
-        <item name="SOAPAction">http://tempuri.org/IniciarPartida</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="inputParams">integer,string</item>
-        <item name="returnType">integer</item>
-      </annotation>
-      <parameter name="partDificuldade" type="integer"/>
-      <parameter name="userLogin" type="string"/>
-    </function>
-    <function name="PegarItemsTaxonomia" return-type="ItemTaxonomiaEntity[]">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="WSDLName">
-        <item name="SOAPAction">http://tempuri.org/PegarItemsTaxonomia</item>
-        <item name="PegarItemsTaxonomia">http://tempuri.org/,PegarItemsTaxonomia</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="inputParams">integer</item>
-        <item name="returnType">ItemTaxonomiaEntity</item>
-      </annotation>
-      <parameter name="taxonomia_id" type="integer"/>
-    </function>
-    <function name="setRealacaoTaxonomia" return-type="boolean">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="WSDLName">
-        <item name="SOAPAction">http://tempuri.org/setRealacaoTaxonomia</item>
-        <item name="setRealacaoTaxonomia">http://tempuri.org/,setRealacaoTaxonomia</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="inputParams">integer,integer</item>
-        <item name="returnType">boolean</item>
-      </annotation>
-      <parameter name="taxId" type="integer"/>
-      <parameter name="tipoArtId" type="integer"/>
-    </function>
-    <function name="GetQuestoesRespostas" return-type="integer[]">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="WSDLName">
-        <item name="SOAPAction">http://tempuri.org/GetQuestoesRespostas</item>
-        <item name="GetQuestoesRespostas">http://tempuri.org/,GetQuestoesRespostas</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="inputParams">integer</item>
-        <item name="returnType">integer</item>
-      </annotation>
-      <parameter name="nivelDificuldade" type="integer"/>
-    </function>
-    <function name="PegarTaxonomia" return-type="TaxonomiaEntity">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="WSDLName">
-        <item name="PegarTaxonomia">http://tempuri.org/,PegarTaxonomia</item>
-        <item name="SOAPAction">http://tempuri.org/PegarTaxonomia</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="inputParams">string</item>
-        <item name="returnType">TaxonomiaEntity</item>
-      </annotation>
-      <parameter name="nome" type="string"/>
-    </function>
-    <function name="AlterarUsuario" return-type="boolean">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="WSDLName">
-        <item name="SOAPAction">http://tempuri.org/AlterarUsuario</item>
-        <item name="AlterarUsuario">http://tempuri.org/,AlterarUsuario</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="inputParams">string,string,string,string,string,string</item>
-        <item name="returnType">boolean</item>
-      </annotation>
-      <parameter name="loginAtual" type="string"/>
-      <parameter name="senhaAtual" type="string"/>
-      <parameter name="novoNome" type="string"/>
-      <parameter name="novoLogin" type="string"/>
-      <parameter name="novaSenha" type="string"/>
-      <parameter name="novoEmail" type="string"/>
-    </function>
-    <function name="PegarTaxonomias" return-type="TaxonomiaEntity[]">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="WSDLName">
-        <item name="PegarTaxonomias">http://tempuri.org/,PegarTaxonomias</item>
-        <item name="SOAPAction">http://tempuri.org/PegarTaxonomias</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="returnType">TaxonomiaEntity</item>
-      </annotation>
-    </function>
-    <function name="GetTrechosDefeito" return-type="TrechoDefeitoEntity[]">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="WSDLName">
-        <item name="SOAPAction">http://tempuri.org/GetTrechosDefeito</item>
-        <item name="GetTrechosDefeito">http://tempuri.org/,GetTrechosDefeito</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="inputParams">integer</item>
-        <item name="returnType">TrechoDefeitoEntity</item>
-      </annotation>
-      <parameter name="questao_id" type="integer"/>
     </function>
     <function name="EncerrarPartida2" return-type="void">
       <annotation name="analyze group">
@@ -1017,133 +859,6 @@
       <parameter name="respostasXML" type="string"/>
       <parameter name="userEmail" type="string"/>
     </function>
-    <function name="GetTaxonomia" return-type="TaxonomiaEntity">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="WSDLName">
-        <item name="SOAPAction">http://tempuri.org/GetTaxonomia</item>
-        <item name="GetTaxonomia">http://tempuri.org/,GetTaxonomia</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="inputParams">integer</item>
-        <item name="returnType">TaxonomiaEntity</item>
-      </annotation>
-      <parameter name="tipoArtefatoId" type="integer"/>
-    </function>
-    <function name="getTipoArtefato" return-type="TipoArtefatoEntity">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="WSDLName">
-        <item name="getTipoArtefato">http://tempuri.org/,getTipoArtefato</item>
-        <item name="SOAPAction">http://tempuri.org/getTipoArtefato</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="inputParams">integer</item>
-        <item name="returnType">TipoArtefatoEntity</item>
-      </annotation>
-      <parameter name="taxId" type="integer"/>
-    </function>
-  </service>
-  <service name="WSCodeInspector">
-    <annotation name="ActionScriptGeneration">
-      <item name="WSDL-service">WebServiceMain</item>
-      <item name="ServiceType">WebService</item>
-      <item name="WSDL">http://localhost:4200/WebService/WebServiceMain.asmx?wsdl</item>
-      <item name="Package">services.wscodeinspector</item>
-      <item name="WSDL-port">WebServiceMainSoap</item>
-    </annotation>
-    <annotation name="ServiceTypeGroup">
-      <item name="ServiceBackendType">WebService</item>
-    </annotation>
-    <annotation name="ServiceConfig">
-      <item name="DEFAULT_ENTITY_PACKAGE">valueObjects</item>
-      <item name="WSDL-endpoint">http://localhost:4200/WebService/WebServiceMain.asmx</item>
-      <item name="LINKED_FILE"></item>
-    </annotation>
-    <annotation name="WSDLCollectionElementTypes">
-      <item name="http://tempuri.org/,ArrayOfString">string::http://www.w3.org/2001/XMLSchema,string</item>
-      <item name="http://tempuri.org/,ArrayOfInt">int::http://www.w3.org/2001/XMLSchema,int</item>
-      <item name="http://tempuri.org/,ArrayOfRankRetorno">RankRetorno::http://tempuri.org/,RankRetorno</item>
-      <item name="http://tempuri.org/,ArrayOfQuestaoEntity">QuestaoEntity::http://tempuri.org/,QuestaoEntity</item>
-      <item name="http://tempuri.org/,ArrayOfTaxonomiaEntity">TaxonomiaEntity::http://tempuri.org/,TaxonomiaEntity</item>
-      <item name="http://tempuri.org/,ArrayOfTrechoDefeitoEntity">TrechoDefeitoEntity::http://tempuri.org/,TrechoDefeitoEntity</item>
-      <item name="http://tempuri.org/,ArrayOfItemTaxonomiaEntity">ItemTaxonomiaEntity::http://tempuri.org/,ItemTaxonomiaEntity</item>
-      <item name="http://tempuri.org/,ArrayOfTipoArtefatoEntity">TipoArtefatoEntity::http://tempuri.org/,TipoArtefatoEntity</item>
-    </annotation>
-    <function name="GetTrechosDefeito" return-type="TrechoDefeitoEntity[]">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="WSDLName">
-        <item name="SOAPAction">http://tempuri.org/GetTrechosDefeito</item>
-        <item name="GetTrechosDefeito">http://tempuri.org/,GetTrechosDefeito</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="inputParams">integer</item>
-        <item name="returnType">TrechoDefeitoEntity</item>
-      </annotation>
-      <parameter name="questao_id" type="integer"/>
-    </function>
-    <function name="AutenticarUsuario" return-type="boolean">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="WSDLName">
-        <item name="SOAPAction">http://tempuri.org/AutenticarUsuario</item>
-        <item name="AutenticarUsuario">http://tempuri.org/,AutenticarUsuario</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="inputParams">string,string</item>
-        <item name="returnType">boolean</item>
-      </annotation>
-      <parameter name="login" type="string"/>
-      <parameter name="senha" type="string"/>
-    </function>
-    <function name="PegarTaxonomia" return-type="TaxonomiaEntity">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="WSDLName">
-        <item name="PegarTaxonomia">http://tempuri.org/,PegarTaxonomia</item>
-        <item name="SOAPAction">http://tempuri.org/PegarTaxonomia</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="inputParams">string</item>
-        <item name="returnType">TaxonomiaEntity</item>
-      </annotation>
-      <parameter name="nome" type="string"/>
-    </function>
-    <function name="CriarUsuario" return-type="boolean">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="WSDLName">
-        <item name="CriarUsuario">http://tempuri.org/,CriarUsuario</item>
-        <item name="SOAPAction">http://tempuri.org/CriarUsuario</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="inputParams">string,string,string,string</item>
-        <item name="returnType">boolean</item>
-      </annotation>
-      <parameter name="nome" type="string"/>
-      <parameter name="login" type="string"/>
-      <parameter name="email" type="string"/>
-      <parameter name="senha" type="string"/>
-    </function>
-    <function name="PegarTaxonomias" return-type="TaxonomiaEntity[]">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="WSDLName">
-        <item name="PegarTaxonomias">http://tempuri.org/,PegarTaxonomias</item>
-        <item name="SOAPAction">http://tempuri.org/PegarTaxonomias</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="returnType">TaxonomiaEntity</item>
-      </annotation>
-    </function>
     <function name="RecuperarSenha" return-type="void">
       <annotation name="analyze group">
         <item name="analyzed">true</item>
@@ -1157,113 +872,47 @@
       </annotation>
       <parameter name="email" type="string"/>
     </function>
-    <function name="AdicionarQuestao" return-type="void">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="WSDLCollectionTypes">
-        <item name="tdList">http://tempuri.org/,ArrayOfTrechoDefeitoEntity</item>
-      </annotation>
-      <annotation name="WSDLName">
-        <item name="AdicionarQuestao">http://tempuri.org/,AdicionarQuestao</item>
-        <item name="SOAPAction">http://tempuri.org/AdicionarQuestao</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="inputParams">QuestaoEntity,TrechoDefeitoEntity</item>
-      </annotation>
-      <parameter name="questao" type="QuestaoEntity"/>
-      <parameter name="tdList" type="TrechoDefeitoEntity[]"/>
-    </function>
-    <function name="GetTDResposta" return-type="ItemTaxonomiaEntity">
+    <function name="getTrechosDefeitoList" return-type="TrechoDefeitoEntity[]">
       <annotation name="analyze group">
         <item name="analyzed">true</item>
       </annotation>
       <annotation name="WSDLName">
-        <item name="GetTDResposta">http://tempuri.org/,GetTDResposta</item>
-        <item name="SOAPAction">http://tempuri.org/GetTDResposta</item>
+        <item name="getTrechosDefeitoList">http://tempuri.org/,getTrechosDefeitoList</item>
+        <item name="SOAPAction">http://tempuri.org/getTrechosDefeitoList</item>
       </annotation>
       <annotation name="original signature">
         <item name="inputParams">integer</item>
-        <item name="returnType">ItemTaxonomiaEntity</item>
+        <item name="returnType">TrechoDefeitoEntity</item>
       </annotation>
-      <parameter name="td_id" type="integer"/>
+      <parameter name="itemTaxonomiaId" type="integer"/>
     </function>
-    <function name="AlterarUsuario" return-type="boolean">
+    <function name="DeletarTaxonomias" return-type="boolean">
       <annotation name="analyze group">
         <item name="analyzed">true</item>
       </annotation>
       <annotation name="WSDLName">
-        <item name="SOAPAction">http://tempuri.org/AlterarUsuario</item>
-        <item name="AlterarUsuario">http://tempuri.org/,AlterarUsuario</item>
+        <item name="SOAPAction">http://tempuri.org/DeletarTaxonomias</item>
+        <item name="DeletarTaxonomias">http://tempuri.org/,DeletarTaxonomias</item>
       </annotation>
       <annotation name="original signature">
-        <item name="inputParams">string,string,string,string,string,string</item>
+        <item name="inputParams">integer</item>
         <item name="returnType">boolean</item>
       </annotation>
-      <parameter name="loginAtual" type="string"/>
-      <parameter name="senhaAtual" type="string"/>
-      <parameter name="novoNome" type="string"/>
-      <parameter name="novoLogin" type="string"/>
-      <parameter name="novaSenha" type="string"/>
-      <parameter name="novoEmail" type="string"/>
+      <parameter name="taxonomia" type="integer"/>
     </function>
-    <function name="EncerrarPartida" return-type="void">
+    <function name="GetQuestoesRespostas" return-type="integer[]">
       <annotation name="analyze group">
         <item name="analyzed">true</item>
       </annotation>
       <annotation name="WSDLName">
-        <item name="EncerrarPartida">http://tempuri.org/,EncerrarPartida</item>
-        <item name="SOAPAction">http://tempuri.org/EncerrarPartida</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="inputParams">integer,integer</item>
-      </annotation>
-      <parameter name="partidaEncerrada_id" type="integer"/>
-      <parameter name="pontuacaoTotal" type="integer"/>
-    </function>
-    <function name="GetQuestoes" return-type="QuestaoEntity[]">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="WSDLName">
-        <item name="SOAPAction">http://tempuri.org/GetQuestoes</item>
-        <item name="GetQuestoes">http://tempuri.org/,GetQuestoes</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="inputParams">integer,integer</item>
-        <item name="returnType">QuestaoEntity</item>
-      </annotation>
-      <parameter name="nivelDificuldade" type="integer"/>
-      <parameter name="taxonomia_id" type="integer"/>
-    </function>
-    <function name="GetTaxonomia" return-type="TaxonomiaEntity">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="WSDLName">
-        <item name="SOAPAction">http://tempuri.org/GetTaxonomia</item>
-        <item name="GetTaxonomia">http://tempuri.org/,GetTaxonomia</item>
+        <item name="SOAPAction">http://tempuri.org/GetQuestoesRespostas</item>
+        <item name="GetQuestoesRespostas">http://tempuri.org/,GetQuestoesRespostas</item>
       </annotation>
       <annotation name="original signature">
         <item name="inputParams">integer</item>
-        <item name="returnType">TaxonomiaEntity</item>
-      </annotation>
-      <parameter name="tipoArtefatoId" type="integer"/>
-    </function>
-    <function name="GetQuestoesByType" return-type="QuestaoEntity[]">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="WSDLName">
-        <item name="GetQuestoesByType">http://tempuri.org/,GetQuestoesByType</item>
-        <item name="SOAPAction">http://tempuri.org/GetQuestoesByType</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="inputParams">integer,integer</item>
-        <item name="returnType">QuestaoEntity</item>
+        <item name="returnType">integer</item>
       </annotation>
       <parameter name="nivelDificuldade" type="integer"/>
-      <parameter name="tipoArtefatoId" type="integer"/>
     </function>
     <function name="GetQuestoesTaxList" return-type="QuestaoEntity[]">
       <annotation name="analyze group">
@@ -1293,48 +942,20 @@
       </annotation>
       <parameter name="questaoId" type="integer"/>
     </function>
-    <function name="getTiposArtefatos" return-type="TipoArtefatoEntity[]">
+    <function name="GetQuestoesByType" return-type="QuestaoEntity[]">
       <annotation name="analyze group">
         <item name="analyzed">true</item>
       </annotation>
       <annotation name="WSDLName">
-        <item name="getTiposArtefatos">http://tempuri.org/,getTiposArtefatos</item>
-        <item name="SOAPAction">http://tempuri.org/getTiposArtefatos</item>
+        <item name="GetQuestoesByType">http://tempuri.org/,GetQuestoesByType</item>
+        <item name="SOAPAction">http://tempuri.org/GetQuestoesByType</item>
       </annotation>
       <annotation name="original signature">
-        <item name="returnType">TipoArtefatoEntity</item>
+        <item name="inputParams">integer,integer</item>
+        <item name="returnType">QuestaoEntity</item>
       </annotation>
-    </function>
-    <function name="setQuestaoAcerto" return-type="boolean">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="WSDLName">
-        <item name="setQuestaoAcerto">http://tempuri.org/,setQuestaoAcerto</item>
-        <item name="SOAPAction">http://tempuri.org/setQuestaoAcerto</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="inputParams">integer,integer,integer</item>
-        <item name="returnType">boolean</item>
-      </annotation>
-      <parameter name="questao_id" type="integer"/>
-      <parameter name="partidada_id" type="integer"/>
-      <parameter name="pontos" type="integer"/>
-    </function>
-    <function name="IniciarPartida" return-type="integer">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="WSDLName">
-        <item name="IniciarPartida">http://tempuri.org/,IniciarPartida</item>
-        <item name="SOAPAction">http://tempuri.org/IniciarPartida</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="inputParams">integer,string</item>
-        <item name="returnType">integer</item>
-      </annotation>
-      <parameter name="partDificuldade" type="integer"/>
-      <parameter name="userLogin" type="string"/>
+      <parameter name="nivelDificuldade" type="integer"/>
+      <parameter name="tipoArtefatoId" type="integer"/>
     </function>
     <function name="PegarItemsTaxonomia" return-type="ItemTaxonomiaEntity[]">
       <annotation name="analyze group">
@@ -1350,41 +971,13 @@
       </annotation>
       <parameter name="taxonomia_id" type="integer"/>
     </function>
-    <function name="GetQuestoesRespostas" return-type="integer[]">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="WSDLName">
-        <item name="SOAPAction">http://tempuri.org/GetQuestoesRespostas</item>
-        <item name="GetQuestoesRespostas">http://tempuri.org/,GetQuestoesRespostas</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="inputParams">integer</item>
-        <item name="returnType">integer</item>
-      </annotation>
-      <parameter name="nivelDificuldade" type="integer"/>
-    </function>
-    <function name="getTipoArtefato" return-type="TipoArtefatoEntity">
-      <annotation name="analyze group">
-        <item name="analyzed">true</item>
-      </annotation>
-      <annotation name="WSDLName">
-        <item name="getTipoArtefato">http://tempuri.org/,getTipoArtefato</item>
-        <item name="SOAPAction">http://tempuri.org/getTipoArtefato</item>
-      </annotation>
-      <annotation name="original signature">
-        <item name="inputParams">integer</item>
-        <item name="returnType">TipoArtefatoEntity</item>
-      </annotation>
-      <parameter name="taxId" type="integer"/>
-    </function>
   </service>
   <entity name="ItemTaxonomiaEntity">
     <annotation name="EntityProperties">
       <item name="EntityOriginalName">ItemTaxonomiaEntity</item>
     </annotation>
     <annotation name="service Group">
-      <item name="service">WSCodeInspector,WebServiceMain</item>
+      <item name="service">Wscodeinspector</item>
     </annotation>
     <annotation name="ServerProperties">
       <item name="IncludeRemoteClass">nonempty</item>
@@ -1402,7 +995,7 @@
       <item name="EntityOriginalName">TipoArtefatoEntity</item>
     </annotation>
     <annotation name="service Group">
-      <item name="service">WSCodeInspector,WebServiceMain</item>
+      <item name="service">Wscodeinspector</item>
     </annotation>
     <annotation name="ServerProperties">
       <item name="IncludeRemoteClass">nonempty</item>
@@ -1419,13 +1012,10 @@
       <item name="EntityOriginalName">QuestaoEntity</item>
     </annotation>
     <annotation name="service Group">
-      <item name="service">WebServiceMain,WSCodeInspector</item>
+      <item name="service">Wscodeinspector</item>
     </annotation>
     <annotation name="ServerProperties">
       <item name="IncludeRemoteClass">nonempty</item>
-    </annotation>
-    <annotation name="GetQuestoes">
-      <item name="propertySpecifier">Q_ID,Q_Nivel_Dificuldade,Q_XML,Q_TEMPO,Q_nome</item>
     </annotation>
     <annotation name="ActionScriptGeneration">
       <item name="Package">valueObjects</item>
@@ -1441,7 +1031,7 @@
       <item name="EntityOriginalName">TrechoDefeitoEntity</item>
     </annotation>
     <annotation name="service Group">
-      <item name="service">WebServiceMain,WSCodeInspector</item>
+      <item name="service">Wscodeinspector</item>
     </annotation>
     <annotation name="ServerProperties">
       <item name="IncludeRemoteClass">nonempty</item>
@@ -1459,7 +1049,7 @@
       <item name="EntityOriginalName">TaxonomiaEntity</item>
     </annotation>
     <annotation name="service Group">
-      <item name="service">WSCodeInspector,WebServiceMain</item>
+      <item name="service">Wscodeinspector</item>
     </annotation>
     <annotation name="ServerProperties">
       <item name="IncludeRemoteClass">nonempty</item>

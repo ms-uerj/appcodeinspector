@@ -112,7 +112,7 @@
 	
 	<fx:Declarations>
 		<s:CallResponder id="GetItemTaxonomia"  result="GetItemTaxonomia_resultHandler(event)"/>
-		<wscodeinspector:WSCodeInspector id="wSCodeInspector" fault="Alert.show(event.fault.faultString + '\n' + event.fault.faultDetail)" showBusyCursor="true"/>
+		<wscodeinspector:Wscodeinspector id="wSCodeInspector" fault="Alert.show(event.fault.faultString + '\n' + event.fault.faultDetail)" showBusyCursor="true"/>
 	</fx:Declarations>
 	<fx:Script source="RespostaWindow_as.as"/>
 	

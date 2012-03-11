@@ -101,6 +101,7 @@ public class _Super_AutenticarUsuarioResponse extends flash.events.EventDispatch
     /**
      * derived property calculators
      */
+    
 
     /**
      * isValid calculator

@@ -101,6 +101,7 @@ public class _Super_PegarItemsTaxonomiaResponse extends flash.events.EventDispat
     /**
      * derived property calculators
      */
+    
 
     /**
      * isValid calculator

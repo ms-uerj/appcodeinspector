@@ -101,6 +101,7 @@ public class _Super_CriarUsuarioResponse extends flash.events.EventDispatcher im
     /**
      * derived property calculators
      */
+    
 
     /**
      * isValid calculator

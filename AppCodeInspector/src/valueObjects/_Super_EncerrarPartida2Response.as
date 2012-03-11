@@ -101,6 +101,7 @@ public class _Super_EncerrarPartida2Response extends flash.events.EventDispatche
     /**
      * derived property calculators
      */
+    
 
     /**
      * isValid calculator

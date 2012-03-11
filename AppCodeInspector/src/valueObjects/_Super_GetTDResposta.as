@@ -101,6 +101,7 @@ public class _Super_GetTDResposta extends flash.events.EventDispatcher implement
     /**
      * derived property calculators
      */
+    
 
     /**
      * isValid calculator

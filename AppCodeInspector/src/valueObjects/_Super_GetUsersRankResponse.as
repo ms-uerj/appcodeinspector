@@ -101,6 +101,7 @@ public class _Super_GetUsersRankResponse extends flash.events.EventDispatcher im
     /**
      * derived property calculators
      */
+    
 
     /**
      * isValid calculator
