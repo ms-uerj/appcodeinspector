@@ -17,12 +17,12 @@ import javax.swing.JOptionPane;
  *
  * @author Enuma
  */
-public class TaxonomiasAdmin extends javax.swing.JPanel {
+public class TaxonomiasAdminPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form TaxonomiasAdmin
+     * Creates new form TaxonomiasAdminPanel
      */
-    public TaxonomiasAdmin() {
+    public TaxonomiasAdminPanel() {
         initComponents();
     }
 

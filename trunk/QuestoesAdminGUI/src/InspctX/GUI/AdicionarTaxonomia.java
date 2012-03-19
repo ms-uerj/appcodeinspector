@@ -1,6 +1,6 @@
 package InspctX.GUI;
 
-import InspctX.Componentes.TaxonomiasAdmin;
+import InspctX.Componentes.TaxonomiasAdminPanel;
 import InspectorXWebserv.*;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 
 public final class AdicionarTaxonomia extends javax.swing.JFrame 
 {
-    TaxonomiasAdmin Parentframe;
+    TaxonomiasAdminPanel Parentframe;
     TaxonomiaEntity Tax;
     List<ItemTaxonomiaEntity> itemsTaxList;
     
@@ -18,7 +18,7 @@ public final class AdicionarTaxonomia extends javax.swing.JFrame
         setLocationRelativeTo(null);
     }
     
-    public AdicionarTaxonomia(TaxonomiasAdmin parentframe) 
+    public AdicionarTaxonomia(TaxonomiasAdminPanel parentframe) 
     {
         initComponents();
         
@@ -30,7 +30,7 @@ public final class AdicionarTaxonomia extends javax.swing.JFrame
         setLocationRelativeTo(null);
     }
     
-    public AdicionarTaxonomia(TaxonomiasAdmin parentframe,TaxonomiaEntity tax) 
+    public AdicionarTaxonomia(TaxonomiasAdminPanel parentframe,TaxonomiaEntity tax) 
     {
         initComponents();
         

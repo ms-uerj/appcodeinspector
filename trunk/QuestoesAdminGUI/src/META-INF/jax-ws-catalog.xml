@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
-    <system systemId="http://localhost:4200/WebService/WebServiceMain.asmx" uri="wsdl/localhost_4200/WebService/WebServiceMain.asmx"/>
-    <system systemId="http://localhost:4200/WebService/WebServiceMain.asmx?WSDL" uri="wsdl/localhost_4200/WebService/WebServiceMain.asmx.wsdl"/>
+    <system systemId="http://inspectorx.linksysnet.com:8080/WebServiceAcess_deploy/webservice/webserviceMain.asmx" uri="wsdl/inspectorx.linksysnet.com:8080/WebServiceAcess_deploy/webservice/webserviceMain.asmx"/>
+    <system systemId="http://inspectorx.linksysnet.com:8080/WebServiceAcess_deploy/webservice/webserviceMain.asmx?WSDL" uri="wsdl/inspectorx.linksysnet.com:8080/WebServiceAcess_deploy/webservice/webserviceMain.asmx.wsdl"/>
 </catalog>

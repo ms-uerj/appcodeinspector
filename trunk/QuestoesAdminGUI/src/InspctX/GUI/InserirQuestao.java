@@ -1,6 +1,6 @@
 package InspctX.GUI;
 
-import InspctX.Componentes.QuestoesAdmin;
+import InspctX.Componentes.QuestoesAdminPanel;
 import InspectorXWebserv.ArrayOfTrechoDefeitoEntity;
 import InspectorXWebserv.QuestaoEntity;
 import InspectorXWebserv.TaxonomiaEntity;
@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 public class InserirQuestao extends javax.swing.JFrame {
 
     
-    private QuestoesAdmin ParentFrame;
+    private QuestoesAdminPanel ParentFrame;
     public TaxonomiaEntity Tax;
     public ArrayOfTrechoDefeitoEntity trechoList = new ArrayOfTrechoDefeitoEntity();
     private final int NIVEL_DIFICIL_INDEX = 2;
@@ -18,7 +18,7 @@ public class InserirQuestao extends javax.swing.JFrame {
     private final int Nivel_Medio = 2;
     private final int Nivel_Dificil = 3;
     
-    public InserirQuestao(QuestoesAdmin qAdmin, TaxonomiaEntity tax) 
+    public InserirQuestao(QuestoesAdminPanel qAdmin, TaxonomiaEntity tax) 
     {   
         Tax = tax;
         ParentFrame=qAdmin;
@@ -235,7 +235,7 @@ private void txa_QuestaoCorpoMouseReleased(java.awt.event.MouseEvent evt) {//GEN
 
         if(!txa_QuestaoCorpo.getText().trim().isEmpty()&&tbt_SelecionarDefeito.isSelected())
         {
-            if(!txa_QuestaoCorpo.getSelectedText().isEmpty())
+            if(!txa_QuestaoCorpo.getSelectedText().trim().isEmpty())
             {            
                 //Nivel fácil no banco equivale ao nível 1, no como estamos usando o modelo default e o fácil esta na primeira posição o index será 0.
                 if (cbxDificuldade.getSelectedIndex()==0) 
@@ -326,30 +326,44 @@ public static int fixModifiedIndexPosition(String s,int limitIndexPoint)
         }
         switch(c) 
         {
-            case '<': 
-                htmlBuilder.append("&lt;");
-                insertIndexFix = insertIndexFix+3; 
-                break;
-            case '>': 
-                htmlBuilder.append("&gt;");
-                insertIndexFix = insertIndexFix+3;
-                break;
-            case '&': 
-                htmlBuilder.append("&amp;");
-                insertIndexFix = insertIndexFix+4;
-                break;
-            case '"':
-                htmlBuilder.append("&quot;");
-                insertIndexFix = insertIndexFix+5;
-                break;
-            case '\n':
-                htmlBuilder.append("<br>");
-                insertIndexFix = insertIndexFix+3;
-                break;
-            case '\t':
-                htmlBuilder.append("&nbsp;&nbsp;&nbsp;");
-                insertIndexFix = insertIndexFix+17;
-                break;
+            case '<': htmlBuilder.append("&lt;");insertIndexFix = insertIndexFix+3; break;
+            case '>': htmlBuilder.append("&gt;");insertIndexFix = insertIndexFix+3; break;
+            case '&': htmlBuilder.append("&amp;");insertIndexFix = insertIndexFix+4; break;
+            case '"': htmlBuilder.append("&quot;");insertIndexFix = insertIndexFix+5; break;
+            case '\n':htmlBuilder.append("<br>");insertIndexFix = insertIndexFix+3; break;
+            case '\t':htmlBuilder.append("&nbsp;&nbsp;&nbsp;");insertIndexFix = insertIndexFix+17; break;
+                
+            case 'á': htmlBuilder.append("&aacute;"); insertIndexFix = insertIndexFix+7; break;
+            case 'é': htmlBuilder.append("&eacute;"); insertIndexFix = insertIndexFix+7; break;
+            case 'í': htmlBuilder.append("&iacute;"); insertIndexFix = insertIndexFix+7; break;
+            case 'ó': htmlBuilder.append("&oacute;"); insertIndexFix = insertIndexFix+7; break;
+            case 'ú': htmlBuilder.append("&uacute;"); insertIndexFix = insertIndexFix+7; break;
+            case 'Á': htmlBuilder.append("&Aacute;"); insertIndexFix = insertIndexFix+7; break;
+            case 'É': htmlBuilder.append("&Eacute;"); insertIndexFix = insertIndexFix+7; break;
+            case 'Í': htmlBuilder.append("&Iacute;"); insertIndexFix = insertIndexFix+7; break;
+            case 'Ó': htmlBuilder.append("&Oacute;"); insertIndexFix = insertIndexFix+7; break;
+            case 'Ú': htmlBuilder.append("&Uacute;"); insertIndexFix = insertIndexFix+7; break;
+                
+            case 'â': htmlBuilder.append("&acirc;"); insertIndexFix = insertIndexFix+6; break;
+            case 'ê': htmlBuilder.append("&ecirc;"); insertIndexFix = insertIndexFix+6; break;
+            case 'ô': htmlBuilder.append("&ocirc;"); insertIndexFix = insertIndexFix+6; break;
+            case 'Â': htmlBuilder.append("&Acirc;"); insertIndexFix = insertIndexFix+6; break;
+            case 'Ê': htmlBuilder.append("&Ecirc;"); insertIndexFix = insertIndexFix+6; break;
+            case 'Ô': htmlBuilder.append("&Ocirc;"); insertIndexFix = insertIndexFix+6; break;
+                
+            case 'ç': htmlBuilder.append("&ccedil;"); insertIndexFix = insertIndexFix+7; break;
+            case 'Ç': htmlBuilder.append("&Ccedil;"); insertIndexFix = insertIndexFix+7; break;
+                
+            case 'à': htmlBuilder.append("&agrave;"); insertIndexFix = insertIndexFix+7; break;
+            case 'À': htmlBuilder.append("&Agrave;"); insertIndexFix = insertIndexFix+7; break;
+                
+            case 'ã': htmlBuilder.append("&atilde;"); insertIndexFix = insertIndexFix+7; break;
+            case 'õ': htmlBuilder.append("&otilde;"); insertIndexFix = insertIndexFix+7; break;
+            case 'Ã': htmlBuilder.append("&Atilde;"); insertIndexFix = insertIndexFix+7; break;
+            case 'Õ': htmlBuilder.append("&Otilde;"); insertIndexFix = insertIndexFix+7; break;
+                
+            case 'ü': htmlBuilder.append("&uuml;"); insertIndexFix = insertIndexFix+5; break;
+            case 'Ü': htmlBuilder.append("&Uuml;"); insertIndexFix = insertIndexFix+5; break;
             default:
                 if( c < 128 ) 
                 {
@@ -389,6 +403,39 @@ public static String texto2Html(String s)
             case '<': htmlBuilder.append("&lt;"); break;
             case '>': htmlBuilder.append("&gt;"); break;
             case '&': htmlBuilder.append("&amp;"); break;
+                
+            case 'á': htmlBuilder.append("&aacute;"); break;
+            case 'é': htmlBuilder.append("&eacute;"); break;
+            case 'í': htmlBuilder.append("&iacute;"); break;
+            case 'ó': htmlBuilder.append("&oacute;"); break;
+            case 'ú': htmlBuilder.append("&uacute;"); break;
+            case 'Á': htmlBuilder.append("&Aacute;"); break;
+            case 'É': htmlBuilder.append("&Eacute;"); break;
+            case 'Í': htmlBuilder.append("&Iacute;"); break;
+            case 'Ó': htmlBuilder.append("&Oacute;"); break;
+            case 'Ú': htmlBuilder.append("&Uacute;"); break;
+                
+            case 'â': htmlBuilder.append("&acirc;"); break;
+            case 'ê': htmlBuilder.append("&ecirc;"); break;
+            case 'ô': htmlBuilder.append("&ocirc;"); break;
+            case 'Â': htmlBuilder.append("&Acirc;"); break;
+            case 'Ê': htmlBuilder.append("&Ecirc;"); break;
+            case 'Ô': htmlBuilder.append("&Ocirc;"); break;
+                
+            case 'ç': htmlBuilder.append("&ccedil;"); break;
+            case 'Ç': htmlBuilder.append("&Ccedil;"); break;
+                
+            case 'à': htmlBuilder.append("&agrave;"); break;
+            case 'À': htmlBuilder.append("&Agrave;"); break;
+                
+            case 'ã': htmlBuilder.append("&atilde;"); break;
+            case 'õ': htmlBuilder.append("&otilde;"); break;
+            case 'Ã': htmlBuilder.append("&Atilde;"); break;
+            case 'Õ': htmlBuilder.append("&Otilde;"); break;
+                
+            case 'ü': htmlBuilder.append("&uuml;"); break;
+            case 'Ü': htmlBuilder.append("&Uuml;"); break;
+            
             case '"': htmlBuilder.append("&quot;"); break;
             case '\n': htmlBuilder.append("<br>"); break;
             case '\t': htmlBuilder.append("&nbsp;&nbsp;&nbsp;"); break;  
