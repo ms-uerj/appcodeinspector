@@ -1213,10 +1213,10 @@
   </wsdl:binding>
   <wsdl:service name="WebServiceMain">
     <wsdl:port name="WebServiceMainSoap" binding="tns:WebServiceMainSoap">
-      <soap:address location="http://localhost:4200/WebService/WebServiceMain.asmx" />
+      <soap:address location="http://inspectorx.linksysnet.com:8080/WebServiceAcess_deploy/webservice/webserviceMain.asmx" />
     </wsdl:port>
     <wsdl:port name="WebServiceMainSoap12" binding="tns:WebServiceMainSoap12">
-      <soap12:address location="http://localhost:4200/WebService/WebServiceMain.asmx" />
+      <soap12:address location="http://inspectorx.linksysnet.com:8080/WebServiceAcess_deploy/webservice/webserviceMain.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>
