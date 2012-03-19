@@ -23,8 +23,8 @@ public class AdminMenu extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         tbp_Admin = new javax.swing.JTabbedPane();
-        pnl_TaxonomiaAdmin = new InspctX.Componentes.TaxonomiasAdmin();
-        pnl_QuestoesAdmin = new InspctX.Componentes.QuestoesAdmin();
+        pnl_TaxonomiaAdmin = new InspctX.Componentes.TaxonomiasAdminPanel();
+        pnl_QuestoesAdmin = new InspctX.Componentes.QuestoesAdminPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -105,8 +105,8 @@ public static void main(String args[]) {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel lbl_Title;
-    private InspctX.Componentes.QuestoesAdmin pnl_QuestoesAdmin;
-    private InspctX.Componentes.TaxonomiasAdmin pnl_TaxonomiaAdmin;
+    private InspctX.Componentes.QuestoesAdminPanel pnl_QuestoesAdmin;
+    private InspctX.Componentes.TaxonomiasAdminPanel pnl_TaxonomiaAdmin;
     private javax.swing.JTabbedPane tbp_Admin;
     // End of variables declaration//GEN-END:variables
 

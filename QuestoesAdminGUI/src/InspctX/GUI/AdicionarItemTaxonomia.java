@@ -1,6 +1,7 @@
 package InspctX.GUI;
 
 
+
 import InspectorXWebserv.TaxonomiaEntity;
 import javax.swing.JOptionPane;
 

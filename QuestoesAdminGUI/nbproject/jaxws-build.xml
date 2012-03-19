@@ -21,7 +21,7 @@
     <target name="wsimport-client-WebServiceMain" depends="wsimport-init">
         <mkdir dir="${build.generated.dir}/jax-wsCache/WebServiceMain"/>
         <property name="wsdl-WebServiceMain" location="xml-resources/web-service-references/WebServiceMain/wsdl/localhost_4200/WebService/WebServiceMain.asmx.wsdl"/>
-        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/WebServiceMain" destdir="${build.generated.dir}/jax-wsCache/WebServiceMain" wsdl="${wsdl-WebServiceMain}" catalog="catalog.xml" extension="true" verbose="true" wsdlLocation="http://localhost:4200/WebService/WebServiceMain.asmx?WSDL" xendorsed="true" package="InspectorXWebserv">
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/WebServiceMain" destdir="${build.generated.dir}/jax-wsCache/WebServiceMain" wsdl="${wsdl-WebServiceMain}" catalog="catalog.xml" extension="true" verbose="true" wsdlLocation="http://inspectorx.linksysnet.com:8080/WebServiceAcess_deploy/webservice/webserviceMain.asmx?WSDL" xendorsed="true" package="InspectorXWebserv">
             <depends file="${wsdl-WebServiceMain}"/>
             <produces dir="${build.generated.dir}/jax-wsCache/WebServiceMain"/>
         </wsimport>

@@ -18,7 +18,7 @@
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>wsdlLocation</wsimport-option-name>
-          <wsimport-option-value>http://localhost:4200/WebService/WebServiceMain.asmx?WSDL</wsimport-option-value>
+          <wsimport-option-value>http://inspectorx.linksysnet.com:8080/WebServiceAcess_deploy/webservice/webserviceMain.asmx?WSDL</wsimport-option-value>
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>xendorsed</wsimport-option-name>

@@ -77,7 +77,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
       <SubComponents>
-        <Component class="InspctX.Componentes.TaxonomiasAdmin" name="pnl_TaxonomiaAdmin">
+        <Component class="InspctX.Componentes.TaxonomiasAdminPanel" name="pnl_TaxonomiaAdmin">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
               <JTabbedPaneConstraints tabName="Taxonomias">
@@ -86,7 +86,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="InspctX.Componentes.QuestoesAdmin" name="pnl_QuestoesAdmin">
+        <Component class="InspctX.Componentes.QuestoesAdminPanel" name="pnl_QuestoesAdmin">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
               <JTabbedPaneConstraints tabName="Quest&#xf5;es">

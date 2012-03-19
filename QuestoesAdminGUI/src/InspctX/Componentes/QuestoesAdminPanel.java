@@ -14,10 +14,10 @@ import javax.swing.JOptionPane;
  *
  * @author Enuma
  */
-public final class QuestoesAdmin extends javax.swing.JPanel 
+public final class QuestoesAdminPanel extends javax.swing.JPanel 
 {
 
-    public QuestoesAdmin() {
+    public QuestoesAdminPanel() {
         initComponents();
     }
 
@@ -152,7 +152,7 @@ public final class QuestoesAdmin extends javax.swing.JPanel
                         .addComponent(lbl_QuestoesLST)
                         .addGap(6, 6, 6)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 8, Short.MAX_VALUE))
+                .addGap(0, 7, Short.MAX_VALUE))
             .addGroup(pnl_QuestoesOptionLayout.createSequentialGroup()
                 .addGroup(pnl_QuestoesOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnl_QuestoesOptionLayout.createSequentialGroup()
