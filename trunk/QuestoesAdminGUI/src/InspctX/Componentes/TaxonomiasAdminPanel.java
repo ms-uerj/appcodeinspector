@@ -158,7 +158,7 @@ public class TaxonomiasAdminPanel extends javax.swing.JPanel {
     private void btn_refreshTaxonomiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_refreshTaxonomiaActionPerformed
 
         setTaxonomiaComboBox();
-        lst_itemsTaxonomia.setListData(new Object[0]);
+        setItemTaxonomiaList();
         
     }//GEN-LAST:event_btn_refreshTaxonomiaActionPerformed
 
