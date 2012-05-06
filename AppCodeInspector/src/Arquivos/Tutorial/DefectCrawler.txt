@@ -1,0 +1,4 @@
+•MODIFICAR:
+	1. O jogo consiste em apresentar trechos de código ou requisitos, que pode ter mais de um defeito em cada.
+	2. O usuário tem que selecionar o trecho de texto e indicar qual o tipo do defeito em todos os defeitos que acha que existe.
+	3. Quando o usuário avançar para uma próxima pergunta, não poderá voltar para responder as perguntas anteriores.
