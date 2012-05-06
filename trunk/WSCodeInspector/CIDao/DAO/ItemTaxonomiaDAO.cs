@@ -32,6 +32,20 @@ namespace CIDao.DAO
             return itemTaxlist;
         }
 
+        public ItemTaxonomiaEntity GetItemsTaxonomia(int taxonomia_id)
+        {
+            ItemTaxonomia it = db.ItemTaxonomias.Single(itemTax => itemTax.IT_ID == taxonomia_id);
+            ItemTaxonomiaEntity itemTaxEntity = new ItemTaxonomiaEntity();
+            if (it!=null)
+            {
+                itemTaxEntity.ID = it.IT_ID;
+                itemTaxEntity.Nome = it.IT_Nome;
+                itemTaxEntity.Descricao = it.IT_Descricao;
+                itemTaxEntity.T_ID = it.T_ID;
+            }
+            return itemTaxEntity;
+        }
+
         public bool DeletarItemTaxonomia(int itemTax_id)
         {
             try

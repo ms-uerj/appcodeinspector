@@ -153,7 +153,7 @@ namespace CIDao.DAO
                     return false;
 
             }
-            catch (InvalidOperationException ex)
+            catch (Exception)
             {
                 return false;
             }

@@ -1,128 +1,168 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 13.5, 8.875" name="InspectorXDB">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 21.875, 12.875" name="InspectorXDB">
   <DataContextMoniker Name="/InspectorXDBDataContext" />
   <nestedChildShapes>
-    <classShape Id="d849cedd-7129-4fde-aa46-a28b8b0eeb16" absoluteBounds="5.5, 6.875, 2, 1.7708968098958327">
-      <DataClassMoniker Name="/InspectorXDBDataContext/Usuario" />
-      <nestedChildShapes>
-        <elementListCompartment Id="4c567282-36c0-4f09-aa85-9485b3e35e7d" absoluteBounds="5.5150000000000006, 7.335, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="c63b0603-9d43-443f-8668-4a9a7c3976b2" absoluteBounds="11, 6.75, 2, 1.7708968098958335">
+    <classShape Id="b2e95730-9b31-4081-92f4-2ecab7358f31" absoluteBounds="15.875, 10.875, 2, 1.7708968098958327">
       <DataClassMoniker Name="/InspectorXDBDataContext/Historico_Questao" />
       <nestedChildShapes>
-        <elementListCompartment Id="5729926f-b3a4-41ad-b4c3-385c96db5a13" absoluteBounds="11.015, 7.21, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="4d88bb18-1517-4a9a-8e11-4860aa92cc3c" absoluteBounds="15.89, 11.335, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="7e76cb5c-60bb-43c3-9dcc-a7a17d473370" absoluteBounds="4.25, 2, 2, 1.5785953776041666">
+    <classShape Id="892bb942-018b-412c-8c4d-e1c1a4099525" absoluteBounds="10.75, 11.125, 2, 1.3862939453124987">
+      <DataClassMoniker Name="/InspectorXDBDataContext/Usuario_Partida" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ec8f9402-ce67-42cb-a873-e60387ef0188" absoluteBounds="10.765, 11.585, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="6814b570-04b7-4a85-b3da-0084c5de15d6" absoluteBounds="15.875, 4.375, 2, 1.5785953776041666">
       <DataClassMoniker Name="/InspectorXDBDataContext/ItemTaxonomia" />
       <nestedChildShapes>
-        <elementListCompartment Id="1fd08ec1-2254-46d0-b6e2-753d24e75adb" absoluteBounds="4.2650000000000006, 2.46, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="05942d58-b8b4-4195-b413-700cf3b3a492" absoluteBounds="15.89, 4.8350000000000009, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="1137819b-f71e-43f1-a98b-b4e640cdd851" absoluteBounds="8.25, 6.875, 2, 1.7708968098958327">
+    <classShape Id="4bfbb67a-2016-47de-a8ab-0e07dfa41195" absoluteBounds="13.125, 10.5, 2, 1.7708968098958344">
       <DataClassMoniker Name="/InspectorXDBDataContext/Partida" />
       <nestedChildShapes>
-        <elementListCompartment Id="50fc2d62-32d2-4e36-89e5-bff9e67f116b" absoluteBounds="8.265, 7.335, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="44a76d48-a0d4-4c3b-870c-06288ffc2f55" absoluteBounds="13.14, 10.96, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="2a44c094-92a2-4a0e-8eca-177bb90f9f6e" absoluteBounds="11.25, 1.875, 2, 1.9631982421875003">
+    <classShape Id="a0fd7575-3dee-4abd-a71b-1ad4299f3aec" absoluteBounds="18.5, 10.375, 2, 1.9631982421875005">
       <DataClassMoniker Name="/InspectorXDBDataContext/Questao" />
       <nestedChildShapes>
-        <elementListCompartment Id="f6741749-eea4-4e63-a512-c0a943a81c57" absoluteBounds="11.265, 2.335, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="42382d4c-6f30-4804-8c2d-c38f805147f2" absoluteBounds="18.515, 10.835, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="842bf6f4-1b3e-460c-94ee-6788925597f6" absoluteBounds="9, 4.25, 2, 1.5785953776041666">
+    <classShape Id="f4b9e5e0-3ab0-4eef-adcb-d5db8f574218" absoluteBounds="19.625, 8, 2, 1.5785953776041666">
       <DataClassMoniker Name="/InspectorXDBDataContext/Questao_TrechoDefeito" />
       <nestedChildShapes>
-        <elementListCompartment Id="6cefdc22-dd44-4bb1-b1c1-2d0efdce5772" absoluteBounds="9.015, 4.71, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="ad0f0860-e1d0-4931-9144-d80e9324ddc6" absoluteBounds="19.64, 8.46, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="3ac33549-b5ed-4314-82ae-56395157d6d8" absoluteBounds="0.75, 2.25, 2, 1.1939925130208335">
+    <classShape Id="6a2f8e0b-ec18-4783-abd8-1476255c53bc" absoluteBounds="13, 4.375, 2, 1.1939925130208344">
       <DataClassMoniker Name="/InspectorXDBDataContext/Taxonomia" />
       <nestedChildShapes>
-        <elementListCompartment Id="5b6fe20c-fee8-4d0d-8540-7a96478f4398" absoluteBounds="0.765, 2.71, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="c37f5fa6-d006-4b78-90f7-e30013edf5cb" absoluteBounds="13.015, 4.8350000000000009, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="1196c984-d859-4904-900d-f75d8b7b7fed" absoluteBounds="0.5, 5.875, 2, 1.3862939453125005">
+    <classShape Id="ee90be6c-b0f8-42e9-8467-ba9a032ed2cc" absoluteBounds="7.875, 4.5, 2, 1.3862939453125023">
       <DataClassMoniker Name="/InspectorXDBDataContext/TipoArtefato" />
       <nestedChildShapes>
-        <elementListCompartment Id="1c8a8b08-8631-43c9-847d-f562062fe43a" absoluteBounds="0.515, 6.335, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="6755a1f0-3e6d-4aac-98d8-48567095704f" absoluteBounds="7.8900000000000006, 4.9600000000000009, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="9f9076b4-4d24-4a2a-a4bb-bd425ea3549b" absoluteBounds="1.5, 4.125, 2, 1.3862939453125003">
+    <classShape Id="3ab8be41-2394-402c-8ed5-0e04c55e2830" absoluteBounds="10.5, 5.75, 2, 1.3862939453124987">
       <DataClassMoniker Name="/InspectorXDBDataContext/TipoArtefato_Taxonomia" />
       <nestedChildShapes>
-        <elementListCompartment Id="41387cbc-73bf-49b3-9de9-3a9d29cb57d5" absoluteBounds="1.5150000000000001, 4.585, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="4a74d883-38b7-43e6-9afa-ba0a6e235714" absoluteBounds="10.515, 6.2100000000000009, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="ef9fad71-7bf7-47c0-ae03-f5d214eca03f" absoluteBounds="6.75, 2, 2, 1.5785953776041666">
+    <classShape Id="51bfb2f2-5aad-47b3-b14e-2932e87e5831" absoluteBounds="15.625, 7.5, 2.25, 1.7708968098958344">
+      <DataClassMoniker Name="/InspectorXDBDataContext/Trecho_Resposta" />
+      <nestedChildShapes>
+        <elementListCompartment Id="561bf6ff-52d7-4be6-9939-d03cdbfc09db" absoluteBounds="15.64, 7.96, 2.2199999999999998, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="8e8babfa-8e39-4701-9bc2-4a1dceb0cb2f" absoluteBounds="18.875, 4.375, 2, 1.5785953776041664">
       <DataClassMoniker Name="/InspectorXDBDataContext/TrechoDefeito" />
       <nestedChildShapes>
-        <elementListCompartment Id="0f9d7803-0a53-4652-852f-df7251e8a4b5" absoluteBounds="6.765, 2.46, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="ce8f06ec-b9cd-4852-9f56-9c9642f3407e" absoluteBounds="18.89, 4.835, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(10.25 : 7.69794840494792); (11 : 7.69794840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <classShape Id="504e52fc-a214-4d8a-ae5d-d45cfd9470e8" absoluteBounds="8.25, 10.625, 2, 1.9631982421875005">
+      <DataClassMoniker Name="/InspectorXDBDataContext/Usuario" />
+      <nestedChildShapes>
+        <elementListCompartment Id="7204ae6e-3fb0-41d7-b1f1-38741426b9f7" absoluteBounds="8.265, 11.085, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(15.125 : 11.5729484049479); (15.875 : 11.5729484049479)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/InspectorXDBDataContext/Partida/Partida_Historico_Questao" />
       <nodes>
-        <classShapeMoniker Id="1137819b-f71e-43f1-a98b-b4e640cdd851" />
-        <classShapeMoniker Id="c63b0603-9d43-443f-8668-4a9a7c3976b2" />
+        <classShapeMoniker Id="4bfbb67a-2016-47de-a8ab-0e07dfa41195" />
+        <classShapeMoniker Id="b2e95730-9b31-4081-92f4-2ecab7358f31" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(7.5 : 7.76044840494792); (8.25 : 7.76044840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/InspectorXDBDataContext/Usuario/Usuario_Partida" />
+    <associationConnector edgePoints="[(13.125 : 11.6979484049479); (12.75 : 11.6979484049479)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/InspectorXDBDataContext/Partida/Partida_Usuario_Partida" />
       <nodes>
-        <classShapeMoniker Id="d849cedd-7129-4fde-aa46-a28b8b0eeb16" />
-        <classShapeMoniker Id="1137819b-f71e-43f1-a98b-b4e640cdd851" />
+        <classShapeMoniker Id="4bfbb67a-2016-47de-a8ab-0e07dfa41195" />
+        <classShapeMoniker Id="892bb942-018b-412c-8c4d-e1c1a4099525" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(12.1562525 : 3.8381982421875); (12.1562525 : 6.75)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(18.5 : 11.6065991210938); (17.875 : 11.6065991210938)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/InspectorXDBDataContext/Questao/Questao_Historico_Questao" />
       <nodes>
-        <classShapeMoniker Id="2a44c094-92a2-4a0e-8eca-177bb90f9f6e" />
-        <classShapeMoniker Id="c63b0603-9d43-443f-8668-4a9a7c3976b2" />
+        <classShapeMoniker Id="a0fd7575-3dee-4abd-a71b-1ad4299f3aec" />
+        <classShapeMoniker Id="b2e95730-9b31-4081-92f4-2ecab7358f31" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(11.25 : 3.8381982421875); (11 : 4.25)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(20.0625 : 10.375); (20.0625 : 9.57859537760417)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/InspectorXDBDataContext/Questao/Questao_Questao_TrechoDefeito" />
       <nodes>
-        <classShapeMoniker Id="2a44c094-92a2-4a0e-8eca-177bb90f9f6e" />
-        <classShapeMoniker Id="842bf6f4-1b3e-460c-94ee-6788925597f6" />
+        <classShapeMoniker Id="a0fd7575-3dee-4abd-a71b-1ad4299f3aec" />
+        <classShapeMoniker Id="f4b9e5e0-3ab0-4eef-adcb-d5db8f574218" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 2.84699625651042); (4.25 : 2.84699625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(15 : 5.15981635230854); (15.875 : 5.15981635230854)]" fixedFrom="Algorithm" fixedTo="Caller">
       <AssociationMoniker Name="/InspectorXDBDataContext/Taxonomia/Taxonomia_ItemTaxonomia" />
       <nodes>
-        <classShapeMoniker Id="3ac33549-b5ed-4314-82ae-56395157d6d8" />
-        <classShapeMoniker Id="7e76cb5c-60bb-43c3-9dcc-a7a17d473370" />
+        <classShapeMoniker Id="6a2f8e0b-ec18-4783-abd8-1476255c53bc" />
+        <classShapeMoniker Id="6814b570-04b7-4a85-b3da-0084c5de15d6" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.125 : 3.44399251302083); (2.125 : 4.125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(13.5166521079326 : 5.56899251302083); (13.5166521079326 : 6.5024331640954); (12.5 : 6.5024331640954)]" fixedFrom="Caller" fixedTo="Caller">
       <AssociationMoniker Name="/InspectorXDBDataContext/Taxonomia/Taxonomia_TipoArtefato_Taxonomia" />
       <nodes>
-        <classShapeMoniker Id="3ac33549-b5ed-4314-82ae-56395157d6d8" />
-        <classShapeMoniker Id="9f9076b4-4d24-4a2a-a4bb-bd425ea3549b" />
+        <classShapeMoniker Id="6a2f8e0b-ec18-4783-abd8-1476255c53bc" />
+        <classShapeMoniker Id="3ab8be41-2394-402c-8ed5-0e04c55e2830" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2 : 5.875); (2 : 5.5112939453125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(9.37660549749815 : 5.8862939453125); (9.37660549749815 : 6.5112944453125); (10.5 : 6.5112944453125)]" fixedFrom="Caller" fixedTo="Algorithm">
       <AssociationMoniker Name="/InspectorXDBDataContext/TipoArtefato/TipoArtefato_TipoArtefato_Taxonomia" />
       <nodes>
-        <classShapeMoniker Id="1196c984-d859-4904-900d-f75d8b7b7fed" />
-        <classShapeMoniker Id="9f9076b4-4d24-4a2a-a4bb-bd425ea3549b" />
+        <classShapeMoniker Id="ee90be6c-b0f8-42e9-8467-ba9a032ed2cc" />
+        <classShapeMoniker Id="3ab8be41-2394-402c-8ed5-0e04c55e2830" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(8.75 : 3.57859537760417); (9 : 4.25)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(16.875 : 5.95359537760417); (16.875 : 7.5)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/InspectorXDBDataContext/ItemTaxonomia/ItemTaxonomia_Trecho_Resposta" />
+      <nodes>
+        <classShapeMoniker Id="6814b570-04b7-4a85-b3da-0084c5de15d6" />
+        <classShapeMoniker Id="51bfb2f2-5aad-47b3-b14e-2932e87e5831" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(19.249998 : 10.375); (19.249998 : 8.54751921105269); (17.875 : 8.54751921105269)]" manuallyRouted="true" fixedFrom="Algorithm" fixedTo="Caller">
+      <AssociationMoniker Name="/InspectorXDBDataContext/Questao/Questao_Trecho_Resposta" />
+      <nodes>
+        <classShapeMoniker Id="a0fd7575-3dee-4abd-a71b-1ad4299f3aec" />
+        <classShapeMoniker Id="51bfb2f2-5aad-47b3-b14e-2932e87e5831" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(20.0308610087649 : 5.95359537760417); (20.0308610087649 : 8)]" fixedFrom="Algorithm" fixedTo="Caller">
       <AssociationMoniker Name="/InspectorXDBDataContext/TrechoDefeito/TrechoDefeito_Questao_TrechoDefeito" />
       <nodes>
-        <classShapeMoniker Id="ef9fad71-7bf7-47c0-ae03-f5d214eca03f" />
-        <classShapeMoniker Id="842bf6f4-1b3e-460c-94ee-6788925597f6" />
+        <classShapeMoniker Id="8e8babfa-8e39-4701-9bc2-4a1dceb0cb2f" />
+        <classShapeMoniker Id="f4b9e5e0-3ab0-4eef-adcb-d5db8f574218" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(6.25 : 2.78929768880208); (6.75 : 2.78929768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(17.875 : 5.58333168533001); (18.25 : 5.58333168533001); (18.25 : 5.58680943423015); (18.875 : 5.58680943423015)]" fixedFrom="Caller" fixedTo="Caller">
       <AssociationMoniker Name="/InspectorXDBDataContext/ItemTaxonomia/ItemTaxonomia_TrechoDefeito" />
       <nodes>
-        <classShapeMoniker Id="7e76cb5c-60bb-43c3-9dcc-a7a17d473370" />
-        <classShapeMoniker Id="ef9fad71-7bf7-47c0-ae03-f5d214eca03f" />
+        <classShapeMoniker Id="6814b570-04b7-4a85-b3da-0084c5de15d6" />
+        <classShapeMoniker Id="8e8babfa-8e39-4701-9bc2-4a1dceb0cb2f" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(10.25 : 11.8181469726562); (10.75 : 11.8181469726562)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/InspectorXDBDataContext/Usuario/Usuario_Usuario_Partida" />
+      <nodes>
+        <classShapeMoniker Id="504e52fc-a214-4d8a-ae5d-d45cfd9470e8" />
+        <classShapeMoniker Id="892bb942-018b-412c-8c4d-e1c1a4099525" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(9.39585857337985 : 10.625); (9.39585857337985 : 8.63702535954806); (15.625 : 8.63702535954806)]" fixedFrom="Caller" fixedTo="Caller">
+      <AssociationMoniker Name="/InspectorXDBDataContext/Usuario/Usuario_Trecho_Resposta" />
+      <nodes>
+        <classShapeMoniker Id="504e52fc-a214-4d8a-ae5d-d45cfd9470e8" />
+        <classShapeMoniker Id="51bfb2f2-5aad-47b3-b14e-2932e87e5831" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>

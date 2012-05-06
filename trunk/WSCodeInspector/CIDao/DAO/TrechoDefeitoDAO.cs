@@ -12,13 +12,12 @@ namespace CIDao.DAO
 
         public List<TrechoDefeitoEntity> GetTrechosDefeitoList(int questao_id)
         {
-            var trechoDefeitos = from td in db.TrechoDefeitos
+            var trechoDefeitos = (from td in db.TrechoDefeitos
                                  from q_td in db.Questao_TrechoDefeitos
                                  from q in db.Questaos
                                  where td.D_ID == q_td.TD_id
-                                     & q.Q_ID == q_td.Q_id
-                                     & q.Q_ID == questao_id
-                                 select td;
+                                     & q_td.Q_id == questao_id
+                                 select td).Distinct();
 
             List<TrechoDefeitoEntity> tdeList = new List<TrechoDefeitoEntity>();
 
@@ -27,8 +26,8 @@ namespace CIDao.DAO
                 TrechoDefeitoEntity tde = new TrechoDefeitoEntity();
                 tde.IT_ID = td.IT_ID;
                 tde.Conteudo = td.D_Conteudo;
-                tde.D_ID = tde.D_ID;
-                tde.Explicacao = tde.Explicacao;
+                tde.D_ID = td.D_ID;
+                tde.Explicacao = td.D_Explicacao;
 
                 tdeList.Add(tde);
             }
