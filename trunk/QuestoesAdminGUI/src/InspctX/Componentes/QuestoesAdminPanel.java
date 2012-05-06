@@ -1,19 +1,16 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package InspctX.Componentes;
 
+import InspctX.Domain.Questao;
+import InspctX.Domain.Taxonomia;
+import InspctX.Domain.TrechoDefeito;
 import InspctX.GUI.InserirQuestao;
 import InspectorXWebserv.*;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Enuma
- */
+
 public final class QuestoesAdminPanel extends javax.swing.JPanel 
 {
 
@@ -64,7 +61,6 @@ public final class QuestoesAdminPanel extends javax.swing.JPanel
 
         btn_RemoverQuestao.setText("Remover");
         btn_RemoverQuestao.setToolTipText("Remova a questão selecionada.");
-        btn_RemoverQuestao.setEnabled(false);
         btn_RemoverQuestao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_RemoverQuestaoActionPerformed(evt);
@@ -172,8 +168,8 @@ public final class QuestoesAdminPanel extends javax.swing.JPanel
 
     private void btn_InserirQuestaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_InserirQuestaoActionPerformed
 
-        if ((TaxonomiaEntity) cbx_Taxonomia.getSelectedItem() != null) {
-            InserirQuestao insQuest = new InserirQuestao(this,(TaxonomiaEntity) cbx_Taxonomia.getSelectedItem());
+        if ((Taxonomia)cbx_Taxonomia.getSelectedItem() != null) {
+            InserirQuestao insQuest = new InserirQuestao(this,(Taxonomia) cbx_Taxonomia.getSelectedItem());
             insQuest.setVisible(true);
         } else {
             JOptionPane.showMessageDialog(this, "Por favor selecione uma taxonomia.\n ou cadatre uma nova!");
@@ -182,7 +178,20 @@ public final class QuestoesAdminPanel extends javax.swing.JPanel
     }//GEN-LAST:event_btn_InserirQuestaoActionPerformed
 
     private void btn_RemoverQuestaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_RemoverQuestaoActionPerformed
-        // TODO add your handling code here:
+        try {
+            if (lst_Questoes.getSelectedValue() != null) {
+                
+                int qid = ((Questao) lst_Questoes.getSelectedValue()).getQID();
+                
+                if (deletarQuestao(qid)) {
+                    JOptionPane.showMessageDialog(this, "Questão removida com sucesso!");
+		    setTrechoDefeitoList();
+		    setQuestaoList();
+                }
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
     }//GEN-LAST:event_btn_RemoverQuestaoActionPerformed
 
     private void btn_ModificarQuestaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ModificarQuestaoActionPerformed
@@ -190,14 +199,13 @@ public final class QuestoesAdminPanel extends javax.swing.JPanel
     }//GEN-LAST:event_btn_ModificarQuestaoActionPerformed
 
     private void lst_QuestoesValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lst_QuestoesValueChanged
-      
         if(!evt.getValueIsAdjusting())
-            setTrechoDefeitoList();
-        
+            setTrechoDefeitoList();    
     }//GEN-LAST:event_lst_QuestoesValueChanged
 
     private void cbx_TaxonomiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbx_TaxonomiaActionPerformed
         setQuestaoList();
+	lst_TrechoDefeitos.setListData(new Object[0]);
     }//GEN-LAST:event_cbx_TaxonomiaActionPerformed
 
     private void setTrechoDefeitoList()
@@ -206,13 +214,20 @@ public final class QuestoesAdminPanel extends javax.swing.JPanel
         {
             if(lst_Questoes.getSelectedValue()!=null)
             {
-                QuestaoEntity questaoEntity = (QuestaoEntity)lst_Questoes.getSelectedValue();
-                ArrayOfTrechoDefeitoEntity tdEntityArray = getTrechosDefeito(questaoEntity.getQID());
+                Questao questao = (Questao)lst_Questoes.getSelectedValue();
+                ArrayOfTrechoDefeitoEntity tdEntityArray = getTrechosDefeito(questao.qEntity.getQID());
 
-                List<TrechoDefeitoEntity> tdList = tdEntityArray.getTrechoDefeitoEntity();
+                List<TrechoDefeitoEntity> tdListEntity = tdEntityArray.getTrechoDefeitoEntity();
                 lst_TrechoDefeitos.setListData(new Object[0]);
-                lst_TrechoDefeitos.setCellRenderer(new CustomLstCellRenderer());
-                if(!tdList.isEmpty())
+                
+                List<TrechoDefeito> tdList = new ArrayList<>();
+                
+                for(TrechoDefeitoEntity tde : tdListEntity)
+                {
+                    tdList.add(new TrechoDefeito(tde));
+                }
+                
+                if(!tdListEntity.isEmpty())
                     lst_TrechoDefeitos.setListData(tdList.toArray());
             }
         } 
@@ -236,9 +251,8 @@ public final class QuestoesAdminPanel extends javax.swing.JPanel
 
             for(TaxonomiaEntity txe : taxList)
             {
-                cbx_Taxonomia.addItem(txe);
+                cbx_Taxonomia.addItem(new Taxonomia(txe));
             }
-
         }
         catch(Exception ex)
         {
@@ -250,12 +264,22 @@ public final class QuestoesAdminPanel extends javax.swing.JPanel
     {
         try 
         {
-            TaxonomiaEntity tax = (TaxonomiaEntity)cbx_Taxonomia.getSelectedItem();
+            Taxonomia tax = (Taxonomia)cbx_Taxonomia.getSelectedItem();
             if(tax!=null)
             {
-                ArrayOfQuestaoEntity questaoEntity = getQuestoesTaxList(tax.getID());
-                List<QuestaoEntity> questaoList = questaoEntity.getQuestaoEntity();
+                ArrayOfQuestaoEntity questaoEntity = getQuestoesTaxList(tax.taxEntity.getID());
+                
+                List<QuestaoEntity> questaoListEntity = questaoEntity.getQuestaoEntity();
+                
                 lst_Questoes.setListData(new Object[0]);
+                lst_Questoes.setCellRenderer(new CustomLstCellRenderer());
+                List<Questao> questaoList = new ArrayList<Questao>();
+                        
+                for(QuestaoEntity qe : questaoListEntity)
+                {
+                    questaoList.add(new Questao(qe));
+                }
+                
                 if(!questaoList.isEmpty())
                     lst_Questoes.setListData(questaoList.toArray());
             }
@@ -301,4 +325,11 @@ public final class QuestoesAdminPanel extends javax.swing.JPanel
         InspectorXWebserv.WebServiceMainSoap port = service.getWebServiceMainSoap12();
         return port.getQuestoesTaxList(taxId);
     }
+
+    private static boolean deletarQuestao(int questaoId) {
+        InspectorXWebserv.WebServiceMain service = new InspectorXWebserv.WebServiceMain();
+        InspectorXWebserv.WebServiceMainSoap port = service.getWebServiceMainSoap();
+        return port.deletarQuestao(questaoId);
+    }
+    
 }

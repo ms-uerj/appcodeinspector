@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package InspctX.Componentes;
 
 import java.awt.Color;
@@ -49,6 +45,7 @@ public class CustomLstCellRenderer implements ListCellRenderer{
             renderer.setIcon(theIcon);
         }
         renderer.setToolTipText(theToolTip);
+        
         //renderer.setFont(theFont);
         return renderer;
    }

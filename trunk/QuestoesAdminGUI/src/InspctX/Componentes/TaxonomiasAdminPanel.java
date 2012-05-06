@@ -4,11 +4,14 @@
  */
 package InspctX.Componentes;
 
+import InspctX.Domain.ItemTaxonomia;
+import InspctX.Domain.Taxonomia;
 import InspctX.GUI.AdicionarTaxonomia;
 import InspectorXWebserv.ArrayOfItemTaxonomiaEntity;
 import InspectorXWebserv.ArrayOfTaxonomiaEntity;
 import InspectorXWebserv.ItemTaxonomiaEntity;
 import InspectorXWebserv.TaxonomiaEntity;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -67,7 +70,7 @@ public class TaxonomiasAdminPanel extends javax.swing.JPanel {
             }
         });
 
-        btnDeletarTaxonomia.setText("Deletar");
+        btnDeletarTaxonomia.setText("Remover");
         btnDeletarTaxonomia.setToolTipText("Deletar taxonomia selecionada");
         btnDeletarTaxonomia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -75,7 +78,7 @@ public class TaxonomiasAdminPanel extends javax.swing.JPanel {
             }
         });
 
-        btn_editarTaxonomia.setText("Editar");
+        btn_editarTaxonomia.setText("Modificar");
         btn_editarTaxonomia.setToolTipText("Editar taxonomia selecionada");
         btn_editarTaxonomia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -101,10 +104,10 @@ public class TaxonomiasAdminPanel extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnInserirTaxonomia)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnDeletarTaxonomia)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_editarTaxonomia)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnDeletarTaxonomia)
+                .addGap(29, 29, 29))
         );
 
         jScrollPane2.setViewportView(lst_itemsTaxonomia);
@@ -125,7 +128,7 @@ public class TaxonomiasAdminPanel extends javax.swing.JPanel {
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
                             .addComponent(jLabel1)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(9, 9, 9)
@@ -150,7 +153,9 @@ public class TaxonomiasAdminPanel extends javax.swing.JPanel {
                         .addComponent(jLabel1)
                         .addGap(1, 1, 1)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE))
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -176,8 +181,8 @@ public class TaxonomiasAdminPanel extends javax.swing.JPanel {
 
     private void btnDeletarTaxonomiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarTaxonomiaActionPerformed
         try {
-            TaxonomiaEntity tax = (TaxonomiaEntity) cbx_Taxonomia.getSelectedItem();
-            ArrayOfItemTaxonomiaEntity itemTaxEntity = pegarItemsTaxonomia(tax.getID());
+            Taxonomia tax = (Taxonomia) cbx_Taxonomia.getSelectedItem();
+            ArrayOfItemTaxonomiaEntity itemTaxEntity = pegarItemsTaxonomia(tax.taxEntity.getID());
 
             List<ItemTaxonomiaEntity> itemTaxList = itemTaxEntity.getItemTaxonomiaEntity();
 
@@ -187,7 +192,7 @@ public class TaxonomiasAdminPanel extends javax.swing.JPanel {
                 }
             }
 
-            deletarTaxonomias(tax.getID());
+            deletarTaxonomias(tax.taxEntity.getID());
             
             setTaxonomiaComboBox();
         } catch (Exception ex) {
@@ -198,7 +203,7 @@ public class TaxonomiasAdminPanel extends javax.swing.JPanel {
 
     private void btn_editarTaxonomiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editarTaxonomiaActionPerformed
 
-        TaxonomiaEntity tax = (TaxonomiaEntity) cbx_Taxonomia.getSelectedItem();
+        Taxonomia tax = (Taxonomia)cbx_Taxonomia.getSelectedItem();
 
         AdicionarTaxonomia addTax = new AdicionarTaxonomia(this, tax);
         addTax.setVisible(true);
@@ -218,7 +223,7 @@ public class TaxonomiasAdminPanel extends javax.swing.JPanel {
 
             for(TaxonomiaEntity txe : taxList)
             {
-                cbx_Taxonomia.addItem(txe);
+                cbx_Taxonomia.addItem(new Taxonomia(txe));
             }
 
         }
@@ -232,15 +237,23 @@ public class TaxonomiasAdminPanel extends javax.swing.JPanel {
     {
         try 
         {
-            TaxonomiaEntity tax = (TaxonomiaEntity)cbx_Taxonomia.getSelectedItem();
+            Taxonomia tax = (Taxonomia)cbx_Taxonomia.getSelectedItem();
             lst_itemsTaxonomia.setListData(new Object[0]);
             if(tax!=null)
             {
-                ArrayOfItemTaxonomiaEntity itemTaxEntityArray = pegarItemsTaxonomia(tax.getID());
-                List<ItemTaxonomiaEntity> itemTaxList = itemTaxEntityArray.getItemTaxonomiaEntity();
-                if(!itemTaxList.isEmpty())
-                    lst_itemsTaxonomia.setListData(itemTaxList.toArray());
-
+                ArrayOfItemTaxonomiaEntity itemTaxEntityArray = pegarItemsTaxonomia(tax.taxEntity.getID());
+                List<ItemTaxonomiaEntity> itemsTaxEntityList = itemTaxEntityArray.getItemTaxonomiaEntity();
+                
+                List<ItemTaxonomia> itemsTaxList = new ArrayList<ItemTaxonomia>();
+                
+                for(ItemTaxonomiaEntity ite : itemsTaxEntityList)
+                {
+                    itemsTaxList.add(new ItemTaxonomia(ite));
+                }
+                
+                        
+                if(!itemsTaxList.isEmpty())
+                    lst_itemsTaxonomia.setListData(itemsTaxList.toArray());
             }
         } 
         catch (Exception ex) 
