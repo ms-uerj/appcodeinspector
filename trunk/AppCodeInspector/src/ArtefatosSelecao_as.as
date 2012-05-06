@@ -1,20 +1,27 @@
-import valueObjects.TipoArtefatoEntity;
-import mx.rpc.events.ResultEvent;
-import flash.events.MouseEvent;
-import mx.controls.Alert;
-import mx.collections.ArrayCollection;
+import Domain.TipoArtefato;
 
+import flash.events.MouseEvent;
+
+import mx.collections.ArrayCollection;
+import mx.controls.Alert;
+import mx.rpc.events.ResultEvent;
+
+import valueObjects.TipoArtefatoEntity;
+
+public var tiposArtefato:ArrayCollection;
 
 protected function btn_ConfirmarSelArtefato_clickHandler(event:MouseEvent):void
 {
 	try
 	{
-		if(cbx_TipoQuestao.selectedItem!=null)
+		if(ddl_TipoArtefatoSelecao.selectedItem!=null)
 		{
 			var t:TipoArtefatoEntity;
-			t = cbx_TipoQuestao.selectedItem as TipoArtefatoEntity;
-			tipoArtefato_Id=t.TA_ID;
+			t = ddl_TipoArtefatoSelecao.selectedItem as TipoArtefato;
+			TipoArtefato_Id=t.TA_ID;
 			this.currentState = "Dificuldade";
+			
+			ddl_TipoArtefatoSelecao.selectedIndex=-1;
 		}
 		else
 		{
@@ -30,11 +37,9 @@ protected function btn_ConfirmarSelArtefato_clickHandler(event:MouseEvent):void
 
 protected function GetTiposArtefato_resultHandler(e:ResultEvent):void
 {
-	tiposArtefato = ArrayCollection(e.result);
-	cbx_TipoQuestao.dataProvider=tiposArtefato;
+	
+	tiposArtefato = TipoArtefato.toTipoArtefatoCollection(ArrayCollection(e.result));
+	ddl_TipoArtefatoSelecao.dataProvider=tiposArtefato;
+	
 }
 
-protected function btn_VoltarCadastro_clickHandler(event:MouseEvent):void
-{
-	this.currentState = "Login";
-}

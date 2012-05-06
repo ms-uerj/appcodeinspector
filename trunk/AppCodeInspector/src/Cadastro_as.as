@@ -4,7 +4,9 @@ import mx.controls.Alert;
 
 protected function btn_ConfirmarCadstro_clickHandler(event:MouseEvent):void
 {
-	CriarUsuarioResult.token = wSCodeInspector.CriarUsuario("", txtUsuario.text,txt_Email.text, txtSenha.text);
+	
+	CriarUsuarioResult.token = ws_InspectorX.CriarUsuario(txtUsuario.text, txtUsuario.text,txt_Email.text, txtSenha.text,ddl_UsuarioTipoCad.selectedItem);
+	
 }
 protected function CriarUsuarioResult_resultHandler(e:ResultEvent):void
 {
@@ -15,6 +17,11 @@ protected function CriarUsuarioResult_resultHandler(e:ResultEvent):void
 	else
 	{	
 		Alert.show("Usuário criado com Sucesso! Seja Bem Vindo!");
+		txtUsuario.text="";
+		txtSenha.text="";
+		txt_Email.text="";
+		ddl_UsuarioTipoCad.selectedIndex = -1;
 		this.currentState = "Login";
 	}
 }
+

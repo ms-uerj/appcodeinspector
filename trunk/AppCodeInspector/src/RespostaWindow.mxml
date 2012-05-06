@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		   xmlns:s="library://ns.adobe.com/flex/spark" 
-		   xmlns:mx="library://ns.adobe.com/flex/mx" width="408" height="208" backgroundAlpha=".0" xmlns:wscodeinspector="services.wscodeinspector.*">
+		   xmlns:mx="library://ns.adobe.com/flex/mx" width="408" height="208" backgroundAlpha=".0" xmlns:wscodeinspector="services.wscodeinspector.*" xmlns:webservicemain="services.webservicemain.*">
 	
 	<fx:Script>
 		<![CDATA[
@@ -101,8 +101,8 @@
 			}
 			protected function GetItemTaxonomia_resultHandler(e:ResultEvent):void
 			{
-				defeitos = ArrayCollection(e.result);
-				cbResposta.dataProvider=defeitos;
+				ItemTaxnomiaAtual = ArrayCollection(e.result);
+				cbResposta.dataProvider=ItemTaxnomiaAtual;
 			}
 
 			]]>
@@ -112,7 +112,7 @@
 	
 	<fx:Declarations>
 		<s:CallResponder id="GetItemTaxonomia"  result="GetItemTaxonomia_resultHandler(event)"/>
-		<wscodeinspector:Wscodeinspector id="wSCodeInspector" fault="Alert.show(event.fault.faultString + '\n' + event.fault.faultDetail)" showBusyCursor="true"/>
+		<webservicemain:WebServiceMain id="wSCodeInspector" fault="Alert.show(event.fault.faultString + '\n' + event.fault.faultDetail)" showBusyCursor="true"/>
 	</fx:Declarations>
 	<fx:Script source="RespostaWindow_as.as"/>
 	

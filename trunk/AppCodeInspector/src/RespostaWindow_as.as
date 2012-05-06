@@ -7,7 +7,7 @@ import mx.events.CloseEvent;
 import mx.managers.PopUpManager;
 import mx.states.AddItems;
 
-import services.wscodeinspector.Wscodeinspector;
+import services.webservicemain.WebServiceMain;
 
 import valueObjects.ItemTaxonomiaEntity;
 import valueObjects.TrechoDefeitoEntity;
@@ -23,8 +23,7 @@ public var selectedIndex:int =0;
 public static var respostaIndice:int =0;
 [Bindable]
 public var questaoTaxonomiaId:int;
-public var defeitos:ArrayCollection;
-
+public var ItemTaxnomiaAtual:ArrayCollection;
 
 
 
@@ -38,10 +37,10 @@ protected function btnConfirmarMotivoErro_clickHandler(event:MouseEvent):void
 	
 	if(nivelDificuldade!=FACIL)
 	{
-		trechoResposta.Conteudo = AppCodeInspector.selectedText.text;
+		trechoResposta.Conteudo = AppCodeInspector.QuestaoSelectedText.text;
 	}
 	
-	AppCodeInspector.listRespostasSelecionadas.addItem(trechoResposta);
+	AppCodeInspector.RespostasSelecionadas.addItem(trechoResposta);
 	
 	Close();
 }
