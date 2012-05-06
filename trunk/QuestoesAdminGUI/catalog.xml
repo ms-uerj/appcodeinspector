@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
     <system systemId="http://localhost:4200/WebService/WebServiceMain.asmx" uri="xml-resources/web-service-references/WebServiceMain/wsdl/localhost_4200/WebService/WebServiceMain.asmx"/>
+    <system systemId="http://inspectorx.linksysnet.com:8080/WebServiceAcess_deploy/webservice/webserviceMain.asmx?WSDL" uri="xml-resources/web-service-references/WebServiceMain/wsdl/inspectorx.linksysnet.com_8080/WebServiceAcess_deploy/webservice/webserviceMain.asmx.wsdl"/>
+    <system systemId="http://inspector.x.Linksysnet.com:8080/WebServiceAcess_deploy/webservice/webserviceMain.asmx" uri="xml-resources/web-service-references/WebServiceMain/wsdl/inspector.x.Linksysnet.com_8080/WebServiceAcess_deploy/webservice/webserviceMain.asmx"/>
+    <system systemId="http://inspector.x.linksysnet.com:8080/WebServiceAcess_deploy/webservice/webserviceMain.asmx?WSDL" uri="xml-resources/web-service-references/WebServiceMain/wsdl/inspector.x.Linksysnet.com_8080/WebServiceAcess_deploy/webservice/webserviceMain.asmx.wsdl"/>
     <system systemId="http://localhost:4200/WebService/WebServiceMain.asmx?WSDL" uri="xml-resources/web-service-references/WebServiceMain/wsdl/localhost_4200/WebService/WebServiceMain.asmx.wsdl"/>
 </catalog>
