@@ -1,15 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="CodeInspector" Class="InspectorXDBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=ENUMA-PC;Initial Catalog=CodeInspector;Integrated Security=True" SettingsObjectName="CIDao.Properties.Settings" SettingsPropertyName="CodeInspectorConnectionString" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.Usuario" Member="Usuarios">
-    <Type Name="Usuario">
-      <Column Name="U_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="U_NOME" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="U_EMAIL" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="U_SENHA" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
-      <Column Name="U_LOGIN" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Association Name="Usuario_Partida" Member="Partidas" ThisKey="U_ID" OtherKey="U_ID" Type="Partida" />
-    </Type>
-  </Table>
+  <Connection Mode="AppSettings" ConnectionString="Data Source=VirtualWS7;Initial Catalog=CodeInspector;User ID=Codeinspector" SettingsObjectName="CIDao.Properties.Settings" SettingsPropertyName="CodeInspectorConnectionString4" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Historico_Questao" Member="Historico_Questaos">
     <Type Name="Historico_Questao">
       <Column Name="H_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -21,12 +11,22 @@
       <Association Name="Questao_Historico_Questao" Member="Questao" ThisKey="Q_ID" OtherKey="Q_ID" Type="Questao" IsForeignKey="true" />
     </Type>
   </Table>
+  <Table Name="dbo.Usuario_Partida" Member="Usuario_Partidas">
+    <Type Name="Usuario_Partida">
+      <Column Name="UP_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="U_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="P_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Partida_Usuario_Partida" Member="Partida" ThisKey="P_ID" OtherKey="P_ID" Type="Partida" IsForeignKey="true" />
+      <Association Name="Usuario_Usuario_Partida" Member="Usuario" ThisKey="U_ID" OtherKey="U_ID" Type="Usuario" IsForeignKey="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.ItemTaxonomia" Member="ItemTaxonomias">
     <Type Name="ItemTaxonomia">
       <Column Name="IT_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="IT_Nome" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
       <Column Name="IT_Descricao" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
       <Column Name="T_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="ItemTaxonomia_Trecho_Resposta" Member="Trecho_Respostas" ThisKey="IT_ID" OtherKey="IT_ID" Type="Trecho_Resposta" />
       <Association Name="ItemTaxonomia_TrechoDefeito" Member="TrechoDefeitos" ThisKey="IT_ID" OtherKey="IT_ID" Type="TrechoDefeito" />
       <Association Name="Taxonomia_ItemTaxonomia" Member="Taxonomia" ThisKey="T_ID" OtherKey="T_ID" Type="Taxonomia" IsForeignKey="true" />
     </Type>
@@ -34,12 +34,12 @@
   <Table Name="dbo.Partida" Member="Partidas">
     <Type Name="Partida">
       <Column Name="P_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="U_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="P_DATA" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="P_NIVEL_DIFICULDADE" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="P_PONTUACAO_TOTAL" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="P_JOGO_MODO" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Association Name="Partida_Historico_Questao" Member="Historico_Questaos" ThisKey="P_ID" OtherKey="P_ID" Type="Historico_Questao" />
-      <Association Name="Usuario_Partida" Member="Usuario" ThisKey="U_ID" OtherKey="U_ID" Type="Usuario" IsForeignKey="true" />
+      <Association Name="Partida_Usuario_Partida" Member="Usuario_Partidas" ThisKey="P_ID" OtherKey="P_ID" Type="Usuario_Partida" />
     </Type>
   </Table>
   <Table Name="dbo.Questao" Member="Questaos">
@@ -52,6 +52,7 @@
       <Column Name="Q_Nome" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Association Name="Questao_Historico_Questao" Member="Historico_Questaos" ThisKey="Q_ID" OtherKey="Q_ID" Type="Historico_Questao" />
       <Association Name="Questao_Questao_TrechoDefeito" Member="Questao_TrechoDefeitos" ThisKey="Q_ID" OtherKey="Q_id" Type="Questao_TrechoDefeito" />
+      <Association Name="Questao_Trecho_Resposta" Member="Trecho_Respostas" ThisKey="Q_ID" OtherKey="Q_ID" Type="Trecho_Resposta" />
     </Type>
   </Table>
   <Table Name="dbo.Questao_TrechoDefeito" Member="Questao_TrechoDefeitos">
@@ -89,6 +90,18 @@
       <Association Name="TipoArtefato_TipoArtefato_Taxonomia" Member="TipoArtefato" ThisKey="TA_ID" OtherKey="TA_ID" Type="TipoArtefato" IsForeignKey="true" />
     </Type>
   </Table>
+  <Table Name="dbo.Trecho_Resposta" Member="Trecho_Respostas">
+    <Type Name="Trecho_Resposta">
+      <Column Name="TR_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="U_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Q_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IT_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TR_TRECHO_SELECIONADO" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Association Name="ItemTaxonomia_Trecho_Resposta" Member="ItemTaxonomia" ThisKey="IT_ID" OtherKey="IT_ID" Type="ItemTaxonomia" IsForeignKey="true" />
+      <Association Name="Questao_Trecho_Resposta" Member="Questao" ThisKey="Q_ID" OtherKey="Q_ID" Type="Questao" IsForeignKey="true" />
+      <Association Name="Usuario_Trecho_Resposta" Member="Usuario" ThisKey="U_ID" OtherKey="U_ID" Type="Usuario" IsForeignKey="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.TrechoDefeito" Member="TrechoDefeitos">
     <Type Name="TrechoDefeito">
       <Column Name="D_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -97,6 +110,18 @@
       <Column Name="D_Conteudo" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
       <Association Name="TrechoDefeito_Questao_TrechoDefeito" Member="Questao_TrechoDefeitos" ThisKey="D_ID" OtherKey="TD_id" Type="Questao_TrechoDefeito" />
       <Association Name="ItemTaxonomia_TrechoDefeito" Member="ItemTaxonomia" ThisKey="IT_ID" OtherKey="IT_ID" Type="ItemTaxonomia" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Usuario" Member="Usuarios">
+    <Type Name="Usuario">
+      <Column Name="U_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="U_NOME" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="U_EMAIL" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="U_SENHA" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
+      <Column Name="U_LOGIN" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="U_TIPO" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Usuario_Usuario_Partida" Member="Usuario_Partidas" ThisKey="U_ID" OtherKey="U_ID" Type="Usuario_Partida" />
+      <Association Name="Usuario_Trecho_Resposta" Member="Trecho_Respostas" ThisKey="U_ID" OtherKey="U_ID" Type="Trecho_Resposta" />
     </Type>
   </Table>
 </Database>

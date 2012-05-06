@@ -13,6 +13,7 @@
     <RootNamespace>WebServiceAcess</RootNamespace>
     <AssemblyName>WebServiceAcess</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <UseIISExpress>false</UseIISExpress>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -69,13 +70,13 @@
     <Compile Include="WebService\WebServiceUtil.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CIDao\CIDAO.csproj">
+    <ProjectReference Include="..\CIDao\InspectorXDAO.csproj">
       <Project>{A9708C0A-CB12-4365-846E-D8975182B166}</Project>
-      <Name>CIDAO</Name>
+      <Name>InspectorXDAO</Name>
     </ProjectReference>
-    <ProjectReference Include="..\CIFacade\CIFacade.csproj">
+    <ProjectReference Include="..\CIFacade\InspectorXBLL.csproj">
       <Project>{68EEE075-7966-4E54-B4C7-B51A3F764491}</Project>
-      <Name>CIFacade</Name>
+      <Name>InspectorXBLL</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
@@ -92,8 +93,7 @@
           </IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl>
-          </CustomServerUrl>
+          <CustomServerUrl>http://192.168.1.49</CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>

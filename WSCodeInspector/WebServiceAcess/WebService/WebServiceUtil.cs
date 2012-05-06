@@ -6,7 +6,7 @@ using System.Net.Mail;
 using System.Net;
 using System.Text;
 
-using CIFacade.Facade;
+using InspectorXBLL.BLL;
 using CIDao;
 
 namespace WebServiceAcess.WebService
@@ -14,20 +14,22 @@ namespace WebServiceAcess.WebService
     public class WebServiceUtil
     {
 
-        public void EnviarSenhaToEmail(string toEmail)
+        public bool EnviarSenhaToEmail(string toEmail)
         {
             try
             {
-                Usuario usuario = new UsuarioFacade().RecuperarUsuario(toEmail);
+                Usuario usuario = new UsuarioBLL().RecuperarUsuario(toEmail);
 
                 StringBuilder emailBody = new StringBuilder();
-                emailBody.Append(" A senha cadastrada para este email é: ");
+                emailBody.Append("A senha cadastrada para este email é: ");
                 emailBody.Append(usuario.U_SENHA);
+                emailBody.Append(Environment.NewLine+ Environment.NewLine+"Muito obrigado por usar o jogar o InspectorX.");
+                emailBody.Append(Environment.NewLine+"http://inspectorx.linksysnet.com:8080/codeinspector/appcodeinspector.html"); 
 
-                var fromAddress = new MailAddress("codeinspectorx@gmail.com", "CodeInspector");
+                var fromAddress = new MailAddress("inspectorX.game@gmail.com", "InspectorX");
                 var toAddress = new MailAddress(toEmail, usuario.U_NOME);
-                const string fromPassword = "nomorenations";
-                const string subject = "Recuperção de senha do CodeInspector";
+                const string fromPassword = "vegnagun";
+                const string subject = "Recuperção de senha do InspectorX";
                 string body = emailBody.ToString();
 
                 var smtp = new SmtpClient
@@ -47,10 +49,11 @@ namespace WebServiceAcess.WebService
                 {
                     smtp.Send(message);
                 }
+                return true;
             }
-            catch(Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                return false;
             }
         }
     }

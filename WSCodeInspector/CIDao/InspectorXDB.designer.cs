@@ -30,12 +30,12 @@ namespace CIDao
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertUsuario(Usuario instance);
-    partial void UpdateUsuario(Usuario instance);
-    partial void DeleteUsuario(Usuario instance);
     partial void InsertHistorico_Questao(Historico_Questao instance);
     partial void UpdateHistorico_Questao(Historico_Questao instance);
     partial void DeleteHistorico_Questao(Historico_Questao instance);
+    partial void InsertUsuario_Partida(Usuario_Partida instance);
+    partial void UpdateUsuario_Partida(Usuario_Partida instance);
+    partial void DeleteUsuario_Partida(Usuario_Partida instance);
     partial void InsertItemTaxonomia(ItemTaxonomia instance);
     partial void UpdateItemTaxonomia(ItemTaxonomia instance);
     partial void DeleteItemTaxonomia(ItemTaxonomia instance);
@@ -57,13 +57,19 @@ namespace CIDao
     partial void InsertTipoArtefato_Taxonomia(TipoArtefato_Taxonomia instance);
     partial void UpdateTipoArtefato_Taxonomia(TipoArtefato_Taxonomia instance);
     partial void DeleteTipoArtefato_Taxonomia(TipoArtefato_Taxonomia instance);
+    partial void InsertTrecho_Resposta(Trecho_Resposta instance);
+    partial void UpdateTrecho_Resposta(Trecho_Resposta instance);
+    partial void DeleteTrecho_Resposta(Trecho_Resposta instance);
     partial void InsertTrechoDefeito(TrechoDefeito instance);
     partial void UpdateTrechoDefeito(TrechoDefeito instance);
     partial void DeleteTrechoDefeito(TrechoDefeito instance);
+    partial void InsertUsuario(Usuario instance);
+    partial void UpdateUsuario(Usuario instance);
+    partial void DeleteUsuario(Usuario instance);
     #endregion
 		
 		public InspectorXDBDataContext() : 
-				base(global::CIDao.Properties.Settings.Default.CodeInspectorConnectionString, mappingSource)
+				base(global::CIDao.Properties.Settings.Default.CodeInspectorConnectionString4, mappingSource)
 		{
 			OnCreated();
 		}
@@ -92,19 +98,19 @@ namespace CIDao
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<Usuario> Usuarios
-		{
-			get
-			{
-				return this.GetTable<Usuario>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Historico_Questao> Historico_Questaos
 		{
 			get
 			{
 				return this.GetTable<Historico_Questao>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Usuario_Partida> Usuario_Partidas
+		{
+			get
+			{
+				return this.GetTable<Usuario_Partida>();
 			}
 		}
 		
@@ -164,6 +170,14 @@ namespace CIDao
 			}
 		}
 		
+		public System.Data.Linq.Table<Trecho_Resposta> Trecho_Respostas
+		{
+			get
+			{
+				return this.GetTable<Trecho_Resposta>();
+			}
+		}
+		
 		public System.Data.Linq.Table<TrechoDefeito> TrechoDefeitos
 		{
 			get
@@ -171,191 +185,13 @@ namespace CIDao
 				return this.GetTable<TrechoDefeito>();
 			}
 		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Usuario")]
-	public partial class Usuario : INotifyPropertyChanging, INotifyPropertyChanged
-	{
 		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _U_ID;
-		
-		private string _U_NOME;
-		
-		private string _U_EMAIL;
-		
-		private string _U_SENHA;
-		
-		private string _U_LOGIN;
-		
-		private EntitySet<Partida> _Partidas;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnU_IDChanging(int value);
-    partial void OnU_IDChanged();
-    partial void OnU_NOMEChanging(string value);
-    partial void OnU_NOMEChanged();
-    partial void OnU_EMAILChanging(string value);
-    partial void OnU_EMAILChanged();
-    partial void OnU_SENHAChanging(string value);
-    partial void OnU_SENHAChanged();
-    partial void OnU_LOGINChanging(string value);
-    partial void OnU_LOGINChanged();
-    #endregion
-		
-		public Usuario()
-		{
-			this._Partidas = new EntitySet<Partida>(new Action<Partida>(this.attach_Partidas), new Action<Partida>(this.detach_Partidas));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_U_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int U_ID
+		public System.Data.Linq.Table<Usuario> Usuarios
 		{
 			get
 			{
-				return this._U_ID;
+				return this.GetTable<Usuario>();
 			}
-			set
-			{
-				if ((this._U_ID != value))
-				{
-					this.OnU_IDChanging(value);
-					this.SendPropertyChanging();
-					this._U_ID = value;
-					this.SendPropertyChanged("U_ID");
-					this.OnU_IDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_U_NOME", DbType="VarChar(50)")]
-		public string U_NOME
-		{
-			get
-			{
-				return this._U_NOME;
-			}
-			set
-			{
-				if ((this._U_NOME != value))
-				{
-					this.OnU_NOMEChanging(value);
-					this.SendPropertyChanging();
-					this._U_NOME = value;
-					this.SendPropertyChanged("U_NOME");
-					this.OnU_NOMEChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_U_EMAIL", DbType="VarChar(50)")]
-		public string U_EMAIL
-		{
-			get
-			{
-				return this._U_EMAIL;
-			}
-			set
-			{
-				if ((this._U_EMAIL != value))
-				{
-					this.OnU_EMAILChanging(value);
-					this.SendPropertyChanging();
-					this._U_EMAIL = value;
-					this.SendPropertyChanged("U_EMAIL");
-					this.OnU_EMAILChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_U_SENHA", DbType="VarChar(15)")]
-		public string U_SENHA
-		{
-			get
-			{
-				return this._U_SENHA;
-			}
-			set
-			{
-				if ((this._U_SENHA != value))
-				{
-					this.OnU_SENHAChanging(value);
-					this.SendPropertyChanging();
-					this._U_SENHA = value;
-					this.SendPropertyChanged("U_SENHA");
-					this.OnU_SENHAChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_U_LOGIN", DbType="VarChar(50)")]
-		public string U_LOGIN
-		{
-			get
-			{
-				return this._U_LOGIN;
-			}
-			set
-			{
-				if ((this._U_LOGIN != value))
-				{
-					this.OnU_LOGINChanging(value);
-					this.SendPropertyChanging();
-					this._U_LOGIN = value;
-					this.SendPropertyChanged("U_LOGIN");
-					this.OnU_LOGINChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Usuario_Partida", Storage="_Partidas", ThisKey="U_ID", OtherKey="U_ID")]
-		public EntitySet<Partida> Partidas
-		{
-			get
-			{
-				return this._Partidas;
-			}
-			set
-			{
-				this._Partidas.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Partidas(Partida entity)
-		{
-			this.SendPropertyChanging();
-			entity.Usuario = this;
-		}
-		
-		private void detach_Partidas(Partida entity)
-		{
-			this.SendPropertyChanging();
-			entity.Usuario = null;
 		}
 	}
 	
@@ -599,6 +435,198 @@ namespace CIDao
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Usuario_Partida")]
+	public partial class Usuario_Partida : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _UP_ID;
+		
+		private System.Nullable<int> _U_ID;
+		
+		private System.Nullable<int> _P_ID;
+		
+		private EntityRef<Partida> _Partida;
+		
+		private EntityRef<Usuario> _Usuario;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnUP_IDChanging(int value);
+    partial void OnUP_IDChanged();
+    partial void OnU_IDChanging(System.Nullable<int> value);
+    partial void OnU_IDChanged();
+    partial void OnP_IDChanging(System.Nullable<int> value);
+    partial void OnP_IDChanged();
+    #endregion
+		
+		public Usuario_Partida()
+		{
+			this._Partida = default(EntityRef<Partida>);
+			this._Usuario = default(EntityRef<Usuario>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UP_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int UP_ID
+		{
+			get
+			{
+				return this._UP_ID;
+			}
+			set
+			{
+				if ((this._UP_ID != value))
+				{
+					this.OnUP_IDChanging(value);
+					this.SendPropertyChanging();
+					this._UP_ID = value;
+					this.SendPropertyChanged("UP_ID");
+					this.OnUP_IDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_U_ID", DbType="Int")]
+		public System.Nullable<int> U_ID
+		{
+			get
+			{
+				return this._U_ID;
+			}
+			set
+			{
+				if ((this._U_ID != value))
+				{
+					if (this._Usuario.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnU_IDChanging(value);
+					this.SendPropertyChanging();
+					this._U_ID = value;
+					this.SendPropertyChanged("U_ID");
+					this.OnU_IDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_P_ID", DbType="Int")]
+		public System.Nullable<int> P_ID
+		{
+			get
+			{
+				return this._P_ID;
+			}
+			set
+			{
+				if ((this._P_ID != value))
+				{
+					if (this._Partida.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnP_IDChanging(value);
+					this.SendPropertyChanging();
+					this._P_ID = value;
+					this.SendPropertyChanged("P_ID");
+					this.OnP_IDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Partida_Usuario_Partida", Storage="_Partida", ThisKey="P_ID", OtherKey="P_ID", IsForeignKey=true)]
+		public Partida Partida
+		{
+			get
+			{
+				return this._Partida.Entity;
+			}
+			set
+			{
+				Partida previousValue = this._Partida.Entity;
+				if (((previousValue != value) 
+							|| (this._Partida.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Partida.Entity = null;
+						previousValue.Usuario_Partidas.Remove(this);
+					}
+					this._Partida.Entity = value;
+					if ((value != null))
+					{
+						value.Usuario_Partidas.Add(this);
+						this._P_ID = value.P_ID;
+					}
+					else
+					{
+						this._P_ID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Partida");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Usuario_Usuario_Partida", Storage="_Usuario", ThisKey="U_ID", OtherKey="U_ID", IsForeignKey=true)]
+		public Usuario Usuario
+		{
+			get
+			{
+				return this._Usuario.Entity;
+			}
+			set
+			{
+				Usuario previousValue = this._Usuario.Entity;
+				if (((previousValue != value) 
+							|| (this._Usuario.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Usuario.Entity = null;
+						previousValue.Usuario_Partidas.Remove(this);
+					}
+					this._Usuario.Entity = value;
+					if ((value != null))
+					{
+						value.Usuario_Partidas.Add(this);
+						this._U_ID = value.U_ID;
+					}
+					else
+					{
+						this._U_ID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Usuario");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ItemTaxonomia")]
 	public partial class ItemTaxonomia : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -612,6 +640,8 @@ namespace CIDao
 		private string _IT_Descricao;
 		
 		private int _T_ID;
+		
+		private EntitySet<Trecho_Resposta> _Trecho_Respostas;
 		
 		private EntitySet<TrechoDefeito> _TrechoDefeitos;
 		
@@ -633,6 +663,7 @@ namespace CIDao
 		
 		public ItemTaxonomia()
 		{
+			this._Trecho_Respostas = new EntitySet<Trecho_Resposta>(new Action<Trecho_Resposta>(this.attach_Trecho_Respostas), new Action<Trecho_Resposta>(this.detach_Trecho_Respostas));
 			this._TrechoDefeitos = new EntitySet<TrechoDefeito>(new Action<TrechoDefeito>(this.attach_TrechoDefeitos), new Action<TrechoDefeito>(this.detach_TrechoDefeitos));
 			this._Taxonomia = default(EntityRef<Taxonomia>);
 			OnCreated();
@@ -722,6 +753,19 @@ namespace CIDao
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ItemTaxonomia_Trecho_Resposta", Storage="_Trecho_Respostas", ThisKey="IT_ID", OtherKey="IT_ID")]
+		public EntitySet<Trecho_Resposta> Trecho_Respostas
+		{
+			get
+			{
+				return this._Trecho_Respostas;
+			}
+			set
+			{
+				this._Trecho_Respostas.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ItemTaxonomia_TrechoDefeito", Storage="_TrechoDefeitos", ThisKey="IT_ID", OtherKey="IT_ID")]
 		public EntitySet<TrechoDefeito> TrechoDefeitos
 		{
@@ -789,6 +833,18 @@ namespace CIDao
 			}
 		}
 		
+		private void attach_Trecho_Respostas(Trecho_Resposta entity)
+		{
+			this.SendPropertyChanging();
+			entity.ItemTaxonomia = this;
+		}
+		
+		private void detach_Trecho_Respostas(Trecho_Resposta entity)
+		{
+			this.SendPropertyChanging();
+			entity.ItemTaxonomia = null;
+		}
+		
 		private void attach_TrechoDefeitos(TrechoDefeito entity)
 		{
 			this.SendPropertyChanging();
@@ -810,17 +866,17 @@ namespace CIDao
 		
 		private int _P_ID;
 		
-		private System.Nullable<int> _U_ID;
-		
 		private System.Nullable<System.DateTime> _P_DATA;
 		
 		private System.Nullable<int> _P_NIVEL_DIFICULDADE;
 		
 		private System.Nullable<int> _P_PONTUACAO_TOTAL;
 		
+		private string _P_JOGO_MODO;
+		
 		private EntitySet<Historico_Questao> _Historico_Questaos;
 		
-		private EntityRef<Usuario> _Usuario;
+		private EntitySet<Usuario_Partida> _Usuario_Partidas;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -828,20 +884,20 @@ namespace CIDao
     partial void OnCreated();
     partial void OnP_IDChanging(int value);
     partial void OnP_IDChanged();
-    partial void OnU_IDChanging(System.Nullable<int> value);
-    partial void OnU_IDChanged();
     partial void OnP_DATAChanging(System.Nullable<System.DateTime> value);
     partial void OnP_DATAChanged();
     partial void OnP_NIVEL_DIFICULDADEChanging(System.Nullable<int> value);
     partial void OnP_NIVEL_DIFICULDADEChanged();
     partial void OnP_PONTUACAO_TOTALChanging(System.Nullable<int> value);
     partial void OnP_PONTUACAO_TOTALChanged();
+    partial void OnP_JOGO_MODOChanging(string value);
+    partial void OnP_JOGO_MODOChanged();
     #endregion
 		
 		public Partida()
 		{
 			this._Historico_Questaos = new EntitySet<Historico_Questao>(new Action<Historico_Questao>(this.attach_Historico_Questaos), new Action<Historico_Questao>(this.detach_Historico_Questaos));
-			this._Usuario = default(EntityRef<Usuario>);
+			this._Usuario_Partidas = new EntitySet<Usuario_Partida>(new Action<Usuario_Partida>(this.attach_Usuario_Partidas), new Action<Usuario_Partida>(this.detach_Usuario_Partidas));
 			OnCreated();
 		}
 		
@@ -861,30 +917,6 @@ namespace CIDao
 					this._P_ID = value;
 					this.SendPropertyChanged("P_ID");
 					this.OnP_IDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_U_ID", DbType="Int")]
-		public System.Nullable<int> U_ID
-		{
-			get
-			{
-				return this._U_ID;
-			}
-			set
-			{
-				if ((this._U_ID != value))
-				{
-					if (this._Usuario.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnU_IDChanging(value);
-					this.SendPropertyChanging();
-					this._U_ID = value;
-					this.SendPropertyChanged("U_ID");
-					this.OnU_IDChanged();
 				}
 			}
 		}
@@ -949,6 +981,26 @@ namespace CIDao
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_P_JOGO_MODO", DbType="VarChar(50)")]
+		public string P_JOGO_MODO
+		{
+			get
+			{
+				return this._P_JOGO_MODO;
+			}
+			set
+			{
+				if ((this._P_JOGO_MODO != value))
+				{
+					this.OnP_JOGO_MODOChanging(value);
+					this.SendPropertyChanging();
+					this._P_JOGO_MODO = value;
+					this.SendPropertyChanged("P_JOGO_MODO");
+					this.OnP_JOGO_MODOChanged();
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Partida_Historico_Questao", Storage="_Historico_Questaos", ThisKey="P_ID", OtherKey="P_ID")]
 		public EntitySet<Historico_Questao> Historico_Questaos
 		{
@@ -962,37 +1014,16 @@ namespace CIDao
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Usuario_Partida", Storage="_Usuario", ThisKey="U_ID", OtherKey="U_ID", IsForeignKey=true)]
-		public Usuario Usuario
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Partida_Usuario_Partida", Storage="_Usuario_Partidas", ThisKey="P_ID", OtherKey="P_ID")]
+		public EntitySet<Usuario_Partida> Usuario_Partidas
 		{
 			get
 			{
-				return this._Usuario.Entity;
+				return this._Usuario_Partidas;
 			}
 			set
 			{
-				Usuario previousValue = this._Usuario.Entity;
-				if (((previousValue != value) 
-							|| (this._Usuario.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Usuario.Entity = null;
-						previousValue.Partidas.Remove(this);
-					}
-					this._Usuario.Entity = value;
-					if ((value != null))
-					{
-						value.Partidas.Add(this);
-						this._U_ID = value.U_ID;
-					}
-					else
-					{
-						this._U_ID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Usuario");
-				}
+				this._Usuario_Partidas.Assign(value);
 			}
 		}
 		
@@ -1027,6 +1058,18 @@ namespace CIDao
 			this.SendPropertyChanging();
 			entity.Partida = null;
 		}
+		
+		private void attach_Usuario_Partidas(Usuario_Partida entity)
+		{
+			this.SendPropertyChanging();
+			entity.Partida = this;
+		}
+		
+		private void detach_Usuario_Partidas(Usuario_Partida entity)
+		{
+			this.SendPropertyChanging();
+			entity.Partida = null;
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Questao")]
@@ -1051,6 +1094,8 @@ namespace CIDao
 		
 		private EntitySet<Questao_TrechoDefeito> _Questao_TrechoDefeitos;
 		
+		private EntitySet<Trecho_Resposta> _Trecho_Respostas;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -1073,6 +1118,7 @@ namespace CIDao
 		{
 			this._Historico_Questaos = new EntitySet<Historico_Questao>(new Action<Historico_Questao>(this.attach_Historico_Questaos), new Action<Historico_Questao>(this.detach_Historico_Questaos));
 			this._Questao_TrechoDefeitos = new EntitySet<Questao_TrechoDefeito>(new Action<Questao_TrechoDefeito>(this.attach_Questao_TrechoDefeitos), new Action<Questao_TrechoDefeito>(this.detach_Questao_TrechoDefeitos));
+			this._Trecho_Respostas = new EntitySet<Trecho_Resposta>(new Action<Trecho_Resposta>(this.attach_Trecho_Respostas), new Action<Trecho_Resposta>(this.detach_Trecho_Respostas));
 			OnCreated();
 		}
 		
@@ -1222,6 +1268,19 @@ namespace CIDao
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Questao_Trecho_Resposta", Storage="_Trecho_Respostas", ThisKey="Q_ID", OtherKey="Q_ID")]
+		public EntitySet<Trecho_Resposta> Trecho_Respostas
+		{
+			get
+			{
+				return this._Trecho_Respostas;
+			}
+			set
+			{
+				this._Trecho_Respostas.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -1261,6 +1320,18 @@ namespace CIDao
 		}
 		
 		private void detach_Questao_TrechoDefeitos(Questao_TrechoDefeito entity)
+		{
+			this.SendPropertyChanging();
+			entity.Questao = null;
+		}
+		
+		private void attach_Trecho_Respostas(Trecho_Resposta entity)
+		{
+			this.SendPropertyChanging();
+			entity.Questao = this;
+		}
+		
+		private void detach_Trecho_Respostas(Trecho_Resposta entity)
 		{
 			this.SendPropertyChanging();
 			entity.Questao = null;
@@ -1955,6 +2026,287 @@ namespace CIDao
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Trecho_Resposta")]
+	public partial class Trecho_Resposta : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _TR_ID;
+		
+		private System.Nullable<int> _U_ID;
+		
+		private System.Nullable<int> _Q_ID;
+		
+		private System.Nullable<int> _IT_ID;
+		
+		private string _TR_TRECHO_SELECIONADO;
+		
+		private EntityRef<ItemTaxonomia> _ItemTaxonomia;
+		
+		private EntityRef<Questao> _Questao;
+		
+		private EntityRef<Usuario> _Usuario;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnTR_IDChanging(int value);
+    partial void OnTR_IDChanged();
+    partial void OnU_IDChanging(System.Nullable<int> value);
+    partial void OnU_IDChanged();
+    partial void OnQ_IDChanging(System.Nullable<int> value);
+    partial void OnQ_IDChanged();
+    partial void OnIT_IDChanging(System.Nullable<int> value);
+    partial void OnIT_IDChanged();
+    partial void OnTR_TRECHO_SELECIONADOChanging(string value);
+    partial void OnTR_TRECHO_SELECIONADOChanged();
+    #endregion
+		
+		public Trecho_Resposta()
+		{
+			this._ItemTaxonomia = default(EntityRef<ItemTaxonomia>);
+			this._Questao = default(EntityRef<Questao>);
+			this._Usuario = default(EntityRef<Usuario>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TR_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int TR_ID
+		{
+			get
+			{
+				return this._TR_ID;
+			}
+			set
+			{
+				if ((this._TR_ID != value))
+				{
+					this.OnTR_IDChanging(value);
+					this.SendPropertyChanging();
+					this._TR_ID = value;
+					this.SendPropertyChanged("TR_ID");
+					this.OnTR_IDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_U_ID", DbType="Int")]
+		public System.Nullable<int> U_ID
+		{
+			get
+			{
+				return this._U_ID;
+			}
+			set
+			{
+				if ((this._U_ID != value))
+				{
+					if (this._Usuario.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnU_IDChanging(value);
+					this.SendPropertyChanging();
+					this._U_ID = value;
+					this.SendPropertyChanged("U_ID");
+					this.OnU_IDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Q_ID", DbType="Int")]
+		public System.Nullable<int> Q_ID
+		{
+			get
+			{
+				return this._Q_ID;
+			}
+			set
+			{
+				if ((this._Q_ID != value))
+				{
+					if (this._Questao.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnQ_IDChanging(value);
+					this.SendPropertyChanging();
+					this._Q_ID = value;
+					this.SendPropertyChanged("Q_ID");
+					this.OnQ_IDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IT_ID", DbType="Int")]
+		public System.Nullable<int> IT_ID
+		{
+			get
+			{
+				return this._IT_ID;
+			}
+			set
+			{
+				if ((this._IT_ID != value))
+				{
+					if (this._ItemTaxonomia.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnIT_IDChanging(value);
+					this.SendPropertyChanging();
+					this._IT_ID = value;
+					this.SendPropertyChanged("IT_ID");
+					this.OnIT_IDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TR_TRECHO_SELECIONADO", DbType="VarChar(MAX)")]
+		public string TR_TRECHO_SELECIONADO
+		{
+			get
+			{
+				return this._TR_TRECHO_SELECIONADO;
+			}
+			set
+			{
+				if ((this._TR_TRECHO_SELECIONADO != value))
+				{
+					this.OnTR_TRECHO_SELECIONADOChanging(value);
+					this.SendPropertyChanging();
+					this._TR_TRECHO_SELECIONADO = value;
+					this.SendPropertyChanged("TR_TRECHO_SELECIONADO");
+					this.OnTR_TRECHO_SELECIONADOChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ItemTaxonomia_Trecho_Resposta", Storage="_ItemTaxonomia", ThisKey="IT_ID", OtherKey="IT_ID", IsForeignKey=true)]
+		public ItemTaxonomia ItemTaxonomia
+		{
+			get
+			{
+				return this._ItemTaxonomia.Entity;
+			}
+			set
+			{
+				ItemTaxonomia previousValue = this._ItemTaxonomia.Entity;
+				if (((previousValue != value) 
+							|| (this._ItemTaxonomia.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ItemTaxonomia.Entity = null;
+						previousValue.Trecho_Respostas.Remove(this);
+					}
+					this._ItemTaxonomia.Entity = value;
+					if ((value != null))
+					{
+						value.Trecho_Respostas.Add(this);
+						this._IT_ID = value.IT_ID;
+					}
+					else
+					{
+						this._IT_ID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("ItemTaxonomia");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Questao_Trecho_Resposta", Storage="_Questao", ThisKey="Q_ID", OtherKey="Q_ID", IsForeignKey=true)]
+		public Questao Questao
+		{
+			get
+			{
+				return this._Questao.Entity;
+			}
+			set
+			{
+				Questao previousValue = this._Questao.Entity;
+				if (((previousValue != value) 
+							|| (this._Questao.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Questao.Entity = null;
+						previousValue.Trecho_Respostas.Remove(this);
+					}
+					this._Questao.Entity = value;
+					if ((value != null))
+					{
+						value.Trecho_Respostas.Add(this);
+						this._Q_ID = value.Q_ID;
+					}
+					else
+					{
+						this._Q_ID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Questao");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Usuario_Trecho_Resposta", Storage="_Usuario", ThisKey="U_ID", OtherKey="U_ID", IsForeignKey=true)]
+		public Usuario Usuario
+		{
+			get
+			{
+				return this._Usuario.Entity;
+			}
+			set
+			{
+				Usuario previousValue = this._Usuario.Entity;
+				if (((previousValue != value) 
+							|| (this._Usuario.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Usuario.Entity = null;
+						previousValue.Trecho_Respostas.Remove(this);
+					}
+					this._Usuario.Entity = value;
+					if ((value != null))
+					{
+						value.Trecho_Respostas.Add(this);
+						this._U_ID = value.U_ID;
+					}
+					else
+					{
+						this._U_ID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Usuario");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TrechoDefeito")]
 	public partial class TrechoDefeito : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -2155,6 +2507,244 @@ namespace CIDao
 		{
 			this.SendPropertyChanging();
 			entity.TrechoDefeito = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Usuario")]
+	public partial class Usuario : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _U_ID;
+		
+		private string _U_NOME;
+		
+		private string _U_EMAIL;
+		
+		private string _U_SENHA;
+		
+		private string _U_LOGIN;
+		
+		private string _U_TIPO;
+		
+		private EntitySet<Usuario_Partida> _Usuario_Partidas;
+		
+		private EntitySet<Trecho_Resposta> _Trecho_Respostas;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnU_IDChanging(int value);
+    partial void OnU_IDChanged();
+    partial void OnU_NOMEChanging(string value);
+    partial void OnU_NOMEChanged();
+    partial void OnU_EMAILChanging(string value);
+    partial void OnU_EMAILChanged();
+    partial void OnU_SENHAChanging(string value);
+    partial void OnU_SENHAChanged();
+    partial void OnU_LOGINChanging(string value);
+    partial void OnU_LOGINChanged();
+    partial void OnU_TIPOChanging(string value);
+    partial void OnU_TIPOChanged();
+    #endregion
+		
+		public Usuario()
+		{
+			this._Usuario_Partidas = new EntitySet<Usuario_Partida>(new Action<Usuario_Partida>(this.attach_Usuario_Partidas), new Action<Usuario_Partida>(this.detach_Usuario_Partidas));
+			this._Trecho_Respostas = new EntitySet<Trecho_Resposta>(new Action<Trecho_Resposta>(this.attach_Trecho_Respostas), new Action<Trecho_Resposta>(this.detach_Trecho_Respostas));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_U_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int U_ID
+		{
+			get
+			{
+				return this._U_ID;
+			}
+			set
+			{
+				if ((this._U_ID != value))
+				{
+					this.OnU_IDChanging(value);
+					this.SendPropertyChanging();
+					this._U_ID = value;
+					this.SendPropertyChanged("U_ID");
+					this.OnU_IDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_U_NOME", DbType="VarChar(50)")]
+		public string U_NOME
+		{
+			get
+			{
+				return this._U_NOME;
+			}
+			set
+			{
+				if ((this._U_NOME != value))
+				{
+					this.OnU_NOMEChanging(value);
+					this.SendPropertyChanging();
+					this._U_NOME = value;
+					this.SendPropertyChanged("U_NOME");
+					this.OnU_NOMEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_U_EMAIL", DbType="VarChar(50)")]
+		public string U_EMAIL
+		{
+			get
+			{
+				return this._U_EMAIL;
+			}
+			set
+			{
+				if ((this._U_EMAIL != value))
+				{
+					this.OnU_EMAILChanging(value);
+					this.SendPropertyChanging();
+					this._U_EMAIL = value;
+					this.SendPropertyChanged("U_EMAIL");
+					this.OnU_EMAILChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_U_SENHA", DbType="VarChar(15)")]
+		public string U_SENHA
+		{
+			get
+			{
+				return this._U_SENHA;
+			}
+			set
+			{
+				if ((this._U_SENHA != value))
+				{
+					this.OnU_SENHAChanging(value);
+					this.SendPropertyChanging();
+					this._U_SENHA = value;
+					this.SendPropertyChanged("U_SENHA");
+					this.OnU_SENHAChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_U_LOGIN", DbType="VarChar(50)")]
+		public string U_LOGIN
+		{
+			get
+			{
+				return this._U_LOGIN;
+			}
+			set
+			{
+				if ((this._U_LOGIN != value))
+				{
+					this.OnU_LOGINChanging(value);
+					this.SendPropertyChanging();
+					this._U_LOGIN = value;
+					this.SendPropertyChanged("U_LOGIN");
+					this.OnU_LOGINChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_U_TIPO", DbType="VarChar(50)")]
+		public string U_TIPO
+		{
+			get
+			{
+				return this._U_TIPO;
+			}
+			set
+			{
+				if ((this._U_TIPO != value))
+				{
+					this.OnU_TIPOChanging(value);
+					this.SendPropertyChanging();
+					this._U_TIPO = value;
+					this.SendPropertyChanged("U_TIPO");
+					this.OnU_TIPOChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Usuario_Usuario_Partida", Storage="_Usuario_Partidas", ThisKey="U_ID", OtherKey="U_ID")]
+		public EntitySet<Usuario_Partida> Usuario_Partidas
+		{
+			get
+			{
+				return this._Usuario_Partidas;
+			}
+			set
+			{
+				this._Usuario_Partidas.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Usuario_Trecho_Resposta", Storage="_Trecho_Respostas", ThisKey="U_ID", OtherKey="U_ID")]
+		public EntitySet<Trecho_Resposta> Trecho_Respostas
+		{
+			get
+			{
+				return this._Trecho_Respostas;
+			}
+			set
+			{
+				this._Trecho_Respostas.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Usuario_Partidas(Usuario_Partida entity)
+		{
+			this.SendPropertyChanging();
+			entity.Usuario = this;
+		}
+		
+		private void detach_Usuario_Partidas(Usuario_Partida entity)
+		{
+			this.SendPropertyChanging();
+			entity.Usuario = null;
+		}
+		
+		private void attach_Trecho_Respostas(Trecho_Resposta entity)
+		{
+			this.SendPropertyChanging();
+			entity.Usuario = this;
+		}
+		
+		private void detach_Trecho_Respostas(Trecho_Resposta entity)
+		{
+			this.SendPropertyChanging();
+			entity.Usuario = null;
 		}
 	}
 }
