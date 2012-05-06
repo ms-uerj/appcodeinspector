@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<wsdl:definitions xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
       <s:element name="AutenticarUsuario">
@@ -13,22 +13,20 @@
       <s:element name="AutenticarUsuarioResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="AutenticarUsuarioResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="AutenticarUsuarioResult" type="tns:UsuarioEntity" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="EncerrarPartida2">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="nivelDificuldade" type="s:int" />
-            <s:element minOccurs="0" maxOccurs="1" name="respostasXML" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="userEmail" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="EncerrarPartida2Response">
-        <s:complexType />
-      </s:element>
+      <s:complexType name="UsuarioEntity">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="U_ID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="U_NOME" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="U_EMAIL" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="U_SENHA" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="U_LOGIN" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="U_TIPO" type="s:string" />
+        </s:sequence>
+      </s:complexType>
       <s:element name="RecuperarSenha">
         <s:complexType>
           <s:sequence>
@@ -37,7 +35,11 @@
         </s:complexType>
       </s:element>
       <s:element name="RecuperarSenhaResponse">
-        <s:complexType />
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="RecuperarSenhaResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
       </s:element>
       <s:element name="AlterarUsuario">
         <s:complexType>
@@ -65,6 +67,7 @@
             <s:element minOccurs="0" maxOccurs="1" name="login" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="senha" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="tipo" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -270,7 +273,8 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="1" maxOccurs="1" name="partDificuldade" type="s:int" />
-            <s:element minOccurs="0" maxOccurs="1" name="userLogin" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="userId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="tipoJogo" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -321,6 +325,45 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="GetTodasQuestoes">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetTodasQuestoesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTodasQuestoesResult" type="tns:ArrayOfQuestaoEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getArtefatos">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="partida_id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getArtefatosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getArtefatosResult" type="tns:ArrayOfQuestaoEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getArtefatosPendentes">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="usuario_id" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="partida_id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getArtefatosPendentesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getArtefatosPendentesResult" type="tns:ArrayOfQuestaoEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="GetTDResposta">
         <s:complexType>
           <s:sequence>
@@ -350,6 +393,22 @@
             <s:element minOccurs="1" maxOccurs="1" name="setQuestaoAcertoResult" type="s:boolean" />
           </s:sequence>
         </s:complexType>
+      </s:element>
+      <s:element name="setArtefatoPartida">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="artefato_id" type="tns:ArrayOfInt1" />
+            <s:element minOccurs="1" maxOccurs="1" name="partidada_id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfInt1">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="int" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="setArtefatoPartidaResponse">
+        <s:complexType />
       </s:element>
       <s:element name="getTiposArtefatos">
         <s:complexType />
@@ -416,9 +475,25 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="GetTodasQuestoesByUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="usuarioId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="nivelDificuldade" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTodasQuestoesByUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTodasQuestoesByUserResult" type="tns:ArrayOfQuestaoEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="GetQuestoesByType">
         <s:complexType>
           <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="usuarioId" type="s:int" />
             <s:element minOccurs="1" maxOccurs="1" name="nivelDificuldade" type="s:int" />
             <s:element minOccurs="1" maxOccurs="1" name="tipoArtefatoId" type="s:int" />
           </s:sequence>
@@ -428,6 +503,20 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="GetQuestoesByTypeResult" type="tns:ArrayOfQuestaoEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetQuestoesByNivel">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="nivelDificuldade" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetQuestoesByNivelResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetQuestoesByNivelResult" type="tns:ArrayOfQuestaoEntity" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -445,6 +534,257 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="GetQuestaoTaxonomia">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="questaoId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetQuestaoTaxonomiaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetQuestaoTaxonomiaResult" type="tns:TaxonomiaEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUsersRank">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="nivelDificuldade" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUsersRankResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUsersRankResult" type="tns:ArrayOfUserRankEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfUserRankEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="UserRankEntity" nillable="true" type="tns:UserRankEntity" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="UserRankEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Nome" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Pontos" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="getUsers">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="nome" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="login" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="tipo" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getUsersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getUsersResult" type="tns:ArrayOfUsuarioEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfUsuarioEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="UsuarioEntity" nillable="true" type="tns:UsuarioEntity" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="getUsersByArtefato">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="artefoId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getUsersByArtefatoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getUsersByArtefatoResult" type="tns:ArrayOfUsuarioEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getUsuariosByPartida">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="partidaId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getUsuariosByPartidaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getUsuariosByPartidaResult" type="tns:ArrayOfUsuarioEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getTodosUsers">
+        <s:complexType />
+      </s:element>
+      <s:element name="getTodosUsersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getTodosUsersResult" type="tns:ArrayOfUsuarioEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getPartidas">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="usuarioId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getPartidasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getPartidasResult" type="tns:ArrayOfPartidaEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfPartidaEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PartidaEntity" nillable="true" type="tns:PartidaEntity" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PartidaEntity">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="P_ID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="U_ID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="P_DATA" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="P_NIVEL_DIFICULDADE" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="P_PONTUACAO_TOTAL" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="P_JOGO_MODO" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="relacionarUsrPartida">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userId" type="tns:ArrayOfInt1" />
+            <s:element minOccurs="1" maxOccurs="1" name="partidaId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="relacionarUsrPartidaResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="removerrUsrPartida">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="userId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="partidaId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="removerrUsrPartidaResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="removerFullInspectPartida">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="partidaId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="removerFullInspectPartidaResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="DeletarQuestao">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="questaoId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeletarQuestaoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DeletarQuestaoResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="removerPartidaQuestao">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="questao_id" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="partidada_id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="removerPartidaQuestaoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="removerPartidaQuestaoResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="criarPartida">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="partDificuldade" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="tipoJogo" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="criarPartidaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="criarPartidaResult" type="tns:PartidaEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="setTrechoResposta">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="trechoResposta" type="tns:ArrayOfTrechoRespostaEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfTrechoRespostaEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="TrechoRespostaEntity" nillable="true" type="tns:TrechoRespostaEntity" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TrechoRespostaEntity">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="TR_ID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="U_ID" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Q_ID" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="IT_ID" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="TRECHO_RESPOSTA" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TR_ItemTaxonomia" type="tns:ItemTaxonomiaEntity" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="setTrechoRespostaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="setTrechoRespostaResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getTrechoRespostas">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="usuario_id" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="partida_id" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="questao_id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getTrechoRespostasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getTrechoRespostasResult" type="tns:ArrayOfTrechoRespostaEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="AutenticarUsuarioSoapIn">
@@ -452,12 +792,6 @@
   </wsdl:message>
   <wsdl:message name="AutenticarUsuarioSoapOut">
     <wsdl:part name="parameters" element="tns:AutenticarUsuarioResponse" />
-  </wsdl:message>
-  <wsdl:message name="EncerrarPartida2SoapIn">
-    <wsdl:part name="parameters" element="tns:EncerrarPartida2" />
-  </wsdl:message>
-  <wsdl:message name="EncerrarPartida2SoapOut">
-    <wsdl:part name="parameters" element="tns:EncerrarPartida2Response" />
   </wsdl:message>
   <wsdl:message name="RecuperarSenhaSoapIn">
     <wsdl:part name="parameters" element="tns:RecuperarSenha" />
@@ -561,6 +895,24 @@
   <wsdl:message name="GetQuestoesSoapOut">
     <wsdl:part name="parameters" element="tns:GetQuestoesResponse" />
   </wsdl:message>
+  <wsdl:message name="GetTodasQuestoesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTodasQuestoes" />
+  </wsdl:message>
+  <wsdl:message name="GetTodasQuestoesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTodasQuestoesResponse" />
+  </wsdl:message>
+  <wsdl:message name="getArtefatosSoapIn">
+    <wsdl:part name="parameters" element="tns:getArtefatos" />
+  </wsdl:message>
+  <wsdl:message name="getArtefatosSoapOut">
+    <wsdl:part name="parameters" element="tns:getArtefatosResponse" />
+  </wsdl:message>
+  <wsdl:message name="getArtefatosPendentesSoapIn">
+    <wsdl:part name="parameters" element="tns:getArtefatosPendentes" />
+  </wsdl:message>
+  <wsdl:message name="getArtefatosPendentesSoapOut">
+    <wsdl:part name="parameters" element="tns:getArtefatosPendentesResponse" />
+  </wsdl:message>
   <wsdl:message name="GetTDRespostaSoapIn">
     <wsdl:part name="parameters" element="tns:GetTDResposta" />
   </wsdl:message>
@@ -572,6 +924,12 @@
   </wsdl:message>
   <wsdl:message name="setQuestaoAcertoSoapOut">
     <wsdl:part name="parameters" element="tns:setQuestaoAcertoResponse" />
+  </wsdl:message>
+  <wsdl:message name="setArtefatoPartidaSoapIn">
+    <wsdl:part name="parameters" element="tns:setArtefatoPartida" />
+  </wsdl:message>
+  <wsdl:message name="setArtefatoPartidaSoapOut">
+    <wsdl:part name="parameters" element="tns:setArtefatoPartidaResponse" />
   </wsdl:message>
   <wsdl:message name="getTiposArtefatosSoapIn">
     <wsdl:part name="parameters" element="tns:getTiposArtefatos" />
@@ -597,11 +955,23 @@
   <wsdl:message name="getTipoArtefatoSoapOut">
     <wsdl:part name="parameters" element="tns:getTipoArtefatoResponse" />
   </wsdl:message>
+  <wsdl:message name="GetTodasQuestoesByUserSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTodasQuestoesByUser" />
+  </wsdl:message>
+  <wsdl:message name="GetTodasQuestoesByUserSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTodasQuestoesByUserResponse" />
+  </wsdl:message>
   <wsdl:message name="GetQuestoesByTypeSoapIn">
     <wsdl:part name="parameters" element="tns:GetQuestoesByType" />
   </wsdl:message>
   <wsdl:message name="GetQuestoesByTypeSoapOut">
     <wsdl:part name="parameters" element="tns:GetQuestoesByTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetQuestoesByNivelSoapIn">
+    <wsdl:part name="parameters" element="tns:GetQuestoesByNivel" />
+  </wsdl:message>
+  <wsdl:message name="GetQuestoesByNivelSoapOut">
+    <wsdl:part name="parameters" element="tns:GetQuestoesByNivelResponse" />
   </wsdl:message>
   <wsdl:message name="GetTaxonomiaSoapIn">
     <wsdl:part name="parameters" element="tns:GetTaxonomia" />
@@ -609,14 +979,100 @@
   <wsdl:message name="GetTaxonomiaSoapOut">
     <wsdl:part name="parameters" element="tns:GetTaxonomiaResponse" />
   </wsdl:message>
+  <wsdl:message name="GetQuestaoTaxonomiaSoapIn">
+    <wsdl:part name="parameters" element="tns:GetQuestaoTaxonomia" />
+  </wsdl:message>
+  <wsdl:message name="GetQuestaoTaxonomiaSoapOut">
+    <wsdl:part name="parameters" element="tns:GetQuestaoTaxonomiaResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUsersRankSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUsersRank" />
+  </wsdl:message>
+  <wsdl:message name="GetUsersRankSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUsersRankResponse" />
+  </wsdl:message>
+  <wsdl:message name="getUsersSoapIn">
+    <wsdl:part name="parameters" element="tns:getUsers" />
+  </wsdl:message>
+  <wsdl:message name="getUsersSoapOut">
+    <wsdl:part name="parameters" element="tns:getUsersResponse" />
+  </wsdl:message>
+  <wsdl:message name="getUsersByArtefatoSoapIn">
+    <wsdl:part name="parameters" element="tns:getUsersByArtefato" />
+  </wsdl:message>
+  <wsdl:message name="getUsersByArtefatoSoapOut">
+    <wsdl:part name="parameters" element="tns:getUsersByArtefatoResponse" />
+  </wsdl:message>
+  <wsdl:message name="getUsuariosByPartidaSoapIn">
+    <wsdl:part name="parameters" element="tns:getUsuariosByPartida" />
+  </wsdl:message>
+  <wsdl:message name="getUsuariosByPartidaSoapOut">
+    <wsdl:part name="parameters" element="tns:getUsuariosByPartidaResponse" />
+  </wsdl:message>
+  <wsdl:message name="getTodosUsersSoapIn">
+    <wsdl:part name="parameters" element="tns:getTodosUsers" />
+  </wsdl:message>
+  <wsdl:message name="getTodosUsersSoapOut">
+    <wsdl:part name="parameters" element="tns:getTodosUsersResponse" />
+  </wsdl:message>
+  <wsdl:message name="getPartidasSoapIn">
+    <wsdl:part name="parameters" element="tns:getPartidas" />
+  </wsdl:message>
+  <wsdl:message name="getPartidasSoapOut">
+    <wsdl:part name="parameters" element="tns:getPartidasResponse" />
+  </wsdl:message>
+  <wsdl:message name="relacionarUsrPartidaSoapIn">
+    <wsdl:part name="parameters" element="tns:relacionarUsrPartida" />
+  </wsdl:message>
+  <wsdl:message name="relacionarUsrPartidaSoapOut">
+    <wsdl:part name="parameters" element="tns:relacionarUsrPartidaResponse" />
+  </wsdl:message>
+  <wsdl:message name="removerrUsrPartidaSoapIn">
+    <wsdl:part name="parameters" element="tns:removerrUsrPartida" />
+  </wsdl:message>
+  <wsdl:message name="removerrUsrPartidaSoapOut">
+    <wsdl:part name="parameters" element="tns:removerrUsrPartidaResponse" />
+  </wsdl:message>
+  <wsdl:message name="removerFullInspectPartidaSoapIn">
+    <wsdl:part name="parameters" element="tns:removerFullInspectPartida" />
+  </wsdl:message>
+  <wsdl:message name="removerFullInspectPartidaSoapOut">
+    <wsdl:part name="parameters" element="tns:removerFullInspectPartidaResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeletarQuestaoSoapIn">
+    <wsdl:part name="parameters" element="tns:DeletarQuestao" />
+  </wsdl:message>
+  <wsdl:message name="DeletarQuestaoSoapOut">
+    <wsdl:part name="parameters" element="tns:DeletarQuestaoResponse" />
+  </wsdl:message>
+  <wsdl:message name="removerPartidaQuestaoSoapIn">
+    <wsdl:part name="parameters" element="tns:removerPartidaQuestao" />
+  </wsdl:message>
+  <wsdl:message name="removerPartidaQuestaoSoapOut">
+    <wsdl:part name="parameters" element="tns:removerPartidaQuestaoResponse" />
+  </wsdl:message>
+  <wsdl:message name="criarPartidaSoapIn">
+    <wsdl:part name="parameters" element="tns:criarPartida" />
+  </wsdl:message>
+  <wsdl:message name="criarPartidaSoapOut">
+    <wsdl:part name="parameters" element="tns:criarPartidaResponse" />
+  </wsdl:message>
+  <wsdl:message name="setTrechoRespostaSoapIn">
+    <wsdl:part name="parameters" element="tns:setTrechoResposta" />
+  </wsdl:message>
+  <wsdl:message name="setTrechoRespostaSoapOut">
+    <wsdl:part name="parameters" element="tns:setTrechoRespostaResponse" />
+  </wsdl:message>
+  <wsdl:message name="getTrechoRespostasSoapIn">
+    <wsdl:part name="parameters" element="tns:getTrechoRespostas" />
+  </wsdl:message>
+  <wsdl:message name="getTrechoRespostasSoapOut">
+    <wsdl:part name="parameters" element="tns:getTrechoRespostasResponse" />
+  </wsdl:message>
   <wsdl:portType name="WebServiceMainSoap">
     <wsdl:operation name="AutenticarUsuario">
       <wsdl:input message="tns:AutenticarUsuarioSoapIn" />
       <wsdl:output message="tns:AutenticarUsuarioSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="EncerrarPartida2">
-      <wsdl:input message="tns:EncerrarPartida2SoapIn" />
-      <wsdl:output message="tns:EncerrarPartida2SoapOut" />
     </wsdl:operation>
     <wsdl:operation name="RecuperarSenha">
       <wsdl:input message="tns:RecuperarSenhaSoapIn" />
@@ -686,6 +1142,18 @@
       <wsdl:input message="tns:GetQuestoesSoapIn" />
       <wsdl:output message="tns:GetQuestoesSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="GetTodasQuestoes">
+      <wsdl:input message="tns:GetTodasQuestoesSoapIn" />
+      <wsdl:output message="tns:GetTodasQuestoesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getArtefatos">
+      <wsdl:input message="tns:getArtefatosSoapIn" />
+      <wsdl:output message="tns:getArtefatosSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getArtefatosPendentes">
+      <wsdl:input message="tns:getArtefatosPendentesSoapIn" />
+      <wsdl:output message="tns:getArtefatosPendentesSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="GetTDResposta">
       <wsdl:input message="tns:GetTDRespostaSoapIn" />
       <wsdl:output message="tns:GetTDRespostaSoapOut" />
@@ -693,6 +1161,10 @@
     <wsdl:operation name="setQuestaoAcerto">
       <wsdl:input message="tns:setQuestaoAcertoSoapIn" />
       <wsdl:output message="tns:setQuestaoAcertoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="setArtefatoPartida">
+      <wsdl:input message="tns:setArtefatoPartidaSoapIn" />
+      <wsdl:output message="tns:setArtefatoPartidaSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="getTiposArtefatos">
       <wsdl:input message="tns:getTiposArtefatosSoapIn" />
@@ -710,28 +1182,87 @@
       <wsdl:input message="tns:getTipoArtefatoSoapIn" />
       <wsdl:output message="tns:getTipoArtefatoSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="GetTodasQuestoesByUser">
+      <wsdl:input message="tns:GetTodasQuestoesByUserSoapIn" />
+      <wsdl:output message="tns:GetTodasQuestoesByUserSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="GetQuestoesByType">
       <wsdl:input message="tns:GetQuestoesByTypeSoapIn" />
       <wsdl:output message="tns:GetQuestoesByTypeSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="GetQuestoesByNivel">
+      <wsdl:input message="tns:GetQuestoesByNivelSoapIn" />
+      <wsdl:output message="tns:GetQuestoesByNivelSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="GetTaxonomia">
       <wsdl:input message="tns:GetTaxonomiaSoapIn" />
       <wsdl:output message="tns:GetTaxonomiaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetQuestaoTaxonomia">
+      <wsdl:input message="tns:GetQuestaoTaxonomiaSoapIn" />
+      <wsdl:output message="tns:GetQuestaoTaxonomiaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersRank">
+      <wsdl:input message="tns:GetUsersRankSoapIn" />
+      <wsdl:output message="tns:GetUsersRankSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getUsers">
+      <wsdl:input message="tns:getUsersSoapIn" />
+      <wsdl:output message="tns:getUsersSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getUsersByArtefato">
+      <wsdl:input message="tns:getUsersByArtefatoSoapIn" />
+      <wsdl:output message="tns:getUsersByArtefatoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getUsuariosByPartida">
+      <wsdl:input message="tns:getUsuariosByPartidaSoapIn" />
+      <wsdl:output message="tns:getUsuariosByPartidaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getTodosUsers">
+      <wsdl:input message="tns:getTodosUsersSoapIn" />
+      <wsdl:output message="tns:getTodosUsersSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getPartidas">
+      <wsdl:input message="tns:getPartidasSoapIn" />
+      <wsdl:output message="tns:getPartidasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="relacionarUsrPartida">
+      <wsdl:input message="tns:relacionarUsrPartidaSoapIn" />
+      <wsdl:output message="tns:relacionarUsrPartidaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="removerrUsrPartida">
+      <wsdl:input message="tns:removerrUsrPartidaSoapIn" />
+      <wsdl:output message="tns:removerrUsrPartidaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="removerFullInspectPartida">
+      <wsdl:input message="tns:removerFullInspectPartidaSoapIn" />
+      <wsdl:output message="tns:removerFullInspectPartidaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeletarQuestao">
+      <wsdl:input message="tns:DeletarQuestaoSoapIn" />
+      <wsdl:output message="tns:DeletarQuestaoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="removerPartidaQuestao">
+      <wsdl:input message="tns:removerPartidaQuestaoSoapIn" />
+      <wsdl:output message="tns:removerPartidaQuestaoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="criarPartida">
+      <wsdl:input message="tns:criarPartidaSoapIn" />
+      <wsdl:output message="tns:criarPartidaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="setTrechoResposta">
+      <wsdl:input message="tns:setTrechoRespostaSoapIn" />
+      <wsdl:output message="tns:setTrechoRespostaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getTrechoRespostas">
+      <wsdl:input message="tns:getTrechoRespostasSoapIn" />
+      <wsdl:output message="tns:getTrechoRespostasSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WebServiceMainSoap" type="tns:WebServiceMainSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="AutenticarUsuario">
       <soap:operation soapAction="http://tempuri.org/AutenticarUsuario" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="EncerrarPartida2">
-      <soap:operation soapAction="http://tempuri.org/EncerrarPartida2" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -892,6 +1423,33 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetTodasQuestoes">
+      <soap:operation soapAction="http://tempuri.org/GetTodasQuestoes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getArtefatos">
+      <soap:operation soapAction="http://tempuri.org/getArtefatos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getArtefatosPendentes">
+      <soap:operation soapAction="http://tempuri.org/getArtefatosPendentes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetTDResposta">
       <soap:operation soapAction="http://tempuri.org/GetTDResposta" style="document" />
       <wsdl:input>
@@ -903,6 +1461,15 @@
     </wsdl:operation>
     <wsdl:operation name="setQuestaoAcerto">
       <soap:operation soapAction="http://tempuri.org/setQuestaoAcerto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setArtefatoPartida">
+      <soap:operation soapAction="http://tempuri.org/setArtefatoPartida" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -946,8 +1513,26 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetTodasQuestoesByUser">
+      <soap:operation soapAction="http://tempuri.org/GetTodasQuestoesByUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetQuestoesByType">
       <soap:operation soapAction="http://tempuri.org/GetQuestoesByType" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetQuestoesByNivel">
+      <soap:operation soapAction="http://tempuri.org/GetQuestoesByNivel" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -964,20 +1549,146 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetQuestaoTaxonomia">
+      <soap:operation soapAction="http://tempuri.org/GetQuestaoTaxonomia" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersRank">
+      <soap:operation soapAction="http://tempuri.org/GetUsersRank" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUsers">
+      <soap:operation soapAction="http://tempuri.org/getUsers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUsersByArtefato">
+      <soap:operation soapAction="http://tempuri.org/getUsersByArtefato" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUsuariosByPartida">
+      <soap:operation soapAction="http://tempuri.org/getUsuariosByPartida" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getTodosUsers">
+      <soap:operation soapAction="http://tempuri.org/getTodosUsers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPartidas">
+      <soap:operation soapAction="http://tempuri.org/getPartidas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="relacionarUsrPartida">
+      <soap:operation soapAction="http://tempuri.org/relacionarUsrPartida" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removerrUsrPartida">
+      <soap:operation soapAction="http://tempuri.org/removerrUsrPartida" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removerFullInspectPartida">
+      <soap:operation soapAction="http://tempuri.org/removerFullInspectPartida" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeletarQuestao">
+      <soap:operation soapAction="http://tempuri.org/DeletarQuestao" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removerPartidaQuestao">
+      <soap:operation soapAction="http://tempuri.org/removerPartidaQuestao" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="criarPartida">
+      <soap:operation soapAction="http://tempuri.org/criarPartida" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setTrechoResposta">
+      <soap:operation soapAction="http://tempuri.org/setTrechoResposta" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getTrechoRespostas">
+      <soap:operation soapAction="http://tempuri.org/getTrechoRespostas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="WebServiceMainSoap12" type="tns:WebServiceMainSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="AutenticarUsuario">
       <soap12:operation soapAction="http://tempuri.org/AutenticarUsuario" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="EncerrarPartida2">
-      <soap12:operation soapAction="http://tempuri.org/EncerrarPartida2" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -1138,6 +1849,33 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetTodasQuestoes">
+      <soap12:operation soapAction="http://tempuri.org/GetTodasQuestoes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getArtefatos">
+      <soap12:operation soapAction="http://tempuri.org/getArtefatos" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getArtefatosPendentes">
+      <soap12:operation soapAction="http://tempuri.org/getArtefatosPendentes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetTDResposta">
       <soap12:operation soapAction="http://tempuri.org/GetTDResposta" style="document" />
       <wsdl:input>
@@ -1149,6 +1887,15 @@
     </wsdl:operation>
     <wsdl:operation name="setQuestaoAcerto">
       <soap12:operation soapAction="http://tempuri.org/setQuestaoAcerto" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setArtefatoPartida">
+      <soap12:operation soapAction="http://tempuri.org/setArtefatoPartida" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -1192,8 +1939,26 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetTodasQuestoesByUser">
+      <soap12:operation soapAction="http://tempuri.org/GetTodasQuestoesByUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetQuestoesByType">
       <soap12:operation soapAction="http://tempuri.org/GetQuestoesByType" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetQuestoesByNivel">
+      <soap12:operation soapAction="http://tempuri.org/GetQuestoesByNivel" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -1210,13 +1975,148 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetQuestaoTaxonomia">
+      <soap12:operation soapAction="http://tempuri.org/GetQuestaoTaxonomia" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersRank">
+      <soap12:operation soapAction="http://tempuri.org/GetUsersRank" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUsers">
+      <soap12:operation soapAction="http://tempuri.org/getUsers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUsersByArtefato">
+      <soap12:operation soapAction="http://tempuri.org/getUsersByArtefato" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUsuariosByPartida">
+      <soap12:operation soapAction="http://tempuri.org/getUsuariosByPartida" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getTodosUsers">
+      <soap12:operation soapAction="http://tempuri.org/getTodosUsers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPartidas">
+      <soap12:operation soapAction="http://tempuri.org/getPartidas" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="relacionarUsrPartida">
+      <soap12:operation soapAction="http://tempuri.org/relacionarUsrPartida" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removerrUsrPartida">
+      <soap12:operation soapAction="http://tempuri.org/removerrUsrPartida" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removerFullInspectPartida">
+      <soap12:operation soapAction="http://tempuri.org/removerFullInspectPartida" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeletarQuestao">
+      <soap12:operation soapAction="http://tempuri.org/DeletarQuestao" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="removerPartidaQuestao">
+      <soap12:operation soapAction="http://tempuri.org/removerPartidaQuestao" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="criarPartida">
+      <soap12:operation soapAction="http://tempuri.org/criarPartida" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setTrechoResposta">
+      <soap12:operation soapAction="http://tempuri.org/setTrechoResposta" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getTrechoRespostas">
+      <soap12:operation soapAction="http://tempuri.org/getTrechoRespostas" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="WebServiceMain">
     <wsdl:port name="WebServiceMainSoap" binding="tns:WebServiceMainSoap">
-      <soap:address location="http://inspectorx.linksysnet.com:8080/WebServiceAcess_deploy/webservice/webserviceMain.asmx" />
+      <soap:address location="http://localhost:4200/WebService/WebServiceMain.asmx" />
     </wsdl:port>
     <wsdl:port name="WebServiceMainSoap12" binding="tns:WebServiceMainSoap12">
-      <soap12:address location="http://inspectorx.linksysnet.com:8080/WebServiceAcess_deploy/webservice/webserviceMain.asmx" />
+      <soap12:address location="http://localhost:4200/WebService/WebServiceMain.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>
