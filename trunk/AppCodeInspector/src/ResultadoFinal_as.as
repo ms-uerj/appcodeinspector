@@ -7,7 +7,7 @@ import mx.events.FlexEvent;
 protected function btnVoltar_clickHandler(event:MouseEvent):void
 {
 	this.currentState = "Login";
-	dtg_UsersRank.dataProvider=emptyArray;
+	dtg_UsersRank.dataProvider=new ArrayCollection();
 }
 
 protected function dataGrid_creationCompleteHandler(event:FlexEvent):void

@@ -32,9 +32,8 @@ protected function btn_CriarPartida_clickHandler(event:MouseEvent):void
 		IniciarPartidaFullAdmin.token = ws_InspectorX.IniciarPartida(rdg_PartidaDificuldade.selectedValue as int,UsuarioLogado.U_ID,InspectorXUserEnum.FullInspection.type );
 	}
 	else 
-	{
 		Alert.show("Por favor selecione um nível de dificuldade.");
-	}
+
 }
 
 protected function btn_EditarPartidaAdmin_clickHandler(event:MouseEvent):void
@@ -46,8 +45,26 @@ protected function btn_EditarPartidaAdmin_clickHandler(event:MouseEvent):void
 		GetArtefatosPartidaEditResult.token = ws_InspectorX.getArtefatos(partida.P_ID);
 		GetUsuariosByPartidaEditResult.token = ws_InspectorX.getUsuariosByPartida(partida.P_ID);
 		
+		lst_ArtefatosAdicionados.dragEnabled=false;
+		lst_InspetoresAdicionados.dragEnabled=false;
+		
 		setAllDisponiveisLists();
 	}
+}
+
+protected function btn_DeletarPartidaAdmin_clickHandler(event:MouseEvent):void
+{
+	if (lst_MinhasPartidas.selectedItem!=null) 
+	{
+		var partida:Partida = lst_MinhasPartidas.selectedItem as Partida;
+		if(partida==null)
+			return;
+		removerFullInspectPartidaResult.token = ws_InspectorX.removerFullInspectPartida(partida.P_ID);
+		GetPartidasResult.token = ws_InspectorX.getPartidas(UsuarioLogado.U_ID);
+		lst_Inspetores.dataProvider=new ArrayCollection();
+		lst_Artefato.dataProvider=new ArrayCollection();
+	}
+	
 }
 
 protected function btn_AvaliarPartida_clickHandler(event:MouseEvent):void

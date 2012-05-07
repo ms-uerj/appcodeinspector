@@ -16,13 +16,13 @@ import valueObjects.TaxonomiaEntity;
 
 public var ArtefatosList:ArrayCollection;
 
-private var xml:XMLLoader;
+//private var xml:XMLLoader;
 private var css:CSS;
 
 private var cssBool:Boolean = false;
 private var xmlBool:Boolean = false;
 private var pertguntasTotal:int = 10;
-public var Questao_Trechos_DefeitoList:ArrayCollection;
+public var Questao_Trechos_DefeitoList_DC:ArrayCollection;
 public var RespostaPopUp:RespostaWindow = new RespostaWindow();
 
 [Bindable]
@@ -37,10 +37,9 @@ public function onLoad():void
 	setQuestaoTextArea();
 	
 	//È necessário remover as linhas abaixo.
-	xml = new XMLLoader();
-	xml.LoadWS(ArtefatosList);
-	
-	xml.addEventListener("XML_Loaded", xmlDone);
+	//	xml = new XMLLoader();
+	//	xml.LoadWS(ArtefatosList);
+	//	xml.addEventListener("XML_Loaded", xmlDone);
 	
 	css = new CSS();
 	css.Load("Arquivos/styles.css");
@@ -49,13 +48,13 @@ public function onLoad():void
 
 private function onMouseUp(evt:MouseEvent):void
 {
-	QuestaoSelectedText = new TextRange(field,false,field.selectionBeginIndex,field.selectionEndIndex);
+	QuestaoSelectedText = new TextRange(txa_QuestoesDefectCrawler,false,txa_QuestoesDefectCrawler.selectionBeginIndex,txa_QuestoesDefectCrawler.selectionEndIndex);
 	var selLength:int = QuestaoSelectedText.endIndex - QuestaoSelectedText.beginIndex;
 	
 	if(selLength)
 	{
 		RespostaPopUp.nivelDificuldade = NivelDificuldade;
-		//respostaWindow.listRespostasSelecionadas=RespostasSelecionadas;
+		RespostaPopUp.listRespostasSelecionadas=RespostasSelecionadas;
 		
 		PopUpManager.addPopUp(RespostaPopUp,this,true);
 		PopUpManager.centerPopUp(RespostaPopUp);
@@ -64,10 +63,10 @@ private function onMouseUp(evt:MouseEvent):void
 
 private function textEvent(e:TextEvent):void 
 {
-	if(Questao_Trechos_DefeitoList.length>RespostasSelecionadas.length)
+	if(Questao_Trechos_DefeitoList_DC.length>RespostasSelecionadas.length)
 	{
 		RespostaPopUp.nivelDificuldade = NivelDificuldade;
-		//respostaWindow.listRespostasSelecionadas=RespostasSelecionadas;
+		RespostaPopUp.listRespostasSelecionadas=RespostasSelecionadas;
 		PopUpManager.addPopUp(RespostaPopUp,this,true);
 		PopUpManager.centerPopUp(RespostaPopUp);
 	}
@@ -91,15 +90,15 @@ private function allDone():void
 	if(cssBool && xmlBool)
 	{
 		
-		field.styleSheet = css.sheet;
+		txa_QuestoesDefectCrawler.styleSheet = css.sheet;
 		
 		var q:QuestaoEntity = ArtefatosList[PerguntaAtualIndex] as QuestaoEntity;
 		GetQuestoesTaxonomia.token = ws_InspectorX.GetQuestaoTaxonomia(q.Q_ID);
 		
-		field.htmlText = q.Q_XML;
+		txa_QuestoesDefectCrawler.htmlText = q.Q_XML;
 		
 		GetTrechosQuestao.token = ws_InspectorX.GetTrechosDefeito(q.Q_ID);
-		field.addEventListener(TextEvent.LINK, textEvent);
+		txa_QuestoesDefectCrawler.addEventListener(TextEvent.LINK, textEvent);
 		
 	}
 }
@@ -107,16 +106,22 @@ private function allDone():void
 protected function btnProximaPergunta_clickHandler(event:MouseEvent):void
 {
 	if(RespostasSelecionadas.length == 0)
+	{
 		Alert.show("Encontre e selecione o motivo do defeito antes de prosseguir.");
+		return;
+	}
 		
-	else if(Questao_Trechos_DefeitoList.length>RespostasSelecionadas.length)
+	else if(Questao_Trechos_DefeitoList_DC.length>RespostasSelecionadas.length)
+	{
 		Alert.show("Ainda faltam defeitos na questão.");
+		return;
+	}
 		
 	else
 	{
 		verificarRespostas();
 		
-		field.styleSheet = css.sheet;
+		txa_QuestoesDefectCrawler.styleSheet = css.sheet;
 		
 		if ((PerguntaAtualIndex==(ArtefatosList.length-1))||PerguntaAtualIndex==pertguntasTotal)
 		{
@@ -131,7 +136,7 @@ protected function btnProximaPergunta_clickHandler(event:MouseEvent):void
 private function verificarRespostas():void
 {
 	var pontos:int=0;
-	for each(var qTrecho:TrechoDefeitoEntity in Questao_Trechos_DefeitoList)
+	for each(var qTrecho:TrechoDefeitoEntity in Questao_Trechos_DefeitoList_DC)
 	{
 		var trechoQuestao:TrechoDefeitoEntity = qTrecho;
 		
@@ -172,16 +177,16 @@ private function encerrarJogo():void
 	Alert.show("O jogo Terminou");
 	EncerraPartida.token=ws_InspectorX.EncerrarPartida(PartidaAtualId,PontosTotal);
 	PerguntaAtualIndex=0;
-	Questao_Trechos_DefeitoList.removeAll();
+	Questao_Trechos_DefeitoList_DC.removeAll();
 	RespostasSelecionadas.removeAll();
-	field.htmlText="";
+	txa_QuestoesDefectCrawler.htmlText="";
 	ArtefatosList.removeAll();
 }
 
 private function setProximaQuestao():void
 {
 	++PerguntaAtualIndex;
-	Questao_Trechos_DefeitoList.removeAll();
+	Questao_Trechos_DefeitoList_DC.removeAll();
 	RespostasSelecionadas.removeAll();
 	
 	var q:QuestaoEntity = ArtefatosList[PerguntaAtualIndex] as QuestaoEntity;
@@ -189,7 +194,7 @@ private function setProximaQuestao():void
 	GetTrechosQuestao.token = ws_InspectorX.GetTrechosDefeito(q.Q_ID);
 	GetQuestoesTaxonomia.token = ws_InspectorX.GetQuestaoTaxonomia(q.Q_ID);
 	
-	field.htmlText = q.Q_XML;
+	txa_QuestoesDefectCrawler.htmlText = q.Q_XML;
 }
 
 private function getItemTaxonomia(id:int):ItemTaxonomiaEntity
@@ -204,9 +209,7 @@ private function getItemTaxonomia(id:int):ItemTaxonomiaEntity
 
 private function setQuestaoTextArea():void
 {
-	
-	
-	with (field) 
+	with (txa_QuestoesDefectCrawler) 
 	{
 		multiline = true;
 		
@@ -218,7 +221,7 @@ private function setQuestaoTextArea():void
 			selectable = true;
 	}
 	if(NivelDificuldade!=FACIL)
-		field.addEventListener(MouseEvent.MOUSE_UP,onMouseUp);
+		txa_QuestoesDefectCrawler.addEventListener(MouseEvent.MOUSE_UP,onMouseUp);
 }
 
 //ResultHandlers Section
@@ -236,7 +239,7 @@ protected function EncerrarPartidaResult_resultHandler(e:ResultEvent):void
 
 protected function GetTrechosQuestao_resultHandler(e:ResultEvent):void
 {
-	Questao_Trechos_DefeitoList = ArrayCollection(e.result);
+	Questao_Trechos_DefeitoList_DC = ArrayCollection(e.result);
 }
 
 protected function GetQuestaoItemTax_resultHandler(e:ResultEvent):void

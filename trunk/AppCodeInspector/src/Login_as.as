@@ -41,7 +41,7 @@ protected function AutenticarUsuarioResult_resultHandler(e:ResultEvent):void
 		}
 		else if (UsuarioLogado.U_TIPO==InspectorXUserEnum.Inspetor) 
 		{
-			this.currentState = "JogoModo";
+			this.currentState = "JogoModoSelecao";
 		}
 	}
 }

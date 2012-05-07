@@ -33,5 +33,21 @@ package Domain
 			
 			return questaoArrayCol;
 		}
+		
+		public static function toIdCollection(entityList:ArrayCollection):ArrayCollection
+		{
+			var questaoArrayCol:ArrayCollection=new ArrayCollection();
+			
+			if(entityList.length!=0)
+			{
+				for each(var q:QuestaoEntity in entityList)
+				{
+					var qId:int = q.Q_ID;
+					questaoArrayCol.addItem(qId);
+				}
+			}
+			
+			return questaoArrayCol;
+		}
 	}
 }
