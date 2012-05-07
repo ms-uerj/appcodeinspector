@@ -27,7 +27,7 @@ public class CustomLstCellRenderer implements ListCellRenderer{
         if (value instanceof IInspectorXEntities)
         {
             IInspectorXEntities insEnt = (IInspectorXEntities)value;
-            theToolTip=insEnt.getContent();
+            //theToolTip=insEnt.getContent();
         } 
         else 
         {

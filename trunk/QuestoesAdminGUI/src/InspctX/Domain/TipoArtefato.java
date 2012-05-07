@@ -18,6 +18,8 @@ public class TipoArtefato extends TipoArtefatoEntity {
     {
         tartefoEntity=tipoArtefatoEntity;
         this.tanome=tipoArtefatoEntity.getTANOME();
+	this.taid=tipoArtefatoEntity.getTAID();
+	this.tadescricao=tipoArtefatoEntity.getTADESCRICAO();
     }
     
     @Override

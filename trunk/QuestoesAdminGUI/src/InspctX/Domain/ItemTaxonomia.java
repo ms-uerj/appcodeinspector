@@ -11,6 +11,9 @@ public class ItemTaxonomia extends ItemTaxonomiaEntity{
     {
         itemTax=itemTaxonomiaEntity;
         this.nome=itemTaxonomiaEntity.getNome();
+	this.descricao=itemTaxonomiaEntity.getDescricao();
+	this.id=itemTaxonomiaEntity.getID();
+	this.tid=itemTaxonomiaEntity.getTID();
     }
     
     @Override

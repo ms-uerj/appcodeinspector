@@ -3,6 +3,7 @@ package InspctX.Componentes;
 import InspctX.Domain.Questao;
 import InspctX.Domain.Taxonomia;
 import InspctX.Domain.TrechoDefeito;
+import InspctX.GUI.ArtefatoVS;
 import InspctX.GUI.InserirQuestao;
 import InspectorXWebserv.*;
 import java.util.ArrayList;
@@ -37,15 +38,12 @@ public final class QuestoesAdminPanel extends javax.swing.JPanel
         lbl_Symbol1 = new javax.swing.JLabel();
         lbl_TaxonomiaCBX = new javax.swing.JLabel();
 
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
         cbx_Taxonomia.setToolTipText("Selecione uma taxonomia para criar questões!");
         cbx_Taxonomia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbx_TaxonomiaActionPerformed(evt);
             }
         });
-        add(cbx_Taxonomia, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 220, -1));
 
         pnl_QuestoesOption.setBorder(javax.swing.BorderFactory.createTitledBorder("Questões relacionadas:"));
 
@@ -101,6 +99,11 @@ public final class QuestoesAdminPanel extends javax.swing.JPanel
 
         lbl_QuestoesLST.setText("Questões :");
 
+        lst_Questoes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lst_QuestoesMouseClicked(evt);
+            }
+        });
         lst_Questoes.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
                 lst_QuestoesValueChanged(evt);
@@ -132,23 +135,16 @@ public final class QuestoesAdminPanel extends javax.swing.JPanel
                         .addComponent(lbl_Symbol1)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnl_QuestoesOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 423, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbl_DefeitosLST))
-                .addGap(282, 282, 282))
+                    .addComponent(lbl_DefeitosLST)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 419, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
         pnl_QuestoesOptionLayout.setVerticalGroup(
             pnl_QuestoesOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_QuestoesOptionLayout.createSequentialGroup()
-                .addGroup(pnl_QuestoesOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(pnl_QuestoesOptionLayout.createSequentialGroup()
-                        .addComponent(lbl_DefeitosLST)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnl_QuestoesOptionLayout.createSequentialGroup()
-                        .addComponent(lbl_QuestoesLST)
-                        .addGap(6, 6, 6)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 7, Short.MAX_VALUE))
+                .addComponent(lbl_QuestoesLST)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE))
             .addGroup(pnl_QuestoesOptionLayout.createSequentialGroup()
                 .addGroup(pnl_QuestoesOptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnl_QuestoesOptionLayout.createSequentialGroup()
@@ -158,12 +154,36 @@ public final class QuestoesAdminPanel extends javax.swing.JPanel
                         .addContainerGap()
                         .addComponent(pnl_QuestaoCRUD, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
+            .addGroup(pnl_QuestoesOptionLayout.createSequentialGroup()
+                .addComponent(lbl_DefeitosLST)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3))
         );
 
-        add(pnl_QuestoesOption, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 680, 280));
-
         lbl_TaxonomiaCBX.setText("Taxonomias Registradas:");
-        add(lbl_TaxonomiaCBX, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbl_TaxonomiaCBX)
+                    .addComponent(cbx_Taxonomia, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+            .addComponent(pnl_QuestoesOption, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(lbl_TaxonomiaCBX)
+                .addGap(6, 6, 6)
+                .addComponent(cbx_Taxonomia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(pnl_QuestoesOption, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_InserirQuestaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_InserirQuestaoActionPerformed
@@ -207,6 +227,22 @@ public final class QuestoesAdminPanel extends javax.swing.JPanel
         setQuestaoList();
 	lst_TrechoDefeitos.setListData(new Object[0]);
     }//GEN-LAST:event_cbx_TaxonomiaActionPerformed
+
+    private void lst_QuestoesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lst_QuestoesMouseClicked
+	try 
+        {
+            if(lst_Questoes.getSelectedValue()!=null)
+            {
+		if (evt.getClickCount() == 2) {
+		    ArtefatoVS artefatoView = new ArtefatoVS((Questao)lst_Questoes.getSelectedValue());
+		    artefatoView.setVisible(true);
+		}
+	    }
+	}catch(Exception ex)
+	{
+	    JOptionPane.showMessageDialog(this, ex);
+	}
+    }//GEN-LAST:event_lst_QuestoesMouseClicked
 
     private void setTrechoDefeitoList()
     {
