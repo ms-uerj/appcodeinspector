@@ -52,6 +52,7 @@
     <Compile Include="DAO\UsuarioDAO.cs" />
     <Compile Include="Domain\ItemTaxonomiaEntity.cs" />
     <Compile Include="Domain\PartidaEntity.cs" />
+    <Compile Include="Domain\PartidaModoEnum.cs" />
     <Compile Include="Domain\QuestaoEntity.cs" />
     <Compile Include="Domain\QuestaoUtil.cs" />
     <Compile Include="Domain\Questao_TrechoDefeitoEntity.cs" />

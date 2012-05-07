@@ -38,6 +38,32 @@ namespace CIDao.DAO
             return partidasEnL;
         }
 
+        public List<PartidaEntity> getPartidasInspector(int usuarioId)
+        {
+            var partidas = from p in db.Partidas
+                           from up in db.Usuario_Partidas
+                           where up.U_ID == usuarioId &&
+                                 up.P_ID == p.P_ID &&
+                                 p.P_JOGO_MODO ==PartidaModoEnum.FULLINSPECTIONPROCESS
+                           select p;
+
+            List<PartidaEntity> partidasEnL = new List<PartidaEntity>();
+            List<Partida> partidasL = partidas.ToList();
+
+            foreach (Partida part in partidasL)
+            {
+                PartidaEntity pe = new PartidaEntity();
+                pe.P_DATA = part.P_DATA;
+                pe.P_NIVEL_DIFICULDADE = part.P_NIVEL_DIFICULDADE;
+                pe.P_PONTUACAO_TOTAL = part.P_PONTUACAO_TOTAL;
+                pe.P_JOGO_MODO = part.P_JOGO_MODO;
+                pe.P_ID = part.P_ID;
+                partidasEnL.Add(pe);
+            }
+
+            return partidasEnL;
+        }
+
         public int iniciarPartida(Partida partidaIniciada, int userId)
         {
             try

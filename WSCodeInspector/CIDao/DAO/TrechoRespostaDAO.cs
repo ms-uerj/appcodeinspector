@@ -10,7 +10,7 @@ namespace CIDao.DAO
     {
         private InspectorXDBDataContext db = new InspectorXDBDataContext();
 
-        public bool setTrechoResposta(List<TrechoRespostaEntity> trechoResposta)
+        public void setTrechoResposta(List<TrechoRespostaEntity> trechoResposta)
         {
             try
             {
@@ -26,7 +26,6 @@ namespace CIDao.DAO
                 }
                 db.SubmitChanges();
 
-                return true;
             }
             catch (Exception)
             {
