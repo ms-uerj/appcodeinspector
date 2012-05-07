@@ -5,7 +5,11 @@ import flash.events.MouseEvent;
 
 import mx.collections.ArrayCollection;
 import mx.controls.Alert;
+import mx.events.DragEvent;
 import mx.rpc.events.ResultEvent;
+
+public var partidaArtefatoMax:int =10;
+public var partidaInspetorMax:int =5;
 
 protected function btn_RegistrarPartida_clickHandler(event:MouseEvent):void
 {
@@ -15,12 +19,11 @@ protected function btn_RegistrarPartida_clickHandler(event:MouseEvent):void
 		Alert.show(error);
 		return;
 	}
-	
-	RelacionarUsrPartidaResult.token = ws_InspectorX.relacionarUsrPartida(lst_InspetoresAdicionados.dataProvider as ArrayCollection, PartidaAtualId);
-	SetArtefatoPartidaResult.token = ws_InspectorX.setArtefatoPartida(lst_ArtefatosAdicionados.dataProvider as ArrayCollection, PartidaAtualId);
+	RelacionarUsrPartidaResult.token = ws_InspectorX.relacionarUsrPartida(Usuario.toIdCollection(lst_InspetoresAdicionados.dataProvider as ArrayCollection), PartidaAtualId);
+	SetArtefatoPartidaResult.token = ws_InspectorX.setArtefatoPartida(Questao.toIdCollection(lst_ArtefatosAdicionados.dataProvider as ArrayCollection), PartidaAtualId);
 	Alert.show("Partida registrada com sucesso!");
 	this.currentState = "FullInspec_Admin";
-	
+	GetPartidasResult.token = ws_InspectorX.getPartidas(UsuarioLogado.U_ID);
 }
 
 protected function btn_FullInspectAdminVoltar_clickHandler(event:MouseEvent):void
@@ -28,10 +31,10 @@ protected function btn_FullInspectAdminVoltar_clickHandler(event:MouseEvent):voi
 	QuestoesDisponiveis = new ArrayCollection();
 	InspetoresDisponiveis = new ArrayCollection();
 	
-	lst_ArtefatosAdicionados.dataProvider.removeAll(); 
-	lst_ArtefatosDisponiveis.dataProvider.removeAll(); 
-	lst_InspetoresAdicionados.dataProvider.removeAll();
-	lst_InspetoresDisponiveis.dataProvider.removeAll();
+	lst_ArtefatosAdicionados.dataProvider=new ArrayCollection(); 
+	lst_ArtefatosDisponiveis.dataProvider=new ArrayCollection(); 
+	lst_InspetoresAdicionados.dataProvider=new ArrayCollection();
+	lst_InspetoresDisponiveis.dataProvider=new ArrayCollection();
 	
 	this.currentState = "FullInspec_Admin";
 }
@@ -42,6 +45,8 @@ protected function IniciarPartidaFullAdmin_resultHandler(e:ResultEvent):void
 	PartidaAtualId = e.result as int;
 	this.currentState="FullInspec_Admin_Partida";
 	lbl_PartidaIdentificacao.text="Partida "+PartidaAtualId;
+	lst_ArtefatosAdicionados.dragEnabled=true;
+	lst_InspetoresAdicionados.dragEnabled=true;
 	setAllDisponiveisLists();
 }
 
@@ -78,10 +83,96 @@ protected function GetUsuariosByPartidaEditResult_resultHandler(e:ResultEvent):v
 
 private function validatePartida():String
 {
-	var errors:String = ""; 	
-	if(lst_ArtefatosAdicionados.dataProvider.length<10)
-		errors + "São necessários 10 artefatos para cada partida!\n\n";
+	var errors:Array = new Array();
+	if(lst_ArtefatosAdicionados.dataProvider==null||lst_InspetoresAdicionados.dataProvider==null)
+		errors.join("É necessário no mínimo 1 artefato e 1 inspetor para registrar a partida.\n\n");
+	if(lst_ArtefatosAdicionados.dataProvider.length>partidaArtefatoMax)
+		errors.join("O numero máximo de artefatos para cada partida é 10!\n\n");
 	if(lst_InspetoresAdicionados.dataProvider.length==0)
-		errors + "É necessário no mínimo 1 inspetor por partida!";
-	return errors;
+		errors.join("É necessário no mínimo 1 inspetor por partida!");
+	return errors.toString();
+}
+
+protected function lst_ArtefatosDisponiveis_dragEnterHandler(event:DragEvent):void
+{
+	try
+	{
+		for each (var draggedItem:Object in event.dragSource.dataForFormat("itemsByIndex"))
+		{
+			var q:Questao = Questao(draggedItem);
+		}
+		
+	}
+	catch(e:Error)
+	{
+		Alert.show("Este objeto não é do tipo aceito para esta lista.");
+	}
+}
+
+protected function lst_ArtefatosAdicionados_dragEnterHandler(event:DragEvent):void
+{
+	try
+	{
+		var counter:int=0;
+		for each (var draggedItem:Object in event.dragSource.dataForFormat("itemsByIndex"))
+		{
+			var q:Questao = Questao(draggedItem);
+			
+			if(lst_ArtefatosAdicionados.dataProvider==null)
+				return;
+			
+			var listLenght:int = lst_ArtefatosAdicionados.dataProvider.length;
+			counter++;
+			
+			if(listLenght+counter>=partidaArtefatoMax)
+				Alert.show("O número máximo de artefatos por partida é "+partidaArtefatoMax);
+			
+		}
+	}
+	catch(e:Error)
+	{
+		Alert.show("Este objeto não é do tipo aceito para esta lista.");
+	}				
+}
+
+protected function lst_InspetoresAdicionados_dragEnterHandler(event:DragEvent):void
+{
+	try
+	{
+		var counter:int=0;
+		for each (var draggedItem:Object in event.dragSource.dataForFormat("itemsByIndex"))
+		{
+			var q:Usuario = Usuario(draggedItem);
+			
+			if(lst_InspetoresAdicionados.dataProvider==null)
+				return;
+			
+			var listLenght:int = lst_InspetoresAdicionados.dataProvider.length;
+			counter++;
+			if(listLenght+counter>=partidaInspetorMax)
+				Alert.show("O número máximo de artefatos por partida é "+partidaInspetorMax);
+		}
+		
+	}
+	catch(e:Error)
+	{
+		Alert.show("Este objeto não é do tipo aceito para esta lista.");
+	}	
+}
+
+protected function lst_InspetoresDisponiveis_dragEnterHandler(event:DragEvent):void
+{
+	try
+	{
+		
+		for each (var draggedItem:Object in event.dragSource.dataForFormat("itemsByIndex"))
+		{
+			var q:Usuario = Usuario(draggedItem);
+		}
+		
+	}
+	catch(e:Error)
+	{
+		Alert.show("Este objeto não é do tipo aceito para esta lista.");
+	}
 }

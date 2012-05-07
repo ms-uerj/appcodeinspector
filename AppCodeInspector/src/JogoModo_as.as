@@ -11,7 +11,10 @@ protected var txt_JogoTipoTutorial:TXT;
 
 protected function btn_FullInspection_clickHandler(event:MouseEvent):void
 {
-	getPartidasResult.token = ws_InspectorX.getPartidas(UsuarioLogado.U_ID);
+	this.currentState="FullInspec_Inspector";
+	getPartidasInspectorResult.token = ws_InspectorX.getPartidasInspector(UsuarioLogado.U_ID);
+	initFullInspect();
+	
 }
 
 protected function btn_FullInspection_mouseOverHandler(event:MouseEvent):void
@@ -32,7 +35,7 @@ protected function btn_DefectCrawler_clickHandler(event:MouseEvent):void
 {
 	this.currentState = "ArtefatosSelecao";
 	
-	if(tiposArtefato!=null)
+	if(tiposArtefato==null)
 	{
 		GetTiposArtefato.token = ws_InspectorX.getTiposArtefatos();
 	}

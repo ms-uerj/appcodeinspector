@@ -36,5 +36,21 @@ package Domain
 			
 			return userArrayCol;
 		}
+		
+		public static function toIdCollection(entityList:ArrayCollection):ArrayCollection
+		{
+			var userArrayCol:ArrayCollection=new ArrayCollection();
+			
+			if(entityList.length!=0)
+			{
+				for each(var u:UsuarioEntity in entityList)
+				{
+					var uId:int = u.U_ID;
+					userArrayCol.addItem(uId);
+				}
+			}
+			
+			return userArrayCol;
+		}
 	}
 }

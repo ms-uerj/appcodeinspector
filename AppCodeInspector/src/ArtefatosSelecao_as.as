@@ -40,6 +40,5 @@ protected function GetTiposArtefato_resultHandler(e:ResultEvent):void
 	
 	tiposArtefato = TipoArtefato.toTipoArtefatoCollection(ArrayCollection(e.result));
 	ddl_TipoArtefatoSelecao.dataProvider=tiposArtefato;
-	
 }
 

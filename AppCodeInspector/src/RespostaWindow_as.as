@@ -1,5 +1,6 @@
 import flash.events.MouseEvent;
 
+import mx.accessibility.AlertAccImpl;
 import mx.collections.ArrayCollection;
 import mx.controls.Alert;
 import mx.controls.Text;
@@ -24,12 +25,11 @@ public static var respostaIndice:int =0;
 [Bindable]
 public var questaoTaxonomiaId:int;
 public var ItemTaxnomiaAtual:ArrayCollection;
-
+public var listRespostasSelecionadas:ArrayCollection;
 
 
 protected function btnConfirmarMotivoErro_clickHandler(event:MouseEvent):void
 {
-	
 	var itemTaxonomiaSel:ItemTaxonomiaEntity = cbResposta.selectedItem as ItemTaxonomiaEntity;
 	
 	var trechoResposta:TrechoDefeitoEntity = new TrechoDefeitoEntity();
@@ -39,9 +39,9 @@ protected function btnConfirmarMotivoErro_clickHandler(event:MouseEvent):void
 	{
 		trechoResposta.Conteudo = AppCodeInspector.QuestaoSelectedText.text;
 	}
-	
-	AppCodeInspector.RespostasSelecionadas.addItem(trechoResposta);
-	
+
+	listRespostasSelecionadas.addItem(trechoResposta);
+
 	Close();
 }
 

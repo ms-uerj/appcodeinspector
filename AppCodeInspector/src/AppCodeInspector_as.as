@@ -9,24 +9,14 @@ import mx.states.*;
 public var PontosTotal:int;
 public var PartidaAtualId:int;
 
-//protected var container:UIComponent;
-
-
-//public var taxonomias:ArrayCollection;
-
-//private var questaoAvaliacao:Alert;
-
-
 
 //Variáveis globais
 public static var NivelDificuldade:int;
 public static var TipoArtefato_Id:int;
-//public static var taxonomia_Id:int;
+
 public static var QuestaoSelectedText:TextRange;
 public static var RespostasSelecionadas:ArrayCollection = new ArrayCollection();
-//public static var respostas:ArrayCollection = new ArrayCollection();
-public static var emptyArray:ArrayCollection = new ArrayCollection();
-//public static var respostaIndexAtual:int = 0;
+
 public static var PerguntaAtualIndex:int = 0;
 
 

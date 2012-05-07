@@ -1,1 +1,8 @@
-Modificar
+• Modo FullInspectionProcess:
+
+Neste modo você terá de encontrar defeitos em artefatos de software, definidos por um moderador, usando a classificação correta para cada defeito apontado.
+
+Obeservações:
+
+• Erros na identificação não serão contabilizadas.
+• Acertos valem 1 ponto cada(Nível Difícil).
