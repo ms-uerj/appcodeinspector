@@ -107,6 +107,7 @@ namespace CIDao.DAO
                                    && up.U_ID == usuarioId
                                    && p.P_ID == up.P_ID
                                    && p.P_ID == hq.P_ID
+                                   && p.P_JOGO_MODO != PartidaModoEnum.FULLINSPECTIONPROCESS
                                    && hq.Q_ID == questoesdb.Q_ID
                                    select questoesdb).Distinct();
 
@@ -247,9 +248,41 @@ namespace CIDao.DAO
             return questEnList;
         }
 
-        public void setTrechoQuestaoAcerto(int questaoId,int trechoDfeitoId)
+        public void setUpdateQuestaoAcerto(int questaoId,int partidaId,int pontos)
         {
-            
+            Historico_Questao historicoQuestao = db.Historico_Questaos.SingleOrDefault(hq => hq.P_ID == partidaId && hq.Q_ID == questaoId);
+            historicoQuestao.H_QTD_ACERTO = pontos;
+            db.SubmitChanges();
+        }
+
+        public bool setQuestaoAcerto(int questaoId, int partidaId, int pontos)
+        {
+
+            try
+            {
+                Historico_Questao historicoQuestao = db.Historico_Questaos.SingleOrDefault(h_q => h_q.P_ID == partidaId && h_q.Q_ID == questaoId);
+
+                if (historicoQuestao==null)
+                {
+	                Historico_Questao hq = new Historico_Questao();
+	                hq.H_QTD_ACERTO = pontos;
+	                hq.Q_ID = questaoId;
+	                hq.P_ID = partidaId;
+	
+	                db.Historico_Questaos.InsertOnSubmit(hq);
+                }
+                else
+                {
+                    historicoQuestao.H_ID = pontos;
+                }
+
+                db.SubmitChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         /// <summary>
@@ -306,27 +339,6 @@ namespace CIDao.DAO
                 db.Questaos.InsertOnSubmit(novaQuestao);
                 db.SubmitChanges();
 
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
-        public bool setQuestaoAcerto(int questao_id,  int partidada_id, int pontos)
-        {
-
-            try
-            {
-                Historico_Questao hq = new Historico_Questao();
-                hq.H_QTD_ACERTO = pontos;
-                hq.Q_ID = questao_id;
-                hq.P_ID = partidada_id;
-
-                db.Historico_Questaos.InsertOnSubmit(hq);
-
-                db.SubmitChanges();
-                return true;
             }
             catch (Exception)
             {
@@ -395,15 +407,22 @@ namespace CIDao.DAO
 
             try
             {
+                var questoesFeitas = (from q in db.Questaos
+                                      from hq in db.Historico_Questaos
+                                      from tr in db.Trecho_Respostas
+                                      where q.Q_ID == hq.Q_ID
+                                      && hq.P_ID == partida_id
+                                      && tr.Q_ID == q.Q_ID
+                                      && tr.U_ID == usuario_id
+                                      select q).Distinct();
+
+
                 var questoes = (from q in db.Questaos
                                 from hq in db.Historico_Questaos
-                                from u in db.Usuarios
-                                from tr in db.Trecho_Respostas
                                 where q.Q_ID == hq.Q_ID
-                                && tr.Q_ID == q.Q_ID
-                                && u.U_ID != tr.U_ID
                                 && hq.P_ID == partida_id
-                                select q).Distinct();
+                                select q).Except(questoesFeitas);
+
 
                 List<Questao> questList = questoes.ToList();
                 List<QuestaoEntity> questEnList = new List<QuestaoEntity>();
