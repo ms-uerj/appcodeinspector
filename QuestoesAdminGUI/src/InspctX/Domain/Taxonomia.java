@@ -12,6 +12,7 @@ public class Taxonomia extends TaxonomiaEntity
     {
         taxEntity=taxonomiaEntity;
         this.nome=taxonomiaEntity.getNome();
+	this.id = taxonomiaEntity.getID();
     }
     
     @Override

@@ -28,7 +28,6 @@
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="jSeparator1" alignment="0" pref="392" max="32767" attributes="0"/>
                           <Group type="102" alignment="1" attributes="0">
                               <Component id="pnl_Taxonomia" min="-2" max="-2" attributes="1"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -61,10 +60,6 @@
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="156" max="-2" attributes="0"/>
-                      <Component id="lblTaxonomiaTitle" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="lbl_TpoArtefatoDefinido" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -79,10 +74,6 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="lblTaxonomiaTitle" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-              <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lbl_TaxNome" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txf_taxonomiaNome" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -99,10 +90,13 @@
                   <Component id="lbl_TpoArtefatoDefinido" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txf_TipoArtefatoDefinido" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="27" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="pnl_Taxonomia" min="-2" max="-2" attributes="1"/>
-                  <Component id="jScrollPane1" min="-2" pref="123" max="-2" attributes="1"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jScrollPane1" pref="189" max="32767" attributes="1"/>
+                  <Group type="102" attributes="0">
+                      <Component id="pnl_Taxonomia" min="-2" max="-2" attributes="1"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -115,14 +109,6 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="lblTaxonomiaTitle">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="18" style="1"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Taxonomia"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JLabel" name="lbl_TaxNome">
       <Properties>
         <Property name="text" type="java.lang.String" value="Nome:"/>
@@ -233,8 +219,6 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_refreshActionPerformed"/>
       </Events>
-    </Component>
-    <Component class="javax.swing.JSeparator" name="jSeparator1">
     </Component>
     <Component class="javax.swing.JComboBox" name="cbx_TipoArtefato">
       <Properties>

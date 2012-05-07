@@ -19,6 +19,9 @@ public class TrechoDefeito extends TrechoDefeitoEntity
     {
         trechodefEntity=trechoDefeitoEntity;
         this.conteudo=trechoDefeitoEntity.getConteudo();
+	this.did=trechoDefeitoEntity.getDID();
+	this.explicacao=trechoDefeitoEntity.getExplicacao();
+	this.itid=trechoDefeitoEntity.getITID();
     }
     
     @Override
