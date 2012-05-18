@@ -32,7 +32,7 @@ public function onLoad():void
 {
 	var ta:int = TipoArtefato_Id;
 	
-	IniciarPartida.token = ws_InspectorX.IniciarPartida(NivelDificuldade,UsuarioLogado.U_ID,InspectorXUserEnum.DefectCrawler.type);
+	IniciarPartida.token = ws_InspectorX.IniciarPartida(NivelDificuldade,UsuarioTipoID,InspectorXUserEnum.DefectCrawler.type);
 	
 	setQuestaoTextArea();
 	

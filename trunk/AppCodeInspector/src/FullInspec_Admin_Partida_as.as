@@ -23,7 +23,7 @@ protected function btn_RegistrarPartida_clickHandler(event:MouseEvent):void
 	SetArtefatoPartidaResult.token = ws_InspectorX.setArtefatoPartida(Questao.toIdCollection(lst_ArtefatosAdicionados.dataProvider as ArrayCollection), PartidaAtualId);
 	Alert.show("Partida registrada com sucesso!");
 	this.currentState = "FullInspec_Admin";
-	GetPartidasResult.token = ws_InspectorX.getPartidas(UsuarioLogado.U_ID);
+	GetPartidasResult.token = ws_InspectorX.getPartidas(UsuarioTipoID);
 }
 
 protected function btn_FullInspectAdminVoltar_clickHandler(event:MouseEvent):void
@@ -31,10 +31,10 @@ protected function btn_FullInspectAdminVoltar_clickHandler(event:MouseEvent):voi
 	QuestoesDisponiveis = new ArrayCollection();
 	InspetoresDisponiveis = new ArrayCollection();
 	
-	lst_ArtefatosAdicionados.dataProvider=new ArrayCollection(); 
-	lst_ArtefatosDisponiveis.dataProvider=new ArrayCollection(); 
-	lst_InspetoresAdicionados.dataProvider=new ArrayCollection();
-	lst_InspetoresDisponiveis.dataProvider=new ArrayCollection();
+	lst_ArtefatosAdicionados.dataProvider = new ArrayCollection(); 
+	lst_ArtefatosDisponiveis.dataProvider = new ArrayCollection(); 
+	lst_InspetoresAdicionados.dataProvider = new ArrayCollection();
+	lst_InspetoresDisponiveis.dataProvider = new ArrayCollection();
 	
 	this.currentState = "FullInspec_Admin";
 }
@@ -53,7 +53,7 @@ protected function IniciarPartidaFullAdmin_resultHandler(e:ResultEvent):void
 protected function setAllDisponiveisLists():void
 {
 	GetQuestoesByNivelResult.token = ws_InspectorX.GetQuestoesByNivel(NivelDificuldade);
-	GetTodosUsersResult.token = ws_InspectorX.getTodosUsers();
+	GetTodosUsersResult.token = ws_InspectorX.getTodosUsers(UsuarioTipoID);
 }
 
 protected function GetQuestoesByNivelResult_resultHandler(e:ResultEvent):void

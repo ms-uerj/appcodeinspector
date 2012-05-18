@@ -13,7 +13,7 @@ public var PartidaAtualId:int;
 //Variáveis globais
 public static var NivelDificuldade:int;
 public static var TipoArtefato_Id:int;
-
+public static var UsuarioTipoID:int = 0;
 public static var QuestaoSelectedText:TextRange;
 public static var RespostasSelecionadas:ArrayCollection = new ArrayCollection();
 

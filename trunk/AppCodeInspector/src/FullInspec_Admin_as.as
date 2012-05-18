@@ -11,6 +11,7 @@ import flash.events.MouseEvent;
 
 import mx.collections.ArrayCollection;
 import mx.controls.Alert;
+import mx.managers.PopUpManager;
 import mx.rpc.events.ResultEvent;
 import mx.utils.ObjectUtil;
 
@@ -24,12 +25,13 @@ public var QuestoesList:ArrayCollection
 
 public var MinhasPartidas:ArrayCollection;
 
+
 protected function btn_CriarPartida_clickHandler(event:MouseEvent):void
 {
 	if (rdg_PartidaDificuldade.selectedValue!=null) 
 	{
 		NivelDificuldade = rdg_PartidaDificuldade.selectedValue as int;
-		IniciarPartidaFullAdmin.token = ws_InspectorX.IniciarPartida(rdg_PartidaDificuldade.selectedValue as int,UsuarioLogado.U_ID,InspectorXUserEnum.FullInspection.type );
+		IniciarPartidaFullAdmin.token = ws_InspectorX.IniciarPartida(rdg_PartidaDificuldade.selectedValue as int,UsuarioTipoID,InspectorXUserEnum.Moderador);
 	}
 	else 
 		Alert.show("Por favor selecione um nível de dificuldade.");
@@ -60,7 +62,7 @@ protected function btn_DeletarPartidaAdmin_clickHandler(event:MouseEvent):void
 		if(partida==null)
 			return;
 		removerFullInspectPartidaResult.token = ws_InspectorX.removerFullInspectPartida(partida.P_ID);
-		GetPartidasResult.token = ws_InspectorX.getPartidas(UsuarioLogado.U_ID);
+		GetPartidasResult.token = ws_InspectorX.getPartidas(UsuarioTipoID);
 		lst_Inspetores.dataProvider=new ArrayCollection();
 		lst_Artefato.dataProvider=new ArrayCollection();
 	}
@@ -84,6 +86,25 @@ protected function lst_MinhasPartidas_clickHandler(event:MouseEvent):void
 		
 		GetArtefatosResult.token = ws_InspectorX.getArtefatos(partida.P_ID);
 		GetUsuariosByPartidaResult.token = ws_InspectorX.getUsuariosByPartida(partida.P_ID);
+	}
+}
+
+
+
+protected function btn_ArtefatoView_clickHandler(event:MouseEvent):void
+{
+	if (lst_Artefato.selectedItem!=null) 
+	{
+		var ArtefatoVisaoPopUp:ArtefatoVisao = new ArtefatoVisao();
+
+		var questao:Questao = lst_Artefato.selectedItem as Questao;
+		
+		ArtefatoVisaoPopUp.pnl_Artefato.title = questao.toString();
+		
+		ArtefatoVisaoPopUp.questaoConteudo = questao.Q_XML;
+		
+		PopUpManager.addPopUp(ArtefatoVisaoPopUp,this,true);
+		PopUpManager.centerPopUp(ArtefatoVisaoPopUp);
 	}
 }
 
