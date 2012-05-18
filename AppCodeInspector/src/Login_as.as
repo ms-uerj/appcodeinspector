@@ -17,7 +17,16 @@ public static var UsuarioLogado:Usuario;
 
 protected function _btnLogar_clickHandler(event:MouseEvent):void
 {
-	AutenticarUsuarioResult.token = ws_InspectorX.AutenticarUsuario(txtUsuario.text,txtSenha.text);
+	var errorMessage: String = "";
+	if (txtUsuario.text=="") 
+		errorMessage+="Por favor preencha o campo do usuário.\n";
+	if (txtSenha.text=="")
+		errorMessage+="Por favor digite a senha.";
+	
+	if(errorMessage.length==0)
+		AutenticarUsuarioResult.token = ws_InspectorX.AutenticarUsuario(txtUsuario.text,txtSenha.text);
+	else
+		Alert.show(errorMessage);
 }
 protected function AutenticarUsuarioResult_resultHandler(e:ResultEvent):void
 {
@@ -34,15 +43,8 @@ protected function AutenticarUsuarioResult_resultHandler(e:ResultEvent):void
 		txtUsuario.text="";
 		txtSenha.text="";
 		
-		if (UsuarioLogado.U_TIPO==InspectorXUserEnum.Moderador) 
-		{
-			this.currentState = "FullInspec_Admin";
-			GetPartidasResult.token = ws_InspectorX.getPartidas(UsuarioLogado.U_ID);
-		}
-		else if (UsuarioLogado.U_TIPO==InspectorXUserEnum.Inspetor) 
-		{
-			this.currentState = "JogoModoSelecao";
-		}
+		this.currentState = "JogoModoSelecao";
+		
 	}
 }
 
@@ -54,7 +56,6 @@ protected function lnk_EsqueciSenha_clickHandler(event:MouseEvent):void
 protected function lnk_Cadastro_clickHandler(event:MouseEvent):void
 {
 	this.currentState = "Cadastro";
-	ddl_UsuarioTipoCad.dataProvider=InspectorXUserEnum.InspectorXEnumList();
 }
 
 protected function button1_clickHandler(event:MouseEvent):void

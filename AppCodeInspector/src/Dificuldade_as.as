@@ -25,7 +25,7 @@ private const Tuturial_Dificil_Path:String="Arquivos/Tutorial/Dificil.txtt";
 protected function _btnFacil_clickHandler(event:MouseEvent):void
 {
 	NivelDificuldade = FACIL;
-	GetQuestoesResult.token = ws_InspectorX.GetQuestoesByType(UsuarioLogado.U_ID,FACIL,TipoArtefato_Id);
+	GetQuestoesResult.token = ws_InspectorX.GetQuestoesByType(UsuarioTipoID,FACIL,TipoArtefato_Id);
 }
 
 protected function GetQuestoesResultFacil_resultHandler(e:ResultEvent):void
@@ -45,7 +45,7 @@ protected function GetQuestoesResultFacil_resultHandler(e:ResultEvent):void
 protected function _btnIntermediario_clickHandler(event:MouseEvent):void
 {
 	NivelDificuldade = INTERMEDIARIO;
-	GetQuestoesResult2.token = ws_InspectorX.GetQuestoesByType(UsuarioLogado.U_ID,INTERMEDIARIO,TipoArtefato_Id);
+	GetQuestoesResult2.token = ws_InspectorX.GetQuestoesByType(UsuarioTipoID,INTERMEDIARIO,TipoArtefato_Id);
 }
 
 protected function GetQuestoesResultIntermediario_resultHandler(e:ResultEvent):void
@@ -65,7 +65,7 @@ protected function GetQuestoesResultIntermediario_resultHandler(e:ResultEvent):v
 protected function _btnDificil_clickHandler(event:MouseEvent):void
 {
 	NivelDificuldade = DIFICIL;
-	GetQuestoesResult3.token =  ws_InspectorX.GetQuestoesByType(UsuarioLogado.U_ID,DIFICIL,TipoArtefato_Id);
+	GetQuestoesResult3.token =  ws_InspectorX.GetQuestoesByType(UsuarioTipoID,DIFICIL,TipoArtefato_Id);
 }
 
 protected function GetQuestoesResultDificil_resultHandler(e:ResultEvent):void

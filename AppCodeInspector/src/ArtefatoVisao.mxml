@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 width="764" height="466" creationComplete="group1_creationCompleteHandler(event)">
+	<s:layout>
+		<s:BasicLayout/>
+	</s:layout>
+	
+	<fx:Script>
+		<![CDATA[
+			import CodeInspector.CSS;
+			
+			import mx.events.FlexEvent;
+			import mx.managers.PopUpManager;
+			
+			private var css:CSS;
+			private var cssBool:Boolean = false;
+			
+			public var questaoConteudo:String;
+			
+			protected function btn_Fechar_clickHandler(event:MouseEvent):void
+			{
+				PopUpManager.removePopUp(this);
+			}
+			
+			protected function group1_creationCompleteHandler(event:FlexEvent):void
+			{
+				css = new CSS();
+				css.Load("Arquivos/styles.css");
+				txa_ArtefatoVisao.htmlText = questaoConteudo;
+			}
+			
+			
+			private function cssDone(e:Event):void 
+			{
+				cssBool = true;
+				allDone();
+			}
+			private function allDone():void	
+			{
+				if(cssBool)
+				{
+					txa_ArtefatoVisao.styleSheet = css.sheet;
+				}
+			}
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<s:Panel id="pnl_Artefato" x="10" y="10" width="743" height="440" title="Questao">
+		<mx:TextArea id="txa_ArtefatoVisao"  x="10" y="10" width="720" height="363" editable="false"/>
+		<s:Button id="btn_Fechar" x="660" y="381" label="Fechar" click="btn_Fechar_clickHandler(event)"/>
+	</s:Panel>
+</s:Group>
