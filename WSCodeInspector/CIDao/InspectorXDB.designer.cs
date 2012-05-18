@@ -33,9 +33,9 @@ namespace CIDao
     partial void InsertHistorico_Questao(Historico_Questao instance);
     partial void UpdateHistorico_Questao(Historico_Questao instance);
     partial void DeleteHistorico_Questao(Historico_Questao instance);
-    partial void InsertUsuario_Partida(Usuario_Partida instance);
-    partial void UpdateUsuario_Partida(Usuario_Partida instance);
-    partial void DeleteUsuario_Partida(Usuario_Partida instance);
+    partial void InsertUsuario_Tipo(Usuario_Tipo instance);
+    partial void UpdateUsuario_Tipo(Usuario_Tipo instance);
+    partial void DeleteUsuario_Tipo(Usuario_Tipo instance);
     partial void InsertItemTaxonomia(ItemTaxonomia instance);
     partial void UpdateItemTaxonomia(ItemTaxonomia instance);
     partial void DeleteItemTaxonomia(ItemTaxonomia instance);
@@ -66,6 +66,9 @@ namespace CIDao
     partial void InsertUsuario(Usuario instance);
     partial void UpdateUsuario(Usuario instance);
     partial void DeleteUsuario(Usuario instance);
+    partial void InsertUsuario_Partida(Usuario_Partida instance);
+    partial void UpdateUsuario_Partida(Usuario_Partida instance);
+    partial void DeleteUsuario_Partida(Usuario_Partida instance);
     #endregion
 		
 		public InspectorXDBDataContext() : 
@@ -106,11 +109,11 @@ namespace CIDao
 			}
 		}
 		
-		public System.Data.Linq.Table<Usuario_Partida> Usuario_Partidas
+		public System.Data.Linq.Table<Usuario_Tipo> Usuario_Tipos
 		{
 			get
 			{
-				return this.GetTable<Usuario_Partida>();
+				return this.GetTable<Usuario_Tipo>();
 			}
 		}
 		
@@ -191,6 +194,14 @@ namespace CIDao
 			get
 			{
 				return this.GetTable<Usuario>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Usuario_Partida> Usuario_Partidas
+		{
+			get
+			{
+				return this.GetTable<Usuario_Partida>();
 			}
 		}
 	}
@@ -435,19 +446,19 @@ namespace CIDao
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Usuario_Partida")]
-	public partial class Usuario_Partida : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Usuario_Tipo")]
+	public partial class Usuario_Tipo : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _UP_ID;
+		private int _UT_ID;
+		
+		private string _UT_TIPO;
 		
 		private System.Nullable<int> _U_ID;
 		
-		private System.Nullable<int> _P_ID;
-		
-		private EntityRef<Partida> _Partida;
+		private EntitySet<Usuario_Partida> _Usuario_Partidas;
 		
 		private EntityRef<Usuario> _Usuario;
 		
@@ -455,37 +466,57 @@ namespace CIDao
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnUP_IDChanging(int value);
-    partial void OnUP_IDChanged();
+    partial void OnUT_IDChanging(int value);
+    partial void OnUT_IDChanged();
+    partial void OnUT_TIPOChanging(string value);
+    partial void OnUT_TIPOChanged();
     partial void OnU_IDChanging(System.Nullable<int> value);
     partial void OnU_IDChanged();
-    partial void OnP_IDChanging(System.Nullable<int> value);
-    partial void OnP_IDChanged();
     #endregion
 		
-		public Usuario_Partida()
+		public Usuario_Tipo()
 		{
-			this._Partida = default(EntityRef<Partida>);
+			this._Usuario_Partidas = new EntitySet<Usuario_Partida>(new Action<Usuario_Partida>(this.attach_Usuario_Partidas), new Action<Usuario_Partida>(this.detach_Usuario_Partidas));
 			this._Usuario = default(EntityRef<Usuario>);
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UP_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int UP_ID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UT_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int UT_ID
 		{
 			get
 			{
-				return this._UP_ID;
+				return this._UT_ID;
 			}
 			set
 			{
-				if ((this._UP_ID != value))
+				if ((this._UT_ID != value))
 				{
-					this.OnUP_IDChanging(value);
+					this.OnUT_IDChanging(value);
 					this.SendPropertyChanging();
-					this._UP_ID = value;
-					this.SendPropertyChanged("UP_ID");
-					this.OnUP_IDChanged();
+					this._UT_ID = value;
+					this.SendPropertyChanged("UT_ID");
+					this.OnUT_IDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UT_TIPO", DbType="NVarChar(50)")]
+		public string UT_TIPO
+		{
+			get
+			{
+				return this._UT_TIPO;
+			}
+			set
+			{
+				if ((this._UT_TIPO != value))
+				{
+					this.OnUT_TIPOChanging(value);
+					this.SendPropertyChanging();
+					this._UT_TIPO = value;
+					this.SendPropertyChanged("UT_TIPO");
+					this.OnUT_TIPOChanged();
 				}
 			}
 		}
@@ -514,65 +545,20 @@ namespace CIDao
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_P_ID", DbType="Int")]
-		public System.Nullable<int> P_ID
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Usuario_Tipo_Usuario_Partida", Storage="_Usuario_Partidas", ThisKey="UT_ID", OtherKey="UT_ID")]
+		public EntitySet<Usuario_Partida> Usuario_Partidas
 		{
 			get
 			{
-				return this._P_ID;
+				return this._Usuario_Partidas;
 			}
 			set
 			{
-				if ((this._P_ID != value))
-				{
-					if (this._Partida.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnP_IDChanging(value);
-					this.SendPropertyChanging();
-					this._P_ID = value;
-					this.SendPropertyChanged("P_ID");
-					this.OnP_IDChanged();
-				}
+				this._Usuario_Partidas.Assign(value);
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Partida_Usuario_Partida", Storage="_Partida", ThisKey="P_ID", OtherKey="P_ID", IsForeignKey=true)]
-		public Partida Partida
-		{
-			get
-			{
-				return this._Partida.Entity;
-			}
-			set
-			{
-				Partida previousValue = this._Partida.Entity;
-				if (((previousValue != value) 
-							|| (this._Partida.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Partida.Entity = null;
-						previousValue.Usuario_Partidas.Remove(this);
-					}
-					this._Partida.Entity = value;
-					if ((value != null))
-					{
-						value.Usuario_Partidas.Add(this);
-						this._P_ID = value.P_ID;
-					}
-					else
-					{
-						this._P_ID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Partida");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Usuario_Usuario_Partida", Storage="_Usuario", ThisKey="U_ID", OtherKey="U_ID", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Usuario_Usuario_Tipo", Storage="_Usuario", ThisKey="U_ID", OtherKey="U_ID", IsForeignKey=true)]
 		public Usuario Usuario
 		{
 			get
@@ -589,12 +575,12 @@ namespace CIDao
 					if ((previousValue != null))
 					{
 						this._Usuario.Entity = null;
-						previousValue.Usuario_Partidas.Remove(this);
+						previousValue.Usuario_Tipos.Remove(this);
 					}
 					this._Usuario.Entity = value;
 					if ((value != null))
 					{
-						value.Usuario_Partidas.Add(this);
+						value.Usuario_Tipos.Add(this);
 						this._U_ID = value.U_ID;
 					}
 					else
@@ -624,6 +610,18 @@ namespace CIDao
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_Usuario_Partidas(Usuario_Partida entity)
+		{
+			this.SendPropertyChanging();
+			entity.Usuario_Tipo = this;
+		}
+		
+		private void detach_Usuario_Partidas(Usuario_Partida entity)
+		{
+			this.SendPropertyChanging();
+			entity.Usuario_Tipo = null;
 		}
 	}
 	
@@ -2528,7 +2526,7 @@ namespace CIDao
 		
 		private string _U_TIPO;
 		
-		private EntitySet<Usuario_Partida> _Usuario_Partidas;
+		private EntitySet<Usuario_Tipo> _Usuario_Tipos;
 		
 		private EntitySet<Trecho_Resposta> _Trecho_Respostas;
 		
@@ -2552,7 +2550,7 @@ namespace CIDao
 		
 		public Usuario()
 		{
-			this._Usuario_Partidas = new EntitySet<Usuario_Partida>(new Action<Usuario_Partida>(this.attach_Usuario_Partidas), new Action<Usuario_Partida>(this.detach_Usuario_Partidas));
+			this._Usuario_Tipos = new EntitySet<Usuario_Tipo>(new Action<Usuario_Tipo>(this.attach_Usuario_Tipos), new Action<Usuario_Tipo>(this.detach_Usuario_Tipos));
 			this._Trecho_Respostas = new EntitySet<Trecho_Resposta>(new Action<Trecho_Resposta>(this.attach_Trecho_Respostas), new Action<Trecho_Resposta>(this.detach_Trecho_Respostas));
 			OnCreated();
 		}
@@ -2677,16 +2675,16 @@ namespace CIDao
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Usuario_Usuario_Partida", Storage="_Usuario_Partidas", ThisKey="U_ID", OtherKey="U_ID")]
-		public EntitySet<Usuario_Partida> Usuario_Partidas
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Usuario_Usuario_Tipo", Storage="_Usuario_Tipos", ThisKey="U_ID", OtherKey="U_ID")]
+		public EntitySet<Usuario_Tipo> Usuario_Tipos
 		{
 			get
 			{
-				return this._Usuario_Partidas;
+				return this._Usuario_Tipos;
 			}
 			set
 			{
-				this._Usuario_Partidas.Assign(value);
+				this._Usuario_Tipos.Assign(value);
 			}
 		}
 		
@@ -2723,13 +2721,13 @@ namespace CIDao
 			}
 		}
 		
-		private void attach_Usuario_Partidas(Usuario_Partida entity)
+		private void attach_Usuario_Tipos(Usuario_Tipo entity)
 		{
 			this.SendPropertyChanging();
 			entity.Usuario = this;
 		}
 		
-		private void detach_Usuario_Partidas(Usuario_Partida entity)
+		private void detach_Usuario_Tipos(Usuario_Tipo entity)
 		{
 			this.SendPropertyChanging();
 			entity.Usuario = null;
@@ -2745,6 +2743,222 @@ namespace CIDao
 		{
 			this.SendPropertyChanging();
 			entity.Usuario = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Usuario_Partida")]
+	public partial class Usuario_Partida : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _UP_ID;
+		
+		private System.Nullable<int> _UT_ID;
+		
+		private System.Nullable<int> _P_ID;
+		
+		private string _UP_TIPO;
+		
+		private EntityRef<Partida> _Partida;
+		
+		private EntityRef<Usuario_Tipo> _Usuario_Tipo;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnUP_IDChanging(int value);
+    partial void OnUP_IDChanged();
+    partial void OnUT_IDChanging(System.Nullable<int> value);
+    partial void OnUT_IDChanged();
+    partial void OnP_IDChanging(System.Nullable<int> value);
+    partial void OnP_IDChanged();
+    partial void OnUP_TIPOChanging(string value);
+    partial void OnUP_TIPOChanged();
+    #endregion
+		
+		public Usuario_Partida()
+		{
+			this._Partida = default(EntityRef<Partida>);
+			this._Usuario_Tipo = default(EntityRef<Usuario_Tipo>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UP_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int UP_ID
+		{
+			get
+			{
+				return this._UP_ID;
+			}
+			set
+			{
+				if ((this._UP_ID != value))
+				{
+					this.OnUP_IDChanging(value);
+					this.SendPropertyChanging();
+					this._UP_ID = value;
+					this.SendPropertyChanged("UP_ID");
+					this.OnUP_IDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UT_ID", DbType="Int")]
+		public System.Nullable<int> UT_ID
+		{
+			get
+			{
+				return this._UT_ID;
+			}
+			set
+			{
+				if ((this._UT_ID != value))
+				{
+					if (this._Usuario_Tipo.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnUT_IDChanging(value);
+					this.SendPropertyChanging();
+					this._UT_ID = value;
+					this.SendPropertyChanged("UT_ID");
+					this.OnUT_IDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_P_ID", DbType="Int")]
+		public System.Nullable<int> P_ID
+		{
+			get
+			{
+				return this._P_ID;
+			}
+			set
+			{
+				if ((this._P_ID != value))
+				{
+					if (this._Partida.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnP_IDChanging(value);
+					this.SendPropertyChanging();
+					this._P_ID = value;
+					this.SendPropertyChanged("P_ID");
+					this.OnP_IDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UP_TIPO", DbType="NChar(20)")]
+		public string UP_TIPO
+		{
+			get
+			{
+				return this._UP_TIPO;
+			}
+			set
+			{
+				if ((this._UP_TIPO != value))
+				{
+					this.OnUP_TIPOChanging(value);
+					this.SendPropertyChanging();
+					this._UP_TIPO = value;
+					this.SendPropertyChanged("UP_TIPO");
+					this.OnUP_TIPOChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Partida_Usuario_Partida", Storage="_Partida", ThisKey="P_ID", OtherKey="P_ID", IsForeignKey=true)]
+		public Partida Partida
+		{
+			get
+			{
+				return this._Partida.Entity;
+			}
+			set
+			{
+				Partida previousValue = this._Partida.Entity;
+				if (((previousValue != value) 
+							|| (this._Partida.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Partida.Entity = null;
+						previousValue.Usuario_Partidas.Remove(this);
+					}
+					this._Partida.Entity = value;
+					if ((value != null))
+					{
+						value.Usuario_Partidas.Add(this);
+						this._P_ID = value.P_ID;
+					}
+					else
+					{
+						this._P_ID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Partida");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Usuario_Tipo_Usuario_Partida", Storage="_Usuario_Tipo", ThisKey="UT_ID", OtherKey="UT_ID", IsForeignKey=true)]
+		public Usuario_Tipo Usuario_Tipo
+		{
+			get
+			{
+				return this._Usuario_Tipo.Entity;
+			}
+			set
+			{
+				Usuario_Tipo previousValue = this._Usuario_Tipo.Entity;
+				if (((previousValue != value) 
+							|| (this._Usuario_Tipo.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Usuario_Tipo.Entity = null;
+						previousValue.Usuario_Partidas.Remove(this);
+					}
+					this._Usuario_Tipo.Entity = value;
+					if ((value != null))
+					{
+						value.Usuario_Partidas.Add(this);
+						this._UT_ID = value.UT_ID;
+					}
+					else
+					{
+						this._UT_ID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Usuario_Tipo");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 }
