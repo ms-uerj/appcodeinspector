@@ -7,10 +7,12 @@ package Util
 		public var type:String;
 
 		public static const DefectCrawler:InspectorXUserEnum = new InspectorXUserEnum("DefectCrawler");
-		public static const FullInspection:InspectorXUserEnum = new InspectorXUserEnum("FullInspectionProcess");
+		public static const FullInspection:InspectorXUserEnum = new InspectorXUserEnum("FullInspection");
 		
 		public static const Inspetor:String = "Inspetor";
 		public static const Moderador:String = "Moderador";
+		public static const DefectCrawler:String = "DefectCrawler";
+		public static const FullInspection:String = "FullInspection";
 		
 		public static function InspectorXEnumList():ArrayCollection {
 			var inspetorXEnumUserList:ArrayCollection = new ArrayCollection();
