@@ -13,38 +13,13 @@ namespace CIDao.DAO
     {
         private InspectorXDBDataContext db = new InspectorXDBDataContext();
 
-        public List<PartidaEntity> getPartidas(int usuarioId)
+        public List<PartidaEntity> getPartidas(int usuarioTId)
         {
             var partidas = from p in db.Partidas
                            from up in db.Usuario_Partidas
-                           where up.U_ID == usuarioId &&
-                                 up.P_ID == p.P_ID
-                           select p;
-
-            List<PartidaEntity> partidasEnL = new List<PartidaEntity>();
-            List<Partida> partidasL = partidas.ToList();
-
-            foreach (Partida part in partidasL)
-            {
-                PartidaEntity pe = new PartidaEntity();
-                pe.P_DATA = part.P_DATA;
-                pe.P_NIVEL_DIFICULDADE = part.P_NIVEL_DIFICULDADE;
-                pe.P_PONTUACAO_TOTAL = part.P_PONTUACAO_TOTAL;
-                pe.P_JOGO_MODO = part.P_JOGO_MODO;
-                pe.P_ID = part.P_ID;
-                partidasEnL.Add(pe);
-            }
-
-            return partidasEnL;
-        }
-
-        public List<PartidaEntity> getPartidasInspector(int usuarioId)
-        {
-            var partidas = from p in db.Partidas
-                           from up in db.Usuario_Partidas
-                           where up.U_ID == usuarioId &&
+                           where up.UT_ID == usuarioTId &&
                                  up.P_ID == p.P_ID &&
-                                 p.P_JOGO_MODO ==PartidaModoEnum.FULLINSPECTIONPROCESS
+                                 up.UP_TIPO == UsuarioTipoEnum.MODERADOR
                            select p;
 
             List<PartidaEntity> partidasEnL = new List<PartidaEntity>();
@@ -64,16 +39,42 @@ namespace CIDao.DAO
             return partidasEnL;
         }
 
-        public int iniciarPartida(Partida partidaIniciada, int userId)
+        public List<PartidaEntity> getPartidasInspector(int usuarioTipoId)
+        {
+            var partidas = from p in db.Partidas
+                           from up in db.Usuario_Partidas
+                           where up.UT_ID == usuarioTipoId 
+                           &&    up.P_ID == p.P_ID 
+                           &&    up.UP_TIPO == UsuarioTipoEnum.INSPETOR
+                           select p;
+
+            List<PartidaEntity> partidasEnL = new List<PartidaEntity>();
+            List<Partida> partidasL = partidas.ToList();
+
+            foreach (Partida part in partidasL)
+            {
+                PartidaEntity pe = new PartidaEntity();
+                pe.P_DATA = part.P_DATA;
+                pe.P_NIVEL_DIFICULDADE = part.P_NIVEL_DIFICULDADE;
+                pe.P_PONTUACAO_TOTAL = part.P_PONTUACAO_TOTAL;
+                pe.P_JOGO_MODO = part.P_JOGO_MODO;
+                pe.P_ID = part.P_ID;
+                partidasEnL.Add(pe);
+            }
+
+            return partidasEnL;
+        }
+
+        public int iniciarPartida(Partida partidaIniciada, int userTipoId, string tipoJogo)
         {
             try
             {
-                Usuario usuarioAtual = db.Usuarios.Single(u => u.U_ID == userId);
+                Usuario_Tipo usuarioAtual = db.Usuario_Tipos.Single(ut => ut.UT_ID == userTipoId);
 
                 Usuario_Partida userp = new Usuario_Partida();
-                userp.Usuario = usuarioAtual;
+                userp.Usuario_Tipo = usuarioAtual;
                 userp.Partida = partidaIniciada;
-
+                userp.UP_TIPO = tipoJogo;
                 db.Usuario_Partidas.InsertOnSubmit(userp);
 
                 db.SubmitChanges();
@@ -107,15 +108,16 @@ namespace CIDao.DAO
             }
         }
 
-        public void relacionarUsrPartida(int[] userId,int partidaId)
+        public void relacionarUsrPartida(int[] userTid,int partidaId)
         {
             try
             {
-                for (int i = 0; i < userId.Length;i++)
+                for (int i = 0; i < userTid.Length; i++)
                 {
                     Usuario_Partida userP = new Usuario_Partida();
-                    userP.U_ID = userId[i];
+                    userP.UT_ID = userTid[i];
                     userP.P_ID = partidaId;
+                    userP.UP_TIPO=UsuarioTipoEnum.INSPETOR;
 
                     db.Usuario_Partidas.InsertOnSubmit(userP);
                 }
@@ -173,11 +175,11 @@ namespace CIDao.DAO
             }
         }
 
-        public void removerUsrPartida(int userId, int partidaId)
+        public void removerUsrPartida(int userTid, int partidaId)
         {
             try
             {
-                Usuario_Partida userP = db.Usuario_Partidas.Single(up=> up.U_ID==userId && up.P_ID==partidaId);
+                Usuario_Partida userP = db.Usuario_Partidas.Single(up => up.UT_ID == userTid && up.P_ID == partidaId);
 
                 db.Usuario_Partidas.DeleteOnSubmit(userP);
                 db.SubmitChanges();

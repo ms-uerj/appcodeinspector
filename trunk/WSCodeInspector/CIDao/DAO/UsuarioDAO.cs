@@ -38,10 +38,62 @@ namespace CIDao.DAO
             return userEntityList;
         }
 
-        public List<UsuarioEntity> getUsuarios()
+        public int inserirUsuarioTipoIfDontExist(int usuarioID,String usuarioTipo)
+        {
+            Usuario_Tipo userHasType = db.Usuario_Tipos.SingleOrDefault(ut=> ut.U_ID==usuarioID && usuarioTipo.Trim()==ut.UT_TIPO);
+
+            if (userHasType==null)
+            {
+	            Usuario_Tipo userTipo = new Usuario_Tipo();
+	            userTipo.U_ID = usuarioID;
+	            userTipo.UT_TIPO = usuarioTipo;
+
+                db.Usuario_Tipos.InsertOnSubmit(userTipo);
+                db.SubmitChanges();
+
+                return userTipo.UT_ID;
+            }
+            return userHasType.UT_ID;
+        }
+
+        public List<UsuarioEntity> getTodosUsuariosFI(int userTID)
+        {
+            var usuarios = (from user in db.Usuarios
+                           from userT in db.Usuario_Tipos
+                           where userT.UT_TIPO == PartidaModoEnum.FULLINSPECTIONPROCESS
+                           && user.U_ID == userT.U_ID
+                           && userTID != userT.UT_ID
+                           select new
+                           {
+                               user.U_NOME,
+                               user.U_EMAIL,
+                               user.U_LOGIN,
+                               user.U_SENHA,
+                               user.U_TIPO,
+                               userT.UT_ID
+                            }).Distinct();
+
+
+            List<UsuarioEntity> userEntityList = new List<UsuarioEntity>();
+
+            if (usuarios!= null)
+            {
+                foreach (var u in usuarios)
+                {
+                    UsuarioEntity userEntity = new UsuarioEntity(u.UT_ID, u.U_NOME, u.U_EMAIL, u.U_SENHA, u.U_LOGIN, u.U_TIPO);
+                    userEntityList.Add(userEntity);
+                }
+            }
+
+            return userEntityList;
+        }
+
+        public List<UsuarioEntity> getUsuariosTipoInspetor()
         {
             var usuarios = from user in db.Usuarios
-                           where user.U_TIPO == UsuarioTipoEnum.INSPETOR
+                           from userT in db.Usuario_Tipos
+                           where user.U_ID == userT.U_ID
+                           && userT.UT_TIPO == UsuarioTipoEnum.INSPETOR
                            select user;
 
             List<Usuario> userList = new List<Usuario>();
@@ -92,7 +144,9 @@ namespace CIDao.DAO
         {
             var usuarios = (from user in db.Usuarios
                             from up in db.Usuario_Partidas
-                            where user.U_ID == up.U_ID
+                            from ut in db.Usuario_Tipos
+                            where user.U_ID == ut.U_ID
+                            && ut.UT_ID == up.UT_ID
                             && user.U_TIPO == UsuarioTipoEnum.INSPETOR
                                && up.P_ID == partidaId
                             select user).Distinct();
@@ -210,8 +264,10 @@ namespace CIDao.DAO
                 var usersRank = from user in db.Usuarios
                                 from hist in db.Historico_Questaos
                                 from userp in db.Usuario_Partidas
+                                from usert in db.Usuario_Tipos
                                 from partida in db.Partidas
-                                where user.U_ID == userp.U_ID
+                                where user.U_ID == usert.U_ID
+                                where usert.UT_ID == userp.UT_ID
                                    && partida.P_ID == hist.P_ID
                                    && partida.P_ID == userp.P_ID
                                    && partida.P_NIVEL_DIFICULDADE == nivelDificuldade
@@ -238,8 +294,8 @@ namespace CIDao.DAO
 
                     ranksList.Add(userRank);
                 }
-                return ranksList;
 
+                return ranksList;
             }
             catch (Exception)
             {

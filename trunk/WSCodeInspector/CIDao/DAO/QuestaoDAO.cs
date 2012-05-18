@@ -84,10 +84,8 @@ namespace CIDao.DAO
             return questoesEn;
         }
 
-        public List<QuestaoEntity> GetQuestoesByType(int usuarioId,int nivelDificuldade, int tipoArtefatoId)
+        public List<QuestaoEntity> GetQuestoesByType(int userTipoId, int nivelDificuldade, int tipoArtefatoId)
         {
-
-
             var questoesFeitas = (from questoesdb in db.Questaos
                                    from itemtax in db.ItemTaxonomias
                                    from trechoDef in db.TrechoDefeitos
@@ -104,7 +102,7 @@ namespace CIDao.DAO
                                    && itemtax.IT_ID == trechoDef.IT_ID
                                    && trechoDef.D_ID == qtd.TD_id
                                    && questoesdb.Q_ID == qtd.Q_id
-                                   && up.U_ID == usuarioId
+                                   && up.UT_ID == userTipoId
                                    && p.P_ID == up.P_ID
                                    && p.P_ID == hq.P_ID
                                    && p.P_JOGO_MODO != PartidaModoEnum.FULLINSPECTIONPROCESS
@@ -152,13 +150,13 @@ namespace CIDao.DAO
             return questoesEn;
         }
 
-        public List<QuestaoEntity> GetTodasQuestoesByUser(int usuarioId, int nivelDificuldade)
+        public List<QuestaoEntity> GetTodasQuestoesByUser(int userTipoId, int nivelDificuldade)
         {
             var questoesFeitasErradas = (from q in db.Questaos
                                          from up in db.Usuario_Partidas
                                          from p in db.Partidas
                                          from hq in db.Historico_Questaos
-                                         where up.U_ID == usuarioId
+                                         where up.UT_ID == userTipoId
                                          && up.P_ID == p.P_ID
                                          && p.P_ID == hq.P_ID
                                          && hq.Q_ID == q.Q_ID
@@ -171,7 +169,7 @@ namespace CIDao.DAO
                                                      from up in db.Usuario_Partidas
                                                      from p in db.Partidas
                                                      from hq in db.Historico_Questaos
-                                                     where up.U_ID == usuarioId
+                                                     where up.UT_ID == userTipoId
                                                      && up.P_ID == p.P_ID
                                                      && p.P_ID == hq.P_ID
                                                      && hq.Q_ID == q.Q_ID

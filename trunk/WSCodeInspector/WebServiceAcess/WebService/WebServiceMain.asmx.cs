@@ -63,9 +63,15 @@ namespace WebServiceAcess.WebService
         /// </summary>
         /// <returns>Falso ou verdadeiro dependendo do sucesso</returns>
         [WebMethod]
-        public bool CriarUsuario(string nome, string login, string email, string senha,string tipo)
+        public bool CriarUsuario(string nome, string login, string email, string senha)
         {
-            return new UsuarioBLL().CriarUsuario(nome, login, email, senha,tipo);
+            return new UsuarioBLL().CriarUsuario(nome, login, email, senha);
+        }
+
+        [WebMethod]
+        public int inserirUsuarioTipoIfDontExist(int usuarioID, String usuarioTipo)
+        {
+            return new UsuarioBLL().inserirUsuarioTipoIfDontExist(usuarioID, usuarioTipo);
         }
 
         [WebMethod]
@@ -131,9 +137,9 @@ namespace WebServiceAcess.WebService
         }
 
         [WebMethod]
-        public int IniciarPartida(int partDificuldade,int userId,string tipoJogo)
+        public int IniciarPartida(int partDificuldade,int userTipoId,string tipoJogo)
         {
-            return new PartidaBLL().iniciarPartida(partDificuldade, userId, tipoJogo);
+            return new PartidaBLL().iniciarPartida(partDificuldade, userTipoId, tipoJogo);
         }
 
         [WebMethod]
@@ -221,15 +227,15 @@ namespace WebServiceAcess.WebService
         }
 
         [WebMethod]
-        public List<QuestaoEntity> GetTodasQuestoesByUser(int usuarioId, int nivelDificuldade)
+        public List<QuestaoEntity> GetTodasQuestoesByUser(int userTipoId, int nivelDificuldade)
         {
-            return new QuestaoBLL().GetTodasQuestoesByUser(usuarioId,nivelDificuldade);
+            return new QuestaoBLL().GetTodasQuestoesByUser(userTipoId, nivelDificuldade);
         }
 
         [WebMethod]
-        public List<QuestaoEntity> GetQuestoesByType(int usuarioId,int nivelDificuldade, int tipoArtefatoId)
+        public List<QuestaoEntity> GetQuestoesByType(int userTipoId, int nivelDificuldade, int tipoArtefatoId)
         {
-            return new QuestaoBLL().GetQuestoesByType(usuarioId, nivelDificuldade, tipoArtefatoId);
+            return new QuestaoBLL().GetQuestoesByType(userTipoId, nivelDificuldade, tipoArtefatoId);
         }
 
         [WebMethod]
@@ -276,15 +282,21 @@ namespace WebServiceAcess.WebService
         }
 
         [WebMethod]
-        public List<UsuarioEntity> getTodosUsers()
+        public List<UsuarioEntity> getTodosUsers(int userTID)
         {
-            return new UsuarioBLL().getUsuarios();
+            return new UsuarioBLL().getTodosUsuariosFI(userTID);
         }
 
         [WebMethod]
-        public List<PartidaEntity> getPartidas(int usuarioId)
+        public List<UsuarioEntity> getUsuariosTipoInspetor()
         {
-            return new PartidaBLL().getPartidas(usuarioId);
+            return new UsuarioBLL().getUsuariosTipoInspetor();
+        }
+
+        [WebMethod]
+        public List<PartidaEntity> getPartidas(int usuarioTId)
+        {
+            return new PartidaBLL().getPartidas(usuarioTId);
         }
 
         [WebMethod]
@@ -294,15 +306,15 @@ namespace WebServiceAcess.WebService
         }
 
         [WebMethod]
-        public void relacionarUsrPartida(List<int> userId, int partidaId)
+        public void relacionarUsrPartida(List<int> userTid, int partidaId)
         {
-            new PartidaBLL().relacionarUsrPartida(userId.ToArray(), partidaId);
+            new PartidaBLL().relacionarUsrPartida(userTid.ToArray(), partidaId);
         }
 
         [WebMethod]
-        public void removerrUsrPartida(int userId, int partidaId)
+        public void removerrUsrPartida(int userTid, int partidaId)
         {
-            new PartidaBLL().removerUsrPartida(userId, partidaId);
+            new PartidaBLL().removerUsrPartida(userTid, partidaId);
         }
 
         [WebMethod]
