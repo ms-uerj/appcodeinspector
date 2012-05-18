@@ -1,10 +1,15 @@
 package Domain
 {
-	import valueObjects.PartidaEntity;
 	import mx.collections.ArrayCollection;
+	
+	import spark.formatters.DateTimeFormatter;
+	
+	import valueObjects.PartidaEntity;
 
 	public class Partida extends PartidaEntity
 	{
+		private var dateFormarter:DateTimeFormatter = new DateTimeFormatter();
+		
 		public function Partida(partida:PartidaEntity )
 		{
 			this.P_DATA=partida.P_DATA;
@@ -15,7 +20,8 @@ package Domain
 		}
 		override public function toString():String
 		{
-			return "Partida "+P_DATA.toString();
+			dateFormarter.dateTimePattern = "dd/MM/yy HH:mm";
+			return "Partida "+dateFormarter.format(P_DATA)+" Nível "+P_NIVEL_DIFICULDADE;
 		}
 		
 		public static function toPartidaCollection(entityList:ArrayCollection):ArrayCollection
