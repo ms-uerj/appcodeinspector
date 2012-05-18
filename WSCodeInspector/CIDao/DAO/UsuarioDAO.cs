@@ -60,7 +60,7 @@ namespace CIDao.DAO
         {
             var usuarios = (from user in db.Usuarios
                            from userT in db.Usuario_Tipos
-                           where userT.UT_TIPO == PartidaModoEnum.FULLINSPECTIONPROCESS
+                           where userT.UT_TIPO == PartidaModoEnum.FULLINSPECTION
                            && user.U_ID == userT.U_ID
                            && userTID != userT.UT_ID
                            select new
@@ -147,7 +147,7 @@ namespace CIDao.DAO
                             from ut in db.Usuario_Tipos
                             where user.U_ID == ut.U_ID
                             && ut.UT_ID == up.UT_ID
-                            && user.U_TIPO == UsuarioTipoEnum.INSPETOR
+                            && up.UP_TIPO== UsuarioTipoEnum.INSPETOR
                                && up.P_ID == partidaId
                             select user).Distinct();
 
@@ -249,6 +249,10 @@ namespace CIDao.DAO
             {
                 db.Usuarios.InsertOnSubmit(novoUsuario);
                 db.SubmitChanges();
+
+                int fake1 = inserirUsuarioTipoIfDontExist(novoUsuario.U_ID,PartidaModoEnum.DEFECTCRAWLER);
+                int fake2 = inserirUsuarioTipoIfDontExist(novoUsuario.U_ID,PartidaModoEnum.FULLINSPECTION);
+
                 return true;
             }
             catch (Exception)

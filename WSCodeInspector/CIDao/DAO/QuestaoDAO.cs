@@ -105,7 +105,7 @@ namespace CIDao.DAO
                                    && up.UT_ID == userTipoId
                                    && p.P_ID == up.P_ID
                                    && p.P_ID == hq.P_ID
-                                   && p.P_JOGO_MODO != PartidaModoEnum.FULLINSPECTIONPROCESS
+                                   && p.P_JOGO_MODO != PartidaModoEnum.FULLINSPECTION
                                    && hq.Q_ID == questoesdb.Q_ID
                                    select questoesdb).Distinct();
 
