@@ -1,6 +1,8 @@
 package InspctX.GUI;
 
 import InspctX.Componentes.TaxonomiasAdminPanel;
+import InspctX.Domain.ItemTaxonomia;
+import InspctX.Domain.TipoArtefato;
 import InspectorXWebserv.*;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
@@ -10,7 +12,7 @@ public final class AdicionarTaxonomia extends javax.swing.JFrame
 {
     TaxonomiasAdminPanel Parentframe;
     TaxonomiaEntity Tax;
-    List<ItemTaxonomiaEntity> itemsTaxList;
+    List<ItemTaxonomia> itemsTaxList;
     
     public AdicionarTaxonomia() 
     {
@@ -329,7 +331,7 @@ private void btnDeletarItemTaxonomiaActionPerformed(java.awt.event.ActionEvent e
         
         ArrayOfTipoArtefatoEntity artefactsArray = getTiposArtefatos();
 
-        List<TipoArtefatoEntity> taeList = artefactsArray.getTipoArtefatoEntity();
+        List<TipoArtefato> taeList = TipoArtefato.toTipoArtefatoList(artefactsArray.getTipoArtefatoEntity());
 
         for(TipoArtefatoEntity tae : taeList)
         {
@@ -342,7 +344,8 @@ private void btnDeletarItemTaxonomiaActionPerformed(java.awt.event.ActionEvent e
         try
         {
             ArrayOfItemTaxonomiaEntity itemTaxEntity = pegarItemsTaxonomia(Tax.getID()); 
-            itemsTaxList = itemTaxEntity.getItemTaxonomiaEntity();
+            itemsTaxList = ItemTaxonomia.toItemTaxList(itemTaxEntity.getItemTaxonomiaEntity());
+	    
             if(!itemsTaxList.isEmpty())
                 lst_DefitosList.setListData(itemsTaxList.toArray());
         }

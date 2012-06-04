@@ -4,7 +4,10 @@
  */
 package InspctX.Domain;
 
+import InspectorXWebserv.ItemTaxonomiaEntity;
 import InspectorXWebserv.TipoArtefatoEntity;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -20,6 +23,16 @@ public class TipoArtefato extends TipoArtefatoEntity {
         this.tanome=tipoArtefatoEntity.getTANOME();
 	this.taid=tipoArtefatoEntity.getTAID();
 	this.tadescricao=tipoArtefatoEntity.getTADESCRICAO();
+    }
+    
+    public static ArrayList<TipoArtefato> toTipoArtefatoList(List<TipoArtefatoEntity> tipoArtefatoEList)
+    {
+	ArrayList<TipoArtefato> tipoArtefatoList = new ArrayList<>();
+		
+	for (TipoArtefatoEntity tipoAE : tipoArtefatoEList) {
+	    tipoArtefatoList.add(new TipoArtefato(tipoAE));
+	}
+	return tipoArtefatoList;
     }
     
     @Override
