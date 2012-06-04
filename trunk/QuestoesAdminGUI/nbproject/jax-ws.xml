@@ -3,8 +3,8 @@
   <services/>
   <clients>
     <client name="WebServiceMain">
-      <wsdl-url>http://localhost:4200/WebService/WebServiceMain.asmx?WSDL</wsdl-url>
-      <local-wsdl-file>localhost_4200/WebService/WebServiceMain.asmx.wsdl</local-wsdl-file>
+      <wsdl-url>http://189.32.142.30:8080/webserviceacess_deploy/WebService/WebServiceMain.asmx?WSDL</wsdl-url>
+      <local-wsdl-file>189.32.142.30_8080/webserviceacess_deploy/WebService/WebServiceMain.asmx.wsdl</local-wsdl-file>
       <package-name forceReplace="true">InspectorXWebserv</package-name>
       <catalog-file>catalog.xml</catalog-file>
       <wsimport-options>
@@ -18,7 +18,7 @@
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>wsdlLocation</wsimport-option-name>
-          <wsimport-option-value>http://localhost:4200/WebService/WebServiceMain.asmx?WSDL</wsimport-option-value>
+          <wsimport-option-value>http://189.32.142.30:8080/webserviceacess_deploy/WebService/WebServiceMain.asmx?WSDL</wsimport-option-value>
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>xnocompile</wsimport-option-name>
