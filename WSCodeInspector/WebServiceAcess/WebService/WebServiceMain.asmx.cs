@@ -191,6 +191,12 @@ namespace WebServiceAcess.WebService
         }
 
         [WebMethod]
+        public void updateInicioQuestao(int questaoId, int partidaId)
+        {
+            new QuestaoBLL().updateInicioQuestao(questaoId, partidaId);
+        }
+
+        [WebMethod]
         public void setUpdateQuestaoAcerto(int questaoId, int partidaId, int pontos)
         {
             new QuestaoBLL().setUpdateQuestaoAcerto(questaoId, partidaId, pontos);

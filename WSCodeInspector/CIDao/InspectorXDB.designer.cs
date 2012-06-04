@@ -222,6 +222,10 @@ namespace CIDao
 		
 		private System.Nullable<int> _H_QTD_ERRO;
 		
+		private System.Nullable<System.DateTime> _H_QUESTAO_INICIO;
+		
+		private System.Nullable<System.DateTime> _H_QUESTAO_FIM;
+		
 		private EntityRef<Partida> _Partida;
 		
 		private EntityRef<Questao> _Questao;
@@ -240,6 +244,10 @@ namespace CIDao
     partial void OnH_QTD_ACERTOChanged();
     partial void OnH_QTD_ERROChanging(System.Nullable<int> value);
     partial void OnH_QTD_ERROChanged();
+    partial void OnH_QUESTAO_INICIOChanging(System.Nullable<System.DateTime> value);
+    partial void OnH_QUESTAO_INICIOChanged();
+    partial void OnH_QUESTAO_FIMChanging(System.Nullable<System.DateTime> value);
+    partial void OnH_QUESTAO_FIMChanged();
     #endregion
 		
 		public Historico_Questao()
@@ -353,6 +361,46 @@ namespace CIDao
 					this._H_QTD_ERRO = value;
 					this.SendPropertyChanged("H_QTD_ERRO");
 					this.OnH_QTD_ERROChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_H_QUESTAO_INICIO", DbType="DateTime")]
+		public System.Nullable<System.DateTime> H_QUESTAO_INICIO
+		{
+			get
+			{
+				return this._H_QUESTAO_INICIO;
+			}
+			set
+			{
+				if ((this._H_QUESTAO_INICIO != value))
+				{
+					this.OnH_QUESTAO_INICIOChanging(value);
+					this.SendPropertyChanging();
+					this._H_QUESTAO_INICIO = value;
+					this.SendPropertyChanged("H_QUESTAO_INICIO");
+					this.OnH_QUESTAO_INICIOChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_H_QUESTAO_FIM", DbType="DateTime")]
+		public System.Nullable<System.DateTime> H_QUESTAO_FIM
+		{
+			get
+			{
+				return this._H_QUESTAO_FIM;
+			}
+			set
+			{
+				if ((this._H_QUESTAO_FIM != value))
+				{
+					this.OnH_QUESTAO_FIMChanging(value);
+					this.SendPropertyChanging();
+					this._H_QUESTAO_FIM = value;
+					this.SendPropertyChanged("H_QUESTAO_FIM");
+					this.OnH_QUESTAO_FIMChanged();
 				}
 			}
 		}

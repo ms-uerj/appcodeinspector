@@ -105,16 +105,33 @@ namespace CIDao.DAO
                                    && up.UT_ID == userTipoId
                                    && p.P_ID == up.P_ID
                                    && p.P_ID == hq.P_ID
-                                   && p.P_JOGO_MODO != PartidaModoEnum.FULLINSPECTION
+                                   && up.UP_TIPO == PartidaModoEnum.DEFECTCRAWLER
                                    && hq.Q_ID == questoesdb.Q_ID
                                    select questoesdb).Distinct();
 
-            var questoesErradas = (from questoesdb in questoesFeitas
+            var questoesCorretas = (from q in questoesFeitas
                                    from hq in db.Historico_Questaos
+                                   from up in db.Usuario_Partidas
+                                   from p in db.Partidas
                                    where
-                                      hq.Q_ID == questoesdb.Q_ID
+                                      hq.Q_ID == q.Q_ID
+                                   && hq.P_ID == p.P_ID
+                                   && p.P_ID == up.P_ID
+                                   && up.UP_TIPO == PartidaModoEnum.DEFECTCRAWLER
+                                   && hq.H_QTD_ACERTO == 1
+                                   select q).Distinct();
+
+            var questoesErradas = (from q in questoesFeitas
+                                   from hq in db.Historico_Questaos
+                                   from up in db.Usuario_Partidas
+                                   from p in db.Partidas
+                                   where
+                                      hq.Q_ID == q.Q_ID
+                                   && hq.P_ID == p.P_ID
+                                   && p.P_ID == up.P_ID
+                                   && up.UP_TIPO == PartidaModoEnum.DEFECTCRAWLER
                                    && hq.H_QTD_ACERTO == 0
-                                   select questoesdb).Distinct();
+                                   select q).Distinct().Except(questoesCorretas);
 
             var questoesNFeitas = (from questoesdb in db.Questaos
                                    from itemtax in db.ItemTaxonomias
@@ -250,7 +267,37 @@ namespace CIDao.DAO
         {
             Historico_Questao historicoQuestao = db.Historico_Questaos.SingleOrDefault(hq => hq.P_ID == partidaId && hq.Q_ID == questaoId);
             historicoQuestao.H_QTD_ACERTO = pontos;
+            historicoQuestao.H_QUESTAO_FIM = DateTime.Now;
             db.SubmitChanges();
+        }
+
+        public void updateInicioQuestao(int questaoId, int partidaId)
+        {
+
+            try
+            {
+                Historico_Questao historicoQuestao = db.Historico_Questaos.SingleOrDefault(h_q => h_q.P_ID == partidaId && h_q.Q_ID == questaoId);
+
+                if (historicoQuestao == null)
+                {
+                    Historico_Questao hq = new Historico_Questao();
+                    hq.Q_ID = questaoId;
+                    hq.P_ID = partidaId;
+                    hq.H_QUESTAO_INICIO = DateTime.Now;
+
+                    db.Historico_Questaos.InsertOnSubmit(hq);
+                }
+                else
+                {
+                    historicoQuestao.H_QUESTAO_INICIO = DateTime.Now;
+                }
+
+                db.SubmitChanges();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public bool setQuestaoAcerto(int questaoId, int partidaId, int pontos)
@@ -266,12 +313,13 @@ namespace CIDao.DAO
 	                hq.H_QTD_ACERTO = pontos;
 	                hq.Q_ID = questaoId;
 	                hq.P_ID = partidaId;
-	
+                    historicoQuestao.H_QUESTAO_FIM = DateTime.Now;
 	                db.Historico_Questaos.InsertOnSubmit(hq);
                 }
                 else
                 {
-                    historicoQuestao.H_ID = pontos;
+                    historicoQuestao.H_QTD_ACERTO = pontos;
+                    historicoQuestao.H_QUESTAO_FIM = DateTime.Now;
                 }
 
                 db.SubmitChanges();
@@ -488,6 +536,15 @@ namespace CIDao.DAO
                 foreach (TrechoDefeito td in trechosDefeitos.ToList())
                 {
                     db.TrechoDefeitos.DeleteOnSubmit(td);
+                }
+
+                var trechosRespostas = from tr in db.Trecho_Respostas
+                                       where tr.Q_ID == questaoId
+                                       select tr;
+
+                foreach (Trecho_Resposta tr in trechosRespostas.ToList())
+                {
+                    db.Trecho_Respostas.DeleteOnSubmit(tr);
                 }
 
                 var historicoQuestao = from hq in db.Historico_Questaos
