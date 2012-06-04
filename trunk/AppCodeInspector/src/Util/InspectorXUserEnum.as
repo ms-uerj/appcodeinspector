@@ -6,8 +6,8 @@ package Util
 	{
 		public var type:String;
 
-		public static const DefectCrawler:InspectorXUserEnum = new InspectorXUserEnum("DefectCrawler");
-		public static const FullInspection:InspectorXUserEnum = new InspectorXUserEnum("FullInspection");
+		//public static const DefectCrawler:InspectorXUserEnum = new InspectorXUserEnum("DefectCrawler");
+		//public static const FullInspection:InspectorXUserEnum = new InspectorXUserEnum("FullInspection");
 		
 		public static const Inspetor:String = "Inspetor";
 		public static const Moderador:String = "Moderador";

@@ -19,9 +19,9 @@ protected function _btnLogar_clickHandler(event:MouseEvent):void
 {
 	var errorMessage: String = "";
 	if (txtUsuario.text=="") 
-		errorMessage+="Por favor preencha o campo do usuário.\n";
+		errorMessage+="Por favor, preencha o nome do usuário.\n";
 	if (txtSenha.text=="")
-		errorMessage+="Por favor digite a senha.";
+		errorMessage+="Por favor, informe a senha.";
 	
 	if(errorMessage.length==0)
 		AutenticarUsuarioResult.token = ws_InspectorX.AutenticarUsuario(txtUsuario.text,txtSenha.text);
@@ -32,12 +32,12 @@ protected function AutenticarUsuarioResult_resultHandler(e:ResultEvent):void
 {
 	if(e.result == null)
 	{
-		Alert.show("Usuário Inválido, por favor tente novamente.");
+		Alert.show("Usuário não encontrado; por favor, tente novamente.");
 	}
 	else
 	{	
 		UsuarioLogado = new Usuario(e.result as UsuarioEntity); 
-		Alert.show("Usuário Autenticado com Sucesso! Seja Bem Vindo!");
+		Alert.show("Usuário autenticado com sucesso! Seja bem vindo!");
 		LoginUsuario = txtUsuario.text;
 
 		txtUsuario.text="";

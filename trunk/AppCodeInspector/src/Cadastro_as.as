@@ -12,7 +12,7 @@ protected function CriarUsuarioResult_resultHandler(e:ResultEvent):void
 {
 	if(e.result == false)
 	{
-		Alert.show("Erro ao tentar criar o usuario");
+		Alert.show("Erro ao tentar criar o usuário. Por favor, contacte o administrador do sistema.");
 	}
 	else
 	{	

@@ -1,13 +1,11 @@
 • Modo DefectCrawler:
 
-Neste modo você terá de encontrar defeitos em artefatos de software, que serão apresentados aleatoriamente, usando a classificação correta para cada defeito apontado.
+Neste modo, você terá de encontrar defeitos em artefatos de software que serão apresentados aleatoriamente, usando a classificação correta para cada defeito apontado.
 
-Obeservações:
+Observações:
 
-• Serão 10 artefatos no máximo, se não houver este número no banco, será usado o número de artefatos cadastrados.
-• Erros na identificação não serão contabilizadas.
-• Acertos valem 1 ponto cada(Nível Difícil).
-• Artefatos com acertos não poderão ser refeitas.
-
-  
-	
+• Existe um limite para o número de artefatos cadastrados; caso o número de artefatos cadastrados na base de dados seja inferior ao limite, será utilizado o número de artefatos cadastrados.
+• Erros na identificação não serão contabilizados.
+• Cada acerto vale 1 ponto. Nos níveis Fácil e Intermediário, há um defeito por artefato, porém no Intermediário e no Difícil tanto a indentificação quantoa classificação contabilizam 1 ponto.
+• No nível Difícil, há mais de um defeito cadastrado por artefato.
+• Questões que possuam artefatos já analisados não poderão ser refeitas.

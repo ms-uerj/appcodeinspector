@@ -18,9 +18,14 @@ public const FACIL : int = 1;
 public const INTERMEDIARIO : int= 2;
 public const DIFICIL : int= 3;
 
-private const Tuturial_Facil_Path:String="Arquivos/Tutorial/Facil.txt";
-private const Tuturial_Intermediario_Path:String="Arquivos/Tutorial/Inter.txt";
-private const Tuturial_Dificil_Path:String="Arquivos/Tutorial/Dificil.txtt";
+private const Tutorial_Facil_Path:String="Arquivos/Tutorial/Facil.txt";
+private const Tutorial_Intermediario_Path:String="Arquivos/Tutorial/Inter.txt";
+private const Tutorial_Dificil_Path:String="Arquivos/Tutorial/Dificil.txt";
+
+protected function btn_VoltarDificuldade_clickHandler(event:MouseEvent):void
+{
+	this.currentState="ArtefatosSelecao";
+}
 
 protected function _btnFacil_clickHandler(event:MouseEvent):void
 {
@@ -30,16 +35,7 @@ protected function _btnFacil_clickHandler(event:MouseEvent):void
 
 protected function GetQuestoesResultFacil_resultHandler(e:ResultEvent):void
 {
-	ArtefatosList = Questao.toQuestaoCollection(ArrayCollection(e.result));
-	
-	if(ArtefatosList.length==0)
-	{
-		Alert.show("Não existem perguntas para o nível de dificuldade selecionado.");
-		return;
-	}
-	txtTutorials = new TXT();
-	txtTutorials.Load(Tuturial_Facil_Path);
-	txtTutorials.addEventListener("TXT_Loaded",txtTutorial_TXTLoaded);
+	GetQuestoes(e, Tutorial_Facil_Path);
 }
 
 protected function _btnIntermediario_clickHandler(event:MouseEvent):void
@@ -50,15 +46,7 @@ protected function _btnIntermediario_clickHandler(event:MouseEvent):void
 
 protected function GetQuestoesResultIntermediario_resultHandler(e:ResultEvent):void
 {
-	ArtefatosList =  Questao.toQuestaoCollection(ArrayCollection(e.result));
-	if(ArtefatosList.length==0)
-	{
-		Alert.show("Não existem perguntas para o nível de dificuldade selecionado.");
-		return;
-	}
-	txtTutorials = new TXT();
-	txtTutorials.Load(Tuturial_Intermediario_Path);
-	txtTutorials.addEventListener("TXT_Loaded",txtTutorial_TXTLoaded);
+	GetQuestoes(e, Tutorial_Intermediario_Path);
 }
 
 
@@ -70,15 +58,22 @@ protected function _btnDificil_clickHandler(event:MouseEvent):void
 
 protected function GetQuestoesResultDificil_resultHandler(e:ResultEvent):void
 {
+	GetQuestoes(e, Tutorial_Dificil_Path);
+}
+
+protected function GetQuestoes(e:ResultEvent, path: String):void
+{
 	ArtefatosList = Questao.toQuestaoCollection(ArrayCollection(e.result));
+	
 	if(ArtefatosList.length==0)
 	{
-		Alert.show("Não existem perguntas para o nível de dificuldade selecionado.");
+		Alert.show("Não existem perguntas cadastradas para o nível de dificuldade selecionado.");
 		return;
 	}
+	
 	txtTutorials = new TXT();
-	txtTutorials.Load(Tuturial_Dificil_Path);
-	txtTutorials.addEventListener("TXT_Loaded",txtTutorial_TXTLoaded);
+	txtTutorials.Load(path);
+	txtTutorials.addEventListener("TXT_Loaded",txtTutorial_TXTLoaded);	
 }
 
 protected function txtTutorial_TXTLoaded(event:Event):void

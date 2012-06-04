@@ -5,6 +5,8 @@
 	
 	<fx:Script>
 		<![CDATA[
+			import Domain.ItemTaxonomia;
+			
 			import flash.filters.DropShadowFilter;
 			import flash.text.TextField;
 			import flash.text.TextFieldAutoSize;
@@ -101,7 +103,8 @@
 			}
 			protected function GetItemTaxonomia_resultHandler(e:ResultEvent):void
 			{
-				ItemTaxnomiaAtual = ArrayCollection(e.result);
+				ItemTaxnomiaAtual =  ItemTaxonomia.toItemTaxonomiaCollection(ArrayCollection(e.result));
+				
 				cbResposta.dataProvider=ItemTaxnomiaAtual;
 			}
 

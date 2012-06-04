@@ -1,7 +1,8 @@
 package Domain
 {
-	import valueObjects.ItemTaxonomiaEntity;
 	import mx.collections.ArrayCollection;
+	
+	import valueObjects.ItemTaxonomiaEntity;
 
 	public class ItemTaxonomia extends ItemTaxonomiaEntity
 	{
@@ -16,6 +17,7 @@ package Domain
 		{
 			return Nome;
 		}
+		
 		
 		public static function toItemTaxonomiaCollection(entityList:ArrayCollection):ArrayCollection
 		{

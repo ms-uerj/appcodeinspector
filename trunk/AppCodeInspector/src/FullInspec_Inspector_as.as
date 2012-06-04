@@ -1,6 +1,7 @@
 import CodeInspector.CSS;
 
 import Domain.Partida;
+import Domain.Questao;
 import Domain.TrechoDefeito;
 
 import flash.events.Event;
@@ -40,18 +41,24 @@ protected function btn_Registrar_FullInpec_clickHandler(event:MouseEvent):void
 		return;
 	}
 		
-	else if(Trechos_DefeitoList_FI.length>RespostasSelecionadas.length)
-	{
-		Alert.show("Ainda faltam defeitos na questão.");
-		return;
-	}		
+	//if(Trechos_DefeitoList_FI.length>RespostasSelecionadas.length)
+	//{
+	//	Alert.show("Ainda existem defeitos a serem identificados nesta questão.");
+	//	return;
+	//}		
 	else
 	{
 		verificarRespostas_FI();
 		txa_Artefato_Inspector.text="";
+		lst_Artefatos_Inspector.dataProvider = new ArrayCollection();
 		getArtefatosPendentesResult.token = ws_InspectorX.getArtefatosPendentes(UsuarioLogado.U_ID,PartidaAtualId);
 		RespostasSelecionadas=new ArrayCollection();
 	}	
+}
+
+protected function btn_VoltarFullInspec_Inspector_clickHandler(event:MouseEvent):void
+{
+	this.currentState="JogoPapelSelecao";
 }
 
 protected function lst_MinhasPartidas_Inspector_clickHandler(event:MouseEvent):void
@@ -59,6 +66,7 @@ protected function lst_MinhasPartidas_Inspector_clickHandler(event:MouseEvent):v
 	if (lst_MinhasPartidas_Inspector.selectedItem!=null) 
 	{
 		var partida:Partida = lst_MinhasPartidas_Inspector.selectedItem as Partida;
+		lst_Artefatos_Inspector.dataProvider=new ArrayCollection();
 		getArtefatosPendentesResult.token = ws_InspectorX.getArtefatosPendentes(UsuarioLogado.U_ID,partida.P_ID);
 		PartidaAtualId = partida.P_ID;
 		RespostasSelecionadas=new ArrayCollection();
@@ -82,6 +90,8 @@ protected function lst_Artefatos_Inspector_clickHandler(event:MouseEvent):void
 		
 		GetQuestoesTaxonomia.token = ws_InspectorX.GetQuestaoTaxonomia(questao.Q_ID);
 		RespostasSelecionadas=new ArrayCollection();
+		
+		updateInicioQuestaoResult.token = ws_InspectorX.updateInicioQuestao(QuestaoAtualId, PartidaAtualId);
 	}
 }
 
@@ -100,6 +110,14 @@ private function onMouseUp_FI(evt:MouseEvent):void
 		PopUpManager.centerPopUp(RespostaPopUp);
 	}
 }
+
+import mx.events.StateChangeEvent;
+
+protected function application1_currentStateChangingHandler(event:StateChangeEvent):void
+{
+	txa_Artefato_Inspector.text="";
+}
+
 
 private function textEvent_FI(e:TextEvent):void 
 {
@@ -144,35 +162,24 @@ private function allDone_FI():void
 private function verificarRespostas_FI():void
 {
 	var pontos:int=0;
-	for each(var qTrecho:TrechoDefeitoEntity in Trechos_DefeitoList_FI)
+	for each(var trechoQuestao:TrechoDefeitoEntity in Trechos_DefeitoList_FI)
 	{
-		var trechoQuestao:TrechoDefeitoEntity = qTrecho;
-		
-		for each(var trechoDefeito:TrechoDefeitoEntity in RespostasSelecionadas)
+		for each(var trechoResposta:TrechoDefeitoEntity in RespostasSelecionadas)
 		{
-			var trechoResposta:TrechoDefeitoEntity = trechoDefeito;
-			
 			if(NivelDificuldade==FACIL)
 			{
 				if(trechoQuestao.IT_ID==trechoResposta.IT_ID)
 					++pontos;			
 				else
 				{
-					Alert.show("Ops! Você errou!\n\nO trecho correto era: "+trechoQuestao.Conteudo+".\nO defeito associado a este trecho era \""+getItemTaxonomia(qTrecho.IT_ID).Nome
-						+ "\n\nExplicação: \" ("+ trechoQuestao.Explicacao +").");
+					var erro: String;
+					erro = setErrorMessage(trechoQuestao.Conteudo,getItemTaxonomia(trechoQuestao.IT_ID).Nome,trechoQuestao.Explicacao);
+					Alert.show(erro);
 				}
 			}
 			else
 			{
-				if((trechoQuestao.Conteudo==trechoResposta.Conteudo)&&(trechoQuestao.IT_ID==trechoResposta.IT_ID))
-				{
-					++pontos;
-				}
-				else
-				{
-					Alert.show("Ops! Você errou!\n\nO trecho correto era: "+trechoQuestao.Conteudo+".\nO defeito associado a este trecho era \""+getItemTaxonomia(qTrecho.IT_ID).Nome
-						+ "\n\nExplicação: \" ("+ trechoQuestao.Explicacao +").");
-				}
+				verificarRespostaInterDifi(trechoQuestao,trechoResposta,pontos);
 			}
 		}
 	}
@@ -180,6 +187,7 @@ private function verificarRespostas_FI():void
 	setUpdateQuestaoAcertoResult.token = ws_InspectorX.setUpdateQuestaoAcerto(QuestaoAtualId, PartidaAtualId, pontos);
 	setTrechoRespostaResult.token = ws_InspectorX.setTrechoResposta(createTrechoRespostaCol());
 }
+
 
 private function createTrechoRespostaCol():ArrayCollection
 {
@@ -201,7 +209,7 @@ private function createTrechoRespostaCol():ArrayCollection
 //Result handlers
 protected function getArtefatosPendentesResult_resultHandler(e:ResultEvent):void
 {
-	var partidasInspector:ArrayCollection = ArrayCollection(e.result);
+	var partidasInspector:ArrayCollection = Questao.toQuestaoCollection(ArrayCollection(e.result));
 	lst_Artefatos_Inspector.dataProvider=partidasInspector;
 }
 
