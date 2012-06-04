@@ -4,6 +4,7 @@ import Util.InspectorXUserEnum;
 
 import flash.events.MouseEvent;
 import mx.rpc.events.ResultEvent;
+import mx.collections.ArrayCollection;
 
 protected function btn_ModeradorPapel_mouseOverHandler(event:MouseEvent):void
 {
@@ -39,6 +40,9 @@ protected function btn_ModeradorPapel_clickHandler(event:MouseEvent):void
 	{
 		this.currentState = "FullInspec_Admin";
 		GetPartidasResult.token = ws_InspectorX.getPartidas(UsuarioTipoID);
+		lst_Inspetores.dataProvider = new ArrayCollection();
+		lst_Artefato.dataProvider = new ArrayCollection();
+		lst_MinhasPartidas.dataProvider = new ArrayCollection();
 	}
 }
 

@@ -34,7 +34,7 @@ protected function btn_CriarPartida_clickHandler(event:MouseEvent):void
 		IniciarPartidaFullAdmin.token = ws_InspectorX.IniciarPartida(rdg_PartidaDificuldade.selectedValue as int,UsuarioTipoID,InspectorXUserEnum.Moderador);
 	}
 	else 
-		Alert.show("Por favor selecione um nível de dificuldade.");
+		Alert.show("Por favor, selecione um nível de dificuldade.");
 
 }
 
@@ -60,11 +60,14 @@ protected function btn_DeletarPartidaAdmin_clickHandler(event:MouseEvent):void
 	{
 		var partida:Partida = lst_MinhasPartidas.selectedItem as Partida;
 		if(partida==null)
+		{
+			Alert.show("Por favor, selecione uma partida para ser deletada.");
 			return;
+		}
 		removerFullInspectPartidaResult.token = ws_InspectorX.removerFullInspectPartida(partida.P_ID);
-		GetPartidasResult.token = ws_InspectorX.getPartidas(UsuarioTipoID);
-		lst_Inspetores.dataProvider=new ArrayCollection();
-		lst_Artefato.dataProvider=new ArrayCollection();
+		lst_Inspetores.dataProvider = new ArrayCollection();
+		lst_Artefato.dataProvider = new ArrayCollection();
+		lst_MinhasPartidas.dataProvider = new ArrayCollection();
 	}
 	
 }
@@ -89,8 +92,6 @@ protected function lst_MinhasPartidas_clickHandler(event:MouseEvent):void
 	}
 }
 
-
-
 protected function btn_ArtefatoView_clickHandler(event:MouseEvent):void
 {
 	if (lst_Artefato.selectedItem!=null) 
@@ -106,6 +107,11 @@ protected function btn_ArtefatoView_clickHandler(event:MouseEvent):void
 		PopUpManager.addPopUp(ArtefatoVisaoPopUp,this,true);
 		PopUpManager.centerPopUp(ArtefatoVisaoPopUp);
 	}
+}
+
+protected function btn_VoltarSelecaoPapel_clickHandler(event:MouseEvent):void
+{
+	this.currentState="JogoPapelSelecao";
 }
 
 protected function GetPartidasResult_resultHandler(e:ResultEvent):void
@@ -126,4 +132,7 @@ protected function GetUsuariosByPartidaResult_resultHandler(e:ResultEvent):void
 	lst_Inspetores.dataProvider=inspetoresList;
 }
 
-
+protected function removerFullInspectPartidaResult_resultHandler(e:ResultEvent):void
+{
+	GetPartidasResult.token = ws_InspectorX.getPartidas(UsuarioTipoID);
+}

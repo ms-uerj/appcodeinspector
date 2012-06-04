@@ -13,9 +13,10 @@ protected function RecuperarSenha_resultHandler(e:ResultEvent):void
 {
 	if(e.result==true)
 	{
-        Alert.show("Você deve receber a sua senha no email em alguns minutos");
+        Alert.show("Operação efetuada com sucesso. Você deve receber a sua senha no e-mail em alguns minutos.");
 		txt_Email.text="";
 	}
 	else
-		Alert.show("Desculpe, mas este e-mail não se encontra cadastrado; favor verificar a ortografia e tentar novamente.");
+		Alert.show("Desculpe, mas este e-mail não se encontra cadastrado; favor verificar a ortografia e tentar novamente.\n"
+			+"Caso não obtenha sucesso, favor cadastrar-se novamente.");
 }

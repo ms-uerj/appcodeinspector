@@ -1,10 +1,11 @@
-•Regras para a dificuldade Difícil:
-	1. O jogo consiste em apresentar trechos de código ou requisitos, que pode ter mais de um defeito em cada.
-	2. O usuário tem que selecionar o trecho de texto e indicar qual o tipo do defeito em todos os defeitos que acha que existe.
+• Regras para o nível de dificuldade Difícil:
+	1. O jogo consiste em apresentar trechos de artefatos (ex: código ou requisitos), sendo que pode haver mais de um defeito em cada artefato.
+	2. O usuário tem que selecionar os trechos que possuam algum defeito e, em seguida, indicar qual o tipo do defeito em cada trecho identificado.
 	3. Quando o usuário avançar para uma próxima pergunta, não poderá voltar para responder as perguntas anteriores.
 
-•Modo de jogar:
-	1. Selecionar o trecho de texto com o defeito.
-	2. Vai aparecer uma Combo Box com 5 tipos de defeitos.
-	3. Selecionar um do tipo de defeito da Combo Box
-	4. Clicar no botão para ir para próxima pergunta.
+• Modo de jogar:
+	1. O jogador deverá procurar e selecionar os trechos do artefato que representam possíveis defeitos.
+	2. O jogo exibirá uma lista com alguns tipos de defeitos.
+	3. O jogador deverá classificar o defeito selecionando um dos tipos de defeito.
+	4. O usuário deverá selecionar a opção para ir para a próxima questão.
+	5. Os passos 1 a 4 devem ser repetidos até que não haja mais questões.

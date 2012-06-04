@@ -7,6 +7,7 @@ import mx.collections.ArrayCollection;
 import mx.controls.Alert;
 import mx.events.DragEvent;
 import mx.rpc.events.ResultEvent;
+import mx.managers.PopUpManager;
 
 public var partidaArtefatoMax:int =10;
 public var partidaInspetorMax:int =5;
@@ -23,19 +24,12 @@ protected function btn_RegistrarPartida_clickHandler(event:MouseEvent):void
 	SetArtefatoPartidaResult.token = ws_InspectorX.setArtefatoPartida(Questao.toIdCollection(lst_ArtefatosAdicionados.dataProvider as ArrayCollection), PartidaAtualId);
 	Alert.show("Partida registrada com sucesso!");
 	this.currentState = "FullInspec_Admin";
-	GetPartidasResult.token = ws_InspectorX.getPartidas(UsuarioTipoID);
+	clearList();
 }
 
 protected function btn_FullInspectAdminVoltar_clickHandler(event:MouseEvent):void
 {
-	QuestoesDisponiveis = new ArrayCollection();
-	InspetoresDisponiveis = new ArrayCollection();
-	
-	lst_ArtefatosAdicionados.dataProvider = new ArrayCollection(); 
-	lst_ArtefatosDisponiveis.dataProvider = new ArrayCollection(); 
-	lst_InspetoresAdicionados.dataProvider = new ArrayCollection();
-	lst_InspetoresDisponiveis.dataProvider = new ArrayCollection();
-	
+	clearList();
 	this.currentState = "FullInspec_Admin";
 }
 
@@ -48,6 +42,23 @@ protected function IniciarPartidaFullAdmin_resultHandler(e:ResultEvent):void
 	lst_ArtefatosAdicionados.dragEnabled=true;
 	lst_InspetoresAdicionados.dragEnabled=true;
 	setAllDisponiveisLists();
+}
+
+protected function btn_ArtefatoViewAdmPartida_clickHandler(event:MouseEvent):void
+{
+	if (lst_ArtefatosDisponiveis.selectedItem!=null) 
+	{
+		var ArtefatoVisaoPopUp:ArtefatoVisao = new ArtefatoVisao();
+		
+		var questao:Questao = lst_ArtefatosDisponiveis.selectedItem as Questao;
+		
+		ArtefatoVisaoPopUp.pnl_Artefato.title = questao.toString();
+		
+		ArtefatoVisaoPopUp.questaoConteudo = questao.Q_XML;
+		
+		PopUpManager.addPopUp(ArtefatoVisaoPopUp,this,true);
+		PopUpManager.centerPopUp(ArtefatoVisaoPopUp);
+	}
 }
 
 protected function setAllDisponiveisLists():void
@@ -84,13 +95,27 @@ protected function GetUsuariosByPartidaEditResult_resultHandler(e:ResultEvent):v
 private function validatePartida():String
 {
 	var errors:Array = new Array();
-	if(lst_ArtefatosAdicionados.dataProvider==null||lst_InspetoresAdicionados.dataProvider==null)
-		errors.join("É necessário no mínimo 1 artefato e 1 inspetor para registrar a partida.\n\n");
+	
+	if(lst_ArtefatosAdicionados.dataProvider==null||lst_ArtefatosAdicionados.dataProvider.length==0)
+		errors.join("É necessário no mínimo 1 artefato para registrar a partida.\n\n");
+	if(lst_InspetoresAdicionados.dataProvider==null||lst_InspetoresAdicionados.dataProvider.length==0)
+		errors.join("É necessário no mínimo 1 inspetor por partida!\n\n");
 	if(lst_ArtefatosAdicionados.dataProvider.length>partidaArtefatoMax)
-		errors.join("O numero máximo de artefatos para cada partida é 10!\n\n");
-	if(lst_InspetoresAdicionados.dataProvider.length==0)
-		errors.join("É necessário no mínimo 1 inspetor por partida!");
+		errors.join("O numero máximo de artefatos para cada partida é" + partidaArtefatoMax + ".");
+	
 	return errors.toString();
+}
+
+private function clearList():void
+{
+	QuestoesDisponiveis = new ArrayCollection();
+	InspetoresDisponiveis = new ArrayCollection();
+	
+	lst_ArtefatosAdicionados.dataProvider = new ArrayCollection(); 
+	lst_ArtefatosDisponiveis.dataProvider = new ArrayCollection(); 
+	lst_InspetoresAdicionados.dataProvider = new ArrayCollection();
+	lst_InspetoresDisponiveis.dataProvider = new ArrayCollection();
+	GetPartidasResult.token = ws_InspectorX.getPartidas(UsuarioTipoID);
 }
 
 protected function lst_ArtefatosDisponiveis_dragEnterHandler(event:DragEvent):void
@@ -105,7 +130,7 @@ protected function lst_ArtefatosDisponiveis_dragEnterHandler(event:DragEvent):vo
 	}
 	catch(e:Error)
 	{
-		Alert.show("Este objeto não é do tipo aceito para esta lista.");
+		Alert.show("Este item não é do tipo aceito para esta lista.");
 	}
 }
 
@@ -131,7 +156,7 @@ protected function lst_ArtefatosAdicionados_dragEnterHandler(event:DragEvent):vo
 	}
 	catch(e:Error)
 	{
-		Alert.show("Este objeto não é do tipo aceito para esta lista.");
+		Alert.show("Este item  não é do tipo aceito para esta lista.");
 	}				
 }
 
@@ -156,7 +181,7 @@ protected function lst_InspetoresAdicionados_dragEnterHandler(event:DragEvent):v
 	}
 	catch(e:Error)
 	{
-		Alert.show("Este objeto não é do tipo aceito para esta lista.");
+		Alert.show("Este item  não é do tipo aceito para esta lista.");
 	}	
 }
 
@@ -173,6 +198,6 @@ protected function lst_InspetoresDisponiveis_dragEnterHandler(event:DragEvent):v
 	}
 	catch(e:Error)
 	{
-		Alert.show("Este objeto não é do tipo aceito para esta lista.");
+		Alert.show("Este item  não é do tipo aceito para esta lista.");
 	}
 }

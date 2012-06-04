@@ -20,7 +20,7 @@ protected function btn_FullInspection_mouseOverHandler(event:MouseEvent):void
 	txa_JogoModoTuturial.visible = true;
 	
 	txt_JogoTipoTutorial = new TXT();
-	txt_JogoTipoTutorial.Load("Arquivos/Tutorial/DefectCrawler.txt");
+	txt_JogoTipoTutorial.Load("Arquivos/Tutorial/FullInspectionProcess.txt");
 	txt_JogoTipoTutorial.addEventListener("TXT_Loaded",txt_JogoTipoTutorial_TXT_Loaded);
 }
 
@@ -46,7 +46,7 @@ protected function btn_DefectCrawler_mouseOverHandler(event:MouseEvent):void
 	txa_JogoModoTuturial.visible = true;
 	
 	txt_JogoTipoTutorial = new TXT();
-	txt_JogoTipoTutorial.Load("Arquivos/Tutorial/FullInspectionProcess.txt");
+	txt_JogoTipoTutorial.Load("Arquivos/Tutorial/DefectCrawler.txt");
 	txt_JogoTipoTutorial.addEventListener("TXT_Loaded",txt_JogoTipoTutorial_TXT_Loaded);
 }
 
@@ -62,5 +62,5 @@ protected function txt_JogoTipoTutorial_TXT_Loaded(event:Event):void
 
 protected function inserirUsuarioTipoIfDontExistResult_resultHandler(e:ResultEvent):void
 {
-	UsuarioTipoID = e as int;
+	UsuarioTipoID = int(e.result);
 }

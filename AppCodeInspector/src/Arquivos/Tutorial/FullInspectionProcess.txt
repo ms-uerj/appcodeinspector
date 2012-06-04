@@ -1,8 +1,9 @@
 • Modo FullInspectionProcess:
 
-Neste modo você terá de encontrar defeitos em artefatos de software, definidos por um moderador, usando a classificação correta para cada defeito apontado.
+Neste modo, você terá de encontrar defeitos em artefatos de software definidos por um moderador, utilizando a classificação correta para cada defeito encontrado ou 
+poderá moderar uma seção de inspeção definindo os seus artefatos e inspetores.
 
 Obeservações:
 
-• Erros na identificação não serão contabilizadas.
-• Acertos valem 1 ponto cada(Nível Difícil).
+• Erros na identificação não serão contabilizados.
+• Cada acerto vale 1 ponto. Nos níveis Básico e Intermediário, há um defeito por artefato. Já no nível Difícil, há mais de um defeito cadastrado por artefato.

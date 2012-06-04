@@ -32,6 +32,11 @@ protected function btn_ConfirmarSelArtefato_clickHandler(event:MouseEvent):void
 	{
 		Alert.show(e.message);
 	}
+}
+
+protected function btn_VoltarArtSel_clickHandler(event:MouseEvent):void
+{
+	this.currentState = "JogoModoSelecao";
 	
 }
 

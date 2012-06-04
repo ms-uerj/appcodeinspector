@@ -12,6 +12,7 @@ import services.webservicemain.WebServiceMain;
 
 import valueObjects.ItemTaxonomiaEntity;
 import valueObjects.TrechoDefeitoEntity;
+import Domain.ItemTaxonomia;
 
 public var nivelDificuldade:int;
 
@@ -30,7 +31,7 @@ public var listRespostasSelecionadas:ArrayCollection;
 
 protected function btnConfirmarMotivoErro_clickHandler(event:MouseEvent):void
 {
-	var itemTaxonomiaSel:ItemTaxonomiaEntity = cbResposta.selectedItem as ItemTaxonomiaEntity;
+	var itemTaxonomiaSel:ItemTaxonomia = cbResposta.selectedItem as ItemTaxonomia;
 	
 	var trechoResposta:TrechoDefeitoEntity = new TrechoDefeitoEntity();
 	trechoResposta.IT_ID = itemTaxonomiaSel.ID;
