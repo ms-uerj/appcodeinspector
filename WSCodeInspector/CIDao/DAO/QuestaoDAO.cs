@@ -102,6 +102,7 @@ namespace CIDao.DAO
                                    && itemtax.IT_ID == trechoDef.IT_ID
                                    && trechoDef.D_ID == qtd.TD_id
                                    && questoesdb.Q_ID == qtd.Q_id
+                                   && questoesdb.Q_NIVEL_DIFICULDADE == nivelDificuldade
                                    && up.UT_ID == userTipoId
                                    && p.P_ID == up.P_ID
                                    && p.P_ID == hq.P_ID
@@ -109,15 +110,29 @@ namespace CIDao.DAO
                                    && hq.Q_ID == questoesdb.Q_ID
                                    select questoesdb).Distinct();
 
-            var questoesCorretas = (from q in questoesFeitas
+            var questoesCorretas = (
+                                   from itemtax in db.ItemTaxonomias
+                                   from trechoDef in db.TrechoDefeitos
+                                   from qtd in db.Questao_TrechoDefeitos
+                                   from taxonomia in db.Taxonomias
+                                   from tipoArtef_Tax in db.TipoArtefato_Taxonomias
+                                   from q in db.Questaos
                                    from hq in db.Historico_Questaos
                                    from up in db.Usuario_Partidas
                                    from p in db.Partidas
-                                   where
-                                      hq.Q_ID == q.Q_ID
+                                   where 
+                                      tipoArtef_Tax.TA_ID == tipoArtefatoId
+                                   && tipoArtef_Tax.T_ID == taxonomia.T_ID
+                                   && itemtax.T_ID == taxonomia.T_ID
+                                   && itemtax.IT_ID == trechoDef.IT_ID
+                                   && trechoDef.D_ID == qtd.TD_id
+                                   && q.Q_ID == qtd.Q_id
+                                   && hq.Q_ID == q.Q_ID
                                    && hq.P_ID == p.P_ID
                                    && p.P_ID == up.P_ID
                                    && up.UP_TIPO == PartidaModoEnum.DEFECTCRAWLER
+                                   && q.Q_NIVEL_DIFICULDADE == nivelDificuldade
+                                   && up.UT_ID == userTipoId
                                    && hq.H_QTD_ACERTO == 1
                                    select q).Distinct();
 
@@ -130,6 +145,7 @@ namespace CIDao.DAO
                                    && hq.P_ID == p.P_ID
                                    && p.P_ID == up.P_ID
                                    && up.UP_TIPO == PartidaModoEnum.DEFECTCRAWLER
+                                   && q.Q_NIVEL_DIFICULDADE == nivelDificuldade
                                    && hq.H_QTD_ACERTO == 0
                                    select q).Distinct().Except(questoesCorretas);
 

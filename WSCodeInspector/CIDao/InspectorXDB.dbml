@@ -95,13 +95,13 @@
   <Table Name="dbo.Trecho_Resposta" Member="Trecho_Respostas">
     <Type Name="Trecho_Resposta">
       <Column Name="TR_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="U_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Q_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="IT_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="TR_TRECHO_SELECIONADO" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="UP_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="ItemTaxonomia_Trecho_Resposta" Member="ItemTaxonomia" ThisKey="IT_ID" OtherKey="IT_ID" Type="ItemTaxonomia" IsForeignKey="true" />
       <Association Name="Questao_Trecho_Resposta" Member="Questao" ThisKey="Q_ID" OtherKey="Q_ID" Type="Questao" IsForeignKey="true" />
-      <Association Name="Usuario_Trecho_Resposta" Member="Usuario" ThisKey="U_ID" OtherKey="U_ID" Type="Usuario" IsForeignKey="true" />
+      <Association Name="Usuario_Partida_Trecho_Resposta" Member="Usuario_Partida" ThisKey="UP_ID" OtherKey="UP_ID" Type="Usuario_Partida" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.TrechoDefeito" Member="TrechoDefeitos">
@@ -123,7 +123,6 @@
       <Column Name="U_LOGIN" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="U_TIPO" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Association Name="Usuario_Usuario_Tipo" Member="Usuario_Tipos" ThisKey="U_ID" OtherKey="U_ID" Type="Usuario_Tipo" />
-      <Association Name="Usuario_Trecho_Resposta" Member="Trecho_Respostas" ThisKey="U_ID" OtherKey="U_ID" Type="Trecho_Resposta" />
     </Type>
   </Table>
   <Table Name="dbo.Usuario_Partida" Member="Usuario_Partidas">
@@ -132,6 +131,7 @@
       <Column Name="UT_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="P_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="UP_TIPO" Type="System.String" DbType="NChar(20)" CanBeNull="true" />
+      <Association Name="Usuario_Partida_Trecho_Resposta" Member="Trecho_Respostas" ThisKey="UP_ID" OtherKey="UP_ID" Type="Trecho_Resposta" />
       <Association Name="Partida_Usuario_Partida" Member="Partida" ThisKey="P_ID" OtherKey="P_ID" Type="Partida" IsForeignKey="true" />
       <Association Name="Usuario_Tipo_Usuario_Partida" Member="Usuario_Tipo" ThisKey="UT_ID" OtherKey="UT_ID" Type="Usuario_Tipo" IsForeignKey="true" />
     </Type>

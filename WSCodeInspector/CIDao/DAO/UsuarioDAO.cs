@@ -271,9 +271,11 @@ namespace CIDao.DAO
                                 from usert in db.Usuario_Tipos
                                 from partida in db.Partidas
                                 where user.U_ID == usert.U_ID
-                                where usert.UT_ID == userp.UT_ID
+                                   && usert.UT_ID == userp.UT_ID
+                                   && userp.P_ID == partida.P_ID
                                    && partida.P_ID == hist.P_ID
                                    && partida.P_ID == userp.P_ID
+                                   && userp.UP_TIPO != UsuarioTipoEnum.MODERADOR
                                    && partida.P_NIVEL_DIFICULDADE == nivelDificuldade
                                 select new
                                 {
@@ -300,6 +302,72 @@ namespace CIDao.DAO
                 }
 
                 return ranksList;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public List<UserDetails> GetUsersDetails(int nivel)
+        {
+            try
+            {
+                var usersRank = from user in db.Usuarios
+                                from hist in db.Historico_Questaos
+                                from q in db.Questaos
+                                from userp in db.Usuario_Partidas
+                                from usert in db.Usuario_Tipos
+                                from partida in db.Partidas
+                                where user.U_ID == usert.U_ID
+                                   && usert.UT_ID == userp.UT_ID
+                                   && userp.P_ID == partida.P_ID
+                                   && partida.P_ID == hist.P_ID
+                                   && q.Q_ID == hist.Q_ID
+                                   && q.Q_NIVEL_DIFICULDADE == nivel
+                                   && partida.P_ID == userp.P_ID
+                                   && userp.UP_TIPO ==  PartidaModoEnum.DEFECTCRAWLER
+                                select new
+                                {
+                                    user.U_NOME,
+                                    user.U_EMAIL,
+                                    hist.Q_ID,
+                                    q.Q_NIVEL_DIFICULDADE,
+                                    hist.H_QTD_ACERTO,
+                                    hist.H_QUESTAO_INICIO,
+                                    hist.H_QUESTAO_FIM
+                                };
+
+                List<UserDetails> userDList = new List<UserDetails>();
+
+                foreach (var user in usersRank)
+                {
+                    UserDetails userD = new UserDetails();
+                    userD.Nome = user.U_NOME;
+                    userD.Qid = user.Q_ID;
+
+                    if (user.H_QUESTAO_INICIO!=null)
+                        userD.QInicio = ((DateTime)user.H_QUESTAO_INICIO).Ticks;
+                    userD.QInicioD = user.H_QUESTAO_INICIO;
+
+
+                    if (user.H_QUESTAO_FIM != null)
+                        userD.QFim = ((DateTime)user.H_QUESTAO_FIM).Ticks;
+                    userD.QFimD = user.H_QUESTAO_FIM;
+
+                    userD.QNivel = user.Q_NIVEL_DIFICULDADE;
+
+                    if (user.H_QTD_ACERTO != null)
+                        userD.Pontos = user.H_QTD_ACERTO;
+                    else
+                        userD.Pontos = 0;
+
+                    userD.Email = user.U_EMAIL;
+
+                    userDList.Add(userD);
+                }
+
+                return userDList;
             }
             catch (Exception)
             {
