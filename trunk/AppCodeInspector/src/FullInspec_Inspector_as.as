@@ -169,7 +169,10 @@ private function verificarRespostas_FI():void
 			if(NivelDificuldade==FACIL)
 			{
 				if(trechoQuestao.IT_ID==trechoResposta.IT_ID)
-					++pontos;			
+				{
+					++pontos;	
+					Alert.show("Você acertou!");
+				}
 				else
 				{
 					var erro: String;
@@ -179,7 +182,7 @@ private function verificarRespostas_FI():void
 			}
 			else
 			{
-				verificarRespostaInterDifi(trechoQuestao,trechoResposta,pontos);
+				pontos = verificarRespostaInterDifi(trechoQuestao,trechoResposta);
 			}
 		}
 	}

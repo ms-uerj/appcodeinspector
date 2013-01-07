@@ -1,3 +1,5 @@
+import Domain.ItemTaxonomia;
+
 import flash.events.MouseEvent;
 
 import mx.accessibility.AlertAccImpl;
@@ -12,7 +14,6 @@ import services.webservicemain.WebServiceMain;
 
 import valueObjects.ItemTaxonomiaEntity;
 import valueObjects.TrechoDefeitoEntity;
-import Domain.ItemTaxonomia;
 
 public var nivelDificuldade:int;
 
@@ -27,7 +28,7 @@ public static var respostaIndice:int =0;
 public var questaoTaxonomiaId:int;
 public var ItemTaxnomiaAtual:ArrayCollection;
 public var listRespostasSelecionadas:ArrayCollection;
-
+public var trechoSelecionado:String;
 
 protected function btnConfirmarMotivoErro_clickHandler(event:MouseEvent):void
 {
@@ -38,7 +39,7 @@ protected function btnConfirmarMotivoErro_clickHandler(event:MouseEvent):void
 	
 	if(nivelDificuldade!=FACIL)
 	{
-		trechoResposta.Conteudo = AppCodeInspector.QuestaoSelectedText.text;
+		trechoResposta.Conteudo = trechoSelecionado;
 	}
 
 	listRespostasSelecionadas.addItem(trechoResposta);

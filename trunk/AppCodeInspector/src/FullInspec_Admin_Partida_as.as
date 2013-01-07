@@ -9,8 +9,8 @@ import mx.events.DragEvent;
 import mx.rpc.events.ResultEvent;
 import mx.managers.PopUpManager;
 
-public var partidaArtefatoMax:int =10;
-public var partidaInspetorMax:int =5;
+public var partidaArtefatoMax:int =20;
+public var partidaInspetorMax:int =20;
 
 protected function btn_RegistrarPartida_clickHandler(event:MouseEvent):void
 {

@@ -47,6 +47,7 @@ public function onLoad():void
 private function onMouseUp(evt:MouseEvent):void
 {
 	QuestaoSelectedText = new TextRange(txa_QuestoesDefectCrawler,false,txa_QuestoesDefectCrawler.selectionBeginIndex,txa_QuestoesDefectCrawler.selectionEndIndex);
+	RespostaPopUp.trechoSelecionado = new TextRange(txa_QuestoesDefectCrawler,true).text;
 	var selLength:int = QuestaoSelectedText.endIndex - QuestaoSelectedText.beginIndex;
 	
 	if(selLength)
@@ -153,7 +154,7 @@ private function verificarRespostas():void
 			}
 			else
 			{
-				verificarRespostaInterDifi(trechoQuestao,trechoResposta,pontos);
+				pontos = verificarRespostaInterDifi(trechoQuestao,trechoResposta);
 			}
 		}
 	}
