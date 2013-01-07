@@ -45,6 +45,7 @@
     <Compile Include="DAO\ItemTaxonomiaDAO.cs" />
     <Compile Include="DAO\PartidaDAO.cs" />
     <Compile Include="DAO\QuestaoDAO.cs" />
+    <Compile Include="DAO\T.cs" />
     <Compile Include="DAO\TaxonomiaDao.cs" />
     <Compile Include="DAO\TipoArtefatoDao.cs" />
     <Compile Include="DAO\TrechoDefeitoDAO.cs" />
@@ -60,6 +61,7 @@
     <Compile Include="Domain\TipoArtefatoEntity.cs" />
     <Compile Include="Domain\TrechoDefeitoEntity.cs" />
     <Compile Include="Domain\TrechoRespostaEntity.cs" />
+    <Compile Include="Domain\UserDetails.cs" />
     <Compile Include="Domain\UserRankEntity.cs" />
     <Compile Include="Domain\UsuarioEntity.cs" />
     <Compile Include="Domain\UsuarioTipoEnum.cs" />
