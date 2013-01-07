@@ -10,12 +10,12 @@ protected function btnVoltar_clickHandler(event:MouseEvent):void
 	dtg_UsersRank.dataProvider=new ArrayCollection();
 }
 
-protected function dataGrid_creationCompleteHandler(event:FlexEvent):void
-{
-	GetUsersRankResult.token = ws_InspectorX.GetUsersRank(NivelDificuldade);
-}
-
 protected function GetUsersRankResult_resultHandler(e:ResultEvent):void
 {
 	dtg_UsersRank.dataProvider=ArrayCollection(e.result);
+}
+
+protected function onEnterLoadingState():void
+{
+	GetUsersRankResult.token = ws_InspectorX.GetUsersRank(NivelDificuldade);
 }

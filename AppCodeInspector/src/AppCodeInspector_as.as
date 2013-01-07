@@ -1,13 +1,16 @@
 import flash.events.MouseEvent;
 
+import flashx.textLayout.elements.TextFlow;
+
 import mx.collections.ArrayCollection;
 import mx.controls.Alert;
 import mx.controls.textClasses.TextRange;
 import mx.core.UIComponent;
-import mx.states.*;
-import valueObjects.TrechoDefeitoEntity;
 import mx.rpc.events.ResultEvent;
+import mx.states.*;
+import mx.utils.StringUtil;
 
+import valueObjects.TrechoDefeitoEntity;
 
 public var PontosTotal:int;
 public var PartidaAtualId:int;
@@ -22,8 +25,8 @@ public static var RespostasSelecionadas:ArrayCollection = new ArrayCollection();
 
 public static var PerguntaAtualIndex:int = 0;
 
-private static var acertoClassificacao:String = "A classificação do defeito está correta.";
-private static var acertoIdentificacao:String = "A identificação do trecho com defeito está correta.";
+private var acertoClassificacao:String = "A classificação do defeito está correta.";
+private var acertoIdentificacao:String = "A identificação do trecho com defeito está correta.\n";
 
 
 protected function btn_Sair_clickHandler(event:MouseEvent):void
@@ -51,24 +54,30 @@ protected function btn_VoltarCadastro_clickHandler(event:MouseEvent):void
 
 //Verificando as respostas nos níveis difícil e intermediário
 //Usado nos arquivos FullInspec_Inspector_as e Perguntas_as 
-private function verificarRespostaInterDifi(trechoQuestao:TrechoDefeitoEntity,trechoResposta:TrechoDefeitoEntity,pontos:int):void
+private function verificarRespostaInterDifi(trechoQuestao:TrechoDefeitoEntity,trechoResposta:TrechoDefeitoEntity):int
 {
-	var acertos:Array = new Array();
+	var pontos:int = 0;
+	var mensagem:String = "";
 	var trechoCerto:Boolean = false;
 	var classificacaoCerta:Boolean = false;
 	
-	if(trechoQuestao.Conteudo==trechoResposta.Conteudo)
+	var teste:TextFlow = new TextFlow();
+
+	var tq:String = trim(trechoQuestao.Conteudo);
+	var tr:String = trim(trechoResposta.Conteudo);
+	
+	if(tq==tr)
 	{
 		++pontos;
-		acertos.join(acertoIdentificacao+"\n");
+		mensagem=mensagem+ "A identificação do trecho com defeito está correta.\n";
 		trechoCerto=true;
 		if(trechoQuestao.IT_ID==trechoResposta.IT_ID)
 		{
 			++pontos;
-			acertos.join(acertoClassificacao);
+			mensagem=mensagem+ "A classificação do defeito está correta.";
 			classificacaoCerta = true;
 		}
-		Alert.show(acertos.toString());
+		Alert.show(mensagem.toString(),"Você acertou!");
 	}
 	
 	var alertTitle:String = "";
@@ -85,12 +94,47 @@ private function verificarRespostaInterDifi(trechoQuestao:TrechoDefeitoEntity,tr
 		erro2 = setErrorMessage(trechoQuestao.Conteudo,getItemTaxonomia(trechoQuestao.IT_ID).Nome,trechoQuestao.Explicacao);
 		Alert.show(erro2,"Ops! Você errou!");
 	}
+	return pontos;
+}
+
+private function trim2( s:String ):String
+{
+	return s.replace( /^([\s|\t|\n]+)?(.*)([\s|\t|\n]+)?$/gm, "$2" );
+}
+
+public static function isWhitespace( ch:String ):Boolean {
+	return ch == "\r" || 
+		ch == "\n" ||
+		ch == "\f" || 
+		ch == "\t" ||
+		ch == " " ||
+		ch.charCodeAt(0)==160;
+}
+
+public static function trim( original:String ):String {
+	
+	var characters:Array = original.split( "" );
+	
+	for ( var i:int = 0; i < characters.length; i++ ) {
+        var temp :int = original.charCodeAt(i);
+		if ( isWhitespace( characters[i] ) ) 
+		{
+			characters.splice( i, 1 );
+			i--;
+		}
+	}
+	return characters.join("");
+}
+
+private function stripSpaces (input:String):String {
+	var original:Array=input.split(" ");
+	return(original.join(""));
 }
 
 private function setErrorMessage(trecho:String,itemTaxNome:String,explicacao:String):String
 {
 	var erro: String;
-	erro = "O trecho correto era:\n\""+trecho+".\n\nO defeito associado a este trecho era: \n\""+itemTaxNome+"\""
+	erro = "O trecho correto era:\n\""+trecho+".\"\n\nO defeito associado a este trecho era: \n\""+itemTaxNome+"\""
 		+ "\n\nExplicação: \""+ explicacao +".";
 	return erro;
 }

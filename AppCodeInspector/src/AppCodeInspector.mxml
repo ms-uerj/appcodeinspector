@@ -28,6 +28,15 @@
 			   width.ResultadoFinal="880" height.ResultadoFinal="684" minWidth.ResultadoFinal="800"
 			   width.Tutorial="880" height.Tutorial="684" minWidth.Tutorial="800">
 	
+	<fx:Script>
+		<![CDATA[
+
+
+			
+		]]>
+	</fx:Script>
+	
+	
 	<fx:Script source="Login_as.as"/>
 	<fx:Script source="Dificuldade_as.as"/>
 	<fx:Script source="Tutorial_as.as"/>
@@ -49,7 +58,7 @@
 		<s:State name="Dificuldade"/>
 		<s:State name="Tutorial"/>
 		<s:State name="Perguntas"/>
-		<s:State name="ResultadoFinal"/>
+		<s:State name="ResultadoFinal" enterState="onEnterLoadingState()"/>
 		<s:State name="ArtefatosSelecao"/>
 		<s:State name="Cadastro"/>
 		<s:State name="LembrarSenha"/>
@@ -173,7 +182,7 @@
 			 width.JogoModoSelecao="232" height.JogoModoSelecao="170"
 			 horizontalCenter.JogoModoSelecao="0" title.JogoModoSelecao="Selecione o Modo de Jogo"
 			 verticalCenter.JogoModoSelecao="26"
-			 width.JogoPapelSelecao="232" height.JogoPapelSelecao="170"
+			 width.JogoPapelSelecao="232" height.JogoPapelSelecao="212"
 			 horizontalCenter.JogoPapelSelecao="0" title.JogoPapelSelecao="Selecione o seu papel na Inspeção"
 			 verticalCenter.JogoPapelSelecao="26">
 		<s:Button id="btn_Facil" includeIn="Dificuldade" width="158" label="Fácil"
@@ -204,6 +213,9 @@
 				  mouseOver="btn_InspetorPapel_mouseOverHandler(event)"/>
 		<s:Button id="btn_VoltarDificuldade" includeIn="Dificuldade" x="318" y="184" label="Voltar"
 				  click="btn_VoltarDificuldade_clickHandler(event)"/>
+		<mx:HRule includeIn="JogoPapelSelecao" x="23" y="126" width="184" height="2"/>
+		<s:Button id="btn_VoltarSelPapel" includeIn="JogoPapelSelecao" x="35" y="136" width="161"
+				  height="29" label="Voltar" click="btn_VoltarSelPapel_clickHandler(event)"/>
 	</s:Panel>
 	<s:Panel includeIn="Tutorial" width="800" height="375" horizontalCenter="0" verticalCenter="0" title="Como jogar?">
 		<s:Button label="Continuar" right="10" bottom="10" id="btnContinuarTutorial" fontSize="18" fontWeight="bold" fontFamily="Arial" click="btnContinuarTutorial_clickHandler(event)"/>
@@ -215,7 +227,8 @@
 			  click="btnProximaPergunta_clickHandler(event)" fontSize="24" horizontalCenter="274"
 			  verticalCenter="264"/>
 	<s:Panel includeIn="ResultadoFinal" horizontalCenter="0" verticalCenter="0" width="670" height="400" title="Resultado Final">
-		<mx:DataGrid x="10" y="10" width="648" height="347" id="dtg_UsersRank" dataProvider="{GetUsersRankResult.lastResult}" creationComplete="dataGrid_creationCompleteHandler(event)">
+		<mx:DataGrid id="dtg_UsersRank" x="10" y="10" width="648" height="347"
+					 dataProvider="{GetUsersRankResult.lastResult}">
 			<mx:columns>
 				<mx:DataGridColumn headerText="Usuário" dataField="Nome"/>
 				<mx:DataGridColumn headerText="Pontuação" dataField="Pontos"/>

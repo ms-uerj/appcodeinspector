@@ -56,3 +56,8 @@ protected function btn_InspetorPapel_clickHandler(event:MouseEvent):void
 	}
 }
 
+protected function btn_VoltarSelPapel_clickHandler(event:MouseEvent):void
+{
+  this.currentState="JogoModoSelecao";
+}
+
