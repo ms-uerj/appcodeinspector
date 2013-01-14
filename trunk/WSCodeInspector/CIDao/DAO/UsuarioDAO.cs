@@ -118,7 +118,7 @@ namespace CIDao.DAO
             var usuarios = (from user in db.Usuarios
                            from tr in db.Trecho_Respostas
                            from q in db.Questaos
-                           where user.U_ID == tr.U_ID
+                           where user.U_ID == tr.UP_ID
                               && tr.Q_ID == artefoId
                            select user).Distinct();
 

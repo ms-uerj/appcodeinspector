@@ -35,8 +35,6 @@ public function onLoad():void
 {
 	var ta:int = TipoArtefato_Id;
 	
-
-	
 	setQuestaoTextArea();
 	
 	css = new CSS();
@@ -127,7 +125,6 @@ protected function btnProximaPergunta_clickHandler(event:MouseEvent):void
 		}
 		else
 			setProximaQuestao();
-		
 	}
 }
 
@@ -174,8 +171,6 @@ private function encerrarJogo():void
 	ArtefatosList.removeAll();
 }
 
-
-
 private function setProximaQuestao():void
 {
 	++PerguntaAtualIndex;
@@ -206,7 +201,6 @@ private function setQuestaoTextArea():void
 	with (txa_QuestoesDefectCrawler) 
 	{
 		multiline = true;
-		
 		wordWrap = true;
 		condenseWhite = true;
 		if(NivelDificuldade == 0)

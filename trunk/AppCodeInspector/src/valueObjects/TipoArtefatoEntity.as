@@ -46,12 +46,6 @@ public class TipoArtefatoEntity extends _Super_TipoArtefatoEntity
      * END OF DO NOT MODIFY SECTION
      *
      **/    
-	
-	
-	override public function toString():String {
-		return TA_NOME;
-	};
-	
 }
 
 }

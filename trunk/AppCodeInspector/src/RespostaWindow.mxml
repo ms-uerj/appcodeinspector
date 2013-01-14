@@ -101,6 +101,7 @@
 			{
 				GetItemTaxonomia.token = wSCodeInspector.PegarItemsTaxonomia(questaoTaxonomiaId);
 			}
+			
 			protected function GetItemTaxonomia_resultHandler(e:ResultEvent):void
 			{
 				ItemTaxnomiaAtual =  ItemTaxonomia.toItemTaxonomiaCollection(ArrayCollection(e.result));

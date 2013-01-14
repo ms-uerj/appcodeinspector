@@ -9,6 +9,7 @@ import com.adobe.fiber.styles.Style;
 import com.adobe.fiber.valueobjects.AbstractEntityMetadata;
 import com.adobe.fiber.valueobjects.AvailablePropertyIterator;
 import com.adobe.fiber.valueobjects.IPropertyIterator;
+import valueObjects.ItemTaxonomiaEntity;
 import com.adobe.fiber.core.model_internal;
 import com.adobe.fiber.valueobjects.IModelType;
 import mx.events.PropertyChangeEvent;
@@ -20,14 +21,14 @@ internal class _QuestaoEntityEntityMetadata extends com.adobe.fiber.valueobjects
 {
     private static var emptyArray:Array = new Array();
 
-    model_internal static var allProperties:Array = new Array("Q_ID", "Q_Nivel_Dificuldade", "Q_XML", "Q_TEMPO", "Q_nome");
+    model_internal static var allProperties:Array = new Array("Q_ID", "Q_Nivel_Dificuldade", "Q_XML", "Q_TEMPO", "Q_nome", "itemTax");
     model_internal static var allAssociationProperties:Array = new Array();
     model_internal static var allRequiredProperties:Array = new Array();
-    model_internal static var allAlwaysAvailableProperties:Array = new Array("Q_ID", "Q_Nivel_Dificuldade", "Q_XML", "Q_TEMPO", "Q_nome");
+    model_internal static var allAlwaysAvailableProperties:Array = new Array("Q_ID", "Q_Nivel_Dificuldade", "Q_XML", "Q_TEMPO", "Q_nome", "itemTax");
     model_internal static var guardedProperties:Array = new Array();
-    model_internal static var dataProperties:Array = new Array("Q_ID", "Q_Nivel_Dificuldade", "Q_XML", "Q_TEMPO", "Q_nome");
+    model_internal static var dataProperties:Array = new Array("Q_ID", "Q_Nivel_Dificuldade", "Q_XML", "Q_TEMPO", "Q_nome", "itemTax");
     model_internal static var sourceProperties:Array = emptyArray
-    model_internal static var nonDerivedProperties:Array = new Array("Q_ID", "Q_Nivel_Dificuldade", "Q_XML", "Q_TEMPO", "Q_nome");
+    model_internal static var nonDerivedProperties:Array = new Array("Q_ID", "Q_Nivel_Dificuldade", "Q_XML", "Q_TEMPO", "Q_nome", "itemTax");
     model_internal static var derivedProperties:Array = new Array();
     model_internal static var collectionProperties:Array = new Array();
     model_internal static var collectionBaseMap:Object;
@@ -52,6 +53,7 @@ internal class _QuestaoEntityEntityMetadata extends com.adobe.fiber.valueobjects
             model_internal::dependentsOnMap["Q_XML"] = new Array();
             model_internal::dependentsOnMap["Q_TEMPO"] = new Array();
             model_internal::dependentsOnMap["Q_nome"] = new Array();
+            model_internal::dependentsOnMap["itemTax"] = new Array();
 
             // collection base map
             model_internal::collectionBaseMap = new Object();
@@ -64,6 +66,7 @@ internal class _QuestaoEntityEntityMetadata extends com.adobe.fiber.valueobjects
         model_internal::propertyTypeMap["Q_XML"] = "String";
         model_internal::propertyTypeMap["Q_TEMPO"] = "int";
         model_internal::propertyTypeMap["Q_nome"] = "String";
+        model_internal::propertyTypeMap["itemTax"] = "valueObjects.ItemTaxonomiaEntity";
 
         model_internal::_instance = value;
     }
@@ -322,6 +325,12 @@ internal class _QuestaoEntityEntityMetadata extends com.adobe.fiber.valueobjects
         return true;
     }
 
+    [Bindable(event="propertyChange")]
+    public function get isItemTaxAvailable():Boolean
+    {
+        return true;
+    }
+
 
     /**
      * derived property recalculation
@@ -358,6 +367,12 @@ internal class _QuestaoEntityEntityMetadata extends com.adobe.fiber.valueobjects
 
     [Bindable(event="propertyChange")]   
     public function get Q_nomeStyle():com.adobe.fiber.styles.Style
+    {
+        return model_internal::_nullStyle;
+    }
+
+    [Bindable(event="propertyChange")]   
+    public function get itemTaxStyle():com.adobe.fiber.styles.Style
     {
         return model_internal::_nullStyle;
     }

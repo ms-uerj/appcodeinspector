@@ -6,11 +6,9 @@ package valueObjects
 {
 import com.adobe.fiber.styles.IStyle;
 import com.adobe.fiber.styles.Style;
-import com.adobe.fiber.styles.StyleValidator;
 import com.adobe.fiber.valueobjects.AbstractEntityMetadata;
 import com.adobe.fiber.valueobjects.AvailablePropertyIterator;
 import com.adobe.fiber.valueobjects.IPropertyIterator;
-import mx.events.ValidationResultEvent;
 import com.adobe.fiber.core.model_internal;
 import com.adobe.fiber.valueobjects.IModelType;
 import mx.events.PropertyChangeEvent;
@@ -22,14 +20,14 @@ internal class _PartidaEntityEntityMetadata extends com.adobe.fiber.valueobjects
 {
     private static var emptyArray:Array = new Array();
 
-    model_internal static var allProperties:Array = new Array("P_ID", "U_ID", "P_DATA", "P_NIVEL_DIFICULDADE", "P_PONTUACAO_TOTAL");
+    model_internal static var allProperties:Array = new Array("P_ID", "U_ID", "P_DATA", "P_NIVEL_DIFICULDADE", "P_PONTUACAO_TOTAL", "P_JOGO_MODO");
     model_internal static var allAssociationProperties:Array = new Array();
-    model_internal static var allRequiredProperties:Array = new Array("P_ID", "U_ID", "P_DATA", "P_NIVEL_DIFICULDADE", "P_PONTUACAO_TOTAL");
-    model_internal static var allAlwaysAvailableProperties:Array = new Array("P_ID", "U_ID", "P_DATA", "P_NIVEL_DIFICULDADE", "P_PONTUACAO_TOTAL");
+    model_internal static var allRequiredProperties:Array = new Array();
+    model_internal static var allAlwaysAvailableProperties:Array = new Array("P_ID", "U_ID", "P_DATA", "P_NIVEL_DIFICULDADE", "P_PONTUACAO_TOTAL", "P_JOGO_MODO");
     model_internal static var guardedProperties:Array = new Array();
-    model_internal static var dataProperties:Array = new Array("P_ID", "U_ID", "P_DATA", "P_NIVEL_DIFICULDADE", "P_PONTUACAO_TOTAL");
+    model_internal static var dataProperties:Array = new Array("P_ID", "U_ID", "P_DATA", "P_NIVEL_DIFICULDADE", "P_PONTUACAO_TOTAL", "P_JOGO_MODO");
     model_internal static var sourceProperties:Array = emptyArray
-    model_internal static var nonDerivedProperties:Array = new Array("P_ID", "U_ID", "P_DATA", "P_NIVEL_DIFICULDADE", "P_PONTUACAO_TOTAL");
+    model_internal static var nonDerivedProperties:Array = new Array("P_ID", "U_ID", "P_DATA", "P_NIVEL_DIFICULDADE", "P_PONTUACAO_TOTAL", "P_JOGO_MODO");
     model_internal static var derivedProperties:Array = new Array();
     model_internal static var collectionProperties:Array = new Array();
     model_internal static var collectionBaseMap:Object;
@@ -38,11 +36,6 @@ internal class _PartidaEntityEntityMetadata extends com.adobe.fiber.valueobjects
     model_internal static var dependedOnServices:Array = new Array();
     model_internal static var propertyTypeMap:Object;
 
-    
-    model_internal var _P_DATAIsValid:Boolean;
-    model_internal var _P_DATAValidator:com.adobe.fiber.styles.StyleValidator;
-    model_internal var _P_DATAIsValidCacheInitialized:Boolean = false;
-    model_internal var _P_DATAValidationFailureMessages:Array;
 
     model_internal var _instance:_Super_PartidaEntity;
     model_internal static var _nullStyle:com.adobe.fiber.styles.Style = new com.adobe.fiber.styles.Style();
@@ -59,6 +52,7 @@ internal class _PartidaEntityEntityMetadata extends com.adobe.fiber.valueobjects
             model_internal::dependentsOnMap["P_DATA"] = new Array();
             model_internal::dependentsOnMap["P_NIVEL_DIFICULDADE"] = new Array();
             model_internal::dependentsOnMap["P_PONTUACAO_TOTAL"] = new Array();
+            model_internal::dependentsOnMap["P_JOGO_MODO"] = new Array();
 
             // collection base map
             model_internal::collectionBaseMap = new Object();
@@ -71,13 +65,9 @@ internal class _PartidaEntityEntityMetadata extends com.adobe.fiber.valueobjects
         model_internal::propertyTypeMap["P_DATA"] = "Date";
         model_internal::propertyTypeMap["P_NIVEL_DIFICULDADE"] = "int";
         model_internal::propertyTypeMap["P_PONTUACAO_TOTAL"] = "int";
+        model_internal::propertyTypeMap["P_JOGO_MODO"] = "String";
 
         model_internal::_instance = value;
-        model_internal::_P_DATAValidator = new StyleValidator(model_internal::_instance.model_internal::_doValidationForP_DATA);
-        model_internal::_P_DATAValidator.required = true;
-        model_internal::_P_DATAValidator.requiredFieldError = "P_DATA is required";
-        //model_internal::_P_DATAValidator.source = model_internal::_instance;
-        //model_internal::_P_DATAValidator.property = "P_DATA";
     }
 
     override public function getEntityName():String
@@ -334,18 +324,16 @@ internal class _PartidaEntityEntityMetadata extends com.adobe.fiber.valueobjects
         return true;
     }
 
+    [Bindable(event="propertyChange")]
+    public function get isP_JOGO_MODOAvailable():Boolean
+    {
+        return true;
+    }
+
 
     /**
      * derived property recalculation
      */
-    public function invalidateDependentOnP_DATA():void
-    {
-        if (model_internal::_P_DATAIsValidCacheInitialized )
-        {
-            model_internal::_instance.model_internal::_doValidationCacheOfP_DATA = null;
-            model_internal::calculateP_DATAIsValid();
-        }
-    }
 
     model_internal function fireChangeEvent(propertyName:String, oldValue:Object, newValue:Object):void
     {
@@ -370,100 +358,6 @@ internal class _PartidaEntityEntityMetadata extends com.adobe.fiber.valueobjects
         return model_internal::_nullStyle;
     }
 
-    public function get P_DATAValidator() : StyleValidator
-    {
-        return model_internal::_P_DATAValidator;
-    }
-
-    model_internal function set _P_DATAIsValid_der(value:Boolean):void 
-    {
-        var oldValue:Boolean = model_internal::_P_DATAIsValid;         
-        if (oldValue !== value)
-        {
-            model_internal::_P_DATAIsValid = value;
-            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "P_DATAIsValid", oldValue, value));
-        }                             
-    }
-
-    [Bindable(event="propertyChange")]
-    public function get P_DATAIsValid():Boolean
-    {
-        if (!model_internal::_P_DATAIsValidCacheInitialized)
-        {
-            model_internal::calculateP_DATAIsValid();
-        }
-
-        return model_internal::_P_DATAIsValid;
-    }
-
-    model_internal function calculateP_DATAIsValid():void
-    {
-        var valRes:ValidationResultEvent = model_internal::_P_DATAValidator.validate(model_internal::_instance.P_DATA)
-        model_internal::_P_DATAIsValid_der = (valRes.results == null);
-        model_internal::_P_DATAIsValidCacheInitialized = true;
-        if (valRes.results == null)
-             model_internal::P_DATAValidationFailureMessages_der = emptyArray;
-        else
-        {
-            var _valFailures:Array = new Array();
-            for (var a:int = 0 ; a<valRes.results.length ; a++)
-            {
-                _valFailures.push(valRes.results[a].errorMessage);
-            }
-            model_internal::P_DATAValidationFailureMessages_der = _valFailures;
-        }
-    }
-
-    [Bindable(event="propertyChange")]
-    public function get P_DATAValidationFailureMessages():Array
-    {
-        if (model_internal::_P_DATAValidationFailureMessages == null)
-            model_internal::calculateP_DATAIsValid();
-
-        return _P_DATAValidationFailureMessages;
-    }
-
-    model_internal function set P_DATAValidationFailureMessages_der(value:Array) : void
-    {
-        var oldValue:Array = model_internal::_P_DATAValidationFailureMessages;
-
-        var needUpdate : Boolean = false;
-        if (oldValue == null)
-            needUpdate = true;
-    
-        // avoid firing the event when old and new value are different empty arrays
-        if (!needUpdate && (oldValue !== value && (oldValue.length > 0 || value.length > 0)))
-        {
-            if (oldValue.length == value.length)
-            {
-                for (var a:int=0; a < oldValue.length; a++)
-                {
-                    if (oldValue[a] !== value[a])
-                    {
-                        needUpdate = true;
-                        break;
-                    }
-                }
-            }
-            else
-            {
-                needUpdate = true;
-            }
-        }
-
-        if (needUpdate)
-        {
-            model_internal::_P_DATAValidationFailureMessages = value;   
-            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "P_DATAValidationFailureMessages", oldValue, value));
-            // Only execute calculateIsValid if it has been called before, to update the validationFailureMessages for
-            // the entire entity.
-            if (model_internal::_instance.model_internal::_cacheInitialized_isValid)
-            {
-                model_internal::_instance.model_internal::isValid_der = model_internal::_instance.model_internal::calculateIsValid();
-            }
-        }
-    }
-
     [Bindable(event="propertyChange")]   
     public function get P_NIVEL_DIFICULDADEStyle():com.adobe.fiber.styles.Style
     {
@@ -472,6 +366,12 @@ internal class _PartidaEntityEntityMetadata extends com.adobe.fiber.valueobjects
 
     [Bindable(event="propertyChange")]   
     public function get P_PONTUACAO_TOTALStyle():com.adobe.fiber.styles.Style
+    {
+        return model_internal::_nullStyle;
+    }
+
+    [Bindable(event="propertyChange")]   
+    public function get P_JOGO_MODOStyle():com.adobe.fiber.styles.Style
     {
         return model_internal::_nullStyle;
     }
@@ -501,10 +401,6 @@ internal class _PartidaEntityEntityMetadata extends com.adobe.fiber.valueobjects
      {
          switch(propertyName)
          {
-            case("P_DATA"):
-            {
-                return P_DATAValidationFailureMessages;
-            }
             default:
             {
                 return emptyArray;

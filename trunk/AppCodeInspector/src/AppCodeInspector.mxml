@@ -31,10 +31,13 @@
 	<fx:Script>
 		<![CDATA[
 
+			
 
 			
 		]]>
 	</fx:Script>
+	
+	
 	
 	
 	<fx:Script source="Login_as.as"/>
@@ -99,6 +102,7 @@
 		<s:CallResponder id="GetArtefatosPartidaEditResult" result="GetArtefatosPartidaEditResult_resultHandler(event)"/>
 		<s:CallResponder id="GetArtefatosAvalResult" result="GetArtefatosAvalResult_resultHandler(event)"/>
 		<s:CallResponder id="GetUsuariosByPartidaResult" result="GetUsuariosByPartidaResult_resultHandler(event)"/>
+		<s:CallResponder id="GetUsuariosByPartidaAval" result="GetUsuariosByPartidaAval_resultHandler(event)"/>
 		<s:CallResponder id="GetUsuariosByPartidaEditResult" result="GetUsuariosByPartidaEditResult_resultHandler(event)"/>
 		<s:CallResponder id="GetUsersByArtefatoResult" result="GetUsersByArtefatoResult_resultHandler(event)"/>
 		<s:CallResponder id="GetTrechoRespostasResult" result="GetTrechoRespostasResult_resultHandler(event)"/>
@@ -108,6 +112,8 @@
 		<s:CallResponder id="setUpdateQuestaoAcertoResult"/>
 		<s:CallResponder id="inserirUsuarioTipoIfDontExistResult" result="inserirUsuarioTipoIfDontExistResult_resultHandler(event)"/>
 		<s:CallResponder id="updateInicioQuestaoResult" result="updateInicioQuestaoResult_resultHandler(event)"/>
+		<s:CallResponder id="getArtefatosInspecionadosResult" result="getArtefatosInspecionadosResult_resultHandler(event)"/>
+		<s:CallResponder id="setQuestaoAvaliadaResult" result="setQuestaoAvaliadaResult_resultHandler(event)" />
 
 	</fx:Declarations>
 
@@ -257,35 +263,33 @@
 			  width="105" height="35" label="Voltar"
 			  click="btn_FullInspectAdminVoltar_clickHandler(event)"/>
 	<s:Panel id="pnl_PartidaAvaliacao" includeIn="FullInspec_Admin_Avaliacao" x="32" y="43"
-			 width="186" height="88" title="Partida em Avaliação">
+			 width="239" height="88" title="Partida em Avaliação">
 		<s:Label id="lbl_PartidaAvalData" x="10" y="36" text="Data:"/>
 		<s:Label id="lbl_PartidaAvalDataVar" x="45" y="36" text="&lt;data&gt;"/>
 		<s:Label id="lbl_PartidaAvalId" x="10" y="16" text="Identificação:"/>
 		<s:Label id="lbl_PartidaAvalIdVar" x="91" y="16" text="&lt;identificação&gt;"/>
 	</s:Panel>
-	<s:List id="lst_ArtefatosAval" includeIn="FullInspec_Admin_Avaliacao" x="32" y="202" width="135"
-			height="218" click="lst_ArtefatosAval_clickHandler(event)"></s:List>
-	<s:Label id="lbl_ArtefatosAval" includeIn="FullInspec_Admin_Avaliacao" x="32" y="182"
-			 text="Artefatos da Partida"/>
-	<s:TextArea id="txa_ArtefatoAval" includeIn="FullInspec_Admin_Avaliacao" x="193" y="202"
-				width="669" height="340"/>
-	<s:List id="lst_InspetoresAval" includeIn="FullInspec_Admin_Avaliacao" x="32" y="455" width="135"
+	<s:List id="lst_ArtefatosAval" includeIn="FullInspec_Admin_Avaliacao" x="32" y="448" width="135"
+			height="214" click="lst_ArtefatosAval_clickHandler(event)"></s:List>
+	<s:Label id="lbl_ArtefatosAval" includeIn="FullInspec_Admin_Avaliacao" x="32" y="432"
+			 text="Artefatos Inspecionados"/>
+	<mx:TextArea id="txa_ArtefatoAval" includeIn="FullInspec_Admin_Avaliacao" x="193" y="217" width="558" height="325"/>
+	<s:List id="lst_InspetoresAval" includeIn="FullInspec_Admin_Avaliacao" x="32" y="217" width="135"
 			height="203" click="lst_InspetoresAval_clickHandler(event)"></s:List>
-	<s:Label id="lbl_InspetoresAval" includeIn="FullInspec_Admin_Avaliacao" x="32" y="435"
-			 text="Inspetores Participantes"/>
-	<s:DataGrid id="dgr_TrechoSelecionadoAval" includeIn="FullInspec_Admin_Avaliacao" x="193" y="560"
-				width="557" height="102" requestedRowCount="4">
-		<s:columns>
-			<s:ArrayList>
-				<s:GridColumn dataField="dataField1" headerText="Trecho Selecionado"></s:GridColumn>
-				<s:GridColumn dataField="dataField2" headerText="Classificação"></s:GridColumn>
-			</s:ArrayList>
-		</s:columns>
-	</s:DataGrid>
-	<s:Button id="btn_ConfirmadoArtefatoAval" includeIn="FullInspec_Admin_Avaliacao" x="758" y="578"
-			  width="104" height="26" label="Confirmado"/>
-	<s:Button id="btn_RecusadoArtefatoAval" includeIn="FullInspec_Admin_Avaliacao" x="758" y="612"
-			  width="104" height="26" label="Recusado"/>
+	<s:Label id="lbl_InspetoresAval" includeIn="FullInspec_Admin_Avaliacao" x="32" y="197" text="Inspetores Participantes"/>
+	<mx:DataGrid id="dgr_QuestaoTrechos" includeIn="FullInspec_Admin_Avaliacao" x="193" y="560"
+				width="557" height="102" >
+		<mx:columns>
+				<mx:DataGridColumn dataField="TRECHO_RESPOSTA" headerText="Trecho Selecionado"></mx:DataGridColumn>
+				<mx:DataGridColumn dataField="Classificacao" headerText="Classificação"></mx:DataGridColumn>
+		</mx:columns>
+	</mx:DataGrid>
+	<s:Button id="btn_ConfirmadoArtefatoAval" includeIn="FullInspec_Admin_Avaliacao" x="759" y="218"
+			  width="104" height="26" label="Confirmado"
+			  click="btn_ConfirmadoArtefatoAval_clickHandler(event)"/>
+	<s:Button id="btn_RecusadoArtefatoAval" includeIn="FullInspec_Admin_Avaliacao" x="759" y="252"
+			  width="104" height="26" label="Recusado"
+			  click="btn_RecusadoArtefatoAval_clickHandler(event)"/>
 	<mx:TextArea id="txa_Artefato_Inspector" includeIn="FullInspec_Inspector" x="345" y="210"
 				width="505" height="389"/>
 	<s:Button id="btn_Registrar_FullInpec" includeIn="FullInspec_Inspector" x="706" y="607"
@@ -298,7 +302,7 @@
 				  height="98">
 		</s:VGroup>
 		<s:Button id="btn_AvaliarPartida" includeIn="FullInspec_Admin" x="31" y="215" width="92"
-				  label="Avaliar" click="btn_AvaliarPartida_clickHandler(event)" enabled="false"/>
+				  label="Avaliar" click="btn_AvaliarPartida_clickHandler(event)" enabled="true"/>
 		<s:RadioButton x="31" y="38" label="Fácil" groupName="rdg_PartidaDificuldade" value="1"/>
 		<s:RadioButton x="31" y="62" label="Intermediário" groupName="rdg_PartidaDificuldade"
 					   value="2"/>
@@ -382,5 +386,7 @@
 	<s:Button id="btn_VoltarFullInspec_Inspector" includeIn="FullInspec_Inspector" x="633" y="607"
 			  width="65" height="55" label="Voltar"
 			  click="btn_VoltarFullInspec_Inspector_clickHandler(event)"/>
+	<s:Button id="btn_VoltarAval" includeIn="FullInspec_Admin_Avaliacao" x="761" y="635" width="104"
+			  height="26" label="Voltar" click="btn_VoltarAval_clickHandler(event)"/>
 	
 </s:Application>

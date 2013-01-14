@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Data;
 using CIDao.Domain;
+using CIDao.DAO;
 
 namespace CIDao.DAO
 {
@@ -347,6 +348,42 @@ namespace CIDao.DAO
             }
         }
 
+        public bool setQuestaoAvaliada(int questaoId, int partidaId, int pontos)
+        {
+
+            try
+            {
+                Historico_Questao historicoQuestao = db.Historico_Questaos.SingleOrDefault(h_q => h_q.P_ID == partidaId && h_q.Q_ID == questaoId);
+
+                //Gambiarra
+                int flag = 1;
+
+                if (historicoQuestao == null)
+                {
+                    Historico_Questao hq = new Historico_Questao();
+                    hq.H_QTD_ERRO = flag;
+                    hq.H_QTD_ACERTO = pontos;
+                    hq.Q_ID = questaoId;
+                    hq.P_ID = partidaId;
+                    historicoQuestao.H_QUESTAO_FIM = DateTime.Now;
+                    db.Historico_Questaos.InsertOnSubmit(hq);
+                }
+                else
+                {
+                    historicoQuestao.H_QTD_ERRO = flag;
+                    historicoQuestao.H_QTD_ACERTO = pontos;
+                    historicoQuestao.H_QUESTAO_FIM = DateTime.Now;
+                }
+
+                db.SubmitChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         /// <summary>
         /// Adiciona uma nova questão com defeitos já definidos
         /// </summary>
@@ -475,7 +512,7 @@ namespace CIDao.DAO
                                       where q.Q_ID == hq.Q_ID
                                       && hq.P_ID == partida_id
                                       && tr.Q_ID == q.Q_ID
-                                      && tr.U_ID == usuario_id
+                                      && tr.UP_ID == usuario_id
                                       select q).Distinct();
 
 
@@ -509,6 +546,78 @@ namespace CIDao.DAO
             }
         }
 
+        public List<QuestaoEntity> getArtefatosInspecionados(int usuario_id, int partida_id)
+        {
+            List<QuestaoEntity> questEnList = new List<QuestaoEntity>();
+
+            try
+            {
+                Usuario_Partida userPartida = new PartidaDAO().getUsuarioPartida(usuario_id,partida_id);
+
+                if (userPartida == null)
+                    return questEnList;
+
+                var artefatosAvalCorrect = (from q in db.Questaos
+                                            from hq in db.Historico_Questaos
+                                            where q.Q_ID == hq.Q_ID
+                                            && hq.P_ID == partida_id
+                                            && hq.H_QTD_ERRO == 1
+                                            && hq.H_QTD_ACERTO == 1
+                                            select q).Distinct();
+
+                var artefatosInspecionados = (from q in db.Questaos
+                                              from hq in db.Historico_Questaos
+                                              from tr in db.Trecho_Respostas
+                                              where q.Q_ID == hq.Q_ID
+                                              && hq.P_ID == partida_id
+                                              && tr.Q_ID == q.Q_ID
+                                              && tr.UP_ID == userPartida.UP_ID
+                                              select q).Distinct().Except(artefatosAvalCorrect);
+
+
+
+                //var artefatosAvaliados
+
+
+                List<Questao> questList = artefatosInspecionados.ToList();
+
+
+                foreach (Questao item in questList)
+                {
+                    QuestaoEntity questEn = new QuestaoEntity();
+                    questEn.Q_ID = item.Q_ID;
+                    questEn.Q_Nivel_Dificuldade = item.Q_NIVEL_DIFICULDADE;
+                    questEn.Q_nome = item.Q_Nome;
+                    questEn.Q_XML = item.Q_XML;
+
+                    ItemTaxonomia itemTax = (from qt in db.Questao_TrechoDefeitos
+                                             from d in db.TrechoDefeitos
+                                             from it in db.ItemTaxonomias
+                                             where qt.Q_id == item.Q_ID
+                                             && qt.TD_id == d.D_ID
+                                             && d.IT_ID == it.IT_ID
+                                             select it).Distinct().SingleOrDefault();
+                    if (itemTax!=null)
+                    {
+	                    ItemTaxonomiaEntity itEn = new ItemTaxonomiaEntity();
+	                    itEn.Descricao = itemTax.IT_Descricao;
+	                    itEn.ID = itemTax.IT_ID;
+	                    itEn.Nome = itemTax.IT_Nome;
+	                    itEn.T_ID = itemTax.T_ID;
+
+                        questEn.itemTax = itEn;
+                    }
+                    questEnList.Add(questEn);
+                }
+
+                return questEnList;
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
 
         public bool removerPartidaQuestao(int questao_id, int partidada_id)
         {
