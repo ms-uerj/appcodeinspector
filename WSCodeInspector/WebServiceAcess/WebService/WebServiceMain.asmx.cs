@@ -191,6 +191,12 @@ namespace WebServiceAcess.WebService
         }
 
         [WebMethod]
+        public bool setQuestaoAvaliada(int questao_id, int partidada_id, int pontos)
+        {
+            return new QuestaoBLL().setQuestaoAvaliada(questao_id, partidada_id, pontos);
+        }
+
+        [WebMethod]
         public void updateInicioQuestao(int questaoId, int partidaId)
         {
             new QuestaoBLL().updateInicioQuestao(questaoId, partidaId);
@@ -348,15 +354,21 @@ namespace WebServiceAcess.WebService
         }
 
         [WebMethod]
-        public void setTrechoResposta(List<TrechoRespostaEntity> trechoResposta)
+        public void setTrechoResposta(List<TrechoRespostaEntity> trechoResposta, int partida_id, int user_id)
         {
-            new TrechoRespostaBLL().setTrechoResposta(trechoResposta);
+            new TrechoRespostaBLL().setTrechoResposta(trechoResposta,partida_id,user_id);
         }
 
         [WebMethod]
         public List<TrechoRespostaEntity> getTrechoRespostas(int usuario_id, int partida_id, int questao_id)
         {
             return new TrechoRespostaBLL().getTrechoRespostas(usuario_id, partida_id, questao_id);
+        }
+
+        [WebMethod]
+        public List<QuestaoEntity> getArtefatosInspecionados(int usuarioPartida_id, int partida_id)
+        {
+            return new QuestaoBLL().getArtefatosInspecionados(usuarioPartida_id, partida_id);
         }
 
     }

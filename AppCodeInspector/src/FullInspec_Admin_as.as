@@ -77,8 +77,12 @@ protected function btn_AvaliarPartida_clickHandler(event:MouseEvent):void
 	if (lst_MinhasPartidas.selectedItem!=null) 
 	{
 		var partida:PartidaEntity  = lst_MinhasPartidas.selectedItem as PartidaEntity;
-		
+		this.currentState="FullInspec_Admin_Avaliacao";
+		GetUsuariosByPartidaAval.token = ws_InspectorX.getUsuariosByPartida(partida.P_ID);
+		setAvaliacaoInicializacaoPadrao(partida);
 	}
+	else
+		Alert.show("Selecione uma partida para a avaliação");
 }
 
 protected function lst_MinhasPartidas_clickHandler(event:MouseEvent):void
@@ -109,6 +113,13 @@ protected function btn_ArtefatoView_clickHandler(event:MouseEvent):void
 	}
 }
 
+public function setAvaliacaoInicializacaoPadrao(partida:PartidaEntity):void
+{
+	PartidaEmAvaliacao=partida;
+	lbl_PartidaAvalIdVar.text = partida.P_ID.toString();
+	lbl_PartidaAvalDataVar.text = partida.P_DATA.toString();
+}
+
 protected function btn_VoltarSelecaoPapel_clickHandler(event:MouseEvent):void
 {
 	this.currentState="JogoPapelSelecao";
@@ -118,6 +129,7 @@ protected function GetPartidasResult_resultHandler(e:ResultEvent):void
 {
 	MinhasPartidas = Partida.toPartidaCollection(ArrayCollection(e.result));
 	lst_MinhasPartidas.dataProvider=MinhasPartidas;
+	
 }
 
 protected function GetArtefatosResult_resultHandler(e:ResultEvent):void
@@ -130,6 +142,13 @@ protected function GetUsuariosByPartidaResult_resultHandler(e:ResultEvent):void
 {
 	var inspetoresList:ArrayCollection = Usuario.toUsuarioCollection(ArrayCollection(e.result));
 	lst_Inspetores.dataProvider=inspetoresList;
+	
+}
+
+protected function GetUsuariosByPartidaAval_resultHandler(e:ResultEvent):void
+{
+	var inspetoresList:ArrayCollection = Usuario.toUsuarioCollection(ArrayCollection(e.result));
+	lst_InspetoresAval.dataProvider=inspetoresList;
 }
 
 protected function removerFullInspectPartidaResult_resultHandler(e:ResultEvent):void

@@ -65,6 +65,18 @@ namespace CIDao.DAO
             return partidasEnL;
         }
 
+        public Usuario_Partida getUsuarioPartida(int usuario_id,int partida_id)
+        {
+            Usuario_Partida userPartida = (from ut in db.Usuario_Tipos
+                                           from up in db.Usuario_Partidas
+                                           where ut.UT_ID == up.UT_ID
+                                           && ut.U_ID == usuario_id
+                                           && up.P_ID == partida_id
+                                           && up.UP_TIPO == UsuarioTipoEnum.INSPETOR
+                                           select up).Distinct().SingleOrDefault();
+            return userPartida;
+        }
+
         public int iniciarPartida(Partida partidaIniciada, int userTipoId, string tipoJogo)
         {
             try

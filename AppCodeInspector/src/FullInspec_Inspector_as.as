@@ -188,7 +188,7 @@ private function verificarRespostas_FI():void
 	}
 
 	setUpdateQuestaoAcertoResult.token = ws_InspectorX.setUpdateQuestaoAcerto(QuestaoAtualId, PartidaAtualId, pontos);
-	setTrechoRespostaResult.token = ws_InspectorX.setTrechoResposta(createTrechoRespostaCol());
+	setTrechoRespostaResult.token = ws_InspectorX.setTrechoResposta(createTrechoRespostaCol(),UsuarioLogado.U_ID,PartidaAtualId);
 }
 
 
@@ -202,7 +202,6 @@ private function createTrechoRespostaCol():ArrayCollection
 		trechoR.Q_ID=QuestaoAtualId;
 		if(trechoDefeito.Conteudo!=null)
 			trechoR.TRECHO_RESPOSTA=trechoDefeito.Conteudo;
-		trechoR.U_ID=UsuarioLogado.U_ID;
 		trechoRespostas.addItem(trechoR);
 	}
 	return trechoRespostas;

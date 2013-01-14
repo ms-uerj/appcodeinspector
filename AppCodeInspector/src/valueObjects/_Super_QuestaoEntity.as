@@ -10,6 +10,7 @@ import com.adobe.fiber.valueobjects.IValueObject;
 import flash.events.EventDispatcher;
 import mx.collections.ArrayCollection;
 import mx.events.PropertyChangeEvent;
+import valueObjects.ItemTaxonomiaEntity;
 
 import flash.net.registerClassAlias;
 import flash.net.getClassByAlias;
@@ -28,6 +29,7 @@ public class _Super_QuestaoEntity extends flash.events.EventDispatcher implement
 
     model_internal static function initRemoteClassAliasAllRelated() : void
     {
+        valueObjects.ItemTaxonomiaEntity.initRemoteClassAliasSingleChild();
     }
 
     model_internal var _dminternal_model : _QuestaoEntityEntityMetadata;
@@ -52,6 +54,7 @@ public class _Super_QuestaoEntity extends flash.events.EventDispatcher implement
     private var _internal_Q_XML : String;
     private var _internal_Q_TEMPO : int;
     private var _internal_Q_nome : String;
+    private var _internal_itemTax : valueObjects.ItemTaxonomiaEntity;
 
     private static var emptyArray:Array = new Array();
 
@@ -103,6 +106,12 @@ public class _Super_QuestaoEntity extends flash.events.EventDispatcher implement
     public function get Q_nome() : String
     {
         return _internal_Q_nome;
+    }
+
+    [Bindable(event="propertyChange")]
+    public function get itemTax() : valueObjects.ItemTaxonomiaEntity
+    {
+        return _internal_itemTax;
     }
 
     public function clearAssociations() : void
@@ -160,6 +169,16 @@ public class _Super_QuestaoEntity extends flash.events.EventDispatcher implement
         {
             _internal_Q_nome = value;
             this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "Q_nome", oldValue, _internal_Q_nome));
+        }
+    }
+
+    public function set itemTax(value:valueObjects.ItemTaxonomiaEntity) : void
+    {
+        var oldValue:valueObjects.ItemTaxonomiaEntity = _internal_itemTax;
+        if (oldValue !== value)
+        {
+            _internal_itemTax = value;
+            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "itemTax", oldValue, _internal_itemTax));
         }
     }
 

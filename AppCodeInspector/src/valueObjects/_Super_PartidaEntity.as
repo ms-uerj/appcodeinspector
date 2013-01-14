@@ -6,14 +6,10 @@
 package valueObjects
 {
 import com.adobe.fiber.services.IFiberManagingService;
-import com.adobe.fiber.util.FiberUtils;
 import com.adobe.fiber.valueobjects.IValueObject;
-import flash.events.Event;
 import flash.events.EventDispatcher;
-import mx.binding.utils.ChangeWatcher;
 import mx.collections.ArrayCollection;
 import mx.events.PropertyChangeEvent;
-import mx.validators.ValidationResult;
 
 import flash.net.registerClassAlias;
 import flash.net.getClassByAlias;
@@ -56,6 +52,7 @@ public class _Super_PartidaEntity extends flash.events.EventDispatcher implement
     private var _internal_P_DATA : Date;
     private var _internal_P_NIVEL_DIFICULDADE : int;
     private var _internal_P_PONTUACAO_TOTAL : int;
+    private var _internal_P_JOGO_MODO : String;
 
     private static var emptyArray:Array = new Array();
 
@@ -72,7 +69,6 @@ public class _Super_PartidaEntity extends flash.events.EventDispatcher implement
         _model = new _PartidaEntityEntityMetadata(this);
 
         // Bind to own data or source properties for cache invalidation triggering
-        model_internal::_changeWatcherArray.push(mx.binding.utils.ChangeWatcher.watch(this, "P_DATA", model_internal::setterListenerP_DATA));
 
     }
 
@@ -108,6 +104,12 @@ public class _Super_PartidaEntity extends flash.events.EventDispatcher implement
     public function get P_PONTUACAO_TOTAL() : int
     {
         return _internal_P_PONTUACAO_TOTAL;
+    }
+
+    [Bindable(event="propertyChange")]
+    public function get P_JOGO_MODO() : String
+    {
+        return _internal_P_JOGO_MODO;
     }
 
     public function clearAssociations() : void
@@ -168,6 +170,16 @@ public class _Super_PartidaEntity extends flash.events.EventDispatcher implement
         }
     }
 
+    public function set P_JOGO_MODO(value:String) : void
+    {
+        var oldValue:String = _internal_P_JOGO_MODO;
+        if (oldValue !== value)
+        {
+            _internal_P_JOGO_MODO = value;
+            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "P_JOGO_MODO", oldValue, _internal_P_JOGO_MODO));
+        }
+    }
+
     /**
      * Data/source property setter listeners
      *
@@ -179,11 +191,6 @@ public class _Super_PartidaEntity extends flash.events.EventDispatcher implement
      *  - the validity of the property (and the containing entity) if the given data property has a length restriction.
      *  - the validity of the property (and the containing entity) if the given data property is required.
      */
-
-    model_internal function setterListenerP_DATA(value:flash.events.Event):void
-    {
-        _model.invalidateDependentOnP_DATA();
-    }
 
 
     /**
@@ -207,11 +214,6 @@ public class _Super_PartidaEntity extends flash.events.EventDispatcher implement
         var validationFailureMessages:Array = new Array();
 
         var propertyValidity:Boolean = true;
-        if (!_model.P_DATAIsValid)
-        {
-            propertyValidity = false;
-            com.adobe.fiber.util.FiberUtils.arrayAdd(validationFailureMessages, _model.model_internal::_P_DATAValidationFailureMessages);
-        }
 
         model_internal::_cacheInitialized_isValid = true;
         model_internal::invalidConstraints_der = violatedConsts;
@@ -291,33 +293,6 @@ public class _Super_PartidaEntity extends flash.events.EventDispatcher implement
         }
     }
 
-    model_internal var _doValidationCacheOfP_DATA : Array = null;
-    model_internal var _doValidationLastValOfP_DATA : Date;
-
-    model_internal function _doValidationForP_DATA(valueIn:Object):Array
-    {
-        var value : Date = valueIn as Date;
-
-        if (model_internal::_doValidationCacheOfP_DATA != null && model_internal::_doValidationLastValOfP_DATA == value)
-           return model_internal::_doValidationCacheOfP_DATA ;
-
-        _model.model_internal::_P_DATAIsValidCacheInitialized = true;
-        var validationFailures:Array = new Array();
-        var errorMessage:String;
-        var failure:Boolean;
-
-        var valRes:ValidationResult;
-        if (_model.isP_DATAAvailable && _internal_P_DATA == null)
-        {
-            validationFailures.push(new ValidationResult(true, "", "", "P_DATA is required"));
-        }
-
-        model_internal::_doValidationCacheOfP_DATA = validationFailures;
-        model_internal::_doValidationLastValOfP_DATA = value;
-
-        return validationFailures;
-    }
-    
 
 }
 

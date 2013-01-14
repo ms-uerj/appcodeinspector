@@ -10,14 +10,16 @@ namespace CIDao.DAO
     {
         private InspectorXDBDataContext db = new InspectorXDBDataContext();
 
-        public void setTrechoResposta(List<TrechoRespostaEntity> trechoResposta)
+        public void setTrechoResposta(List<TrechoRespostaEntity> trechoResposta,int partida_id,int user_id)
         {
             try
             {
                 foreach (TrechoRespostaEntity trecho in trechoResposta)
                 {
+                    Usuario_Partida userPartida = new PartidaDAO().getUsuarioPartida(user_id, partida_id);
+
                     Trecho_Resposta tr = new Trecho_Resposta();
-                    tr.U_ID = trecho.U_ID;
+                    tr.UP_ID = userPartida.UP_ID;
                     tr.Q_ID = trecho.Q_ID;
                     tr.IT_ID = trecho.IT_ID;
                     tr.TR_TRECHO_SELECIONADO = trecho.TRECHO_RESPOSTA;
@@ -37,26 +39,23 @@ namespace CIDao.DAO
         {
             try
             {
+                Usuario_Partida userPartida = new PartidaDAO().getUsuarioPartida(usuario_id, partida_id);
+
                 var trechosRespostas = from tr in db.Trecho_Respostas
-                                       from p in db.Partidas
-                                       from hq in db.Historico_Questaos
                                        from q in db.Questaos
-                                       where tr.U_ID==usuario_id
+                                       where tr.UP_ID == userPartida.UP_ID
                                        && tr.Q_ID==questao_id
                                        && tr.Q_ID == q.Q_ID
-                                       && q.Q_ID==hq.Q_ID
-                                       && hq.P_ID== partida_id
                                        select tr;
 
-
                 List<Trecho_Resposta> trechoRespostaList = trechosRespostas.ToList();
-                List<TrechoRespostaEntity> trechoRespostaentityList = new List<TrechoRespostaEntity>();
+                List<TrechoRespostaEntity> trechoRespostaEntityList = new List<TrechoRespostaEntity>();
 
                 foreach (Trecho_Resposta trecho in trechoRespostaList)
                 {
                     TrechoRespostaEntity tre = new TrechoRespostaEntity();
                     tre.TR_ID = trecho.TR_ID;
-                    tre.U_ID = trecho.U_ID;
+                    tre.UP_ID = trecho.UP_ID;
                     tre.Q_ID = trecho.Q_ID;
                     tre.IT_ID = trecho.IT_ID;
                     tre.TRECHO_RESPOSTA = trecho.TR_TRECHO_SELECIONADO;
@@ -70,10 +69,10 @@ namespace CIDao.DAO
 
                     tre.TR_ItemTaxonomia = itemTaxEntity;
 
-                    trechoRespostaentityList.Add(tre);
+                    trechoRespostaEntityList.Add(tre);
                 }
 
-                return trechoRespostaentityList;
+                return trechoRespostaEntityList;
             }
             catch (Exception)
             {

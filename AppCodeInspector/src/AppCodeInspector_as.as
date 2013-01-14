@@ -25,6 +25,7 @@ public static var RespostasSelecionadas:ArrayCollection = new ArrayCollection();
 
 public static var PerguntaAtualIndex:int = 0;
 
+
 private var acertoClassificacao:String = "A classificação do defeito está correta.";
 private var acertoIdentificacao:String = "A identificação do trecho com defeito está correta.\n";
 

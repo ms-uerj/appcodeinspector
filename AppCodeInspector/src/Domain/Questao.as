@@ -13,6 +13,7 @@ package Domain
 			this.Q_nome=questao.Q_nome;
 			this.Q_TEMPO=questao.Q_TEMPO;
 			this.Q_XML=questao.Q_XML;
+			this.itemTax=questao.itemTax;
 		}
 		override public function toString():String
 		{

@@ -15,6 +15,7 @@ public class WebServiceMain extends _Super_WebServiceMain
      */
     protected override function preInitializeService():void
     {
+
         super.preInitializeService();
         // Initialization customization goes here
     }

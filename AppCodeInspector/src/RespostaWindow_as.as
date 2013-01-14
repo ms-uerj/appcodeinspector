@@ -38,9 +38,7 @@ protected function btnConfirmarMotivoErro_clickHandler(event:MouseEvent):void
 	trechoResposta.IT_ID = itemTaxonomiaSel.ID;
 	
 	if(nivelDificuldade!=FACIL)
-	{
 		trechoResposta.Conteudo = trechoSelecionado;
-	}
 
 	listRespostasSelecionadas.addItem(trechoResposta);
 
