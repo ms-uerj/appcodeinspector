@@ -1,13 +1,19 @@
+import CodeInspector.CSS;
+
 import Domain.Questao;
 import Domain.TrechoResposta;
-import CodeInspector.CSS;
-import flash.events.MouseEvent;
+import Domain.TrechoRespostaSimple;
+import Domain.Usuario;
+
 import flash.events.Event;
+import flash.events.MouseEvent;
+import flash.utils.Timer;
+
+import flashx.textLayout.elements.TextFlow;
 
 import mx.collections.ArrayCollection;
 import mx.controls.Alert;
 import mx.rpc.events.ResultEvent;
-import flashx.textLayout.elements.TextFlow;
 
 import valueObjects.PartidaEntity;
 import valueObjects.QuestaoEntity;
@@ -15,37 +21,78 @@ import valueObjects.TrechoDefeitoEntity;
 import valueObjects.TrechoRespostaEntity;
 import valueObjects.UsuarioEntity;
 
+
 private var PartidaEmAvaliacao:PartidaEntity;
 private var QuestaoEmAvaliacao:QuestaoEntity;
 private var trechosRespostaList:ArrayCollection;
 
+
 protected function btn_ConfirmadoArtefatoAval_clickHandler(event:MouseEvent):void
 {
-	verificarAvaliacao(true);
+	if(dgr_QuestaoTrechos.selectedItem!=null)
+	{
+		var tr:TrechoResposta = dgr_QuestaoTrechos.selectedItem as TrechoResposta;
+		tr.pontos = 1;
+		setTrechoRespostaAvalResult.token = ws_InspectorX.setTrechoRespostaAval(tr.TRECHO_RESPOSTA,tr.Q_ID,tr.IT_ID, PartidaEmAvaliacao.P_ID,tr.pontos);
+		Alert.show("Os inspetores que encontraram o defeito serão pontuados!");
+	}
 }
 
 protected function btn_RecusadoArtefatoAval_clickHandler(event:MouseEvent):void
 {
-	verificarAvaliacao(false);
+	if(dgr_QuestaoTrechos.selectedItem!=null)
+	{
+		var tr:TrechoResposta = dgr_QuestaoTrechos.selectedItem as TrechoResposta;
+		tr.pontos = 0;
+		setTrechoRespostaAvalResult.token = ws_InspectorX.setTrechoRespostaAval(tr.TRECHO_RESPOSTA,tr.Q_ID,tr.IT_ID, PartidaEmAvaliacao.P_ID,tr.pontos);
+		
+		Alert.show("O trecho selecionado foi classificado como falso positivo.");
+	}
+}
+
+
+private function cleanDiscriminacao():void
+{
+	lst_InspetoresAval.dataProvider= new ArrayCollection();
+	dgr_QuestaoTrechos.dataProvider = new ArrayCollection();
+	txa_ArtefatoAval.htmlText="";
+}
+
+protected function dgr_QuestaoTrechos_clickHandler(event:MouseEvent):void
+{
+	if(dgr_QuestaoTrechos.selectedItem!=null)
+	{
+		var tr:TrechoResposta = dgr_QuestaoTrechos.selectedItem as TrechoResposta;
+		var trs:TrechoRespostaSimple = new TrechoRespostaSimple();
+		trs.IT_ID = tr.IT_ID;
+		trs.TRECHO_RESPOSTA = tr.TRECHO_RESPOSTA;
+		
+		getUsuarioByTrechoResult.token = ws_InspectorX.getUsuarioByTrecho(tr.TRECHO_RESPOSTA,tr.IT_ID,PartidaEmAvaliacao.P_ID);
+	}
 }
 
 protected function btn_VoltarAval_clickHandler(event:MouseEvent):void
 {
+	cleanDiscriminacao();
+	
 	this.currentState="FullInspec_Admin";
+	getPartidasInspectorSelecaoResult.token = ws_InspectorX.getPartidasInspector(UsuarioTipoID);
+	GetPartidasResultAval.token = ws_InspectorX.getPartidas(UsuarioTipoID);
 }
 
 protected function lst_ArtefatosAval_clickHandler(event:MouseEvent):void
 {
 	if (lst_ArtefatosAval.selectedItem!=null) 
 	{
+		cleanDiscriminacao();
 		QuestaoEmAvaliacao = lst_ArtefatosAval.selectedItem as QuestaoEntity;
 		txa_ArtefatoAval.htmlText = QuestaoEmAvaliacao.Q_XML;
-		var user:UsuarioEntity  = lst_InspetoresAval.selectedItem as UsuarioEntity;
-		GetTrechoRespostasResult.token = ws_InspectorX.getTrechoRespostas(user.U_ID, PartidaEmAvaliacao.P_ID, QuestaoEmAvaliacao.Q_ID);
-		GetTrechosQuestao.token = ws_InspectorX.GetTrechosDefeito(QuestaoEmAvaliacao.Q_ID);
+		
 		css = new CSS();
 		css.Load("Arquivos/styles.css");
 		css.addEventListener("CSS_Loaded", cssAvalDone);
+		
+		getTrechosArtefatoResult.token = ws_InspectorX.getTrechosArtefato(QuestaoEmAvaliacao.Q_ID,PartidaEmAvaliacao.P_ID);
 	}
 }
 
@@ -54,14 +101,6 @@ private function cssAvalDone(e:Event):void
 	txa_ArtefatoAval.styleSheet = css.sheet;
 }
 
-protected function lst_InspetoresAval_clickHandler(event:MouseEvent):void
-{
-	if (lst_InspetoresAval.selectedItem!=null) 
-	{
-		var user:UsuarioEntity = lst_InspetoresAval.selectedItem as UsuarioEntity;
-		getArtefatosInspecionadosResult.token = ws_InspectorX.getArtefatosInspecionados(user.U_ID, PartidaEmAvaliacao.P_ID);
-	}
-}
 
 private function verificarAvaliacao(isItCorrect:Boolean):void
 {
@@ -140,13 +179,14 @@ private function verificarRespostaAvalInterDifi(trechoQuestao:TrechoDefeitoEntit
 	{
 		var erro: String;
 		alertTitle = "O inspetor errou a classificação do defeito.";
-		erro = setErrorMessage(trechoQuestao.Conteudo,getItemTaxonomia(trechoQuestao.IT_ID).Nome,trechoQuestao.Explicacao);
+		erro = setErrorMessage(trechoQuestao.Conteudo,trechoQuestao.itemTax.Nome,trechoQuestao.Explicacao);
 		Alert.show(erro,"Análise do artefato");
 	} else if (!trechoCerto)
 	{
 		var erro2: String;
-		alertTitle = "O inspetor a identificação do trecho";
-		erro2 = setErrorMessage(trechoQuestao.Conteudo,getItemTaxonomia(trechoQuestao.IT_ID).Nome,trechoQuestao.Explicacao);
+		alertTitle = "O inspetor" +
+			". a identificação do trecho";
+		erro2 = setErrorMessage(trechoQuestao.Conteudo,trechoQuestao.itemTax.Nome,trechoQuestao.Explicacao);
 		Alert.show(erro2,"Análise do artefato");
 	}
 	return pontos;
@@ -180,11 +220,42 @@ protected function setQuestaoAvaliadaResult_resultHandler(e:ResultEvent):void
 	txa_ArtefatoAval.htmlText = "";
 }
 
+protected function getTrechosArtefatoResult_resultHandler(e:ResultEvent):void
+{
+	trechosRespostaList = TrechoResposta.toTrechoRespostaCollection(ArrayCollection(e.result));
+	dgr_QuestaoTrechos.dataProvider= trechosRespostaList;
+	if(trechosRespostaList.length==0)
+	{
+		txa_ArtefatoAval.htmlText ="";
+	}
+}
+
+protected function GetQuestoesTrechosResult_resultHandler(e:ResultEvent):void
+{
+	trechosRespostaList = Questao.toQuestaoCollection(ArrayCollection(e.result));
+	lst_ArtefatosAval.dataProvider=trechosRespostaList;
+}
+
 protected function GetTrechoRespostasResult_resultHandler(e:ResultEvent):void
 {	
 	trechosRespostaList = TrechoResposta.toTrechoRespostaCollection(ArrayCollection(e.result));
 	
 	if(trechosRespostaList.length==0)
-		Alert.show("Este Artefato ainda não foi inspecionado");
-	dgr_QuestaoTrechos.dataProvider=trechosRespostaList;
+		Alert.show("Este artefato ainda não foi inspecionado");
+	else
+		dgr_QuestaoTrechos.dataProvider=trechosRespostaList;
 }
+
+protected function getUsuarioByTrechoResult_resultHandler(e:ResultEvent):void
+{
+	var usuarios:ArrayCollection = Usuario.toUsuarioCollection(ArrayCollection(e.result));
+	lst_InspetoresAval.dataProvider=usuarios;
+}
+
+protected function setTrechoRespostaAvalResult_resultHandler(e:ResultEvent):void
+{
+	getTrechosArtefatoResult.token = ws_InspectorX.getTrechosArtefato(QuestaoEmAvaliacao.Q_ID,PartidaEmAvaliacao.P_ID);
+	GetQuestoesTrechosResult.token = ws_InspectorX.GetQuestoesTrechos(PartidaEmAvaliacao.P_ID);
+	lst_InspetoresAval.dataProvider= new ArrayCollection();
+}
+

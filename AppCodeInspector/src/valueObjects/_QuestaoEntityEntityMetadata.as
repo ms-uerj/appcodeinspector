@@ -9,6 +9,7 @@ import com.adobe.fiber.styles.Style;
 import com.adobe.fiber.valueobjects.AbstractEntityMetadata;
 import com.adobe.fiber.valueobjects.AvailablePropertyIterator;
 import com.adobe.fiber.valueobjects.IPropertyIterator;
+import mx.collections.ArrayCollection;
 import valueObjects.ItemTaxonomiaEntity;
 import com.adobe.fiber.core.model_internal;
 import com.adobe.fiber.valueobjects.IModelType;
@@ -21,16 +22,16 @@ internal class _QuestaoEntityEntityMetadata extends com.adobe.fiber.valueobjects
 {
     private static var emptyArray:Array = new Array();
 
-    model_internal static var allProperties:Array = new Array("Q_ID", "Q_Nivel_Dificuldade", "Q_XML", "Q_TEMPO", "Q_nome", "itemTax");
+    model_internal static var allProperties:Array = new Array("Q_ID", "Q_Nivel_Dificuldade", "Q_XML", "Q_TEMPO", "Q_nome", "itemTax", "itemTaxList");
     model_internal static var allAssociationProperties:Array = new Array();
     model_internal static var allRequiredProperties:Array = new Array();
-    model_internal static var allAlwaysAvailableProperties:Array = new Array("Q_ID", "Q_Nivel_Dificuldade", "Q_XML", "Q_TEMPO", "Q_nome", "itemTax");
+    model_internal static var allAlwaysAvailableProperties:Array = new Array("Q_ID", "Q_Nivel_Dificuldade", "Q_XML", "Q_TEMPO", "Q_nome", "itemTax", "itemTaxList");
     model_internal static var guardedProperties:Array = new Array();
-    model_internal static var dataProperties:Array = new Array("Q_ID", "Q_Nivel_Dificuldade", "Q_XML", "Q_TEMPO", "Q_nome", "itemTax");
+    model_internal static var dataProperties:Array = new Array("Q_ID", "Q_Nivel_Dificuldade", "Q_XML", "Q_TEMPO", "Q_nome", "itemTax", "itemTaxList");
     model_internal static var sourceProperties:Array = emptyArray
-    model_internal static var nonDerivedProperties:Array = new Array("Q_ID", "Q_Nivel_Dificuldade", "Q_XML", "Q_TEMPO", "Q_nome", "itemTax");
+    model_internal static var nonDerivedProperties:Array = new Array("Q_ID", "Q_Nivel_Dificuldade", "Q_XML", "Q_TEMPO", "Q_nome", "itemTax", "itemTaxList");
     model_internal static var derivedProperties:Array = new Array();
-    model_internal static var collectionProperties:Array = new Array();
+    model_internal static var collectionProperties:Array = new Array("itemTaxList");
     model_internal static var collectionBaseMap:Object;
     model_internal static var entityName:String = "QuestaoEntity";
     model_internal static var dependentsOnMap:Object;
@@ -54,9 +55,11 @@ internal class _QuestaoEntityEntityMetadata extends com.adobe.fiber.valueobjects
             model_internal::dependentsOnMap["Q_TEMPO"] = new Array();
             model_internal::dependentsOnMap["Q_nome"] = new Array();
             model_internal::dependentsOnMap["itemTax"] = new Array();
+            model_internal::dependentsOnMap["itemTaxList"] = new Array();
 
             // collection base map
             model_internal::collectionBaseMap = new Object();
+            model_internal::collectionBaseMap["itemTaxList"] = "valueObjects.ItemTaxonomiaEntity";
         }
 
         // Property type Map
@@ -67,6 +70,7 @@ internal class _QuestaoEntityEntityMetadata extends com.adobe.fiber.valueobjects
         model_internal::propertyTypeMap["Q_TEMPO"] = "int";
         model_internal::propertyTypeMap["Q_nome"] = "String";
         model_internal::propertyTypeMap["itemTax"] = "valueObjects.ItemTaxonomiaEntity";
+        model_internal::propertyTypeMap["itemTaxList"] = "ArrayCollection";
 
         model_internal::_instance = value;
     }
@@ -331,6 +335,12 @@ internal class _QuestaoEntityEntityMetadata extends com.adobe.fiber.valueobjects
         return true;
     }
 
+    [Bindable(event="propertyChange")]
+    public function get isItemTaxListAvailable():Boolean
+    {
+        return true;
+    }
+
 
     /**
      * derived property recalculation
@@ -373,6 +383,12 @@ internal class _QuestaoEntityEntityMetadata extends com.adobe.fiber.valueobjects
 
     [Bindable(event="propertyChange")]   
     public function get itemTaxStyle():com.adobe.fiber.styles.Style
+    {
+        return model_internal::_nullStyle;
+    }
+
+    [Bindable(event="propertyChange")]   
+    public function get itemTaxListStyle():com.adobe.fiber.styles.Style
     {
         return model_internal::_nullStyle;
     }

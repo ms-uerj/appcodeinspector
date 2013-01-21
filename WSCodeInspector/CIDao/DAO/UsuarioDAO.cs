@@ -38,6 +38,39 @@ namespace CIDao.DAO
             return userEntityList;
         }
 
+        public List<UsuarioEntity> getUsuarioByTrecho(string trecho, int it_id, int partida_id)
+        {
+            trecho = trecho.Trim().Normalize();
+
+            var usuarios = (from user in db.Usuarios
+                           from userT in db.Usuario_Tipos
+                           from up in db.Usuario_Partidas
+                           from tr in db.Trecho_Respostas
+                           where user.U_ID == userT.U_ID
+                           && userT.UT_ID == up.UT_ID
+                           && up.P_ID == partida_id
+                           && up.UP_ID == tr.UP_ID
+                           && tr.TR_TRECHO_SELECIONADO.Trim().Contains(trecho) 
+                           && tr.IT_ID == it_id
+                           select user).Distinct();
+
+            List<Usuario> userList = new List<Usuario>();
+            userList = usuarios.ToList();
+
+            List<UsuarioEntity> userEntityList = new List<UsuarioEntity>();
+
+            if (userList.Count != 0)
+            {
+                foreach (Usuario u in userList)
+                {
+                    UsuarioEntity userEntity = new UsuarioEntity(u.U_ID, u.U_NOME, u.U_EMAIL, u.U_SENHA, u.U_LOGIN, u.U_TIPO);
+                    userEntityList.Add(userEntity);
+                }
+            }
+
+            return userEntityList;
+        }
+
         public int inserirUsuarioTipoIfDontExist(int usuarioID,String usuarioTipo)
         {
             Usuario_Tipo userHasType = db.Usuario_Tipos.SingleOrDefault(ut=> ut.U_ID==usuarioID && usuarioTipo.Trim()==ut.UT_TIPO);
@@ -308,6 +341,8 @@ namespace CIDao.DAO
                 throw;
             }
         }
+
+
 
         public List<UserDetails> GetUsersDetails(int nivel)
         {

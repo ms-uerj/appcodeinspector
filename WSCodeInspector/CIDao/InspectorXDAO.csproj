@@ -60,6 +60,7 @@
     <Compile Include="Domain\TaxonomiaEntity.cs" />
     <Compile Include="Domain\TipoArtefatoEntity.cs" />
     <Compile Include="Domain\TrechoDefeitoEntity.cs" />
+    <Compile Include="Domain\TrechoRespostaComparer.cs" />
     <Compile Include="Domain\TrechoRespostaEntity.cs" />
     <Compile Include="Domain\UserDetails.cs" />
     <Compile Include="Domain\UserRankEntity.cs" />

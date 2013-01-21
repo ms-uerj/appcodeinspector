@@ -55,6 +55,8 @@ public class _Super_QuestaoEntity extends flash.events.EventDispatcher implement
     private var _internal_Q_TEMPO : int;
     private var _internal_Q_nome : String;
     private var _internal_itemTax : valueObjects.ItemTaxonomiaEntity;
+    private var _internal_itemTaxList : ArrayCollection;
+    model_internal var _internal_itemTaxList_leaf:valueObjects.ItemTaxonomiaEntity;
 
     private static var emptyArray:Array = new Array();
 
@@ -112,6 +114,12 @@ public class _Super_QuestaoEntity extends flash.events.EventDispatcher implement
     public function get itemTax() : valueObjects.ItemTaxonomiaEntity
     {
         return _internal_itemTax;
+    }
+
+    [Bindable(event="propertyChange")]
+    public function get itemTaxList() : ArrayCollection
+    {
+        return _internal_itemTaxList;
     }
 
     public function clearAssociations() : void
@@ -179,6 +187,31 @@ public class _Super_QuestaoEntity extends flash.events.EventDispatcher implement
         {
             _internal_itemTax = value;
             this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "itemTax", oldValue, _internal_itemTax));
+        }
+    }
+
+    public function set itemTaxList(value:*) : void
+    {
+        var oldValue:ArrayCollection = _internal_itemTaxList;
+        if (oldValue !== value)
+        {
+            if (value is ArrayCollection)
+            {
+                _internal_itemTaxList = value;
+            }
+            else if (value is Array)
+            {
+                _internal_itemTaxList = new ArrayCollection(value);
+            }
+            else if (value == null)
+            {
+                _internal_itemTaxList = null;
+            }
+            else
+            {
+                throw new Error("value of itemTaxList must be a collection");
+            }
+            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "itemTaxList", oldValue, _internal_itemTaxList));
         }
     }
 

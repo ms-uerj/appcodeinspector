@@ -28,8 +28,8 @@
       <Column Name="IT_Nome" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
       <Column Name="IT_Descricao" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
       <Column Name="T_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="ItemTaxonomia_Trecho_Resposta" Member="Trecho_Respostas" ThisKey="IT_ID" OtherKey="IT_ID" Type="Trecho_Resposta" />
       <Association Name="ItemTaxonomia_TrechoDefeito" Member="TrechoDefeitos" ThisKey="IT_ID" OtherKey="IT_ID" Type="TrechoDefeito" />
+      <Association Name="ItemTaxonomia_Trecho_Resposta" Member="Trecho_Respostas" ThisKey="IT_ID" OtherKey="IT_ID" Type="Trecho_Resposta" />
       <Association Name="Taxonomia_ItemTaxonomia" Member="Taxonomia" ThisKey="T_ID" OtherKey="T_ID" Type="Taxonomia" IsForeignKey="true" />
     </Type>
   </Table>
@@ -92,18 +92,6 @@
       <Association Name="TipoArtefato_TipoArtefato_Taxonomia" Member="TipoArtefato" ThisKey="TA_ID" OtherKey="TA_ID" Type="TipoArtefato" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.Trecho_Resposta" Member="Trecho_Respostas">
-    <Type Name="Trecho_Resposta">
-      <Column Name="TR_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Q_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="IT_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="TR_TRECHO_SELECIONADO" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="UP_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="ItemTaxonomia_Trecho_Resposta" Member="ItemTaxonomia" ThisKey="IT_ID" OtherKey="IT_ID" Type="ItemTaxonomia" IsForeignKey="true" />
-      <Association Name="Questao_Trecho_Resposta" Member="Questao" ThisKey="Q_ID" OtherKey="Q_ID" Type="Questao" IsForeignKey="true" />
-      <Association Name="Usuario_Partida_Trecho_Resposta" Member="Usuario_Partida" ThisKey="UP_ID" OtherKey="UP_ID" Type="Usuario_Partida" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.TrechoDefeito" Member="TrechoDefeitos">
     <Type Name="TrechoDefeito">
       <Column Name="D_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -134,6 +122,21 @@
       <Association Name="Usuario_Partida_Trecho_Resposta" Member="Trecho_Respostas" ThisKey="UP_ID" OtherKey="UP_ID" Type="Trecho_Resposta" />
       <Association Name="Partida_Usuario_Partida" Member="Partida" ThisKey="P_ID" OtherKey="P_ID" Type="Partida" IsForeignKey="true" />
       <Association Name="Usuario_Tipo_Usuario_Partida" Member="Usuario_Tipo" ThisKey="UT_ID" OtherKey="UT_ID" Type="Usuario_Tipo" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Trecho_Resposta" Member="Trecho_Respostas">
+    <Type Name="Trecho_Resposta">
+      <Column Name="TR_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Q_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IT_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TR_TRECHO_SELECIONADO" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="UP_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TR_Pontos" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TR_QuestaoDuracao" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="TR_ModeradorAval" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="ItemTaxonomia_Trecho_Resposta" Member="ItemTaxonomia" ThisKey="IT_ID" OtherKey="IT_ID" Type="ItemTaxonomia" IsForeignKey="true" />
+      <Association Name="Questao_Trecho_Resposta" Member="Questao" ThisKey="Q_ID" OtherKey="Q_ID" Type="Questao" IsForeignKey="true" />
+      <Association Name="Usuario_Partida_Trecho_Resposta" Member="Usuario_Partida" ThisKey="UP_ID" OtherKey="UP_ID" Type="Usuario_Partida" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

@@ -1,0 +1,17 @@
+O papel de Moderador:
+
+Neste papel você poderá moderar uma seção de inspeção definindo os seus artefatos e inspetores ou discriminar os defeitos reais dos falsos positivos encontrados por inspetores nas seções que já foram criadas.
+
+Etapas com participação do moderador:
+
+• Planejamento.
+• Coleção.
+• Discriminação.
+• Continuação.
+
+Observações:
+
+• Na discriminação de falsos positivos, cada avaliação correta equivale a 1 ponto. 
+• Na disciminação de falsos positivos você tem acesso a todas as seções de inspeção já criadas.
+• A etapa de discriminação só estará disponível, caso já tenha sido criada uma partida de inspeção.
+

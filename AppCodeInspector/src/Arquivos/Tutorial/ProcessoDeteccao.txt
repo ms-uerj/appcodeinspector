@@ -1,0 +1,10 @@
+• Etapa de Detecção:
+
+Nesta etapa, você terá de encontrar defeitos em artefatos de software definidos pelo moderador, utilizando a classificação correta para cada defeito encontrado.
+
+Obeservações:
+
+• Erros na identificação não serão contabilizados.
+• Cada defeito corretamente identificado vale 1 ponto e para a classificação correta mais 1 ponto. Nos níveis Básico e Intermediário, há um defeito por artefato.
+ Já no nível Difícil, há mais de um defeito cadastrado por artefato.
+• No nível fácil o trecho não aparece na lista, mas aparece a classificação associada ao trecho em realce

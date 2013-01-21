@@ -14,7 +14,7 @@ public class InserirQuestao extends javax.swing.JFrame {
     public ArrayOfTrechoDefeitoEntity trechoList = new ArrayOfTrechoDefeitoEntity();
     private final int NIVEL_DIFICIL_INDEX = 2;
     
-    private final int Nivel_Facil = 1;
+    private final int Nivel_Facil = 1; 
     private final int Nivel_Medio = 2;
     private final int Nivel_Dificil = 3;
     

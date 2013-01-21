@@ -354,9 +354,9 @@ namespace WebServiceAcess.WebService
         }
 
         [WebMethod]
-        public void setTrechoResposta(List<TrechoRespostaEntity> trechoResposta, int partida_id, int user_id)
+        public void setTrechoResposta(List<TrechoRespostaEntity> trechoResposta, int partida_id, int user_id,long duracao)
         {
-            new TrechoRespostaBLL().setTrechoResposta(trechoResposta,partida_id,user_id);
+            new TrechoRespostaBLL().setTrechoResposta(trechoResposta, partida_id, user_id, duracao);
         }
 
         [WebMethod]
@@ -371,5 +371,28 @@ namespace WebServiceAcess.WebService
             return new QuestaoBLL().getArtefatosInspecionados(usuarioPartida_id, partida_id);
         }
 
+        [WebMethod]
+        public List<QuestaoEntity> GetQuestoesTrechos(int partida_id)
+        {
+            return new QuestaoBLL().GetQuestoesTrechos(partida_id);
+        }
+
+        [WebMethod]
+        public List<TrechoRespostaEntity> getTrechosArtefato(int questao_id, int partida_id)
+        {
+            return new TrechoRespostaBLL().getTrechosArtefato(questao_id, partida_id);
+        }
+
+        [WebMethod]
+        public List<UsuarioEntity> getUsuarioByTrecho(string trecho, int it_id, int partida_id)
+        {
+            return new UsuarioBLL().getUsuarioByTrecho(trecho, it_id, partida_id);
+        }
+
+        [WebMethod]
+        public void setTrechoRespostaAval(string trecho, int q_id, int it_id, int partida_id, int pontos)
+        {
+            new TrechoRespostaBLL().setTrechoRespostaAval( trecho, q_id, it_id,  partida_id, pontos);
+        }
     }
 }

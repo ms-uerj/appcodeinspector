@@ -11,12 +11,12 @@
 			   width.Dificuldade="880" height.Dificuldade="684" minWidth.Dificuldade="800"
 			   width.FullInspec_Admin="876" height.FullInspec_Admin="672"
 			   minWidth.FullInspec_Admin="800"
-			   width.FullInspec_Admin_Avaliacao="876" height.FullInspec_Admin_Avaliacao="672"
+			   width.FullInspec_Admin_Avaliacao="876" height.FullInspec_Admin_Avaliacao="680"
 			   minWidth.FullInspec_Admin_Avaliacao="800"
 			   width.FullInspec_Admin_Partida="876" height.FullInspec_Admin_Partida="672"
 			   minWidth.FullInspec_Admin_Partida="800"
-			   width.FullInspec_Inspector="876" height.FullInspec_Inspector="672"
-			   minWidth.FullInspec_Inspector="800"
+			   visible.FullInspec_Inspector="true" width.FullInspec_Inspector="876"
+			   height.FullInspec_Inspector="672" minWidth.FullInspec_Inspector="800"
 			   currentStateChanging.FullInspec_Inspector="application1_currentStateChangingHandler(event)"
 			   width.JogoModoSelecao="876" height.JogoModoSelecao="672"
 			   minWidth.JogoModoSelecao="800"
@@ -24,22 +24,11 @@
 			   minWidth.JogoPapelSelecao="800"
 			   width.LembrarSenha="880" height.LembrarSenha="684" minWidth.LembrarSenha="800"
 			   width.Login="880" height.Login="684" minWidth.Login="800"
+			   creationComplete.Login="application2_creationCompleteHandler(event)"
 			   width.Perguntas="880" height.Perguntas="684" minWidth.Perguntas="800"
 			   width.ResultadoFinal="880" height.ResultadoFinal="684" minWidth.ResultadoFinal="800"
 			   width.Tutorial="880" height.Tutorial="684" minWidth.Tutorial="800">
-	
-	<fx:Script>
-		<![CDATA[
 
-			
-
-			
-		]]>
-	</fx:Script>
-	
-	
-	
-	
 	<fx:Script source="Login_as.as"/>
 	<fx:Script source="Dificuldade_as.as"/>
 	<fx:Script source="Tutorial_as.as"/>
@@ -78,7 +67,7 @@
 		<s:RadioButtonGroup id="rdg_PartidaDificuldade"/>
 		<s:CallResponder id="RelacionarUsrPartidaResult" />
 		<s:CallResponder id="SetArtefatoPartidaResult"/>
-		<s:CallResponder id="setTrechoRespostaResult"/>
+		<s:CallResponder id="setTrechoRespostaResult" result="setTrechoRespostaResult_resultHandler(event)"/>
 		<s:CallResponder id="removerFullInspectPartidaResult" result="removerFullInspectPartidaResult_resultHandler(event)" />
 		<s:CallResponder id="AutenticarUsuarioResult" result="AutenticarUsuarioResult_resultHandler(event)"/>
 		<s:CallResponder id="GetQuestoesResult"  result="GetQuestoesResultFacil_resultHandler(event)"/>
@@ -98,6 +87,7 @@
 		<s:CallResponder id="RecuperarSenha" result="RecuperarSenha_resultHandler(event)"/>
 		<s:CallResponder id="GetTodosUsersResult" result="GetTodosUsersResult_resultHandler(event)"/>
 		<s:CallResponder id="GetPartidasResult" result="GetPartidasResult_resultHandler(event)"/>
+		<s:CallResponder id="GetPartidasResultAval" result="GetPartidasResultAval_resultHandler(event)"/>
 		<s:CallResponder id="GetArtefatosResult" result="GetArtefatosResult_resultHandler(event)"/>
 		<s:CallResponder id="GetArtefatosPartidaEditResult" result="GetArtefatosPartidaEditResult_resultHandler(event)"/>
 		<s:CallResponder id="GetArtefatosAvalResult" result="GetArtefatosAvalResult_resultHandler(event)"/>
@@ -109,14 +99,24 @@
 		<s:CallResponder id="getArtefatosPendentesResult" result="getArtefatosPendentesResult_resultHandler(event)"/>
 		<s:CallResponder id="GetQuestoesByNivelResult" result="GetQuestoesByNivelResult_resultHandler(event)"/>
 		<s:CallResponder id="getPartidasInspectorResult" result="getPartidasInspectorResult_resultHandler(event)"/>
+		<s:CallResponder id="getPartidasInspectorSelecaoResult" result="getPartidasInspectorSelecaoResult_resultHandler(event)"/>
 		<s:CallResponder id="setUpdateQuestaoAcertoResult"/>
 		<s:CallResponder id="inserirUsuarioTipoIfDontExistResult" result="inserirUsuarioTipoIfDontExistResult_resultHandler(event)"/>
-		<s:CallResponder id="updateInicioQuestaoResult" result="updateInicioQuestaoResult_resultHandler(event)"/>
+		<s:CallResponder id="updateInicioQuestaoResult"/>
 		<s:CallResponder id="getArtefatosInspecionadosResult" result="getArtefatosInspecionadosResult_resultHandler(event)"/>
 		<s:CallResponder id="setQuestaoAvaliadaResult" result="setQuestaoAvaliadaResult_resultHandler(event)" />
+		<s:RadioButtonGroup id="btgPapelSelecao"/>
+		<s:CallResponder id="GetQuestoesTrechosResult" result="GetQuestoesTrechosResult_resultHandler(event)"/>
+		<s:CallResponder id="getTrechosArtefatoResult" result="getTrechosArtefatoResult_resultHandler(event)"/>
+		<s:CallResponder id="getUsuarioByTrechoResult" result="getUsuarioByTrechoResult_resultHandler(event)"/>
+		<s:CallResponder id="setTrechoRespostaAvalResult" result="setTrechoRespostaAvalResult_resultHandler(event)"/>
 
 	</fx:Declarations>
 
+	<s:BorderContainer width="880" height="684"
+					   height.FullInspec_Admin_Avaliacao="628"
+					   dropShadowVisible.JogoPapelSelecao="true">
+	
 	<s:Panel includeIn="ArtefatosSelecao,Cadastro,LembrarSenha,Login" title="Login"
 			 width.ArtefatosSelecao="338" height.ArtefatosSelecao="160"
 			 horizontalCenter.ArtefatosSelecao="-1" title.ArtefatosSelecao="Configuração"
@@ -127,8 +127,7 @@
 			 title.LembrarSenha="Lembrar Senha" verticalCenter.LembrarSenha="-29"
 			 width.Login="254" height.Login="184" horizontalCenter.Login="-1"
 			 verticalCenter.Login="-41">
-		<mx:Form width="232"
-				 top.ArtefatosSelecao="14" width.ArtefatosSelecao="316" height.ArtefatosSelecao="59"
+		<mx:Form top.ArtefatosSelecao="14" width.ArtefatosSelecao="316" height.ArtefatosSelecao="59"
 				 label.ArtefatosSelecao="Login" horizontalCenter.ArtefatosSelecao="0"
 				 top.Cadastro="0" width.Cadastro="252" height.Cadastro="110" label.Cadastro="Login"
 				 borderVisible.Cadastro="false" chromeColor.Cadastro="#FDFCFC"
@@ -185,11 +184,13 @@
 	</s:Panel>
 	<s:Panel includeIn="Dificuldade,JogoModoSelecao,JogoPapelSelecao" width="400" height="248"
 			 horizontalCenter="0" title="Selecione a Dificuldade" verticalCenter="0"
-			 width.JogoModoSelecao="232" height.JogoModoSelecao="170"
-			 horizontalCenter.JogoModoSelecao="0" title.JogoModoSelecao="Selecione o Modo de Jogo"
-			 verticalCenter.JogoModoSelecao="26"
+			 width.JogoModoSelecao="178" height.JogoModoSelecao="120" fontSize.JogoModoSelecao="16"
+			 fontWeight.JogoModoSelecao="normal" horizontalCenter.JogoModoSelecao="-293"
+			 title.JogoModoSelecao="Papel na Inspeção"
+			 verticalCenter.JogoModoSelecao="-173"
 			 width.JogoPapelSelecao="232" height.JogoPapelSelecao="212"
-			 horizontalCenter.JogoPapelSelecao="0" title.JogoPapelSelecao="Selecione o seu papel na Inspeção"
+			 horizontalCenter.JogoPapelSelecao="0"
+			 title.JogoPapelSelecao="Selecione o seu papel na Inspeção"
 			 verticalCenter.JogoPapelSelecao="26">
 		<s:Button id="btn_Facil" includeIn="Dificuldade" width="158" label="Fácil"
 				  click="_btnFacil_clickHandler(event)" fontSize="20" horizontalCenter="0"
@@ -200,28 +201,23 @@
 		<s:Button id="btn_Dificil" includeIn="Dificuldade" width="158" label="Difícil"
 				  click="_btnDificil_clickHandler(event)" fontSize="20" horizontalCenter="0"
 				  verticalCenter="28"/>
-		<s:Button id="btn_FullInspection" includeIn="JogoModoSelecao" x="35" y="35" width="160"
-				  height="29" label="Full Inspection Process"
-				  click="btn_FullInspection_clickHandler(event)"
-				  mouseOut="btn_FullInspection_mouseOutHandler(event)"
-				  mouseOver="btn_FullInspection_mouseOverHandler(event)"/>
-		<s:Button id="btn_DefectCrawler" includeIn="JogoModoSelecao" x="35" y="72" width="160"
-				  height="29" label="Defect Crawler" click="btn_DefectCrawler_clickHandler(event)"
-				  mouseOut="btn_DefectCrawler_mouseOutHandler(event)"
-				  mouseOver="btn_DefectCrawler_mouseOverHandler(event)"/>
 		<s:Button id="btn_ModeradorPapel" includeIn="JogoPapelSelecao" x="35" y="35" width="160"
 				  height="29" label="Moderador" click="btn_ModeradorPapel_clickHandler(event)"
-				  mouseOut="btn_ModeradorPapel_mouseOutHandler(event)"
-				  mouseOver="btn_ModeradorPapel_mouseOverHandler(event)"/>
+				  />
 		<s:Button id="btn_InspetorPapel" includeIn="JogoPapelSelecao" x="35" y="72" width="160"
-				  height="29" label="Inspetor" click="btn_InspetorPapel_clickHandler(event)"
-				  mouseOut="btn_InspetorPapel_mouseOutHandler(event)"
-				  mouseOver="btn_InspetorPapel_mouseOverHandler(event)"/>
+				  height="29" label="Inspetor" click="btn_InspetorPapel_clickHandler(event)"/>
 		<s:Button id="btn_VoltarDificuldade" includeIn="Dificuldade" x="318" y="184" label="Voltar"
 				  click="btn_VoltarDificuldade_clickHandler(event)"/>
 		<mx:HRule includeIn="JogoPapelSelecao" x="23" y="126" width="184" height="2"/>
 		<s:Button id="btn_VoltarSelPapel" includeIn="JogoPapelSelecao" x="35" y="136" width="161"
 				  height="29" label="Voltar" click="btn_VoltarSelPapel_clickHandler(event)"/>
+		<s:VGroup includeIn="JogoModoSelecao" x="29" y="10" width="119" height="58"
+				  horizontalAlign="left">
+			<s:RadioButton id="rdbModerador" label="Moderador"
+						   click="rdbModerador_clickHandler(event)" groupName="btgPapelSelecao"/>
+			<s:RadioButton id="rdbInspetor" label="Inspetor" click="rdbInspetor_clickHandler(event)"
+						   groupName="btgPapelSelecao"/>
+		</s:VGroup>
 	</s:Panel>
 	<s:Panel includeIn="Tutorial" width="800" height="375" horizontalCenter="0" verticalCenter="0" title="Como jogar?">
 		<s:Button label="Continuar" right="10" bottom="10" id="btnContinuarTutorial" fontSize="18" fontWeight="bold" fontFamily="Arial" click="btnContinuarTutorial_clickHandler(event)"/>
@@ -250,74 +246,54 @@
 	<s:Button label="Ranking Nível Fácil" width="234" includeIn="Login" click="button1_clickHandler(event)" horizontalCenter="0" verticalCenter="82" id="btn_RankFacil"/>
 	<s:Button includeIn="ResultadoFinal" x="670" y="550" label="Voltar" id="btnVoltar" width="105" click="btnVoltar_clickHandler(event)"/>
 	<mx:TextArea id="txa_QuestoesDefectCrawler" includeIn="Perguntas" x="73" y="210" width="735" height="372"/>
-	<s:TextArea id="txa_JogoModoTuturial" includeIn="JogoModoSelecao,JogoPapelSelecao"
-				visible="false" x="586" y="247" width="269" height="312" editable="false"
-				x.JogoModoSelecao="562" y.JogoModoSelecao="210" width.JogoModoSelecao="304"
-				height.JogoModoSelecao="361"
-				x.JogoPapelSelecao="562" y.JogoPapelSelecao="202" width.JogoPapelSelecao="304"
-				height.JogoPapelSelecao="382"/>
+	<s:TextArea id="txa_JogoModoTuturial" includeIn="JogoPapelSelecao" visible="false" x="562"
+				y="202" width="304" height="382" editable="false"/>
 	<s:Button id="btn_RegistrarPartida" includeIn="FullInspec_Admin_Partida" x="711" y="610"
 			  width="141" height="35" label="Registrar Partida"
 			  click="btn_RegistrarPartida_clickHandler(event)"/>
 	<s:Button id="btn_FullInspectAdminVoltar" includeIn="FullInspec_Admin_Partida" x="594" y="610"
 			  width="105" height="35" label="Voltar"
 			  click="btn_FullInspectAdminVoltar_clickHandler(event)"/>
-	<s:Panel id="pnl_PartidaAvaliacao" includeIn="FullInspec_Admin_Avaliacao" x="32" y="43"
-			 width="239" height="88" title="Partida em Avaliação">
-		<s:Label id="lbl_PartidaAvalData" x="10" y="36" text="Data:"/>
-		<s:Label id="lbl_PartidaAvalDataVar" x="45" y="36" text="&lt;data&gt;"/>
+	<s:Panel id="pnl_PartidaAvaliacao" includeIn="FullInspec_Admin_Avaliacao" x="10" y="28"
+			 width="382" height="68" title="Partida em Discriminação">
 		<s:Label id="lbl_PartidaAvalId" x="10" y="16" text="Identificação:"/>
-		<s:Label id="lbl_PartidaAvalIdVar" x="91" y="16" text="&lt;identificação&gt;"/>
+		<s:Label id="lbl_PartidaAvalIdVar" x="82" y="16" text="&lt;identificação&gt;"/>
 	</s:Panel>
-	<s:List id="lst_ArtefatosAval" includeIn="FullInspec_Admin_Avaliacao" x="32" y="448" width="135"
-			height="214" click="lst_ArtefatosAval_clickHandler(event)"></s:List>
-	<s:Label id="lbl_ArtefatosAval" includeIn="FullInspec_Admin_Avaliacao" x="32" y="432"
-			 text="Artefatos Inspecionados"/>
-	<mx:TextArea id="txa_ArtefatoAval" includeIn="FullInspec_Admin_Avaliacao" x="193" y="217" width="558" height="325"/>
-	<s:List id="lst_InspetoresAval" includeIn="FullInspec_Admin_Avaliacao" x="32" y="217" width="135"
-			height="203" click="lst_InspetoresAval_clickHandler(event)"></s:List>
-	<s:Label id="lbl_InspetoresAval" includeIn="FullInspec_Admin_Avaliacao" x="32" y="197" text="Inspetores Participantes"/>
-	<mx:DataGrid id="dgr_QuestaoTrechos" includeIn="FullInspec_Admin_Avaliacao" x="193" y="560"
-				width="557" height="102" >
+	<mx:TextArea id="txa_ArtefatoAval" includeIn="FullInspec_Admin_Avaliacao" x="178" y="105"
+				 width="516" height="389" editable="false"/>
+	<mx:DataGrid id="dgr_QuestaoTrechos" includeIn="FullInspec_Admin_Avaliacao" x="10" y="502"
+				 width="513" height="113" click="dgr_QuestaoTrechos_clickHandler(event)"
+				 dropShadowVisible="true">
 		<mx:columns>
 				<mx:DataGridColumn dataField="TRECHO_RESPOSTA" headerText="Trecho Selecionado"></mx:DataGridColumn>
-				<mx:DataGridColumn dataField="Classificacao" headerText="Classificação"></mx:DataGridColumn>
+				<mx:DataGridColumn dataField="classificao" headerText="Classificação"></mx:DataGridColumn>
 		</mx:columns>
 	</mx:DataGrid>
-	<s:Button id="btn_ConfirmadoArtefatoAval" includeIn="FullInspec_Admin_Avaliacao" x="759" y="218"
-			  width="104" height="26" label="Confirmado"
+	<s:Button id="btn_ConfirmadoArtefatoAval" includeIn="FullInspec_Admin_Avaliacao" x="558" y="512"
+			  width="136" height="43" label="Defeito Confirmado"
 			  click="btn_ConfirmadoArtefatoAval_clickHandler(event)"/>
-	<s:Button id="btn_RecusadoArtefatoAval" includeIn="FullInspec_Admin_Avaliacao" x="759" y="252"
-			  width="104" height="26" label="Recusado"
+	<s:Button id="btn_RecusadoArtefatoAval" includeIn="FullInspec_Admin_Avaliacao" x="558" y="565"
+			  width="136" height="43" label="Falso positivo"
 			  click="btn_RecusadoArtefatoAval_clickHandler(event)"/>
-	<mx:TextArea id="txa_Artefato_Inspector" includeIn="FullInspec_Inspector" x="345" y="210"
-				width="505" height="389"/>
-	<s:Button id="btn_Registrar_FullInpec" includeIn="FullInspec_Inspector" x="706" y="607"
-			  width="144" height="55" label="Registrar"
-			  click="btn_Registrar_FullInpec_clickHandler(event)"/>
 	<s:Panel includeIn="FullInspec_Admin" x="14" y="204" width="155" height="328" title="Menu">
-		<s:Button id="btn_CriarPartida" includeIn="FullInspec_Admin" x="31" y="9" width="92"
-				  label="Criar" click="btn_CriarPartida_clickHandler(event)"/>
-		<s:VGroup id="rdg_PartidaInspect" includeIn="FullInspec_Admin" x="10" y="35" width="133"
-				  height="98">
+		<s:VGroup id="vgAdminMenu" x="6" y="11" width="137" height="275" horizontalAlign="center">
+			<s:Button id="btn_CriarPartida" width="92" label="Criar"
+					  click="btn_CriarPartida_clickHandler(event)"/>
+			<s:VGroup id="rdg_PartidaInspect" width="133" height="98">
+				<s:RadioButton label="Fácil" groupName="rdg_PartidaDificuldade" value="1"/>
+				<s:RadioButton label="Intermediário" groupName="rdg_PartidaDificuldade" value="2"/>
+				<s:RadioButton label="Difícil" groupName="rdg_PartidaDificuldade" value="3"/>
+				<s:RadioButton label="Misto" enabled="true" groupName="rdg_PartidaDificuldade" value="4"/>
+			</s:VGroup>
+			<mx:HRule width="133"/>
+			<s:Button id="btn_DeletarPartidaAdmin" width="93" label="Deletar"
+					  click="btn_DeletarPartidaAdmin_clickHandler(event)" emphasized="false"/>
+			<s:Button id="btn_AvaliarPartida" width="92" label="Avaliar"
+					  click="btn_AvaliarPartida_clickHandler(event)" enabled="true"/>
+			<mx:HRule width="133"/>
+			<s:Button id="btn_VoltarSelecaoPapel" width="92" label="Voltar"
+					  click="btn_VoltarSelecaoPapel_clickHandler(event)"/>
 		</s:VGroup>
-		<s:Button id="btn_AvaliarPartida" includeIn="FullInspec_Admin" x="31" y="215" width="92"
-				  label="Avaliar" click="btn_AvaliarPartida_clickHandler(event)" enabled="true"/>
-		<s:RadioButton x="31" y="38" label="Fácil" groupName="rdg_PartidaDificuldade" value="1"/>
-		<s:RadioButton x="31" y="62" label="Intermediário" groupName="rdg_PartidaDificuldade"
-					   value="2"/>
-		<s:RadioButton x="31" y="86" label="Difícil" groupName="rdg_PartidaDificuldade" value="3"/>
-		
-		<s:RadioButton x="31" y="110" label="Mista" enabled="false"
-					   groupName="rdg_PartidaDificuldade" value="4"/>
-		<s:Button id="btn_EditarPartidaAdmin" x="32" y="143" width="92" label="Editar"
-				  click="btn_EditarPartidaAdmin_clickHandler(event)" enabled="false"/>
-		<s:Button id="btn_DeletarPartidaAdmin" x="31" y="172" width="93" label="Deletar"
-				  click="btn_DeletarPartidaAdmin_clickHandler(event)"/>
-		<mx:HRule x="10" y="201" width="133"/>
-		<mx:HRule x="10" y="248" width="133"/>
-		<s:Button id="btn_VoltarSelecaoPapel" x="31" y="258" width="92" label="Voltar"
-				  click="btn_VoltarSelecaoPapel_clickHandler(event)"/>
 	</s:Panel>
 	<s:Panel includeIn="FullInspec_Admin" x="177" y="204" width="676" height="392"
 			 title="Partidas Criadas">
@@ -336,57 +312,131 @@
 	</s:Panel>
 	<s:Panel includeIn="FullInspec_Admin_Partida" x="24" y="195" width="201" height="388"
 			 title="Artefatos disponíveis">
-		<s:List id="lst_ArtefatosDisponiveis" includeIn="FullInspec_Admin_Partida" x="10" y="9"
-				width="179" height="336" dragEnabled="true"
-				dragEnter="lst_ArtefatosDisponiveis_dragEnterHandler(event)" dragMoveEnabled="true"
-				dropEnabled="true"></s:List>
+		<s:List id="lst_ArtefatosDisponiveis" x="10" y="9" width="179" height="336"
+				dragEnabled="true" dragEnter="lst_ArtefatosDisponiveis_dragEnterHandler(event)"
+				dragMoveEnabled="true" dropEnabled="true"></s:List>
 		<s:Button id="btn_ArtefatoViewAdmPartida" x="138" y="-22" width="51" height="16" label="View"
 				  click="btn_ArtefatoViewAdmPartida_clickHandler(event)"/>
 	</s:Panel>
 	<s:Panel includeIn="FullInspec_Admin_Partida" x="659" y="195" width="193" height="388"
 			 textAlign="right" title="Inspetores disponíveis">
-		<s:List id="lst_InspetoresDisponiveis" includeIn="FullInspec_Admin_Partida" x="10" y="10"
-				width="171" height="335" dragEnabled="true"
-				dragEnter="lst_InspetoresDisponiveis_dragEnterHandler(event)" dragMoveEnabled="true"
-				dropEnabled="true"></s:List>
+		<s:List id="lst_InspetoresDisponiveis" x="10" y="10" width="171" height="335"
+				dragEnabled="true" dragEnter="lst_InspetoresDisponiveis_dragEnterHandler(event)"
+				dragMoveEnabled="true" dropEnabled="true"></s:List>
 	</s:Panel>
 	<s:Panel includeIn="FullInspec_Admin_Partida" x="251" y="243" width="386" height="340">
-		<s:List id="lst_ArtefatosAdicionados" includeIn="FullInspec_Admin_Partida" x="10" y="77"
-				width="167" height="221" dragEnabled="true"
-				dragEnter="lst_ArtefatosAdicionados_dragEnterHandler(event)" dragMoveEnabled="true"
-				dropEnabled="true"></s:List>
-		<s:List id="lst_InspetoresAdicionados" includeIn="FullInspec_Admin_Partida" x="207" y="77"
-				width="167" height="222" dragEnabled="true"
-				dragEnter="lst_InspetoresAdicionados_dragEnterHandler(event)" dragMoveEnabled="true"
-				dropEnabled="true"></s:List>
-		<s:Label id="lbl_InspetoresAdicionados" includeIn="FullInspec_Admin_Partida" x="243" y="57"
-				 text="Inspetores adicionados"/>
-		<s:Label id="lbl_PartidaIdentificacao" includeIn="FullInspec_Admin_Partida" x="115" y="10"
-				 width="143" height="39" fontSize="25" text="&lt;Partida ID&gt;"/>
-		<s:Label id="lbl_ArtefatosAdicionados" includeIn="FullInspec_Admin_Partida" x="10" y="57"
-				 text="Artefatos adicionados"/>
+		<s:List id="lst_ArtefatosAdicionados" x="10" y="77" width="167" height="221"
+				dragEnabled="true" dragEnter="lst_ArtefatosAdicionados_dragEnterHandler(event)"
+				dragMoveEnabled="true" dropEnabled="true"></s:List>
+		<s:List id="lst_InspetoresAdicionados" x="207" y="77" width="167" height="222"
+				dragEnabled="true" dragEnter="lst_InspetoresAdicionados_dragEnterHandler(event)"
+				dragMoveEnabled="true" dropEnabled="true"></s:List>
+		<s:Label id="lbl_InspetoresAdicionados" x="243" y="57" text="Inspetores adicionados"/>
+		<s:Label id="lbl_PartidaIdentificacao" x="115" y="10" width="143" height="39" fontSize="25"
+				 text="&lt;Partida ID&gt;"/>
+		<s:Label id="lbl_ArtefatosAdicionados" x="10" y="57" text="Artefatos adicionados"/>
 		<mx:VRule x="185" y="57" width="14" height="240"/>
 	</s:Panel>
-	<s:Panel includeIn="FullInspec_Inspector" x="10" y="210" width="327" height="389"
-			 title="Meus Artefatos">
-		<s:List id="lst_MinhasPartidas_Inspector" includeIn="FullInspec_Inspector" x="11" y="30"
-				width="162" height="315" click="lst_MinhasPartidas_Inspector_clickHandler(event)"></s:List>
-		<s:List id="lst_Artefatos_Inspector" includeIn="FullInspec_Inspector" x="194" y="32" width="111"
-				height="314" click="lst_Artefatos_Inspector_clickHandler(event)"></s:List>
-		<s:Label id="lbl_Partida_Inspector" includeIn="FullInspec_Inspector" x="11" y="10" text="Minhas Partidas"/>
-		<s:Label id="lbl_Artefatos_Inspector" includeIn="FullInspec_Inspector" x="193" y="12"
-				 text="Artefatos pendentes"/>
-		<mx:VRule x="178" y="8" width="7" height="340"/>
+	<s:Panel includeIn="FullInspec_Inspector" x="10" y="79" width="256" height="266"
+			 title="Partidas  Disponíveis">
+		<s:List id="lst_MinhasPartidas_Inspector" x="0" y="-5" width="254" height="238"
+				borderVisible="false" click="lst_MinhasPartidas_Inspector_clickHandler(event)"></s:List>
+		
 	</s:Panel>
 	<s:Button id="btn_Sair"
 			  includeIn="ArtefatosSelecao,Dificuldade,FullInspec_Admin,FullInspec_Admin_Avaliacao,FullInspec_Admin_Partida,FullInspec_Inspector,JogoModoSelecao,JogoPapelSelecao,Perguntas,Tutorial"
 			  x="814" y="8" width="56" height="21" label="Sair" click="btn_Sair_clickHandler(event)"
 			  click.Dificuldade="btn_Sair_clickHandler(event)"
+			  click.FullInspec_Admin_Avaliacao="btn_Sair_clickHandler(event)"
 			  x.FullInspec_Inspector="794" y.FullInspec_Inspector="10"/>
-	<s:Button id="btn_VoltarFullInspec_Inspector" includeIn="FullInspec_Inspector" x="633" y="607"
-			  width="65" height="55" label="Voltar"
-			  click="btn_VoltarFullInspec_Inspector_clickHandler(event)"/>
-	<s:Button id="btn_VoltarAval" includeIn="FullInspec_Admin_Avaliacao" x="761" y="635" width="104"
+	<s:Button id="btn_VoltarAval" includeIn="FullInspec_Admin_Avaliacao" x="764" y="589" width="104"
 			  height="26" label="Voltar" click="btn_VoltarAval_clickHandler(event)"/>
+	<s:Button id="btn_DefectCrawler" includeIn="JogoModoSelecao" visible="false" x="701" y="625"
+			  width="160" height="29" label="Defect Crawler"
+			  click="btn_DefectCrawler_clickHandler(event)"
+			  mouseOut="btn_DefectCrawler_mouseOutHandler(event)"
+			  mouseOver="btn_DefectCrawler_mouseOverHandler(event)"/>
+	<s:Button id="btn_FullInspection" includeIn="JogoModoSelecao" visible="false" x="533" y="625"
+			  width="160" height="29" label="Full Inspection Process"
+			  click="btn_FullInspection_clickHandler(event)"
+			  mouseOut="btn_FullInspection_mouseOutHandler(event)"
+			  mouseOver="btn_FullInspection_mouseOverHandler(event)"/>
+	<s:Panel id="pnlInspecaoSauer" includeIn="JogoModoSelecao" x="277" y="90" width="312"
+			 height="502" fontSize="16" fontWeight="normal" title="Processo de inspeção de Saeur">
+		<s:Button id="btnPlanejamento" x="35" y="25" width="203" height="48" label="Planejamento"
+				  click="btnPlanejamento_clickHandler(event)" enabled="false" fontSize="16"
+				  fontWeight="normal"/>
+		<s:Button id="btnDeteccao" x="34" y="98" width="203" height="48" label="Detecção"
+				  click="btnDeteccao_clickHandler(event)" enabled="false" fontWeight="normal"/>
+		<s:Button id="btnSelecao" x="35" y="171" width="203" height="48" label="Coleção"
+				  enabled="false" fontWeight="normal"/>
+		<s:Image x="105" y="73" source="Arquivos/Tutorial/ScreenShot144.png"/>
+		<s:Button id="btnDiscrimincao" x="35" y="245" width="203" height="48" label="Discriminação"
+				  click="btnDiscrimincao_clickHandler(event)" enabled="false" fontWeight="normal"/>
+		<s:Button id="btnRetrabalho" x="34" y="319" width="203" height="48" label="Retrabalho"
+				  enabled="false" fontWeight="normal"/>
+		<s:Button id="btnContinuacao" x="35" y="396" width="203" height="48" label="Continuação"
+				  enabled="false" fontWeight="normal"/>
+		<s:Image x="106" y="369" source="Arquivos/Tutorial/ScreenShot144.png"/>
+		<s:Image x="107" y="146" source="Arquivos/Tutorial/ScreenShot144.png"/>
+		<s:Image x="107" y="220" source="Arquivos/Tutorial/ScreenShot144.png"/>
+		<s:Image x="109" y="294" source="Arquivos/Tutorial/ScreenShot144.png"/>
+		<s:Button id="btnPlanejamentoHelp" x="246" y="25" width="36" height="48" label="?"
+				  fontWeight="bold" mouseOut="btnHideSauerTutorial_mouseOutHandler(event)"
+				  mouseOver="btnPlanejamentoHelp_mouseOverHandler(event)"/>
+		<s:Button id="btnDetecacaoHelp" x="246" y="98" width="36" height="48" label="?"
+				  fontWeight="bold" mouseOut="btnHideSauerTutorial_mouseOutHandler(event)"
+				  mouseOver="btnDetecacaoHelp_mouseOverHandler(event)"/>
+		<s:Button id="btnSelecaoHelp" x="246" y="171" width="36" height="48" label="?"
+				  fontWeight="bold" mouseOut="btnHideSauerTutorial_mouseOutHandler(event)"
+				  mouseOver="btnSelecaoHelp_mouseOverHandler(event)"/>
+		<s:Button id="btnDiscrimincaoHelp" x="246" y="245" width="36" height="48" label="?"
+				  fontWeight="bold" mouseOut="btnHideSauerTutorial_mouseOutHandler(event)"
+				  mouseOver="btnDiscrimincaoHelp_mouseOverHandler(event)"/>
+		<s:Button id="btnRetrabalhoHelp" x="246" y="319" width="36" height="48" label="?"
+				  fontWeight="bold" mouseOut="btnHideSauerTutorial_mouseOutHandler(event)"
+				  mouseOver="btnRetrabalhoHelp_mouseOverHandler(event)"/>
+		<s:Button id="btnContinuacaoHelp" x="246" y="396" width="36" height="48" label="?"
+				  fontWeight="bold" mouseOut="btnHideSauerTutorial_mouseOutHandler(event)"
+				  mouseOver="btnContinuacaoHelp_mouseOverHandler(event)"/>
+	</s:Panel>
+	<s:TextArea id="txa_JogoPapel" includeIn="JogoModoSelecao" visible="false" x="32" y="261"
+				width="216" height="331" borderVisible="true" editable="false" fontSize="14"/>
+	<s:TextArea id="txaProcessoSauer" includeIn="JogoModoSelecao" visible="false" x="597" y="121"
+				width="266" height="403" borderVisible="true" editable="false" fontSize="14"/>
+	<s:Panel id="pnlTrechosSelecionados" includeIn="FullInspec_Inspector" visible="false" x="274"
+			 y="476" width="595" height="128" dropShadowVisible="false" title="Trechos Selecionados">
+		<s:Button id="btnReclassificar" x="10" y="53" label="Reclassificar"
+				  click="btnReclassificar_clickHandler(event)" enabled="false"/>
+		<s:Button id="btnRemoverTrecho" x="10" y="24" width="93" label="Remover"
+				  click="btnRemoverTrecho_clickHandler(event)" enabled="false"/>
+	</s:Panel>
+	<mx:TextArea id="txa_Artefato_Inspector" includeIn="FullInspec_Inspector" visible="false" x="275"
+				 y="79" width="595" height="389"/>
+	<s:Panel id="pnlArtefatosNaoInsp" includeIn="FullInspec_Inspector" x="8" y="353" width="258"
+			 height="251" title="Arteftos não Inspecionados">
+		<s:List id="lst_Artefatos_Inspector" x="0" y="0" width="256" height="218"
+				borderVisible="false" click="lst_Artefatos_Inspector_clickHandler(event)"></s:List>
+	</s:Panel>
+	<s:HGroup includeIn="FullInspec_Inspector" x="609" y="605" width="260" height="62" gap="8"
+			  horizontalAlign="right" paddingRight="2" verticalAlign="middle">
+		<s:Button id="btn_VoltarFullInspec_Inspector" includeIn="FullInspec_Inspector" width="65"
+				  height="55" label="Voltar" click="btn_VoltarFullInspec_Inspector_clickHandler(event)"/>
+		<s:Button id="btn_Registrar_FullInpec" includeIn="FullInspec_Inspector" visible="false"
+				  width="144" height="55" label="Registrar"
+				  click="btn_Registrar_FullInpec_clickHandler(event)" includeInLayout="false"/>
+	</s:HGroup>
+		<s:Panel id="pnlArtefatosInspecionados" includeIn="FullInspec_Admin_Avaliacao" x="10" y="105"
+				 width="160" height="389" title="Artefatos Inspecionados">
+			<s:List id="lst_ArtefatosAval" includeIn="FullInspec_Admin_Avaliacao" x="0" y="0" width="158"
+					height="356" click="lst_ArtefatosAval_clickHandler(event)"></s:List>
+		</s:Panel>
+		<s:Panel id="pnlInspetoresArtefato" includeIn="FullInspec_Admin_Avaliacao" x="701" y="101"
+				 width="160" height="394" title="Identificado por:">
+			<s:List id="lst_InspetoresAval" includeIn="FullInspec_Admin_Avaliacao" x="0" y="-4"
+					width="158" height="365"></s:List>
+		</s:Panel>
+	
+	</s:BorderContainer>
 	
 </s:Application>
