@@ -1,0 +1,9 @@
+• Etapa de Discriminação:
+
+Nesta etapa o moderador, o autor do artefato em questão e os inspetores se reúnem e discutem sobre as discrepâncias encontradas, excluindo os falsos positivos.
+
+Observações:
+
+• Na discriminação de falsos positivos, cada avaliação correta equivale a 1 ponto.
+• No nível fácil o trecho não aparece na lista, mas aparece a classificação associada ao trecho em realce.  
+

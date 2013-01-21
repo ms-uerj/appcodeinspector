@@ -9,6 +9,7 @@ import com.adobe.fiber.styles.Style;
 import com.adobe.fiber.valueobjects.AbstractEntityMetadata;
 import com.adobe.fiber.valueobjects.AvailablePropertyIterator;
 import com.adobe.fiber.valueobjects.IPropertyIterator;
+import valueObjects.ItemTaxonomiaEntity;
 import com.adobe.fiber.core.model_internal;
 import com.adobe.fiber.valueobjects.IModelType;
 import mx.events.PropertyChangeEvent;
@@ -20,14 +21,14 @@ internal class _TrechoDefeitoEntityEntityMetadata extends com.adobe.fiber.valueo
 {
     private static var emptyArray:Array = new Array();
 
-    model_internal static var allProperties:Array = new Array("D_ID", "IT_ID", "Explicacao", "Conteudo");
+    model_internal static var allProperties:Array = new Array("D_ID", "IT_ID", "Explicacao", "Conteudo", "classificao", "itemTax");
     model_internal static var allAssociationProperties:Array = new Array();
     model_internal static var allRequiredProperties:Array = new Array();
-    model_internal static var allAlwaysAvailableProperties:Array = new Array("D_ID", "IT_ID", "Explicacao", "Conteudo");
+    model_internal static var allAlwaysAvailableProperties:Array = new Array("D_ID", "IT_ID", "Explicacao", "Conteudo", "classificao", "itemTax");
     model_internal static var guardedProperties:Array = new Array();
-    model_internal static var dataProperties:Array = new Array("D_ID", "IT_ID", "Explicacao", "Conteudo");
+    model_internal static var dataProperties:Array = new Array("D_ID", "IT_ID", "Explicacao", "Conteudo", "classificao", "itemTax");
     model_internal static var sourceProperties:Array = emptyArray
-    model_internal static var nonDerivedProperties:Array = new Array("D_ID", "IT_ID", "Explicacao", "Conteudo");
+    model_internal static var nonDerivedProperties:Array = new Array("D_ID", "IT_ID", "Explicacao", "Conteudo", "classificao", "itemTax");
     model_internal static var derivedProperties:Array = new Array();
     model_internal static var collectionProperties:Array = new Array();
     model_internal static var collectionBaseMap:Object;
@@ -51,6 +52,8 @@ internal class _TrechoDefeitoEntityEntityMetadata extends com.adobe.fiber.valueo
             model_internal::dependentsOnMap["IT_ID"] = new Array();
             model_internal::dependentsOnMap["Explicacao"] = new Array();
             model_internal::dependentsOnMap["Conteudo"] = new Array();
+            model_internal::dependentsOnMap["classificao"] = new Array();
+            model_internal::dependentsOnMap["itemTax"] = new Array();
 
             // collection base map
             model_internal::collectionBaseMap = new Object();
@@ -62,6 +65,8 @@ internal class _TrechoDefeitoEntityEntityMetadata extends com.adobe.fiber.valueo
         model_internal::propertyTypeMap["IT_ID"] = "int";
         model_internal::propertyTypeMap["Explicacao"] = "String";
         model_internal::propertyTypeMap["Conteudo"] = "String";
+        model_internal::propertyTypeMap["classificao"] = "String";
+        model_internal::propertyTypeMap["itemTax"] = "valueObjects.ItemTaxonomiaEntity";
 
         model_internal::_instance = value;
     }
@@ -314,6 +319,18 @@ internal class _TrechoDefeitoEntityEntityMetadata extends com.adobe.fiber.valueo
         return true;
     }
 
+    [Bindable(event="propertyChange")]
+    public function get isClassificaoAvailable():Boolean
+    {
+        return true;
+    }
+
+    [Bindable(event="propertyChange")]
+    public function get isItemTaxAvailable():Boolean
+    {
+        return true;
+    }
+
 
     /**
      * derived property recalculation
@@ -344,6 +361,18 @@ internal class _TrechoDefeitoEntityEntityMetadata extends com.adobe.fiber.valueo
 
     [Bindable(event="propertyChange")]   
     public function get ConteudoStyle():com.adobe.fiber.styles.Style
+    {
+        return model_internal::_nullStyle;
+    }
+
+    [Bindable(event="propertyChange")]   
+    public function get classificaoStyle():com.adobe.fiber.styles.Style
+    {
+        return model_internal::_nullStyle;
+    }
+
+    [Bindable(event="propertyChange")]   
+    public function get itemTaxStyle():com.adobe.fiber.styles.Style
     {
         return model_internal::_nullStyle;
     }

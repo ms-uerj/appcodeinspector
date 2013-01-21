@@ -151,7 +151,7 @@ private function verificarRespostas():void
 			}
 			else
 			{
-				pontos = verificarRespostaInterDifi(trechoQuestao,trechoResposta);
+				//pontos = verificarRespostaInterDifi(trechoQuestao,trechoResposta);
 			}
 		}
 	}

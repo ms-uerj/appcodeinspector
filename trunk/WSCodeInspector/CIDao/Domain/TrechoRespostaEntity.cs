@@ -12,6 +12,10 @@ namespace CIDao.Domain
         public int? Q_ID { get; set; }
         public int? IT_ID { get; set; }
         public string TRECHO_RESPOSTA { get; set; }
+        public string classificao { get; set; }
+        public int pontos { get; set; }
+        public long questaoDuracao { get; set; }
+        public int trModeradorAval { get; set; }
         public ItemTaxonomiaEntity TR_ItemTaxonomia { get; set; }
     }
 }

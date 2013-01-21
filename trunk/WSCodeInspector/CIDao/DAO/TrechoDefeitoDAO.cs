@@ -29,6 +29,15 @@ namespace CIDao.DAO
                 tde.D_ID = td.D_ID;
                 tde.Explicacao = td.D_Explicacao;
 
+                ItemTaxonomiaEntity itemTaxEntity = new ItemTaxonomiaEntity();
+
+                itemTaxEntity.ID = td.ItemTaxonomia.IT_ID;
+                itemTaxEntity.Nome = td.ItemTaxonomia.IT_Nome;
+                tde.classificao = td.ItemTaxonomia.IT_Nome;
+                itemTaxEntity.Descricao = td.ItemTaxonomia.IT_Descricao;
+                itemTaxEntity.T_ID = td.ItemTaxonomia.IT_ID;
+
+                tde.itemTax = itemTaxEntity;
                 tdeList.Add(tde);
             }
 

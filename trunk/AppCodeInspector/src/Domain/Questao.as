@@ -15,9 +15,24 @@ package Domain
 			this.Q_XML=questao.Q_XML;
 			this.itemTax=questao.itemTax;
 		}
+		
 		override public function toString():String
 		{
-			return "Questao "+Q_ID;
+			var nivel:String ="";
+			
+			switch(Q_Nivel_Dificuldade)
+			{
+				case 1:
+					nivel="Fácil";
+					break;
+				case 2:
+					nivel="Intermediário";
+					break;
+				case 3:
+					nivel="Difícil";
+					break;
+			}
+			return "Artefato "+Q_ID+" "+nivel;
 		}
 		
 		public static function toQuestaoCollection(entityList:ArrayCollection):ArrayCollection

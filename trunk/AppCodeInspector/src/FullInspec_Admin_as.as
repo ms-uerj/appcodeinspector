@@ -14,7 +14,7 @@ import mx.controls.Alert;
 import mx.managers.PopUpManager;
 import mx.rpc.events.ResultEvent;
 import mx.utils.ObjectUtil;
-
+import spark.formatters.DateTimeFormatter;
 import valueObjects.PartidaEntity;
 import valueObjects.QuestaoEntity;
 
@@ -25,7 +25,6 @@ public var QuestoesList:ArrayCollection
 
 public var MinhasPartidas:ArrayCollection;
 
-
 protected function btn_CriarPartida_clickHandler(event:MouseEvent):void
 {
 	if (rdg_PartidaDificuldade.selectedValue!=null) 
@@ -35,7 +34,6 @@ protected function btn_CriarPartida_clickHandler(event:MouseEvent):void
 	}
 	else 
 		Alert.show("Por favor, selecione um nível de dificuldade.");
-
 }
 
 protected function btn_EditarPartidaAdmin_clickHandler(event:MouseEvent):void
@@ -78,7 +76,7 @@ protected function btn_AvaliarPartida_clickHandler(event:MouseEvent):void
 	{
 		var partida:PartidaEntity  = lst_MinhasPartidas.selectedItem as PartidaEntity;
 		this.currentState="FullInspec_Admin_Avaliacao";
-		GetUsuariosByPartidaAval.token = ws_InspectorX.getUsuariosByPartida(partida.P_ID);
+		GetQuestoesTrechosResult.token = ws_InspectorX.GetQuestoesTrechos(partida.P_ID);
 		setAvaliacaoInicializacaoPadrao(partida);
 	}
 	else
@@ -115,14 +113,16 @@ protected function btn_ArtefatoView_clickHandler(event:MouseEvent):void
 
 public function setAvaliacaoInicializacaoPadrao(partida:PartidaEntity):void
 {
+	var dateFormarter:DateTimeFormatter = new DateTimeFormatter();
 	PartidaEmAvaliacao=partida;
 	lbl_PartidaAvalIdVar.text = partida.P_ID.toString();
-	lbl_PartidaAvalDataVar.text = partida.P_DATA.toString();
+	dateFormarter.dateTimePattern = "dd/MM/yy HH:mm";
+	lbl_PartidaAvalIdVar.text =lbl_PartidaAvalIdVar.text +"; Data: " +  dateFormarter.format(partida.P_DATA.toString());
 }
 
 protected function btn_VoltarSelecaoPapel_clickHandler(event:MouseEvent):void
 {
-	this.currentState="JogoPapelSelecao";
+	this.currentState="JogoModoSelecao";
 }
 
 protected function GetPartidasResult_resultHandler(e:ResultEvent):void

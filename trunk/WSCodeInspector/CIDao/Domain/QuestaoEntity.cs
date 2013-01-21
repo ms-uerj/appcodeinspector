@@ -14,5 +14,7 @@ namespace CIDao.Domain
         public int Q_TEMPO { get; set; }
         public String Q_nome { get; set; }
         public ItemTaxonomiaEntity itemTax { get; set; }
+        public List<ItemTaxonomiaEntity> itemTaxList{ get; set; }
+
     }
 }

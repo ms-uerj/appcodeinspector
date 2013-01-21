@@ -10,6 +10,7 @@ import com.adobe.fiber.valueobjects.IValueObject;
 import flash.events.EventDispatcher;
 import mx.collections.ArrayCollection;
 import mx.events.PropertyChangeEvent;
+import valueObjects.ItemTaxonomiaEntity;
 
 import flash.net.registerClassAlias;
 import flash.net.getClassByAlias;
@@ -28,6 +29,7 @@ public class _Super_TrechoDefeitoEntity extends flash.events.EventDispatcher imp
 
     model_internal static function initRemoteClassAliasAllRelated() : void
     {
+        valueObjects.ItemTaxonomiaEntity.initRemoteClassAliasSingleChild();
     }
 
     model_internal var _dminternal_model : _TrechoDefeitoEntityEntityMetadata;
@@ -51,6 +53,8 @@ public class _Super_TrechoDefeitoEntity extends flash.events.EventDispatcher imp
     private var _internal_IT_ID : int;
     private var _internal_Explicacao : String;
     private var _internal_Conteudo : String;
+    private var _internal_classificao : String;
+    private var _internal_itemTax : valueObjects.ItemTaxonomiaEntity;
 
     private static var emptyArray:Array = new Array();
 
@@ -98,6 +102,18 @@ public class _Super_TrechoDefeitoEntity extends flash.events.EventDispatcher imp
         return _internal_Conteudo;
     }
 
+    [Bindable(event="propertyChange")]
+    public function get classificao() : String
+    {
+        return _internal_classificao;
+    }
+
+    [Bindable(event="propertyChange")]
+    public function get itemTax() : valueObjects.ItemTaxonomiaEntity
+    {
+        return _internal_itemTax;
+    }
+
     public function clearAssociations() : void
     {
     }
@@ -143,6 +159,26 @@ public class _Super_TrechoDefeitoEntity extends flash.events.EventDispatcher imp
         {
             _internal_Conteudo = value;
             this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "Conteudo", oldValue, _internal_Conteudo));
+        }
+    }
+
+    public function set classificao(value:String) : void
+    {
+        var oldValue:String = _internal_classificao;
+        if (oldValue !== value)
+        {
+            _internal_classificao = value;
+            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "classificao", oldValue, _internal_classificao));
+        }
+    }
+
+    public function set itemTax(value:valueObjects.ItemTaxonomiaEntity) : void
+    {
+        var oldValue:valueObjects.ItemTaxonomiaEntity = _internal_itemTax;
+        if (oldValue !== value)
+        {
+            _internal_itemTax = value;
+            this.dispatchEvent(mx.events.PropertyChangeEvent.createUpdateEvent(this, "itemTax", oldValue, _internal_itemTax));
         }
     }
 

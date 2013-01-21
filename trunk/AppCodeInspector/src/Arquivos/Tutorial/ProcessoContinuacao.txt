@@ -1,0 +1,7 @@
+• Etapa de Continuação:
+
+Após a etapa “Retrabalho”, o material corrigido é repassado para o moderador, que reavalia a correção e a qualidade do artefato que foi inspecionado.
+
+Observações:
+
+• Esta etapa não é simulada no jogo.

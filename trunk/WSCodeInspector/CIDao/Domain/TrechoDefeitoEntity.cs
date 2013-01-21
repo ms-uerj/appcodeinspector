@@ -11,5 +11,7 @@ namespace CIDao.Domain
         public int IT_ID { get; set; }
         public string Explicacao { get; set; }
         public string Conteudo { get; set; }
+        public string classificao { get; set; }
+        public ItemTaxonomiaEntity itemTax { get; set; }
     }
 }

@@ -20,8 +20,26 @@ package Domain
 		}
 		override public function toString():String
 		{
+			var nivel:String ="";
+			
+			switch(P_NIVEL_DIFICULDADE)
+			{
+				case 1:
+					nivel="Fácil";
+					break;
+				case 2:
+					nivel="Intermediário";
+					break;
+				case 3:
+					nivel="Difícil";
+					break;
+				case 4:
+					nivel="Misto";
+					break;
+			}
+			
 			dateFormarter.dateTimePattern = "dd/MM/yy HH:mm";
-			return "Partida "+dateFormarter.format(P_DATA)+" Nível "+P_NIVEL_DIFICULDADE;
+			return "Partida "+dateFormarter.format(P_DATA)+" Nível "+nivel;
 		}
 		
 		public static function toPartidaCollection(entityList:ArrayCollection):ArrayCollection

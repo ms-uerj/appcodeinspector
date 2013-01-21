@@ -11,7 +11,7 @@ import javax.swing.UIManager;
 public class Main extends javax.swing.JApplet {
 
     /** Inicializa o applet */
-  
+
     @Override
     public void init() 
     {

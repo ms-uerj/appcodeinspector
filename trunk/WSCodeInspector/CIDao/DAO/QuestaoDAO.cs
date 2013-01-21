@@ -36,24 +36,47 @@ namespace CIDao.DAO
 
         public List<QuestaoEntity> GetQuestoesByNivel(int nivelDificuldade)
         {
-            var questoes = from q in db.Questaos
-                           where q.Q_NIVEL_DIFICULDADE == nivelDificuldade
-                           select q;
-
-            List<QuestaoEntity> questoesEn = new List<QuestaoEntity>();
-            List<Questao> questaL = questoes.ToList();
-
-            foreach (Questao item in questoes)
+            if (nivelDificuldade <= 3)
             {
-                QuestaoEntity qe = new QuestaoEntity();
-                qe.Q_ID = item.Q_ID;
-                qe.Q_Nivel_Dificuldade = item.Q_NIVEL_DIFICULDADE;
-                qe.Q_XML = item.Q_XML;
-                qe.Q_nome = item.Q_Nome;
-                questoesEn.Add(qe);
-            }
+               var questoes = from q in db.Questaos
+                            where q.Q_NIVEL_DIFICULDADE == nivelDificuldade
+                            select q;
 
-            return questoesEn;
+               List<QuestaoEntity> questoesEn = new List<QuestaoEntity>();
+               List<Questao> questaL = questoes.ToList();
+
+               foreach (Questao item in questoes)
+               {
+                   QuestaoEntity qe = new QuestaoEntity();
+                   qe.Q_ID = item.Q_ID;
+                   qe.Q_Nivel_Dificuldade = item.Q_NIVEL_DIFICULDADE;
+                   qe.Q_XML = item.Q_XML;
+                   qe.Q_nome = item.Q_Nome;
+                   questoesEn.Add(qe);
+               }
+
+               return questoesEn;
+            }
+            else
+            {
+                var questoes = from q in db.Questaos
+                               select q;
+
+                List<QuestaoEntity> questoesEn = new List<QuestaoEntity>();
+                List<Questao> questaL = questoes.ToList();
+
+                foreach (Questao item in questoes)
+                {
+                    QuestaoEntity qe = new QuestaoEntity();
+                    qe.Q_ID = item.Q_ID;
+                    qe.Q_Nivel_Dificuldade = item.Q_NIVEL_DIFICULDADE;
+                    qe.Q_XML = item.Q_XML;
+                    qe.Q_nome = item.Q_Nome;
+                    questoesEn.Add(qe);
+                }
+
+                return questoesEn;
+            } 
         }
 
         public List<QuestaoEntity> GetQuestoes(int nivelDificuldade,int taxonomia_id)
@@ -227,6 +250,49 @@ namespace CIDao.DAO
 
             return questoesEn;
         }
+
+        public List<QuestaoEntity> GetQuestoesTrechos(int partida_id)
+        {
+            var questoesComTrechoErrado = (from q  in db.Questaos
+                                           from tr in db.Trecho_Respostas
+                                           from up in db.Usuario_Partidas
+                                           where up.P_ID == partida_id
+                                           && q.Q_ID == tr.Q_ID
+                                           && tr.UP_ID == up.UP_ID
+                                           && tr.TR_Pontos < 2
+                                           && tr.TR_ModeradorAval == 0
+                                           select q).Distinct();
+
+            var questoesFacilCorretas =   (from q in db.Questaos
+                                           from tr in db.Trecho_Respostas
+                                           from up in db.Usuario_Partidas
+                                           where up.P_ID == partida_id
+                                           && q.Q_ID == tr.Q_ID
+                                           && q.Q_NIVEL_DIFICULDADE==1
+                                           && tr.UP_ID == up.UP_ID
+                                           && tr.TR_Pontos == 1
+                                           && tr.TR_ModeradorAval == 0
+                                           select q).Distinct();
+
+            questoesComTrechoErrado = questoesComTrechoErrado.Except(questoesFacilCorretas);
+
+
+            List<QuestaoEntity> questoesEn = new List<QuestaoEntity>();
+            List<Questao> questaL = questoesComTrechoErrado.ToList();
+
+            foreach (Questao item in questaL)
+            {
+                QuestaoEntity qe = new QuestaoEntity();
+                qe.Q_ID = item.Q_ID;
+                qe.Q_Nivel_Dificuldade = item.Q_NIVEL_DIFICULDADE;
+                qe.Q_XML = item.Q_XML;
+                qe.Q_nome = item.Q_Nome;
+                questoesEn.Add(qe);
+            }
+
+            return questoesEn;
+        }
+
 
         //Depricated
         public List<int?> GetQuestoesRespostas(int nivelDificuldade)
@@ -506,13 +572,12 @@ namespace CIDao.DAO
 
             try
             {
+                Usuario_Partida userPartida = new PartidaDAO().getUsuarioPartida(usuario_id, partida_id);
+
                 var questoesFeitas = (from q in db.Questaos
-                                      from hq in db.Historico_Questaos
                                       from tr in db.Trecho_Respostas
-                                      where q.Q_ID == hq.Q_ID
-                                      && hq.P_ID == partida_id
+                                      where tr.UP_ID == userPartida.UP_ID
                                       && tr.Q_ID == q.Q_ID
-                                      && tr.UP_ID == usuario_id
                                       select q).Distinct();
 
 
@@ -521,7 +586,6 @@ namespace CIDao.DAO
                                 where q.Q_ID == hq.Q_ID
                                 && hq.P_ID == partida_id
                                 select q).Except(questoesFeitas);
-
 
                 List<Questao> questList = questoes.ToList();
                 List<QuestaoEntity> questEnList = new List<QuestaoEntity>();
@@ -533,7 +597,6 @@ namespace CIDao.DAO
                     questEn.Q_Nivel_Dificuldade = item.Q_NIVEL_DIFICULDADE;
                     questEn.Q_nome = item.Q_Nome;
                     questEn.Q_XML = item.Q_XML;
-
                     questEnList.Add(questEn);
                 }
 
@@ -590,23 +653,24 @@ namespace CIDao.DAO
                     questEn.Q_nome = item.Q_Nome;
                     questEn.Q_XML = item.Q_XML;
 
-                    ItemTaxonomia itemTax = (from qt in db.Questao_TrechoDefeitos
-                                             from d in db.TrechoDefeitos
-                                             from it in db.ItemTaxonomias
-                                             where qt.Q_id == item.Q_ID
-                                             && qt.TD_id == d.D_ID
-                                             && d.IT_ID == it.IT_ID
-                                             select it).Distinct().SingleOrDefault();
-                    if (itemTax!=null)
-                    {
-	                    ItemTaxonomiaEntity itEn = new ItemTaxonomiaEntity();
-	                    itEn.Descricao = itemTax.IT_Descricao;
-	                    itEn.ID = itemTax.IT_ID;
-	                    itEn.Nome = itemTax.IT_Nome;
-	                    itEn.T_ID = itemTax.T_ID;
+                    //var itemsTax = (from qt in db.Questao_TrechoDefeitos
+                    //                         from d in db.TrechoDefeitos
+                    //                         from it in db.ItemTaxonomias
+                    //                         where qt.Q_id == item.Q_ID
+                    //                         && qt.TD_id == d.D_ID
+                    //                         && d.IT_ID == it.IT_ID
+                    //                         select it).Distinct();
 
-                        questEn.itemTax = itEn;
-                    }
+                    //if (itemTax!=null)
+                    //{
+                    //    ItemTaxonomiaEntity itEn = new ItemTaxonomiaEntity();
+                    //    itEn.Descricao = itemTax.IT_Descricao;
+                    //    itEn.ID = itemTax.IT_ID;
+                    //    itEn.Nome = itemTax.IT_Nome;
+                    //    itEn.T_ID = itemTax.T_ID;
+
+                    //    questEn.itemTax = itEn;
+                    //}
                     questEnList.Add(questEn);
                 }
 

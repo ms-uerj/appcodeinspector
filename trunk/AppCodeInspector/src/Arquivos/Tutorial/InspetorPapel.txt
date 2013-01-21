@@ -1,0 +1,15 @@
+O papel de Inspetor:
+
+Como inspetor, você terá de encontrar defeitos em artefatos de software definidos por um moderador, utilizando a classificação correta para cada defeito encontrado.
+
+Etapas com participação do inspetor:
+
+• Detecção.
+• Discriminação.
+
+Obeservações:
+
+• Erros na identificação não serão contabilizados.
+• Cada acerto vale 1 ponto. Nos níveis Básico e Intermediário, há um defeito por artefato. Já no nível Difícil, há mais de um defeito cadastrado por artefato.
+• A etapa de detecção só estará disponível caso algum moderador tenha incluído o seu usuário como inspetor em alguma partida.
+• Para a seleção dos defeitos selecione sempre toda a linha na qual o defeito se encontra.

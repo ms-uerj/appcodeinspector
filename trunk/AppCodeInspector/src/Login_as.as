@@ -26,7 +26,9 @@ protected function _btnLogar_clickHandler(event:MouseEvent):void
 	if(errorMessage.length==0)
 		AutenticarUsuarioResult.token = ws_InspectorX.AutenticarUsuario(txtUsuario.text,txtSenha.text);
 	else
+	{
 		Alert.show(errorMessage);
+	}
 }
 protected function AutenticarUsuarioResult_resultHandler(e:ResultEvent):void
 {
@@ -44,7 +46,7 @@ protected function AutenticarUsuarioResult_resultHandler(e:ResultEvent):void
 		txtSenha.text="";
 		
 		this.currentState = "JogoModoSelecao";
-		
+		inserirUsuarioTipoIfDontExistResult.token = ws_InspectorX.inserirUsuarioTipoIfDontExist(UsuarioLogado.U_ID, InspectorXUserEnum.FullInspection);
 	}
 }
 

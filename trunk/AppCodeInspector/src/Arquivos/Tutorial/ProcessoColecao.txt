@@ -1,0 +1,7 @@
+• Etapa de Coleção:
+
+Nesta etapa, o moderador revisa o trabalho realizado pelos inspetores e elimina redundâncias nas discrepâncias encontradas.
+
+Observações:
+
+• Esta etapa é feita automaticamente pelo jogo, ou seja, quando inspetores encontrarem o mesmo defeito e classificarem igualmente, só será apresentando uma classificação do artefato para o moderador.
