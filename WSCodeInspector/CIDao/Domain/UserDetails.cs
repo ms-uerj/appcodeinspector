@@ -16,6 +16,7 @@ namespace CIDao.Domain
         public long QFim { get; set; }
         public DateTime? QInicioD { get; set; }
         public DateTime? QFimD { get; set; }
+        public long? duracao { get; set; }
 
     }
 }
