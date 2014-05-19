@@ -57,6 +57,9 @@ namespace CIDao
     partial void InsertTipoArtefato_Taxonomia(TipoArtefato_Taxonomia instance);
     partial void UpdateTipoArtefato_Taxonomia(TipoArtefato_Taxonomia instance);
     partial void DeleteTipoArtefato_Taxonomia(TipoArtefato_Taxonomia instance);
+    partial void InsertTrecho_Resposta(Trecho_Resposta instance);
+    partial void UpdateTrecho_Resposta(Trecho_Resposta instance);
+    partial void DeleteTrecho_Resposta(Trecho_Resposta instance);
     partial void InsertTrechoDefeito(TrechoDefeito instance);
     partial void UpdateTrechoDefeito(TrechoDefeito instance);
     partial void DeleteTrechoDefeito(TrechoDefeito instance);
@@ -66,13 +69,10 @@ namespace CIDao
     partial void InsertUsuario_Partida(Usuario_Partida instance);
     partial void UpdateUsuario_Partida(Usuario_Partida instance);
     partial void DeleteUsuario_Partida(Usuario_Partida instance);
-    partial void InsertTrecho_Resposta(Trecho_Resposta instance);
-    partial void UpdateTrecho_Resposta(Trecho_Resposta instance);
-    partial void DeleteTrecho_Resposta(Trecho_Resposta instance);
     #endregion
 		
 		public InspectorXDBDataContext() : 
-				base(global::CIDao.Properties.Settings.Default.CodeInspectorConnectionString4, mappingSource)
+				base(global::CIDao.Properties.Settings.Default.CodeInspectorConnectionString5, mappingSource)
 		{
 			OnCreated();
 		}
@@ -173,6 +173,14 @@ namespace CIDao
 			}
 		}
 		
+		public System.Data.Linq.Table<Trecho_Resposta> Trecho_Respostas
+		{
+			get
+			{
+				return this.GetTable<Trecho_Resposta>();
+			}
+		}
+		
 		public System.Data.Linq.Table<TrechoDefeito> TrechoDefeitos
 		{
 			get
@@ -194,14 +202,6 @@ namespace CIDao
 			get
 			{
 				return this.GetTable<Usuario_Partida>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Trecho_Resposta> Trecho_Respostas
-		{
-			get
-			{
-				return this.GetTable<Trecho_Resposta>();
 			}
 		}
 	}
@@ -687,9 +687,9 @@ namespace CIDao
 		
 		private int _T_ID;
 		
-		private EntitySet<TrechoDefeito> _TrechoDefeitos;
-		
 		private EntitySet<Trecho_Resposta> _Trecho_Respostas;
+		
+		private EntitySet<TrechoDefeito> _TrechoDefeitos;
 		
 		private EntityRef<Taxonomia> _Taxonomia;
 		
@@ -709,8 +709,8 @@ namespace CIDao
 		
 		public ItemTaxonomia()
 		{
-			this._TrechoDefeitos = new EntitySet<TrechoDefeito>(new Action<TrechoDefeito>(this.attach_TrechoDefeitos), new Action<TrechoDefeito>(this.detach_TrechoDefeitos));
 			this._Trecho_Respostas = new EntitySet<Trecho_Resposta>(new Action<Trecho_Resposta>(this.attach_Trecho_Respostas), new Action<Trecho_Resposta>(this.detach_Trecho_Respostas));
+			this._TrechoDefeitos = new EntitySet<TrechoDefeito>(new Action<TrechoDefeito>(this.attach_TrechoDefeitos), new Action<TrechoDefeito>(this.detach_TrechoDefeitos));
 			this._Taxonomia = default(EntityRef<Taxonomia>);
 			OnCreated();
 		}
@@ -799,19 +799,6 @@ namespace CIDao
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ItemTaxonomia_TrechoDefeito", Storage="_TrechoDefeitos", ThisKey="IT_ID", OtherKey="IT_ID")]
-		public EntitySet<TrechoDefeito> TrechoDefeitos
-		{
-			get
-			{
-				return this._TrechoDefeitos;
-			}
-			set
-			{
-				this._TrechoDefeitos.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ItemTaxonomia_Trecho_Resposta", Storage="_Trecho_Respostas", ThisKey="IT_ID", OtherKey="IT_ID")]
 		public EntitySet<Trecho_Resposta> Trecho_Respostas
 		{
@@ -822,6 +809,19 @@ namespace CIDao
 			set
 			{
 				this._Trecho_Respostas.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ItemTaxonomia_TrechoDefeito", Storage="_TrechoDefeitos", ThisKey="IT_ID", OtherKey="IT_ID")]
+		public EntitySet<TrechoDefeito> TrechoDefeitos
+		{
+			get
+			{
+				return this._TrechoDefeitos;
+			}
+			set
+			{
+				this._TrechoDefeitos.Assign(value);
 			}
 		}
 		
@@ -879,18 +879,6 @@ namespace CIDao
 			}
 		}
 		
-		private void attach_TrechoDefeitos(TrechoDefeito entity)
-		{
-			this.SendPropertyChanging();
-			entity.ItemTaxonomia = this;
-		}
-		
-		private void detach_TrechoDefeitos(TrechoDefeito entity)
-		{
-			this.SendPropertyChanging();
-			entity.ItemTaxonomia = null;
-		}
-		
 		private void attach_Trecho_Respostas(Trecho_Resposta entity)
 		{
 			this.SendPropertyChanging();
@@ -898,6 +886,18 @@ namespace CIDao
 		}
 		
 		private void detach_Trecho_Respostas(Trecho_Resposta entity)
+		{
+			this.SendPropertyChanging();
+			entity.ItemTaxonomia = null;
+		}
+		
+		private void attach_TrechoDefeitos(TrechoDefeito entity)
+		{
+			this.SendPropertyChanging();
+			entity.ItemTaxonomia = this;
+		}
+		
+		private void detach_TrechoDefeitos(TrechoDefeito entity)
 		{
 			this.SendPropertyChanging();
 			entity.ItemTaxonomia = null;
@@ -2072,6 +2072,359 @@ namespace CIDao
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Trecho_Resposta")]
+	public partial class Trecho_Resposta : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _TR_ID;
+		
+		private System.Nullable<int> _Q_ID;
+		
+		private System.Nullable<int> _IT_ID;
+		
+		private string _TR_TRECHO_SELECIONADO;
+		
+		private System.Nullable<int> _UP_ID;
+		
+		private System.Nullable<int> _TR_Pontos;
+		
+		private System.Nullable<long> _TR_QuestaoDuracao;
+		
+		private System.Nullable<int> _TR_ModeradorAval;
+		
+		private EntityRef<ItemTaxonomia> _ItemTaxonomia;
+		
+		private EntityRef<Questao> _Questao;
+		
+		private EntityRef<Usuario_Partida> _Usuario_Partida;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnTR_IDChanging(int value);
+    partial void OnTR_IDChanged();
+    partial void OnQ_IDChanging(System.Nullable<int> value);
+    partial void OnQ_IDChanged();
+    partial void OnIT_IDChanging(System.Nullable<int> value);
+    partial void OnIT_IDChanged();
+    partial void OnTR_TRECHO_SELECIONADOChanging(string value);
+    partial void OnTR_TRECHO_SELECIONADOChanged();
+    partial void OnUP_IDChanging(System.Nullable<int> value);
+    partial void OnUP_IDChanged();
+    partial void OnTR_PontosChanging(System.Nullable<int> value);
+    partial void OnTR_PontosChanged();
+    partial void OnTR_QuestaoDuracaoChanging(System.Nullable<long> value);
+    partial void OnTR_QuestaoDuracaoChanged();
+    partial void OnTR_ModeradorAvalChanging(System.Nullable<int> value);
+    partial void OnTR_ModeradorAvalChanged();
+    #endregion
+		
+		public Trecho_Resposta()
+		{
+			this._ItemTaxonomia = default(EntityRef<ItemTaxonomia>);
+			this._Questao = default(EntityRef<Questao>);
+			this._Usuario_Partida = default(EntityRef<Usuario_Partida>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TR_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int TR_ID
+		{
+			get
+			{
+				return this._TR_ID;
+			}
+			set
+			{
+				if ((this._TR_ID != value))
+				{
+					this.OnTR_IDChanging(value);
+					this.SendPropertyChanging();
+					this._TR_ID = value;
+					this.SendPropertyChanged("TR_ID");
+					this.OnTR_IDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Q_ID", DbType="Int")]
+		public System.Nullable<int> Q_ID
+		{
+			get
+			{
+				return this._Q_ID;
+			}
+			set
+			{
+				if ((this._Q_ID != value))
+				{
+					if (this._Questao.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnQ_IDChanging(value);
+					this.SendPropertyChanging();
+					this._Q_ID = value;
+					this.SendPropertyChanged("Q_ID");
+					this.OnQ_IDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IT_ID", DbType="Int")]
+		public System.Nullable<int> IT_ID
+		{
+			get
+			{
+				return this._IT_ID;
+			}
+			set
+			{
+				if ((this._IT_ID != value))
+				{
+					if (this._ItemTaxonomia.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnIT_IDChanging(value);
+					this.SendPropertyChanging();
+					this._IT_ID = value;
+					this.SendPropertyChanged("IT_ID");
+					this.OnIT_IDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TR_TRECHO_SELECIONADO", DbType="VarChar(MAX)")]
+		public string TR_TRECHO_SELECIONADO
+		{
+			get
+			{
+				return this._TR_TRECHO_SELECIONADO;
+			}
+			set
+			{
+				if ((this._TR_TRECHO_SELECIONADO != value))
+				{
+					this.OnTR_TRECHO_SELECIONADOChanging(value);
+					this.SendPropertyChanging();
+					this._TR_TRECHO_SELECIONADO = value;
+					this.SendPropertyChanged("TR_TRECHO_SELECIONADO");
+					this.OnTR_TRECHO_SELECIONADOChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UP_ID", DbType="Int")]
+		public System.Nullable<int> UP_ID
+		{
+			get
+			{
+				return this._UP_ID;
+			}
+			set
+			{
+				if ((this._UP_ID != value))
+				{
+					if (this._Usuario_Partida.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnUP_IDChanging(value);
+					this.SendPropertyChanging();
+					this._UP_ID = value;
+					this.SendPropertyChanged("UP_ID");
+					this.OnUP_IDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TR_Pontos", DbType="Int")]
+		public System.Nullable<int> TR_Pontos
+		{
+			get
+			{
+				return this._TR_Pontos;
+			}
+			set
+			{
+				if ((this._TR_Pontos != value))
+				{
+					this.OnTR_PontosChanging(value);
+					this.SendPropertyChanging();
+					this._TR_Pontos = value;
+					this.SendPropertyChanged("TR_Pontos");
+					this.OnTR_PontosChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TR_QuestaoDuracao", DbType="BigInt")]
+		public System.Nullable<long> TR_QuestaoDuracao
+		{
+			get
+			{
+				return this._TR_QuestaoDuracao;
+			}
+			set
+			{
+				if ((this._TR_QuestaoDuracao != value))
+				{
+					this.OnTR_QuestaoDuracaoChanging(value);
+					this.SendPropertyChanging();
+					this._TR_QuestaoDuracao = value;
+					this.SendPropertyChanged("TR_QuestaoDuracao");
+					this.OnTR_QuestaoDuracaoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TR_ModeradorAval", DbType="Int")]
+		public System.Nullable<int> TR_ModeradorAval
+		{
+			get
+			{
+				return this._TR_ModeradorAval;
+			}
+			set
+			{
+				if ((this._TR_ModeradorAval != value))
+				{
+					this.OnTR_ModeradorAvalChanging(value);
+					this.SendPropertyChanging();
+					this._TR_ModeradorAval = value;
+					this.SendPropertyChanged("TR_ModeradorAval");
+					this.OnTR_ModeradorAvalChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ItemTaxonomia_Trecho_Resposta", Storage="_ItemTaxonomia", ThisKey="IT_ID", OtherKey="IT_ID", IsForeignKey=true)]
+		public ItemTaxonomia ItemTaxonomia
+		{
+			get
+			{
+				return this._ItemTaxonomia.Entity;
+			}
+			set
+			{
+				ItemTaxonomia previousValue = this._ItemTaxonomia.Entity;
+				if (((previousValue != value) 
+							|| (this._ItemTaxonomia.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ItemTaxonomia.Entity = null;
+						previousValue.Trecho_Respostas.Remove(this);
+					}
+					this._ItemTaxonomia.Entity = value;
+					if ((value != null))
+					{
+						value.Trecho_Respostas.Add(this);
+						this._IT_ID = value.IT_ID;
+					}
+					else
+					{
+						this._IT_ID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("ItemTaxonomia");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Questao_Trecho_Resposta", Storage="_Questao", ThisKey="Q_ID", OtherKey="Q_ID", IsForeignKey=true)]
+		public Questao Questao
+		{
+			get
+			{
+				return this._Questao.Entity;
+			}
+			set
+			{
+				Questao previousValue = this._Questao.Entity;
+				if (((previousValue != value) 
+							|| (this._Questao.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Questao.Entity = null;
+						previousValue.Trecho_Respostas.Remove(this);
+					}
+					this._Questao.Entity = value;
+					if ((value != null))
+					{
+						value.Trecho_Respostas.Add(this);
+						this._Q_ID = value.Q_ID;
+					}
+					else
+					{
+						this._Q_ID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Questao");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Usuario_Partida_Trecho_Resposta", Storage="_Usuario_Partida", ThisKey="UP_ID", OtherKey="UP_ID", IsForeignKey=true)]
+		public Usuario_Partida Usuario_Partida
+		{
+			get
+			{
+				return this._Usuario_Partida.Entity;
+			}
+			set
+			{
+				Usuario_Partida previousValue = this._Usuario_Partida.Entity;
+				if (((previousValue != value) 
+							|| (this._Usuario_Partida.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Usuario_Partida.Entity = null;
+						previousValue.Trecho_Respostas.Remove(this);
+					}
+					this._Usuario_Partida.Entity = value;
+					if ((value != null))
+					{
+						value.Trecho_Respostas.Add(this);
+						this._UP_ID = value.UP_ID;
+					}
+					else
+					{
+						this._UP_ID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Usuario_Partida");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TrechoDefeito")]
 	public partial class TrechoDefeito : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -2726,359 +3079,6 @@ namespace CIDao
 		{
 			this.SendPropertyChanging();
 			entity.Usuario_Partida = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Trecho_Resposta")]
-	public partial class Trecho_Resposta : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _TR_ID;
-		
-		private System.Nullable<int> _Q_ID;
-		
-		private System.Nullable<int> _IT_ID;
-		
-		private string _TR_TRECHO_SELECIONADO;
-		
-		private System.Nullable<int> _UP_ID;
-		
-		private System.Nullable<int> _TR_Pontos;
-		
-		private System.Nullable<long> _TR_QuestaoDuracao;
-		
-		private System.Nullable<int> _TR_ModeradorAval;
-		
-		private EntityRef<ItemTaxonomia> _ItemTaxonomia;
-		
-		private EntityRef<Questao> _Questao;
-		
-		private EntityRef<Usuario_Partida> _Usuario_Partida;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnTR_IDChanging(int value);
-    partial void OnTR_IDChanged();
-    partial void OnQ_IDChanging(System.Nullable<int> value);
-    partial void OnQ_IDChanged();
-    partial void OnIT_IDChanging(System.Nullable<int> value);
-    partial void OnIT_IDChanged();
-    partial void OnTR_TRECHO_SELECIONADOChanging(string value);
-    partial void OnTR_TRECHO_SELECIONADOChanged();
-    partial void OnUP_IDChanging(System.Nullable<int> value);
-    partial void OnUP_IDChanged();
-    partial void OnTR_PontosChanging(System.Nullable<int> value);
-    partial void OnTR_PontosChanged();
-    partial void OnTR_QuestaoDuracaoChanging(System.Nullable<long> value);
-    partial void OnTR_QuestaoDuracaoChanged();
-    partial void OnTR_ModeradorAvalChanging(System.Nullable<int> value);
-    partial void OnTR_ModeradorAvalChanged();
-    #endregion
-		
-		public Trecho_Resposta()
-		{
-			this._ItemTaxonomia = default(EntityRef<ItemTaxonomia>);
-			this._Questao = default(EntityRef<Questao>);
-			this._Usuario_Partida = default(EntityRef<Usuario_Partida>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TR_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int TR_ID
-		{
-			get
-			{
-				return this._TR_ID;
-			}
-			set
-			{
-				if ((this._TR_ID != value))
-				{
-					this.OnTR_IDChanging(value);
-					this.SendPropertyChanging();
-					this._TR_ID = value;
-					this.SendPropertyChanged("TR_ID");
-					this.OnTR_IDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Q_ID", DbType="Int")]
-		public System.Nullable<int> Q_ID
-		{
-			get
-			{
-				return this._Q_ID;
-			}
-			set
-			{
-				if ((this._Q_ID != value))
-				{
-					if (this._Questao.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnQ_IDChanging(value);
-					this.SendPropertyChanging();
-					this._Q_ID = value;
-					this.SendPropertyChanged("Q_ID");
-					this.OnQ_IDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IT_ID", DbType="Int")]
-		public System.Nullable<int> IT_ID
-		{
-			get
-			{
-				return this._IT_ID;
-			}
-			set
-			{
-				if ((this._IT_ID != value))
-				{
-					if (this._ItemTaxonomia.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnIT_IDChanging(value);
-					this.SendPropertyChanging();
-					this._IT_ID = value;
-					this.SendPropertyChanged("IT_ID");
-					this.OnIT_IDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TR_TRECHO_SELECIONADO", DbType="VarChar(MAX)")]
-		public string TR_TRECHO_SELECIONADO
-		{
-			get
-			{
-				return this._TR_TRECHO_SELECIONADO;
-			}
-			set
-			{
-				if ((this._TR_TRECHO_SELECIONADO != value))
-				{
-					this.OnTR_TRECHO_SELECIONADOChanging(value);
-					this.SendPropertyChanging();
-					this._TR_TRECHO_SELECIONADO = value;
-					this.SendPropertyChanged("TR_TRECHO_SELECIONADO");
-					this.OnTR_TRECHO_SELECIONADOChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UP_ID", DbType="Int")]
-		public System.Nullable<int> UP_ID
-		{
-			get
-			{
-				return this._UP_ID;
-			}
-			set
-			{
-				if ((this._UP_ID != value))
-				{
-					if (this._Usuario_Partida.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnUP_IDChanging(value);
-					this.SendPropertyChanging();
-					this._UP_ID = value;
-					this.SendPropertyChanged("UP_ID");
-					this.OnUP_IDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TR_Pontos", DbType="Int")]
-		public System.Nullable<int> TR_Pontos
-		{
-			get
-			{
-				return this._TR_Pontos;
-			}
-			set
-			{
-				if ((this._TR_Pontos != value))
-				{
-					this.OnTR_PontosChanging(value);
-					this.SendPropertyChanging();
-					this._TR_Pontos = value;
-					this.SendPropertyChanged("TR_Pontos");
-					this.OnTR_PontosChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TR_QuestaoDuracao", DbType="BigInt")]
-		public System.Nullable<long> TR_QuestaoDuracao
-		{
-			get
-			{
-				return this._TR_QuestaoDuracao;
-			}
-			set
-			{
-				if ((this._TR_QuestaoDuracao != value))
-				{
-					this.OnTR_QuestaoDuracaoChanging(value);
-					this.SendPropertyChanging();
-					this._TR_QuestaoDuracao = value;
-					this.SendPropertyChanged("TR_QuestaoDuracao");
-					this.OnTR_QuestaoDuracaoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TR_ModeradorAval", DbType="Int")]
-		public System.Nullable<int> TR_ModeradorAval
-		{
-			get
-			{
-				return this._TR_ModeradorAval;
-			}
-			set
-			{
-				if ((this._TR_ModeradorAval != value))
-				{
-					this.OnTR_ModeradorAvalChanging(value);
-					this.SendPropertyChanging();
-					this._TR_ModeradorAval = value;
-					this.SendPropertyChanged("TR_ModeradorAval");
-					this.OnTR_ModeradorAvalChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ItemTaxonomia_Trecho_Resposta", Storage="_ItemTaxonomia", ThisKey="IT_ID", OtherKey="IT_ID", IsForeignKey=true)]
-		public ItemTaxonomia ItemTaxonomia
-		{
-			get
-			{
-				return this._ItemTaxonomia.Entity;
-			}
-			set
-			{
-				ItemTaxonomia previousValue = this._ItemTaxonomia.Entity;
-				if (((previousValue != value) 
-							|| (this._ItemTaxonomia.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ItemTaxonomia.Entity = null;
-						previousValue.Trecho_Respostas.Remove(this);
-					}
-					this._ItemTaxonomia.Entity = value;
-					if ((value != null))
-					{
-						value.Trecho_Respostas.Add(this);
-						this._IT_ID = value.IT_ID;
-					}
-					else
-					{
-						this._IT_ID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("ItemTaxonomia");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Questao_Trecho_Resposta", Storage="_Questao", ThisKey="Q_ID", OtherKey="Q_ID", IsForeignKey=true)]
-		public Questao Questao
-		{
-			get
-			{
-				return this._Questao.Entity;
-			}
-			set
-			{
-				Questao previousValue = this._Questao.Entity;
-				if (((previousValue != value) 
-							|| (this._Questao.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Questao.Entity = null;
-						previousValue.Trecho_Respostas.Remove(this);
-					}
-					this._Questao.Entity = value;
-					if ((value != null))
-					{
-						value.Trecho_Respostas.Add(this);
-						this._Q_ID = value.Q_ID;
-					}
-					else
-					{
-						this._Q_ID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Questao");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Usuario_Partida_Trecho_Resposta", Storage="_Usuario_Partida", ThisKey="UP_ID", OtherKey="UP_ID", IsForeignKey=true)]
-		public Usuario_Partida Usuario_Partida
-		{
-			get
-			{
-				return this._Usuario_Partida.Entity;
-			}
-			set
-			{
-				Usuario_Partida previousValue = this._Usuario_Partida.Entity;
-				if (((previousValue != value) 
-							|| (this._Usuario_Partida.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Usuario_Partida.Entity = null;
-						previousValue.Trecho_Respostas.Remove(this);
-					}
-					this._Usuario_Partida.Entity = value;
-					if ((value != null))
-					{
-						value.Trecho_Respostas.Add(this);
-						this._UP_ID = value.UP_ID;
-					}
-					else
-					{
-						this._UP_ID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Usuario_Partida");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
 		}
 	}
 }
