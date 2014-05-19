@@ -3,6 +3,7 @@ package InspctX.GUI;
 import InspctX.Componentes.TaxonomiasAdminPanel;
 import InspctX.Domain.ItemTaxonomia;
 import InspctX.Domain.TipoArtefato;
+import InspctX.GUI.AdicionarItemTaxonomia;
 import InspectorXWebserv.*;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;

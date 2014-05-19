@@ -46,7 +46,7 @@ public class SelecaoDefeito extends javax.swing.JFrame
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Classificação do Defeito");
 
-        lbl_Taxonomia.setText("Taxonomia :");
+        lbl_Taxonomia.setText("Taxonomy :");
 
         txf_Taxonomia.setEditable(false);
         txf_Taxonomia.setText("{Taxonomia}");
@@ -55,7 +55,7 @@ public class SelecaoDefeito extends javax.swing.JFrame
 
         jLabel1.setText("Defeito:");
 
-        jLabel2.setText("Explicação contextual do defeito:");
+        jLabel2.setText("Contextual defect explanation:");
 
         txaExplicacaoDefeito.setColumns(20);
         txaExplicacaoDefeito.setLineWrap(true);
@@ -69,7 +69,7 @@ public class SelecaoDefeito extends javax.swing.JFrame
             }
         });
 
-        btnCancelar.setText("Cancelar");
+        btnCancelar.setText("Cancel");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelarActionPerformed(evt);
@@ -90,7 +90,7 @@ public class SelecaoDefeito extends javax.swing.JFrame
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(cbx_Defeito, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txf_Taxonomia, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE))
+                            .addComponent(txf_Taxonomia, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE))
                         .addGap(118, 118, 118))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)

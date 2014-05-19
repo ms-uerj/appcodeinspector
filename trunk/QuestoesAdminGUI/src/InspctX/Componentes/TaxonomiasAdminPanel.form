@@ -27,7 +27,7 @@
                       <Component id="jPanel2" min="-2" max="-2" attributes="1"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane2" alignment="0" pref="267" max="32767" attributes="0"/>
+                          <Component id="jScrollPane2" alignment="0" pref="271" max="32767" attributes="0"/>
                           <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -91,7 +91,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lblTaxonomiaSelecionada">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Selecionar:"/>
+        <Property name="text" type="java.lang.String" value="Select:"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JPanel" name="jPanel2">
@@ -134,7 +134,7 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="btnInserirTaxonomia">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Inserir"/>
+            <Property name="text" type="java.lang.String" value="Insert"/>
             <Property name="toolTipText" type="java.lang.String" value="Inserir nova taxonomia"/>
           </Properties>
           <Events>
@@ -146,7 +146,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnDeletarTaxonomia">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Remover"/>
+            <Property name="text" type="java.lang.String" value="Remove"/>
             <Property name="toolTipText" type="java.lang.String" value="Deletar taxonomia selecionada"/>
           </Properties>
           <Events>
@@ -158,7 +158,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="btn_editarTaxonomia">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Modificar"/>
+            <Property name="text" type="java.lang.String" value="Update"/>
             <Property name="toolTipText" type="java.lang.String" value="Editar taxonomia selecionada"/>
           </Properties>
           <Events>
@@ -188,7 +188,7 @@
     </Container>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Defini&#xe7;&#xf5;es presentes:"/>
+        <Property name="text" type="java.lang.String" value="Defect Definitions:"/>
       </Properties>
     </Component>
   </SubComponents>

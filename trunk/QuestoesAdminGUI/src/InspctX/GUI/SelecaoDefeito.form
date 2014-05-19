@@ -7,6 +7,7 @@
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -34,7 +35,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="cbx_Defeito" alignment="0" min="-2" pref="144" max="-2" attributes="0"/>
-                          <Component id="txf_Taxonomia" alignment="1" pref="220" max="32767" attributes="0"/>
+                          <Component id="txf_Taxonomia" alignment="1" pref="222" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="118" max="-2" attributes="0"/>
                   </Group>
@@ -87,7 +88,7 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="lbl_Taxonomia">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Taxonomia :"/>
+        <Property name="text" type="java.lang.String" value="Taxonomy :"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txf_Taxonomia">
@@ -112,7 +113,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Explica&#xe7;&#xe3;o contextual do defeito:"/>
+        <Property name="text" type="java.lang.String" value="Contextual defect explanation:"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
@@ -141,7 +142,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnCancelar">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Cancelar"/>
+        <Property name="text" type="java.lang.String" value="Cancel"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCancelarActionPerformed"/>

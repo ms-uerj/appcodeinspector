@@ -58,11 +58,11 @@ public class TaxonomiasAdminPanel extends javax.swing.JPanel {
             }
         });
 
-        lblTaxonomiaSelecionada.setText("Selecionar:");
+        lblTaxonomiaSelecionada.setText("Select:");
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Opções"));
 
-        btnInserirTaxonomia.setText("Inserir");
+        btnInserirTaxonomia.setText("Insert");
         btnInserirTaxonomia.setToolTipText("Inserir nova taxonomia");
         btnInserirTaxonomia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -70,7 +70,7 @@ public class TaxonomiasAdminPanel extends javax.swing.JPanel {
             }
         });
 
-        btnDeletarTaxonomia.setText("Remover");
+        btnDeletarTaxonomia.setText("Remove");
         btnDeletarTaxonomia.setToolTipText("Deletar taxonomia selecionada");
         btnDeletarTaxonomia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -78,7 +78,7 @@ public class TaxonomiasAdminPanel extends javax.swing.JPanel {
             }
         });
 
-        btn_editarTaxonomia.setText("Modificar");
+        btn_editarTaxonomia.setText("Update");
         btn_editarTaxonomia.setToolTipText("Editar taxonomia selecionada");
         btn_editarTaxonomia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -112,7 +112,7 @@ public class TaxonomiasAdminPanel extends javax.swing.JPanel {
 
         jScrollPane2.setViewportView(lst_itemsTaxonomia);
 
-        jLabel1.setText("Definições presentes:");
+        jLabel1.setText("Defect Definitions:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -128,7 +128,7 @@ public class TaxonomiasAdminPanel extends javax.swing.JPanel {
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
                             .addComponent(jLabel1)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(9, 9, 9)
