@@ -1,4 +1,4 @@
-• Etapa de Planejamento:
+• Planning Stage: 
 
-Neste etapa o moderador poderá criar uma seção de inspeção definindo os seus artefatos e inspetores.
+At this stage, a player in the role of moderator can create a inspection round by defining its artifacts and inspectors.
 

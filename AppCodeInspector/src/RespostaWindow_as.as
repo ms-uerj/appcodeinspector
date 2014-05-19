@@ -11,7 +11,7 @@ import mx.events.CloseEvent;
 import mx.managers.PopUpManager;
 import mx.states.AddItems;
 
-import services.webservicemain.WebServiceMain;
+import services.webservicemain.WebserviceMain;
 
 import valueObjects.ItemTaxonomiaEntity;
 import valueObjects.TrechoDefeitoEntity;

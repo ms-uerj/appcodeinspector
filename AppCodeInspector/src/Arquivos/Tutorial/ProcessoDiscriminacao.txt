@@ -1,9 +1,8 @@
-• Etapa de Discriminação:
+• Discrimination Stage: 
 
-Nesta etapa o moderador, o autor do artefato em questão e os inspetores se reúnem e discutem sobre as discrepâncias encontradas, excluindo os falsos positivos.
+At this stage the moderator, the author of the artifact and inspectors should meet and discuss found discrepancies, excluding false positives. 
 
-Observações:
+Remarks: 
 
-• Na discriminação de falsos positivos, cada avaliação correta equivale a 1 ponto.
-• No nível fácil o trecho não aparece na lista, mas aparece a classificação associada ao trecho em realce.  
-
+• If the team decides that a defective passage was correctly identified and classified each inspector will receive 1 score even if it was different from the registered defect.
+• Easy level artifacts passage will not appear in the list, only its classification will.

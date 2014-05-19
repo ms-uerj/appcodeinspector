@@ -35,6 +35,8 @@ public static var dtgTrechosInspetor:mx.controls.DataGrid;
 private var QuestaoAtualListaIndex:int;
 private var initQuestaoTempo: Date;
 
+private var onlyTxaViewFlag: Boolean;
+
 protected function initFullInspect():void
 {
 	set_Artefato_Inspector_TextArea();
@@ -61,11 +63,11 @@ protected function setDatagrid():void
 	
 	var dgc1: DataGridColumn = new DataGridColumn();
 	dgc1.dataField="TRECHO_RESPOSTA";
-	dgc1.headerText="Trechos";
+	dgc1.headerText="Lines";
 	
 	var dgc2: DataGridColumn = new DataGridColumn();
 	dgc2.dataField="classificao";
-	dgc2.headerText="Classificação";
+	dgc2.headerText="Classification";
 	
 	var cols:Array = new Array();
 	cols.push(dgc1);
@@ -81,7 +83,7 @@ protected function btnRemoverTrecho_clickHandler(event:MouseEvent):void
 	if(dtgTrechosInspetor.selectedItem!=null)
 		dtgTrechosInspetor.dataProvider.removeItemAt(dtgTrechosInspetor.selectedIndex);
 	else
-		Alert.show("Por favor, selecione um trecho para esta ação.");
+		Alert.show("Please, highlight a code line for this action.");
 }
 
 protected function btnReclassificar_clickHandler(event:MouseEvent):void
@@ -94,23 +96,24 @@ protected function btnReclassificar_clickHandler(event:MouseEvent):void
 		PopUpManager.centerPopUp(RespostaPopUp);
 	}
 	else
-		Alert.show("Por favor, selecione um trecho para esta ação.");
+		Alert.show("Please, highlight a code line for this action.");
 }
 
 protected function btn_Registrar_FullInpec_clickHandler(event:MouseEvent):void
 {
 	if(dtgTrechosInspetor.dataProvider.length == 0)
 	{
-		Alert.show("Encontre e selecione o motivo do defeito antes de prosseguir.");
+		Alert.show("Highlight and and classify a code defect before proceeding.");
 		return;
 	}
 	else
 	{
 		verificarRespostas_FI();
-		txa_Artefato_Inspector.text="";
-		//getArtefatosPendentesResult.token = ws_InspectorX.getArtefatosPendentes(UsuarioLogado.U_ID,PartidaAtualId);
-		lst_Artefatos_Inspector.dataProvider.removeItemAt(QuestaoAtualListaIndex);
+		getArtefatosPendentesResult.token = ws_InspectorX.getArtefatosPendentes(UsuarioLogado.U_ID,PartidaAtualId);
+		//lst_Artefatos_Inspector.dataProvider.removeItemAt(QuestaoAtualListaIndex);
 		cleanCurrentQuestion();
+		txa_Artefato_Inspector.visible=true;
+		onlyTxaViewFlag=true;
 	}
 }
 
@@ -138,8 +141,10 @@ protected function lst_Artefatos_Inspector_clickHandler(event:MouseEvent):void
 	cleanCurrentQuestion();
 	if (lst_Artefatos_Inspector.selectedItem!=null) 
 	{
+		onlyTxaViewFlag=false;
 		var questao:QuestaoEntity = lst_Artefatos_Inspector.selectedItem as QuestaoEntity;
 		QuestaoAtualListaIndex = lst_Artefatos_Inspector.selectedIndex;
+		txa_Artefato_Inspector.text="";
 		txa_Artefato_Inspector.htmlText=questao.Q_XML;
 		QuestaoAtualId=questao.Q_ID;
 		NivelDificuldade=questao.Q_Nivel_Dificuldade;
@@ -161,6 +166,7 @@ private function setQuestaoLayout(show:Boolean):void
 {
 	btnRemoverTrecho.enabled=show;
 	btnReclassificar.enabled=show;
+	txa_Artefato_Inspector.selectable=show;
 	txa_Artefato_Inspector.visible = show;
 	pnlTrechosSelecionados.visible = show;
 	btn_Registrar_FullInpec.visible = show;
@@ -171,7 +177,6 @@ private function setQuestaoLayout(show:Boolean):void
 protected function cleanCurrentQuestion():void
 {
 	dtgTrechosInspetor.dataProvider = new ArrayCollection();
-	txa_Artefato_Inspector.htmlText="";
 	Trechos_DefeitoList_FI = new ArrayCollection();
 }
 
@@ -179,6 +184,8 @@ private function onMouseUp_FI(evt:MouseEvent):void
 {
 //	if (dtgTrechosInspetor.dataProvider.length<Trechos_DefeitoList_FI.length)
 //	{
+	if(!onlyTxaViewFlag)
+	{
 		QuestaoSelectedText = new TextRange(txa_Artefato_Inspector,false,txa_Artefato_Inspector.selectionBeginIndex,txa_Artefato_Inspector.selectionEndIndex);
 		var selLength:int = QuestaoSelectedText.endIndex - QuestaoSelectedText.beginIndex;
 		RespostaPopUp.trechoSelecionado = new TextRange(txa_Artefato_Inspector,true).text;
@@ -189,6 +196,7 @@ private function onMouseUp_FI(evt:MouseEvent):void
 			PopUpManager.addPopUp(RespostaPopUp,this,true);
 			PopUpManager.centerPopUp(RespostaPopUp);
 		}
+	}
 //	}
 //	else
 //		Alert.show("Este artefato possui "+Trechos_DefeitoList_FI.length + " defeitos.");
@@ -202,15 +210,18 @@ protected function application1_currentStateChangingHandler(event:StateChangeEve
 
 private function textEvent_FI(e:TextEvent):void 
 {
-	if(dtgTrechosInspetor.dataProvider.length<Trechos_DefeitoList_FI.length)
+	if(!onlyTxaViewFlag)
 	{
-		RespostaPopUp.nivelDificuldade = NivelDificuldade;
-		RespostaPopUp.reclassificar = false;
-		PopUpManager.addPopUp(RespostaPopUp,this,true);
-		PopUpManager.centerPopUp(RespostaPopUp);
+		if(dtgTrechosInspetor.dataProvider.length<Trechos_DefeitoList_FI.length)
+		{
+			RespostaPopUp.nivelDificuldade = NivelDificuldade;
+			RespostaPopUp.reclassificar = false;
+			PopUpManager.addPopUp(RespostaPopUp,this,true);
+			PopUpManager.centerPopUp(RespostaPopUp);
+		}
+		else
+			Alert.show("This defect was already classified! If you want to change its classification, firstly remove it from the list.");
 	}
-	else
-		Alert.show("Você já classificou este defeito! Se quiser modificar a classificação, por favor retire a mesma da lista.");
 }
 
 private function set_Artefato_Inspector_TextArea():void
@@ -258,7 +269,7 @@ private function verificarRespostas_FI():void
 				if(trechoQuestao.IT_ID==trechoResposta.IT_ID)
 				{
 					trechoResposta.pontos=1;
-					Alert.show("Você acertou a classificação do trecho destacado.","Parabéns!");
+					Alert.show("Your defect classification is righ.","Congratulations!");
 				}
 				else
 				{
@@ -286,11 +297,11 @@ private function setAnaliseRespostas():void
 			if(trechoResposta.pontos==0)
 			{
 				var mensagem:String = "";
-				mensagem=mensagem.concat("\nEste trecho não foi cadastrado como defeito, aguarde a discriminação do moderador.\n\n");
-				mensagem=mensagem.concat("Trecho selecionado:\n");
+				mensagem=mensagem.concat("\nThis code line was not registered as a defect, wait discrimination stage to discuss with your colleagues.\n\n");
+				mensagem=mensagem.concat("Selected line:\n");
 				mensagem=mensagem.concat(trechoResposta.TRECHO_RESPOSTA+"\n");
-				mensagem=mensagem.concat("Classificação selecionada: "+trechoResposta.classificao+"\n\n" );
-				Alert.show(mensagem,"Atenção")
+				mensagem=mensagem.concat("Selected classification: "+trechoResposta.classificao+"\n\n" );
+				Alert.show(mensagem,"Attention")
 			}
 		}
 		for each(var trechoQuestao:TrechoDefeitoEntity in Trechos_DefeitoList_FI)
@@ -298,12 +309,12 @@ private function setAnaliseRespostas():void
 			if(trechoQuestao.D_ID==0)
 			{
 				var mensagem2:String = "";
-				mensagem2=mensagem2.concat("\nTrecho:\n");
+				mensagem2=mensagem2.concat("\nLine:\n");
 				mensagem2=mensagem2.concat(trechoQuestao.Conteudo+"\n");
-				mensagem2=mensagem2.concat("Classificação: "+trechoQuestao.classificao+"\n\n" );
-				mensagem2=mensagem2.concat("Explicação do defeito:\n");
+				mensagem2=mensagem2.concat("Classification: "+trechoQuestao.classificao+"\n\n" );
+				mensagem2=mensagem2.concat("Defect explanation:\n");
 				mensagem2=mensagem2.concat(trechoQuestao.Explicacao);
-				Alert.show(mensagem2,"Atenção - Defeito não encontrado");
+				Alert.show(mensagem2,"Attention - Defect not found");
 			}
 		}
 	}

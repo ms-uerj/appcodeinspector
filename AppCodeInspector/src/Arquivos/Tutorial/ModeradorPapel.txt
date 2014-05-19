@@ -1,17 +1,17 @@
-O papel de Moderador:
+Moderator Role:
 
-Neste papel você poderá moderar uma seção de inspeção definindo os seus artefatos e inspetores ou discriminar os defeitos reais dos falsos positivos encontrados por inspetores nas seções que já foram criadas.
+In this role you will be able to moderate an inspection session by defining its artifacts and inspectors or by discriminating the real defects from the false positives found by the round's inspectors. The discrimination stage will only be available once an inspectors have finished inspecting at least 1 of the round's artifact.
 
-Etapas com participação do moderador:
+Stages with moderator interaction:
 
-• Planejamento.
-• Coleção.
-• Discriminação.
-• Continuação.
+• Planning.
+• Collection.
+• Discrimination.
+• Continuation.
 
-Observações:
+Remarks:
 
-• Na discriminação de falsos positivos, cada avaliação correta equivale a 1 ponto. 
-• Na disciminação de falsos positivos você tem acesso a todas as seções de inspeção já criadas.
-• A etapa de discriminação só estará disponível, caso já tenha sido criada uma partida de inspeção.
+• In discrimination stage, if the round inspection team (i.e., Moderator plus its inspectors) every confirmed defect will add 1 score to all inspectors that identified in the same defect and classified in the same category.
+• Discrimination stage screen will show all inspection rounds created for that moderator.
+• Discrimination stage will only be available once an inspection role is created and an inspector finishes inspecting at least 1 artifact.
 

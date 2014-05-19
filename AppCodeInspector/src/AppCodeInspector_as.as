@@ -95,7 +95,7 @@ private function verificarRespostaInterDifi(trechoQuestao:TrechoDefeitoEntity,tr
 	
     if (!classificacaoCerta&&trechoCerto)
 	{
-		mensagem=mensagem.concat("Você errou apenas a classificação do defeito.\n\n");
+		mensagem=mensagem.concat("Você errou apenas a classificação do defeito. Aguarde a fase de discriminação.\n\n");
 		mensagem=mensagem.concat("A classificação correta é:"+trechoQuestao.itemTax.Nome+"\n\n");
 		mensagem=mensagem.concat("Explicação do defeito:\n");
 		

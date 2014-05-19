@@ -1,10 +1,10 @@
-• Etapa de Detecção:
+• Detection Stage: 
 
-Nesta etapa, você terá de encontrar defeitos em artefatos de software definidos pelo moderador, utilizando a classificação correta para cada defeito encontrado.
+In this stage, you will need to find defects in software artifacts defined by a moderator using the correct classification for each defect you found. 
 
-Obeservações:
+Remarks: 
 
-• Erros na identificação não serão contabilizados.
-• Cada defeito corretamente identificado vale 1 ponto e para a classificação correta mais 1 ponto. Nos níveis Básico e Intermediário, há um defeito por artefato.
- Já no nível Difícil, há mais de um defeito cadastrado por artefato.
-• No nível fácil o trecho não aparece na lista, mas aparece a classificação associada ao trecho em realce
+• Identification and classification errors will not be accounted. 
+• Each correctly identified defect and each classification will score 1 point respectively. In easy and medium level artifacts, there is a defect per artifact. 
+  In Hard difficulty artifacts, there will be more than one defect per artifact. 
+• Easy level artifacts, the chosen defect passage will not appear in the list since its already highlighted, but the classification associated with it will.

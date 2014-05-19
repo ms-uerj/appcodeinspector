@@ -33,7 +33,7 @@ protected function btn_CriarPartida_clickHandler(event:MouseEvent):void
 		IniciarPartidaFullAdmin.token = ws_InspectorX.IniciarPartida(rdg_PartidaDificuldade.selectedValue as int,UsuarioTipoID,InspectorXUserEnum.Moderador);
 	}
 	else 
-		Alert.show("Por favor, selecione um nível de dificuldade.");
+		Alert.show("Please, select a difficulty level.");
 }
 
 protected function btn_EditarPartidaAdmin_clickHandler(event:MouseEvent):void
@@ -59,7 +59,7 @@ protected function btn_DeletarPartidaAdmin_clickHandler(event:MouseEvent):void
 		var partida:Partida = lst_MinhasPartidas.selectedItem as Partida;
 		if(partida==null)
 		{
-			Alert.show("Por favor, selecione uma partida para ser deletada.");
+			Alert.show("Please, select a round to be deleted.");
 			return;
 		}
 		removerFullInspectPartidaResult.token = ws_InspectorX.removerFullInspectPartida(partida.P_ID);
@@ -80,7 +80,7 @@ protected function btn_AvaliarPartida_clickHandler(event:MouseEvent):void
 		setAvaliacaoInicializacaoPadrao(partida);
 	}
 	else
-		Alert.show("Selecione uma partida para a avaliação");
+		Alert.show("Select a round for the evaluation");
 }
 
 protected function lst_MinhasPartidas_clickHandler(event:MouseEvent):void
@@ -123,6 +123,8 @@ public function setAvaliacaoInicializacaoPadrao(partida:PartidaEntity):void
 protected function btn_VoltarSelecaoPapel_clickHandler(event:MouseEvent):void
 {
 	this.currentState="JogoModoSelecao";
+	btnDiscrimincao.enabled=false;
+	btnPlanejamento.enabled=false;
 }
 
 protected function GetPartidasResult_resultHandler(e:ResultEvent):void

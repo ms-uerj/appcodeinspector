@@ -1,5 +1,5 @@
 /**
- * This is a generated sub-class of _WebServiceMain.as and is intended for behavior
+ * This is a generated sub-class of _WebserviceMain.as and is intended for behavior
  * customization.  This class is only generated when there is no file already present
  * at its target location.  Thus custom behavior that you add here will survive regeneration
  * of the super-class. 
@@ -8,7 +8,7 @@
 package services.webservicemain
 {
 
-public class WebServiceMain extends _Super_WebServiceMain
+public class WebserviceMain extends _Super_WebserviceMain
 {
     /**
      * Override super.init() to provide any initialization customization if needed.

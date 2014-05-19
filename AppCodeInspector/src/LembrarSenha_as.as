@@ -6,17 +6,17 @@ protected function btn_EnviarEmail_clickHandler(event:MouseEvent):void
 {
 	frmi_Email.validateNow();
 	
-	//RecuperarSenha.token=ws_InspectorX.RecuperarSenha(txt_Email.text);
+	//RecuperarSenha.token=ws_InspectorX.RecuperarSenha(txt_Email.text);ortografia
 }
 
 protected function RecuperarSenha_resultHandler(e:ResultEvent):void
 {
 	if(e.result==true)
 	{
-        Alert.show("Operação efetuada com sucesso. Você deve receber a sua senha no e-mail em alguns minutos.");
+        Alert.show("Email was sent with your password.");
 		txt_Email.text="";
 	}
 	else
-		Alert.show("Desculpe, mas este e-mail não se encontra cadastrado; favor verificar a ortografia e tentar novamente.\n"
-			+"Caso não obtenha sucesso, favor cadastrar-se novamente.");
+		Alert.show("Sorry, but this email was not found; try verifying spelling.\n"
+			+"If unsuccessful, please register again.");
 }

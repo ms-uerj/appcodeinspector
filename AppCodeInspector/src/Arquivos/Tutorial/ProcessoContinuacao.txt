@@ -1,7 +1,7 @@
-• Etapa de Continuação:
+• Continuation Stage: 
 
-Após a etapa “Retrabalho”, o material corrigido é repassado para o moderador, que reavalia a correção e a qualidade do artefato que foi inspecionado.
+After "Rework" stage, the corrected material is passed on to the moderator, who reassesses the correctness and quality of the artifact that was inspected. 
 
-Observações:
+Remarks: 
 
-• Esta etapa não é simulada no jogo.
+• This step is not simulated in the game.
