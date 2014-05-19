@@ -2,9 +2,9 @@
 <jax-ws xmlns="http://www.netbeans.org/ns/jax-ws/1">
   <services/>
   <clients>
-    <client name="WebServiceMain">
-      <wsdl-url>http://189.122.81.94:8181/webserviceacess_deploy/WebService/WebServiceMain.asmx?wsdl</wsdl-url>
-      <local-wsdl-file>189.122.81.94_8181/webserviceacess_deploy/WebService/WebServiceMain.asmx.wsdl</local-wsdl-file>
+    <client name="webservicemain">
+      <wsdl-url>http://189.122.83.4:8181/InspectorXWS/webservice/webservicemain.asmx?WSDL</wsdl-url>
+      <local-wsdl-file>189.122.83.4_8181/InspectorXWS/webservice/webservicemain.asmx.wsdl</local-wsdl-file>
       <package-name forceReplace="true">InspectorXWebserv</package-name>
       <catalog-file>catalog.xml</catalog-file>
       <wsimport-options>
@@ -18,7 +18,43 @@
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>wsdlLocation</wsimport-option-name>
-          <wsimport-option-value>http://189.122.81.94:8181/webserviceacess_deploy/WebService/WebServiceMain.asmx?wsdl</wsimport-option-value>
+          <wsimport-option-value>http://189.122.83.4:8181/InspectorXWS/webservice/webservicemain.asmx?WSDL</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>xnocompile</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>xendorsed</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>package</wsimport-option-name>
+          <wsimport-option-value>InspectorXWebserv</wsimport-option-value>
+        </wsimport-option>
+      </wsimport-options>
+    </client>
+    <client name="WebserviceMain">
+      <wsdl-url>http://192.168.1.148:8181/inspectorxws/webservice/WebserviceMain.asmx?WSDL</wsdl-url>
+      <local-wsdl-file>192.168.1.148_8181/inspectorxws/webservice/WebserviceMain.asmx.wsdl</local-wsdl-file>
+      <package-name forceReplace="true">InspectorXWebserv</package-name>
+      <catalog-file>catalog.xml</catalog-file>
+      <wsimport-options>
+        <wsimport-option>
+          <wsimport-option-name>extension</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>verbose</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>fork</wsimport-option-name>
+          <wsimport-option-value>false</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>wsdlLocation</wsimport-option-name>
+          <wsimport-option-value>http://192.168.1.148:8181/inspectorxws/webservice/WebserviceMain.asmx?WSDL</wsimport-option-value>
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>xnocompile</wsimport-option-name>

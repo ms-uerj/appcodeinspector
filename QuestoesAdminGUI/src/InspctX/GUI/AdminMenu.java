@@ -1,7 +1,9 @@
 package InspctX.GUI;
 
+import InspectorXWebserv.ArrayOfQuestaoEntity;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -24,27 +26,25 @@ public class AdminMenu extends javax.swing.JFrame {
         pnl_QuestoesAdmin = new InspctX.Componentes.QuestoesAdminPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Administrador artefatos e taxonomias do InspectorX");
+        setTitle("InspectorX Artifact Manager");
 
         tbp_Admin.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 tbp_AdminStateChanged(evt);
             }
         });
-        tbp_Admin.addTab("Taxonomias", pnl_TaxonomiaAdmin);
-        tbp_Admin.addTab("Questões", pnl_QuestoesAdmin);
+        tbp_Admin.addTab("Taxonomy", pnl_TaxonomiaAdmin);
+        tbp_Admin.addTab("Artifacts", pnl_QuestoesAdmin);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tbp_Admin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 715, Short.MAX_VALUE)
+            .addComponent(tbp_Admin, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(tbp_Admin, javax.swing.GroupLayout.DEFAULT_SIZE, 456, Short.MAX_VALUE))
+            .addComponent(tbp_Admin, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -55,7 +55,27 @@ public class AdminMenu extends javax.swing.JFrame {
         pnl_QuestoesAdmin.setTaxonomiaCombobox();  
     }//GEN-LAST:event_tbp_AdminStateChanged
 
+    public void setQuestaoList()
+    {
+        try 
+        {
+	    int qtdRequisicoes = 1000;
+	    long startTime = System.currentTimeMillis();
+	    for (int i = 0; i < qtdRequisicoes; i++) {
+		ArrayOfQuestaoEntity questaoEntity = getQuestoesTaxList(17);
+	    }
+	    
+	    long finishTime = System.currentTimeMillis();
+	    JOptionPane.showMessageDialog(this, "Tempo para "+qtdRequisicoes+" requisições: " + (finishTime - startTime)+" ms");
 
+        } 
+        catch (Exception ex) 
+        {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+        
+    }
+	
 public static void main(String args[]) {
     java.awt.EventQueue.invokeLater(new Runnable() {
     
@@ -77,6 +97,13 @@ public static void main(String args[]) {
     });
 }
 
+
+    
+    private static ArrayOfQuestaoEntity getQuestoesTaxList(int taxId) {
+        InspectorXWebserv.WebServiceMain service = new InspectorXWebserv.WebServiceMain();
+        InspectorXWebserv.WebServiceMainSoap port = service.getWebServiceMainSoap12();
+        return port.getQuestoesTaxList(taxId);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private InspctX.Componentes.QuestoesAdminPanel pnl_QuestoesAdmin;

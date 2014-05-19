@@ -48,25 +48,25 @@ public class InserirQuestao extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Inserção de Artefatos");
 
-        jLabel1.setText("Corpo da questão:");
+        jLabel1.setText("Artifact Content");
 
-        btnInserir.setText("Inserir");
+        btnInserir.setText("Insert");
         btnInserir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnInserirActionPerformed(evt);
             }
         });
 
-        btnVoltar.setText("Voltar");
+        btnVoltar.setText("Back");
         btnVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVoltarActionPerformed(evt);
             }
         });
 
-        cbxDificuldade.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Fácil", "Normal", "Difícil" }));
+        cbxDificuldade.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Easy", "Normal", "Difícil" }));
 
-        jLabel2.setText("Dificuldade da questão:");
+        jLabel2.setText("Difficulty Level");
 
         pnlCorpoQuestao.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -79,15 +79,15 @@ public class InserirQuestao extends javax.swing.JFrame {
         });
         txateste.setViewportView(txa_QuestaoCorpo);
 
-        tbt_SelecionarDefeito.setText("Selecionar Defeito");
+        tbt_SelecionarDefeito.setText("Select Defect");
         tbt_SelecionarDefeito.setToolTipText("Pressione e selecione o trecho com o defeito");
 
-        jLabel3.setText("Visualização:");
+        jLabel3.setText("HTML View:");
 
         jScrollPane1.setViewportView(lst_DefeitosSelecionados);
 
         label1.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        label1.setText("Defeitos Selecionados :");
+        label1.setText("Added Defects:");
 
         javax.swing.GroupLayout pnlCorpoQuestaoLayout = new javax.swing.GroupLayout(pnlCorpoQuestao);
         pnlCorpoQuestao.setLayout(pnlCorpoQuestaoLayout);

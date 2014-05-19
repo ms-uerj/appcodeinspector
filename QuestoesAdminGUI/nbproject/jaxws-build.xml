@@ -16,22 +16,39 @@
             <classpath path="${libs.jaxws21.classpath}"/>
         </taskdef>
     </target>
-    <target name="wsimport-client-WebServiceMain" depends="wsimport-init">
-        <mkdir dir="${build.generated.dir}/jax-wsCache/WebServiceMain"/>
-        <property name="wsdl-WebServiceMain" location="xml-resources/web-service-references/WebServiceMain/wsdl/189.122.81.94_8181/webserviceacess_deploy/WebService/WebServiceMain.asmx.wsdl"/>
-        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/WebServiceMain" destdir="${build.generated.dir}/jax-wsCache/WebServiceMain" wsdl="${wsdl-WebServiceMain}" catalog="catalog.xml" extension="true" verbose="true" wsdlLocation="http://189.122.81.94:8181/webserviceacess_deploy/WebService/WebServiceMain.asmx?wsdl" xnocompile="true" xendorsed="true" package="InspectorXWebserv">
-            <depends file="${wsdl-WebServiceMain}"/>
-            <produces dir="${build.generated.dir}/jax-wsCache/WebServiceMain"/>
+    <target name="wsimport-client-webservicemain" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/webservicemain"/>
+        <property name="wsdl-webservicemain" location="xml-resources/web-service-references/webservicemain/wsdl/189.122.83.4_8181/InspectorXWS/webservice/webservicemain.asmx.wsdl"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/webservicemain" destdir="${build.generated.dir}/jax-wsCache/webservicemain" wsdl="${wsdl-webservicemain}" catalog="catalog.xml" extension="true" verbose="true" wsdlLocation="http://189.122.83.4:8181/InspectorXWS/webservice/webservicemain.asmx?WSDL" xnocompile="true" xendorsed="true" package="InspectorXWebserv">
+            <depends file="${wsdl-webservicemain}"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/webservicemain"/>
         </wsimport>
         <copy todir="${build.generated.sources.dir}/jax-ws">
-            <fileset dir="${build.generated.dir}/jax-wsCache/WebServiceMain">
+            <fileset dir="${build.generated.dir}/jax-wsCache/webservicemain">
                 <include name="**/*.java"/>
             </fileset>
         </copy>
     </target>
-    <target name="wsimport-client-clean-WebServiceMain" depends="-init-project">
-        <delete dir="${build.generated.dir}/jax-wsCache/WebServiceMain"/>
+    <target name="wsimport-client-clean-webservicemain" depends="-init-project">
+        <delete dir="${build.generated.dir}/jax-wsCache/webservicemain"/>
         <delete dir="${build.generated.sources.dir}/jax-ws/InspectorXWebserv"/>
     </target>
-    <target name="wsimport-client-generate" depends="wsimport-client-WebServiceMain"/>
+    <target name="wsimport-client-WebserviceMain" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/WebserviceMain"/>
+        <property name="wsdl-WebserviceMain" location="xml-resources/web-service-references/WebserviceMain/wsdl/192.168.1.148_8181/inspectorxws/webservice/WebserviceMain.asmx.wsdl"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/WebserviceMain" destdir="${build.generated.dir}/jax-wsCache/WebserviceMain" wsdl="${wsdl-WebserviceMain}" catalog="catalog.xml" extension="true" verbose="true" fork="false" wsdlLocation="http://192.168.1.148:8181/inspectorxws/webservice/WebserviceMain.asmx?WSDL" xnocompile="true" xendorsed="true" package="InspectorXWebserv">
+            <depends file="${wsdl-WebserviceMain}"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/WebserviceMain"/>
+        </wsimport>
+        <copy todir="${build.generated.sources.dir}/jax-ws">
+            <fileset dir="${build.generated.dir}/jax-wsCache/WebserviceMain">
+                <include name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="wsimport-client-clean-WebserviceMain" depends="-init-project">
+        <delete dir="${build.generated.dir}/jax-wsCache/WebserviceMain"/>
+        <delete dir="${build.generated.sources.dir}/jax-ws/InspectorXWebserv"/>
+    </target>
+    <target name="wsimport-client-generate" depends="wsimport-client-webservicemain, wsimport-client-WebserviceMain"/>
 </project>

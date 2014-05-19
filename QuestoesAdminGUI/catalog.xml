@@ -7,4 +7,7 @@
     <system systemId="http://localhost:4200/WebService/WebServiceMain.asmx?WSDL" uri="xml-resources/web-service-references/WebServiceMain/wsdl/localhost_4200/WebService/WebServiceMain.asmx.wsdl"/>
     <system systemId="http://189.32.142.30:8080/webserviceacess_deploy/WebService/WebServiceMain.asmx?WSDL" uri="xml-resources/web-service-references/WebServiceMain/wsdl/189.32.142.30_8080/webserviceacess_deploy/WebService/WebServiceMain.asmx.wsdl"/>
     <system systemId="http://189.122.81.94:8181/webserviceacess_deploy/WebService/WebServiceMain.asmx?wsdl" uri="xml-resources/web-service-references/WebServiceMain/wsdl/189.122.81.94_8181/webserviceacess_deploy/WebService/WebServiceMain.asmx.wsdl"/>
+    <system systemId="http://189.122.81.94:8181/webserviceacess_deploy/WebService/WebServiceMain.asmx?WSDL" uri="xml-resources/web-service-references/WebServiceMain/wsdl/189.122.81.94_8181/webserviceacess_deploy/WebService/WebServiceMain.asmx.wsdl"/>
+    <system systemId="http://189.122.83.4:8181/InspectorXWS/webservice/webservicemain.asmx?WSDL" uri="xml-resources/web-service-references/WebServiceMain/wsdl/189.122.83.4_8181/InspectorXWS/webservice/webservicemain.asmx.wsdl"/>
+    <system systemId="http://192.168.1.148:8181/inspectorxws/webservice/WebserviceMain.asmx?WSDL" uri="xml-resources/web-service-references/WebServiceMain/wsdl/192.168.1.148_8181/inspectorxws/webservice/WebserviceMain.asmx.wsdl"/>
 </catalog>
