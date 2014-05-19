@@ -1,7 +1,7 @@
-• Etapa de Retrabalho:
+• Rework Stage: 
 
-Nesta etapa, o autor dos artefatos corrige as discrepâncias reais identificadas na etapa “Discriminação de defeitos”.
+In this stage, the artifact's author will addresses the identified discrepancies by "Discrimination Stage". 
 
-Observações:
+Remarks: 
 
-• Esta etapa não é simulada no jogo.
+• This step is not simulated in the game.

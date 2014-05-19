@@ -11,7 +11,7 @@ import valueObjects.UsuarioEntity;
 
 
 [Bindable]
-public var LoginUsuario:String="Anônimo";
+public var LoginUsuario:String="Anonymous";
 
 public static var UsuarioLogado:Usuario;
 
@@ -19,9 +19,9 @@ protected function _btnLogar_clickHandler(event:MouseEvent):void
 {
 	var errorMessage: String = "";
 	if (txtUsuario.text=="") 
-		errorMessage+="Por favor, preencha o nome do usuário.\n";
+		errorMessage+="Please, fill user name.\n";
 	if (txtSenha.text=="")
-		errorMessage+="Por favor, informe a senha.";
+		errorMessage+="Please, fill your password.";
 	
 	if(errorMessage.length==0)
 		AutenticarUsuarioResult.token = ws_InspectorX.AutenticarUsuario(txtUsuario.text,txtSenha.text);
@@ -34,12 +34,12 @@ protected function AutenticarUsuarioResult_resultHandler(e:ResultEvent):void
 {
 	if(e.result == null)
 	{
-		Alert.show("Usuário não encontrado; por favor, tente novamente.");
+		Alert.show("User not found; please, try again.");
 	}
 	else
 	{	
 		UsuarioLogado = new Usuario(e.result as UsuarioEntity); 
-		Alert.show("Usuário autenticado com sucesso! Seja bem vindo!");
+		Alert.show("User found! Wellcome!");
 		LoginUsuario = txtUsuario.text;
 
 		txtUsuario.text="";

@@ -34,7 +34,7 @@ protected function btn_ConfirmadoArtefatoAval_clickHandler(event:MouseEvent):voi
 		var tr:TrechoResposta = dgr_QuestaoTrechos.selectedItem as TrechoResposta;
 		tr.pontos = 1;
 		setTrechoRespostaAvalResult.token = ws_InspectorX.setTrechoRespostaAval(tr.TRECHO_RESPOSTA,tr.Q_ID,tr.IT_ID, PartidaEmAvaliacao.P_ID,tr.pontos);
-		Alert.show("Os inspetores que encontraram o defeito serão pontuados!");
+		Alert.show("Each inspector that found this defect will receive 1 point!");
 	}
 }
 
@@ -46,7 +46,7 @@ protected function btn_RecusadoArtefatoAval_clickHandler(event:MouseEvent):void
 		tr.pontos = 0;
 		setTrechoRespostaAvalResult.token = ws_InspectorX.setTrechoRespostaAval(tr.TRECHO_RESPOSTA,tr.Q_ID,tr.IT_ID, PartidaEmAvaliacao.P_ID,tr.pontos);
 		
-		Alert.show("O trecho selecionado foi classificado como falso positivo.");
+		Alert.show("The selected code line was classified as a false-positive.");
 	}
 }
 

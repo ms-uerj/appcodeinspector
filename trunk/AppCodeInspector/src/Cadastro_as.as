@@ -12,11 +12,11 @@ protected function CriarUsuarioResult_resultHandler(e:ResultEvent):void
 {
 	if(e.result == false)
 	{
-		Alert.show("Erro ao tentar criar o usuário. Por favor, contacte o administrador do sistema.");
+		Alert.show("Error while creating the user.Please, call the system's administrator.");
 	}
 	else
 	{	
-		Alert.show("Usuário criado com Sucesso! Seja Bem Vindo!");
+		Alert.show("User was succesfully created! Welcome!");
 		txtUsuario.text="";
 		txtSenha.text="";
 		txt_Email.text="";

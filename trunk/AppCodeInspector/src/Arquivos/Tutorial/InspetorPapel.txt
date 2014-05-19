@@ -1,15 +1,15 @@
-O papel de Inspetor:
+Inspector Role:
 
-Como inspetor, você terá de encontrar defeitos em artefatos de software definidos por um moderador, utilizando a classificação correta para cada defeito encontrado.
+In this role, you will have to identify and classify defects by reviewing software artifacts defined by a moderator 
 
-Etapas com participação do inspetor:
+Inspector's Process Stages:
 
-• Detecção.
-• Discriminação.
+• Detection.
+• Discrimination.
 
-Obeservações:
+Remarks:
 
-• Erros na identificação não serão contabilizados.
-• Cada acerto vale 1 ponto. Nos níveis Básico e Intermediário, há um defeito por artefato. Já no nível Difícil, há mais de um defeito cadastrado por artefato.
-• A etapa de detecção só estará disponível caso algum moderador tenha incluído o seu usuário como inspetor em alguma partida.
-• Para a seleção dos defeitos selecione sempre toda a linha na qual o defeito se encontra.
+• Wrongly identified or classified artifacts won’t be considered.
+• Each rightly identified defect worth’s 1 score. In basic and intermediary artifact difficulty levels, there is a defect per artifact. In high difficulty level there is more than one defect per artifact.
+• Detection stage will only be available once a moderator includes the user in an inspection round.
+• For the defect selection always select the entire textual line in which the defect is to be found.

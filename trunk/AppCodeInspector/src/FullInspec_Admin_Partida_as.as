@@ -22,7 +22,7 @@ protected function btn_RegistrarPartida_clickHandler(event:MouseEvent):void
 	}
 	RelacionarUsrPartidaResult.token = ws_InspectorX.relacionarUsrPartida(Usuario.toIdCollection(lst_InspetoresAdicionados.dataProvider as ArrayCollection), PartidaAtualId);
 	SetArtefatoPartidaResult.token = ws_InspectorX.setArtefatoPartida(Questao.toIdCollection(lst_ArtefatosAdicionados.dataProvider as ArrayCollection), PartidaAtualId);
-	Alert.show("Partida registrada com sucesso!");
+	Alert.show("Round successfully registered!");
 	this.currentState = "FullInspec_Admin";
 	clearList();
 }
@@ -97,11 +97,11 @@ private function validatePartida():String
 	var errors:Array = new Array();
 	
 	if(lst_ArtefatosAdicionados.dataProvider==null||lst_ArtefatosAdicionados.dataProvider.length==0)
-		errors.join("É necessário no mínimo 1 artefato para registrar a partida.\n\n");
+		errors.join("You need at least 1 artifact per round.\n\n");
 	if(lst_InspetoresAdicionados.dataProvider==null||lst_InspetoresAdicionados.dataProvider.length==0)
-		errors.join("É necessário no mínimo 1 inspetor por partida!\n\n");
+		errors.join("You need at least 1 inspector per round!\n\n");
 	if(lst_ArtefatosAdicionados.dataProvider.length>partidaArtefatoMax)
-		errors.join("O numero máximo de artefatos para cada partida é" + partidaArtefatoMax + ".");
+		errors.join("The max number of artifacts is " + partidaArtefatoMax + ".");
 	
 	return errors.toString();
 }
@@ -130,7 +130,7 @@ protected function lst_ArtefatosDisponiveis_dragEnterHandler(event:DragEvent):vo
 	}
 	catch(e:Error)
 	{
-		Alert.show("Este item não é do tipo aceito para esta lista.");
+		Alert.show("This iten is not accepted in this list.");
 	}
 }
 
@@ -150,13 +150,13 @@ protected function lst_ArtefatosAdicionados_dragEnterHandler(event:DragEvent):vo
 			counter++;
 			
 			if(listLenght+counter>=partidaArtefatoMax)
-				Alert.show("O número máximo de artefatos por partida é "+partidaArtefatoMax);
+				Alert.show("The max number of artifacts is "+partidaArtefatoMax);
 			
 		}
 	}
 	catch(e:Error)
 	{
-		Alert.show("Este item  não é do tipo aceito para esta lista.");
+		Alert.show("This iten is not accepted in this list.");
 	}				
 }
 
@@ -175,13 +175,13 @@ protected function lst_InspetoresAdicionados_dragEnterHandler(event:DragEvent):v
 			var listLenght:int = lst_InspetoresAdicionados.dataProvider.length;
 			counter++;
 			if(listLenght+counter>=partidaInspetorMax)
-				Alert.show("O número máximo de artefatos por partida é "+partidaInspetorMax);
+				Alert.show("The max number of artifacts per round is "+partidaInspetorMax);
 		}
 		
 	}
 	catch(e:Error)
 	{
-		Alert.show("Este item  não é do tipo aceito para esta lista.");
+		Alert.show("This iten is not accepted in this list.");
 	}	
 }
 
@@ -198,6 +198,6 @@ protected function lst_InspetoresDisponiveis_dragEnterHandler(event:DragEvent):v
 	}
 	catch(e:Error)
 	{
-		Alert.show("Este item  não é do tipo aceito para esta lista.");
+		Alert.show("This iten is not accepted in this list.");
 	}
 }

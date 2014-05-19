@@ -1,7 +1,7 @@
-• Etapa de Coleção:
+• Collection Stage: 
 
-Nesta etapa, o moderador revisa o trabalho realizado pelos inspetores e elimina redundâncias nas discrepâncias encontradas.
+In this stage, the moderator reviews work carried out by inspectors and eliminates redundancies in the discrepancies found so that in the discrimination stage there will be only one instance of each found defect/classification. 
 
-Observações:
+Remarks: 
 
-• Esta etapa é feita automaticamente pelo jogo, ou seja, quando inspetores encontrarem o mesmo defeito e classificarem igualmente, só será apresentando uma classificação do artefato para o moderador.
+• This step is done automatically by the game, (i.e., when inspectors find the same defect and with the same classification, the game engine will automatically present only 1 instance of it at the discrimination screen).
