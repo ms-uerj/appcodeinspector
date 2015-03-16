@@ -1,0 +1,1 @@
+Este projeto tem como objetivo criar um "jogo" onde o objetivo é encontrar erros nos códigos que serão apresentados aleatóriamente ao jogador, no final será apresentada sua pontuação e seu rank.
